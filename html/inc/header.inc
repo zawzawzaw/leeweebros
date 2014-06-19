@@ -6,7 +6,7 @@
         <input type="text" id="search" name="search" placeholder="SEARCH" />
       </div>
       
-      <div class="col-md-3 col-md-offset-6">
+      <div class="col-md-4 col-md-offset-5">
         <div class="header-content">
           <div id="header-links"><a href="#" class="join">JOIN</a> / <a href="#" class="sign-in">SIGN IN</a></div>
           <div id="header-cart-info">

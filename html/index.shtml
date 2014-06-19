@@ -53,7 +53,7 @@
 
 	<div id="main-slider" class="container">
 		<div class="row">
-			<div id="carousel-example-generic" class="col-md-10 col-md-offset-1 carousel slide" data-ride="carousel">
+			<div id="carousel-example-generic" class="col-md-12 carousel slide" data-ride="carousel">
 				<!-- Indicators -->
 				<ol class="carousel-indicators">
 					<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -102,7 +102,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-10 col-md-offset-1">
+			<div class="col-md-10">
 				<div class="jcarousel-wrapper">
 					<div class="jcarousel" data-jcarousel="true">
 					    <ul>
