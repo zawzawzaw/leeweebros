@@ -22,34 +22,6 @@
 	</div>
 	
   	<!--#include virtual="inc/header.inc" -->
-	<div class="container-fluid" id="main-content">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4 col-md-offset-4 logo-container">
-					<img src="images/logo/main-logo.png" alt="Lee Wee Brothers Logo" class="main-logo">
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12 nav-container">
-					<hr class="nav-hr">
-					<nav class="main-nav">
-						<ul>
-							<li><a href="#">ABOUT US</a></li>
-							<li><a href="#">OUR FOOD</a></li>
-							<li><a href="#">CATERING</a></li>
-							<li><a href="#">DELIVERY</a></li>
-							<li><a href="#">OUTLETS</a></li>
-							<li><a href="#">ORDER ONLINE</a></li>
-							<li><a href="#">PROMOTION</a></li>
-							<li><a href="#">CAREERS</a></li>
-							<li><a href="#">CONTACT</a></li>
-						</ul>
-					</nav>
-					<hr class="nav-hr">
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<div id="main-slider" class="container">
 		<div class="row">
@@ -94,43 +66,140 @@
 		</div>
 	</div>
 
+	<div class="space50"></div>
+	<div class="space20"></div>
+
 	<div id="special-deal" class="container">
 		<div class="row">
-			<div class="col-md-2">
-				<h2>PECIAL DEAL FOR YOU</h2>
-				<h1>Deal of the day</h1>
+			<div class="col-md-12" id="header-text">
+				<h3>SPECIAL DEAL FOR YOU</h3>
+				<h1>DEAL OF THE DAY</h1>
 			</div>
 		</div>
+		<div class="space20"></div>
 		<div class="row">
-			<div class="col-md-10">
+			<div class="col-md-12">
 				<div class="jcarousel-wrapper">
 					<div class="jcarousel" data-jcarousel="true">
 					    <ul>
 					        <li>
-								<img src="images/home_slider/special-deal-slider-1.jpg" alt="slider 1">
+								<img src="images/home_slider/special-deal-slider-1.jpg" alt="CHICKEN SATAY">
+								<div class="caption">
+									<h3>CHICKEN SATAY</h3>
+									<p>$0.50</p>
+								</div>
 					        </li>
 					        <li>
-								<img src="images/home_slider/special-deal-slider-2.jpg" alt="slider 2">
+								<img src="images/home_slider/special-deal-slider-2.jpg" alt="CURRY CHICKEN WITH BAGUETTE">
+								<div class="caption">
+									<h3>CURRY CHICKEN WITH BAGUETTE</h3>
+									<p>$4.20</p>
+								</div>
 					        </li>
 					        <li>
-								<img src="images/home_slider/special-deal-slider-3.jpg" alt="slider 3">
+								<img src="images/home_slider/special-deal-slider-3.jpg" alt="ASSAM PRAWN">
+								<div class="caption">
+									<h3>ASSAM PRAWN</h3>
+									<p>$2.60</p>
+								</div>
 					        </li>
 					        <li>
-								<img src="images/home_slider/special-deal-slider-3.jpg" alt="slider 3">
+								<img src="images/home_slider/special-deal-slider-3.jpg" alt="ASSAM PRAWN">
+								<div class="caption">
+									<h3>ASSAM PRAWN</h3>
+									<p>$2.60</p>
+								</div>
 					        </li>
 					        <li>
-								<img src="images/home_slider/special-deal-slider-3.jpg" alt="slider 3">
+								<img src="images/home_slider/special-deal-slider-2.jpg" alt="CURRY CHICKEN WITH BAGUETTE">
+								<div class="caption">
+									<h3>CURRY CHICKEN WITH BAGUETTE</h3>
+									<p>$4.20</p>
+								</div>
 					        </li>
 					        <li>
-								<img src="images/home_slider/special-deal-slider-3.jpg" alt="slider 3">
+								<img src="images/home_slider/special-deal-slider-1.jpg" alt="CHICKEN SATAY">
+								<div class="caption">
+									<h3>CHICKEN SATAY</h3>
+									<p>$0.50</p>
+								</div>
 					        </li>
 					    </ul>
 					</div>
 					<a href="#" class="jcarousel-control-prev" data-jcarouselcontrol="true"></a>
 					<a href="#" class="jcarousel-control-next" data-jcarouselcontrol="true"></a>
+					<hr class="separator">
 				</div>
-				
 			</div>			
+		</div>
+	</div>
+
+	<div class="space50"></div>
+	<div class="space20"></div>
+
+	<div id="feature-product" class="container">
+		<div class="row">
+			<div class="col-md-12" id="header-text">
+				<h3>SOME SPECIAL PRODUCTS FOR YOU</h3>
+				<h1>FEATURED PRODUCTS</h1>
+			</div>
+		</div>
+		<div class="space20"></div>
+		<div class="row feature-product-content">
+			<div class="col-md-12">
+				<div class="feature-product-wrapper">
+					<ul>
+						<li>
+							<a href="#"><img src="images/content/feature-product-1.jpg" alt="PRAWN OTAH"></a>
+							<div class="feature-product-description">
+								<h3>PRAWN OTAH</h3>
+								<p class="feature-text">A local style recipe for steamed parcels of minced seasoned fish and prawn, wrapped in coconut leaves & flame grilled to fragrance.</p>
+								<p class="feature-price">$0.90</p>
+							</div>
+						</li>
+						<li>
+							<a href="#"><img src="images/content/feature-product-2.jpg" alt="MUTTON SATAY"></a>
+							<div class="feature-product-description">
+								<h3>MUTTON SATAY</h3>
+								<p class="feature-text">Cooked juicy bite-sized meat skewers marinated with special herbs & spices grilled to perfection.</p>
+								<p class="feature-price">$0.55</p>
+							</div>
+						</li>
+						<li>
+							<a href="#"><img src="images/content/feature-product-3.jpg" alt="CRISPY CHICKEN & NASI LEMAK"></a>
+							<div class="feature-product-description">
+								<h3>CRISPY CHICKEN & NASI LEMAK</h3>
+								<p class="feature-text">Fish Fillet fried to golden brown, made into a burger with fresh lettuce and tartar sauce. Delight to the burger-lovers.</p>
+								<p class="feature-price">$3.50</p>
+							</div>
+						</li>
+						<li>
+							<a href="#"><img src="images/content/feature-product-4.jpg" alt="ASSAM PRAWN"></a>
+							<div class="feature-product-description">
+								<h3>ASSAM PRAWN</h3>
+								<p class="feature-text">Prawn seasoned with our popular paste made from an aromatic blend of home-made chilli, vinegar, garlic, lemon grass and</p>
+								<p class="feature-price">$2.60</p>
+							</div>
+						</li>
+						<li>
+							<a href="#"><img src="images/content/feature-product-5.jpg" alt="CURRY CHICKEN & BAGUETTE"></a>
+							<div class="feature-product-description">
+								<h3>CURRY CHICKEN & BAGUETTE</h3>
+								<p class="feature-text">Tuck yourself into our mouth watering homemade Curry Chicken along with oven baked baguette.</p>
+								<p class="feature-price">$4.20</p>
+							</div>
+						</li>
+						<li>
+							<a href="#"><img src="images/content/feature-product-6.jpg" alt="SAMBAL CHILLI"></a>
+							<div class="feature-product-description">
+								<h3>SAMBAL CHILLI</h3>
+								<p class="feature-text">Enjoy it with our Nasi Lemak/Beehoon sets or just by itself! (Min. 5 portion)</p>
+								<p class="feature-price">$2.20</p>
+							</div>
+						</li>
+					</ul>			
+				</div>
+			</div>
 		</div>
 	</div>
 

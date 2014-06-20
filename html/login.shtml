@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]>
+<!--> 
+<html class=""> 
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<title>Lee Wee Brothers</title>
+	<meta name="description" content="Lee Wee">
+	<meta name="keywords" content="Lee Wee">
+
+	<!--#include virtual="inc/head.inc" -->
+</head>
+<body>
+	<div class="image-bg">
+		<div class="top-bg"></div>
+		<div class="middle-bg"></div>
+	</div>
+	
+  	<!--#include virtual="inc/header.inc" -->
+
+	<div id="breadcrumb" class="container">
+		<div class="row">
+			<div class="col-md-12 push-left">
+				<a href="#">Home</a> / <a href="#" class="active">Account Login</a>
+			</div>
+		</div>
+	</div>
+
+	<div id="account-login" class="container">
+		<div class="space30"></div>
+		<div class="row">
+			<div class="col-md-12 push-left" id="page-title"><h1>ACCOUNT LOGIN</h1></div>
+		</div>
+		<div class="space40"></div>
+		<div class="row">
+			<div id="sub-title" class="col-md-12 push-left">
+				<h2>YOUR PERSONAL INFORMATION</h2>
+				<p>I am a new customer.</p>
+			</div>
+		</div>
+		<form name="login" id="login-form" method="post" action="">
+			<div class="row">
+				<div class="col-md-4 push-left">
+					<input type="text" name="first_name" class="medium-input" placeholder="First Name">
+				</div>
+				<div class="col-md-4 col-md-offset-2">
+					<input type="text" name="email" class="medium-input" placeholder="Email">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4 push-left">
+					<input type="text" name="last_name" class="medium-input" placeholder="Last Name">
+				</div>
+				<div class="col-md-5 col-md-offset-2">
+					<input type="password" name="password" class="medium-input" placeholder="Password"><p class="password-desc">(5 character min.)</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-2 push-left">
+					<label for="title">Title:</label>
+					<select name="title">
+						<option value="Mr">Mr</option>
+						<option value="Mrs">Mrs</option>
+					</select>
+				</div>
+				<div class="col-md-4 col-md-offset-4">
+					<label for="title">Date of Birth:</label>
+					<select name="day">
+						<option value="" selected>DD</option>
+						<option value="01">01</option>
+						<option value="02">02</option>
+						<option value="03">03</option>
+						<option value="04">04</option>
+						<option value="05">05</option>
+						<option value="06">06</option>
+					</select>
+					<select name="month">
+						<option value="" selected>MM</option>
+						<option value="01">01</option>
+						<option value="02">02</option>
+						<option value="03">03</option>
+						<option value="04">04</option>
+						<option value="05">05</option>
+						<option value="06">06</option>
+					</select>
+					<select name="year">
+						<option value="" selected>YYYY</option>
+						<option value="1970">1970</option>
+						<option value="1971">1971</option>
+						<option value="1972">1972</option>
+					</select>
+				</div>
+			</div>
+	
+			<div class="space30"></div>
+
+			<div class="row">
+				<div class="col-md-12 push-left" id="sub-title"><h2>YOUR ADDRESS</h2></div>
+			</div>
+			<div class="row">
+				<div class="col-md-4 push-left">
+					<input type="text" name="first_name" class="medium-input" placeholder="First Name">
+				</div>
+				<div class="col-md-2 col-md-offset-2">
+					<label for="country">Country:</label>
+					<select name="country">
+						<option value="">Country</option>
+						<option value="Singapore">Singapore</option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4 push-left">
+					<input type="text" name="last_name" class="medium-input" placeholder="Last Name">
+					<input type="text" name="company" class="large-input" placeholder="Company">
+				</div>
+				<div class="col-md-2 col-md-offset-2">
+					<textarea name="addition_info" id="" cols="15" rows="5" placeholder="Additional Information:"></textarea>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4 push-left">
+					<input type="text" name="address_1" class="large-input" placeholder="Address">
+					<p class="desc">Street address, P.O. box, compagny name, c/o</p>
+				</div>
+				<div class="col-md-4 col-md-offset-2">
+					<input type="text" name="telephone" class="small-input" placeholder="Telephone">
+					<input type="text" name="mobile" class="small-input" placeholder="Mobile">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4 push-left">
+					<input type="text" name="address_2" class="large-input" placeholder="Address">
+					<p class="desc">Apartment, suite, unit, building, floor, etc.</p>
+					<div class="space20"></div>
+					<input type="text" name="zip_postal_code" class="small-input" placeholder="Zip / Postal Code">
+					<input type="text" name="town" class="small-input" placeholder="Town">
+				</div>
+				<div class="col-md-4 col-md-offset-2">
+					<textarea name="future_ref" id="" cols="15" rows="5" placeholder="Assign an address title for future reference:"></textarea>
+					<p><span class="asterick">*</span> Required field</p>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-2 push-left">
+					<input type="submit" name="register" value="Register">
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="space50"></div>
+
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+
+		});
+
+	</script>
+
+	<!--#include virtual="inc/footer.inc" -->
+</body>
+</html>
