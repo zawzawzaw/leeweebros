@@ -16,10 +16,10 @@
 	<!--#include virtual="inc/head.inc" -->
 </head>
 <body>
-	<div class="image-bg">
+	<!-- <div class="image-bg">
 		<div class="top-bg"></div>
 		<div class="middle-bg"></div>
-	</div>
+	</div> -->
 	
   	<!--#include virtual="inc/header.inc" -->
 

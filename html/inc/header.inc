@@ -8,7 +8,7 @@
       
       <div class="col-md-4 col-md-offset-5">
         <div class="header-content">
-          <div id="header-links"><a href="#" class="join">JOIN</a> / <a href="#" class="sign-in">SIGN IN</a></div>
+          <div id="header-links"><a href="login.shtml" class="join">JOIN</a> / <a href="#" class="sign-in">SIGN IN</a></div>
           <div id="header-cart-info">
               <div id="cart-icon"><img src="images/icons/cart-img.png" alt="Cart icon"><div class="white-divider"></div></div>  
               <div id="cart-item-price">

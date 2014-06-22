@@ -231,6 +231,13 @@ strong {
     background-size: cover;
 }
 
+.appearance(@appearance) {
+  -webkit-appearance: @appearance;
+      -ms-appearance: @appearance;
+       -o-appearance: @appearance;
+          appearance: @appearance;
+}
+
 //  __     ___    ____  ___    _    ____  _     _____ ____
 //  \ \   / / \  |  _ \|_ _|  / \  | __ )| |   | ____/ ___|
 //   \ \ / / _ \ | |_) || |  / _ \ |  _ \| |   |  _| \___ \
@@ -514,7 +521,9 @@ body{
   line-height: 18px;
 }
 body, html{
-  background: #ffffff;
+  /*background: #ffffff;*/
+  background: url(../images/content/top-bg.jpg) repeat-x left 46px,
+              url(../images/content/middle-bg.jpg) repeat left 0px;
 }
 
 a, a:link, a:hover, a:active, a:visited{
@@ -608,7 +617,7 @@ a {
 
 //  main bg
 
-.image-bg {
+/*.image-bg {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -625,12 +634,16 @@ a {
   .middle-bg {
     background: url(../images/content/middle-bg.jpg) repeat left 0px;
     width: 100%;
-    /*height: 1918px;*/
+    //height: 1918px;
     height: 831px;
     position: absolute;
     top: 346px;
     left: 0px;
   }
+}*/
+
+.align-left {
+  margin-left: 50px;
 }
 
 //   ___ _   _ ____  _   _ _____ 
@@ -671,6 +684,11 @@ input[type="submit"] {
 .large-input {
   width: 407px;
   height: 28px;
+}
+
+.asterisk {
+  color: @red;
+  font-style: normal;
 }
 
 //   _   _ _____    _    ____  _____ ____  
@@ -845,7 +863,7 @@ header#main-header {
     .jcarousel {
       position: relative;
       overflow: hidden;
-      width: 906px;
+      width: 900px;
       ul {
         width: 20000em;
         position: relative;
@@ -853,7 +871,8 @@ header#main-header {
         margin: 0;
         padding: 0;
         li {
-          width: 302px;
+          width: 290px;
+          margin-right: 10px;
           float: left;
           text-align: center;
           color: @dark-brown;
@@ -885,12 +904,12 @@ header#main-header {
     .jcarousel-control-prev {
       background: url(../images/icons/left-arrow.png);    
       left: -25px;
-      top: 42%;
+      top: 35%;
     }
     .jcarousel-control-next {
       background: url(../images/icons/right-arrow.png);
       right: 0px;
-      top: 42%;
+      top: 35%;
     }
   }
 }
@@ -964,7 +983,6 @@ header#main-header {
       font-size: 12px;
       color: @dark-brown-text;
     }
-    padding-bottom: 20px;
   }
 
   form#login-form {
@@ -972,6 +990,62 @@ header#main-header {
 
     label {
       color: @dark-brown;
+    }
+
+    div.dropdown {
+      display: inline-block;
+      position: relative;
+      /*&:after {
+        content: "<";
+        color: @brown;
+        position:absolute;
+        top: 0;
+      }*/
+      &:before {
+        content: '';
+        width:26px; 
+        height:26px;
+        background:url(../images/icons/drop-down-icon.png) no-repeat top left;
+        position:absolute;
+        display:block;
+        right: 0px;
+        pointer-events:none;
+      }
+    }
+
+    label {
+      position: relative;
+      input[type="text"],input[type="password"] {
+        padding-left: 8px;      
+      }
+
+      &.asterisk {
+        input[type="text"],input[type="password"] {
+          padding-left: 18px;
+        }
+        &:after {
+          content: '*';
+          position: absolute;
+          color: @red;
+          top: 5px;
+          left: 10px;
+        }
+      }
+      &.asterisk-2 {
+        input[type="text"],input[type="password"] {
+          padding-left: 18px;
+        }
+        &:after {
+          content: '*';
+          position: absolute;
+          color: @red;
+          top: 3px;
+          left: 56px;
+        }
+      }
+      &.lbl {
+        margin-left: 4px;
+      }
     }
 
     input[type="text"] {
@@ -982,20 +1056,33 @@ header#main-header {
       margin-bottom: 0px;
     }
 
-    input[type="text"],input[type="password"] {
-      padding-left: 22px;      
+    .small-input {
+      display: inline;
+      margin-right: 19px;
     }
 
     select {
-      width: 59px;
-      height: 28px;
+      width: 67px;
+      height: 26px;
+      margin-right: 11px;
+      .appearance(none);
+      .round(0px);
+      padding-left: 8px;
+
+      &:last-child {
+        margin-right: 0px;
+      }
+      &.country {
+        width: 95px;     
+        padding-left: 15px; 
+      }
     }
 
     textarea {
-      padding-left: 22px;
+      padding-left: 12px;
       padding-top: 5px;
       width: 409px;
-      height: 71px;
+      height: 83px;
     }
 
     input[type="submit"] {
@@ -1011,7 +1098,15 @@ header#main-header {
     p.password-desc {
       position: absolute;
       top: 11px;
-      right: 11px;
+      right: -92px;
+    }
+
+    p.desc {
+      padding-left: 13px;
+    }
+
+    .push-down {
+      margin-top: 10px;
     }
   }
   
