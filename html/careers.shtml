@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]>
+<!--> 
+<html class=""> 
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<title>Lee Wee Brothers</title>
+	<meta name="description" content="Lee Wee">
+	<meta name="keywords" content="Lee Wee">
+
+	<!--#include virtual="inc/head.inc" -->
+</head>
+<body>
+<!-- 	<div class="image-bg">
+		<div class="top-bg"></div>
+		<div class="middle-bg"></div>
+	</div> -->
+	
+  	<!--#include virtual="inc/header.inc" -->
+	<div id="content-wrapper" class="align-left">
+		<div id="breadcrumb" class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<a href="#">Home</a> / <a href="#" class="active">Careers</a>
+				</div>
+			</div>
+		</div>
+
+		<div id="careers" class="container">
+			<div class="space30"></div>
+			<div class="row">
+				<div class="col-md-12" id="page-title"><h1>CAREERS</h1></div>
+			</div>
+			<div class="space40"></div>
+			<div class="row">
+				<div class="col-md-5">
+					<div class="row">
+						<div id="sub-title" class="col-md-12">
+							<h2>JOIN OUR DYNAMIC TEAM</h2>
+							<p>We are constantly looking for talents to join us in our dynamic organisation. If you think that you fit who we are looking for below, send us your resume now.</p>
+						</div>
+					</div>
+					<div class="space20"></div>
+					<a href="#" class="button">Apply</a>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	<div class="space50"></div>
+
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+
+		});
+
+	</script>
+
+	<!--#include virtual="inc/footer.inc" -->
+</body>
+</html>

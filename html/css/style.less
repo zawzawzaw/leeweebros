@@ -378,11 +378,11 @@ strong {
 
 @font-face {
   font-family: 'Knockout-HTF29-JuniorLiteweight';
-  src: url('Knockout-HTF29-JuniorLiteweight.eot?') format('eot'), 
-       url('Knockout-HTF29-JuniorLiteweight.otf')  format('opentype'),
-       url('Knockout-HTF29-JuniorLiteweight.woff') format('woff'), 
-       url('Knockout-HTF29-JuniorLiteweight.ttf')  format('truetype'),
-       url('Knockout-HTF29-JuniorLiteweight.svg#Knockout-HTF29-JuniorLiteweight') format('svg');
+  src: url('../fonts/Knockout-HTF29-JuniorLiteweight.eot?') format('eot'), 
+       url('../fonts/Knockout-HTF29-JuniorLiteweight.otf')  format('opentype'),
+       url('../fonts/Knockout-HTF29-JuniorLiteweight.woff') format('woff'), 
+       url('../fonts/Knockout-HTF29-JuniorLiteweight.ttf')  format('truetype'),
+       url('../fonts/Knockout-HTF29-JuniorLiteweight.svg#Knockout-HTF29-JuniorLiteweight') format('svg');
 }
 
 .solano-pro-retro {
@@ -524,6 +524,24 @@ body, html{
   /*background: #ffffff;*/
   background: url(../images/content/top-bg.jpg) repeat-x left 46px,
               url(../images/content/middle-bg.jpg) repeat left 0px;
+  height: 100%
+}
+
+#page-wrapper{
+    min-height: 100%;
+    position:relative;
+}
+
+#content-wrapper{
+    padding-bottom: 172px;    /* height of footer */
+}
+
+#footer-wrapper {
+    height: 172px; 
+    width:100%;
+    position: absolute;
+    left: 0;
+    bottom: 0; 
 }
 
 a, a:link, a:hover, a:active, a:visited{
@@ -538,6 +556,7 @@ h1 {
   line-height: 38px;
   text-transform: uppercase;
   display: block;
+  color: @red;
 }
 
 h2{
@@ -546,6 +565,7 @@ h2{
   line-height: 28px;
   text-transform: uppercase;
   display: block;
+  color: @dark-brown;
 }
 
 h3{
@@ -590,8 +610,6 @@ a {
   font-size: 13px;
   line-height: 18px;
 }
-
-
 
 //   _        _ __   _____  _   _ _____ 
 //  | |      / \\ \ / / _ \| | | |_   _|
@@ -643,7 +661,7 @@ a {
 }*/
 
 .align-left {
-  margin-left: 50px;
+  margin-left: 45px;
 }
 
 //   ___ _   _ ____  _   _ _____ 
@@ -660,15 +678,23 @@ input[type="text"], input[type="password"], select, textarea {
   .placeholder(@dark-brown, normal);
 }
 
-input[type="submit"] {
+input[type="submit"], .button {
   border: none;
   background: @red;
   color: @white;
 
   &:hover {
-    background: @brown;
-    color: @dark-brown;
+    background: @dark-brown;
+    color: @white;
   }
+}
+
+.button {
+  width: 78px;
+  height: 28px;
+  display: block;
+  text-align: center;
+  padding-top: 4px; 
 }
 
 .small-input {
@@ -770,24 +796,115 @@ header#main-header {
 
   .nav-hr {
     border-color: @brown;
+    margin: 0;
   }
 
   .nav-container {
     nav.main-nav {
-      ul {
+      ul.main-menu {
+        height: 54px;
         li {
           display: inline-block;
-          margin-left: 25px;
-          a {
-            .auto-1-bold-sc;
-            font-size: 17px;
-            color: @dark-brown;
-            &:hover {
-              color: @red;
+          float: left;
+          position: relative;
+          margin: 0px; /*margin: 20px 0 20px 32px;*/
+          padding: 0;
+          height: 54px;
+          width: 102px;
+          text-align: center;
+          &.outlets {
+            a {
+              left: 23px;
             }
-          }  
+          }
+          &.order {
+            width: 127px;
+            a {
+              left: 18px;  
+            }
+          }
+          &.about {
+            a {
+              left: 23px;
+            }
+          }
+          &.contact {
+            width: 103px;
+            a {
+              left: 22px;
+            }
+          }
+          &.promo {
+            width: 115px;
+            a {
+              left: 19px;
+            }
+          }
+          &.career {
+            width: 85px;
+            a {
+              left: 14px;
+            }
+          }
+
+          a {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            .knockout-htf29;
+            font-size: 19px;
+            color: @dark-brown;
+          }
+
+          &:hover {
+            background: @red;
+            ul.sub-menu {
+              display: block;
+            }
+            a {
+              color: @white;
+            }
+          }
+
+          ul.sub-menu {
+            display: none;
+            background: @red;
+            width: 223px;
+            height: 112px;
+            position: absolute;
+            top: 54px;
+            z-index: 1;
+
+            &.two {
+              height: 81px;
+            }
+            &.six {
+              height: 215px;
+            }
+
+            li {
+              display: block;
+              float: none;
+              width: 170px;
+              height: 27px;
+              text-align: left;
+              padding-left: 22px;
+              margin-top: 7px;
+              &:hover {
+                background: none;
+              }
+              a {
+                position: static;
+                .open-sans;
+                font-size: 13px;
+                color: @white;
+                &:hover {
+                  color: @dark-brown;
+                }
+              }
+            }
+          }
         }
-        
       }
     }  
   }
@@ -967,17 +1084,7 @@ header#main-header {
 //  ACCOUNT LOGIN
 
 #account-login {
-
-  #page-title {
-    h1 {
-      color: @red;
-    }
-  }
-
   #sub-title {
-    h2 {
-      color: @dark-brown;
-    }
     p {
       .open-sans-italic;
       font-size: 12px;
@@ -1016,7 +1123,7 @@ header#main-header {
     label {
       position: relative;
       input[type="text"],input[type="password"] {
-        padding-left: 8px;      
+        padding-left: 12px;      
       }
 
       &.asterisk {
@@ -1105,11 +1212,47 @@ header#main-header {
       padding-left: 13px;
     }
 
+    p.create-account-desc {
+      .open-sans-semibold;
+      font-size: 12px;
+    }
+
     .push-down {
       margin-top: 10px;
     }
   }
+
+  .vertical-line {
+    border-left: 1px solid @red;
+    width: 1px;
+    height: 216px;
+    position: absolute;
+    left: 28px;
+    top: -5px;
+  }
+
+  a.password-reminder {
+    text-decoration: underline;
+    color: @brown;
+    .open-sans;
+    font-size: 11px;
+    &:hover {
+      color: @dark-brown;
+    }
+  }
   
+}
+
+//  CAREERS
+
+#careers {
+  #sub-title {
+    p {
+      .open-sans;
+      font-size: 13px;
+      color: @dark-brown-text;
+    }
+  }
 }
 
 

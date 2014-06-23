@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]>
+<!--> 
+<html class=""> 
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<title>Lee Wee Brothers</title>
+	<meta name="description" content="Lee Wee">
+	<meta name="keywords" content="Lee Wee">
+
+	<!--#include virtual="inc/head.inc" -->
+</head>
+<body>
+<!-- 	<div class="image-bg">
+		<div class="top-bg"></div>
+		<div class="middle-bg"></div>
+	</div> -->
+	
+  	<!--#include virtual="inc/header.inc" -->
+	<div id="content-wrapper" class="align-left">
+		<div id="breadcrumb" class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<a href="#">Home</a> / <a href="#">Delivery</a> / <a href="#" class="active">Time Slots</a>
+				</div>
+			</div>
+		</div>
+
+		<div id="careers" class="container">
+			<div class="space30"></div>
+			<div class="row">
+				<div class="col-md-12" id="page-title"><h1>DELIVERY TIME SLOTS</h1></div>
+			</div>
+			<div class="space40"></div>
+			<div class="row">
+				<div class="col-md-8 col-md-offset-4">
+					<div class="row">
+						<div id="sub-title" class="col-md-12">
+							<p>Click <a href="">here</a> to view Terms and Conditions.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-md-offset-2">
+					<div class="table-responsive">
+						<table class="table table-bordered">
+					        <thead>
+					          <tr>
+					            <th colspan="3" class="table-head">
+					            	<h2>DELIVERY TIME SLOTS FROM MONDAY TO SUNDAY</h2>
+					            	<p>(Inclusive of public holidays)</p>
+					            </th>
+					          </tr>
+					        </thead>
+					        <tbody>
+					          <tr>
+					            <td>06:00 AM to 07:30 AM</td>
+					            <td>09:30 AM to 11:00 AM</td>
+					            <td>01:00 PM to 02:30 PM</td>
+					          </tr>
+					          <tr>
+					            <td>06:30 AM to 08:00 AM</td>
+					            <td>10:00 AM to 11:30 AM</td>
+					            <td>01:30 PM to 03:00 PM</td>
+					          </tr>
+					          <tr>
+					            <td>07:00 AM to 08:30 AM</td>
+					            <td>10:30 AM to 12:00 PM</td>
+					            <td>02:00PM to 03:30PM</td>
+					          </tr>
+					          <tr>
+					            <td>07:30 AM to 09:00 AM</td>
+					            <td>11:00 AM to 12:30 PM</td>
+					            <td>02:30PM to 04:00PM</td>
+					          </tr>
+					          <tr>
+					            <td>08:00 AM to 09:30 AM</td>
+					            <td>11:30 AM to 01:00 PM</td>
+					            <td>03:00PM to 04:30PM</td>
+					          </tr>
+					          <tr>
+					            <td>08:30 AM to 10:00 AM</td>
+					            <td>11:30 AM to 01:00 PM</td>
+					            <td>03:30PM to 05:00PM</td>
+					          </tr>
+					          <tr>
+					            <td>09:00 AM  to 10:30 AM</td>
+					            <td>11:30 AM to 01:00 PM</td>
+					            <td></td>
+					          </tr>
+					        </tbody>
+					      </table>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-md-offset-2">
+					<div class="table-responsive">
+						<table class="table table-bordered">
+					        <thead>
+					          <tr>
+					            <th colspan="3" class="table-head">
+					            	<h2>DELIVERY TIME SLOTS FROM MONDAY TO SUNDAY</h2>
+					            	<p>(Inclusive of public holidays)</p>
+					            </th>
+					          </tr>
+					        </thead>
+					        <tbody>
+					          <tr>
+					            <td>04:00PM to 05:30PM</td>
+					            <td>04:30PM to 06:00PM</td>
+					            <td>01:00 PM to 02:30 PM</td>
+					          </tr>
+					        </tbody>
+					      </table>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<p>Requested Delivery Time is subjected to availability and <a href="#">Terms and Conditions</a>.</p>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	<div class="space50"></div>
+
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+
+		});
+
+	</script>
+
+	<!--#include virtual="inc/footer.inc" -->
+</body>
+</html>
