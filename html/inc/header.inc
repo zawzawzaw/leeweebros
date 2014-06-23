@@ -88,7 +88,7 @@
                 <a href="#">DELIVERY</a>
                 <ul class="sub-menu two">
                   <li>
-                    <a href="#">Time Slots</a>
+                    <a href="deliverytime.shtml">Time Slots</a>
                   </li>
                   <li>
                     <a href="#">Terms & Conditions</a>
