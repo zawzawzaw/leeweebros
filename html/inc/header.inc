@@ -107,7 +107,7 @@
                   </li>
                 </ul>
               </li>
-              <li class="promo"><a href="#">PROMOTION</a></li>
+              <li class="promo"><a href="#">PROMOTIONS</a></li>
               <li class="career"><a href="careers.shtml">CAREERS</a></li>
               <li class="contact"><a href="#">CONTACT</a></li>
             </ul>

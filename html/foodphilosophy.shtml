@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]>
+<!--> 
+<html class=""> 
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<title>Lee Wee Brothers</title>
+	<meta name="description" content="Lee Wee">
+	<meta name="keywords" content="Lee Wee">
+
+	<!--#include virtual="inc/head.inc" -->
+</head>
+<body>
+<!-- 	<div class="image-bg">
+		<div class="top-bg"></div>
+		<div class="middle-bg"></div>
+	</div> -->
+	
+  	<!--#include virtual="inc/header.inc" -->
+	<div id="content-wrapper" class="">
+		<div id="breadcrumb" class="container">
+			<div class="align-left-2">
+				<div class="row">
+					<div class="col-md-12">
+						<a href="#">Home</a> / <a href="#">About Us</a> / <a href="#" class="active">Food Philosophy</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="food-philosophy" class="container">
+			<div class="align-left-2">
+				<div class="space30"></div>
+				<div class="row">
+					<div class="col-md-12" id="page-title">
+						<h2>THE LEE WEE DIFFERENCE</h2>
+						<h1>OUR FOOD PHILOSOPHY</h1>
+					</div>
+				</div>
+			</div>
+			<div class="space20"></div>
+			<div class="row">
+				<div class="col-md-12" id="banner-img">
+					<img src="images/content/banner-1.jpg" alt="banner">
+				</div>
+			</div>
+			<div class="space30"></div>
+			<div class="row">
+				<div class="col-md-4 col-md-offset-1">
+					<h4>Serving inspired ideas sumptuous food & memorable occasions.</h4>
+				</div>
+				<div class="col-md-6">
+					<h2>A Day In The Life Of…</h2>
+
+					<div class="space10"></div>
+
+					<p>Can you hear a rooster crow in Singapore? If you don’t know the answer, you can ask the Lee Brothers. Business at our retail outlets starts as early as 8.00 am in the morning, but we are up way earlier at our Central Kitchen to get the food ready for our customers.</p>
+					
+					<div class="space20"></div>
+
+					<h3>We Buy Only the Best</h3>
+					<p>We are committed to delivering only the freshest food to our customers. And for that, supermarkets won’t do. Neither will pre-packed, preserved food. We need to get the ingredients ourselves, fresh from the market, to be guaranteed of the best.</p>
+
+					<div class="space20"></div>
+					
+					<h3>We Cook Only the Best</h3>
+					<p>The kitchen is the most important part of our business; it is where the food is produced. It must be working efficiently, because we promise to produce our food after you order. within 30 minutes of an order.</p>
+
+					<div class="space20"></div>
+					
+					<p>Efficiency is not the only important thing; so is hygiene and safety. All our staff are required to wear masks and gloves while working. Time has been allotted for them to be trained in proper methods of hygiene. This way, our customers will stay healthy and happy when eating our food.</p>
+
+					<div class="space20"></div>
+					
+					<h3>We Serve Only the Best</h3>
+					<p>Like our kitchens, store staff are inspected for their quality as well. We train our staff to be friendly and lend a listening ear to customers’ needs. Because without you, the customer, where would we be tomorrow?</p>
+					<div class="space20"></div>
+					<p>Today, Lee Wee & Brothers’ Foodstuff has close to 50 different offerings under nine different categories. And we are always adding more. We identify the profile of the people visiting our shops, and brainstorms new food items that will tickle your taste buds. We bear in mind our mission of spreading our unique authentic local flavour islandwide.</p>
+					<div class="space20"></div>
+					<p>We are committed to delivering what you want, and we work hard to understand what you want.</p>
+
+					<div class="space20"></div>
+
+					<h3>We Give Only the Best</h3>
+					<p>With all this, you can be certain that at any of our stores, you will get only the best in terms of service and food quality.</p>
+					<div class="space20"></div>
+					<p>So why not visit one of our outlets? Or dial <a class="phone" href="tel:63859155">6385 9155</a> to order one of our mouth-watering delights for your next meal?</p>
+					<div class="space20"></div>
+					<p>Bon Appetit!</p>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="space50"></div>
+	<div class="space50"></div>
+
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+
+		});
+
+	</script>
+
+	<!--#include virtual="inc/footer.inc" -->
+</body>
+</html>
