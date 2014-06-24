@@ -252,6 +252,7 @@ strong {
 @dark-brown: #42210b;
 @dark-brown-text: #603913;
 @dark-brown-text-2: #8c6239;
+@pagi-brown: #be976a;
 
 
 // others
@@ -932,10 +933,13 @@ header#main-header {
               display: block;
               float: none;
               width: 170px;
-              height: 27px;
+              height: 24px;
               text-align: left;
-              padding-left: 22px;
-              margin-top: 7px;
+              padding-left: 20px;
+              margin-top: 8px;
+              &:first-child {
+                margin-top: 13px;
+              }
               &:hover {
                 background: none;
               }
@@ -1382,9 +1386,9 @@ header#main-header {
   }
 }
 
-//  Individual
+//  Individual // All
 
-#individual {
+#individual, #all {
   hr {
     border: none;
     border-bottom: 1px solid @brown;
@@ -1401,9 +1405,12 @@ header#main-header {
 
     .price {
       .open-sans-bold;
-      font-size: 19px;
+      font-size: 19px;      
+    }
+    .red {
       color: @red;
     }
+
     .per-item {
       padding-left: 4px; 
     }
@@ -1442,7 +1449,7 @@ header#main-header {
     width: 183px;
     li {
       border-top: 1px solid @brown;
-      padding: 5px 0px 2px 0px;
+      padding: 6px 0px 2px 0px;
       background: url(../images/icons/triangle-arrow.png) no-repeat 170px 14px;
       a {
           .solano-std-normal;
@@ -1471,20 +1478,42 @@ header#main-header {
       margin-right: 10px;
       select {
         width: 99px;
-        height: 26px;
-        font-size: 12px;
       }
     }
     .select-qty {
       display: inline-block;
       select {
         width: 54px;
-        height: 26px;
-        font-size: 12px;
       }
     }
+    select {
+      padding-left: 7px;
+      height: 26px;
+      font-size: 12px;
+      .appearance(none);
+      .round(0px);
+    }
   }
-  
+  ul.paginator {
+    li {
+      display: inline-block;
+      a {
+        padding: 7px 12px;
+        &.current {
+          background: @pagi-brown;
+        }
+        &.next {
+          padding: 7px 9px;
+        }
+      }
+    }
+  }  
+}
+
+#all {
+  h2 {
+    font-size: 16px;
+  }
 }
 
 
