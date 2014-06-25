@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]>
+<!--> 
+<html class=""> 
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<title>Lee Wee Brothers</title>
+	<meta name="description" content="Lee Wee">
+	<meta name="keywords" content="Lee Wee">
+
+	<!--#include virtual="inc/head.inc" -->
+</head>
+<body>
+<!-- 	<div class="image-bg">
+		<div class="top-bg"></div>
+		<div class="middle-bg"></div>
+	</div> -->
+	
+  	<!--#include virtual="inc/header.inc" -->
+	<div id="content-wrapper" class="align-left">
+		<div id="breadcrumb" class="container">
+			<!-- <div class="align-left-2"> -->
+				<div class="row">
+					<div class="col-md-12">
+						<a href="#">Home</a> / <a href="#" class="active">Promotions</a>
+					</div>
+				</div>
+			<!-- </div> -->
+		</div>
+
+		<div id="promotions" class="container">
+			
+				<div class="space30"></div>
+				<div class="row">
+					<div class="col-md-12" id="page-title">
+						<h2>SPECIAL DEAL FOR YOU</h2>
+						<h1>PROMOTIONS</h1>
+					</div>
+				</div>
+			
+			<div class="space40"></div>
+			<div class="row promo-product-content">
+				<div class="col-md-12">
+					<div class="promo-product-wrapper">
+						<ul>
+							<li>
+								<a href="#"><img src="images/content/promo-product-1.jpg" alt="PRAWN OTAH"></a>
+								<div class="promo-product-description">
+									<h3>PRAWN OTAH</h3>
+									<p class="promo-text">A local style recipe for steamed parcels of minced seasoned fish and prawn, wrapped in coconut leaves & flame grilled to fragrance.</p>
+									<p class="promo-price">$0.90</p>
+								</div>
+							</li>
+							<li>
+								<a href="#"><img src="images/content/promo-product-2.jpg" alt="MUTTON SATAY"></a>
+								<div class="promo-product-description">
+									<h3>MUTTON SATAY</h3>
+									<p class="promo-text">Cooked juicy bite-sized meat skewers marinated with special herbs & spices grilled to perfection.</p>
+									<p class="promo-price">$0.55</p>
+								</div>
+							</li>
+							<li>
+								<a href="#"><img src="images/content/promo-product-3.jpg" alt="CRISPY CHICKEN & NASI LEMAK"></a>
+								<div class="promo-product-description">
+									<h3>CRISPY CHICKEN & NASI LEMAK</h3>
+									<p class="promo-text">Fish Fillet fried to golden brown, made into a burger with fresh lettuce and tartar sauce. Delight to the burger-lovers.</p>
+									<p class="promo-price">$3.50</p>
+								</div>
+							</li>
+							<li>
+								<a href="#"><img src="images/content/promo-product-4.jpg" alt="ASSAM PRAWN"></a>
+								<div class="promo-product-description">
+									<h3>ASSAM PRAWN</h3>
+									<p class="promo-text">Prawn seasoned with our popular paste made from an aromatic blend of home-made chilli, vinegar, garlic, lemon grass and</p>
+									<p class="promo-price">$2.60</p>
+								</div>
+							</li>
+							<li>
+								<a href="#"><img src="images/content/promo-product-5.jpg" alt="CURRY CHICKEN & BAGUETTE"></a>
+								<div class="promo-product-description">
+									<h3>CURRY CHICKEN & BAGUETTE</h3>
+									<p class="promo-text">Tuck yourself into our mouth watering homemade Curry Chicken along with oven baked baguette.</p>
+									<p class="promo-price">$4.20</p>
+								</div>
+							</li>
+							<li>
+								<a href="#"><img src="images/content/promo-product-6.jpg" alt="SAMBAL CHILLI"></a>
+								<div class="promo-product-description">
+									<h3>SAMBAL CHILLI</h3>
+									<p class="promo-text">Enjoy it with our Nasi Lemak/Beehoon sets or just by itself! (Min. 5 portion)</p>
+									<p class="promo-price">$2.20</p>
+								</div>
+							</li>
+							<li>
+								<a href="#"><img src="images/content/promo-product-7.jpg" alt="ASSAM PRAWN"></a>
+								<div class="promo-product-description">
+									<h3>ASSAM PRAWN</h3>
+									<p class="promo-text">Prawn seasoned with our popular paste made from an aromatic blend of home-made chilli, vinegar, garlic, lemon grass and</p>
+									<p class="promo-price">$2.60</p>
+								</div>
+							</li>
+							<li>
+								<a href="#"><img src="images/content/promo-product-8.jpg" alt="CURRY CHICKEN & BAGUETTE"></a>
+								<div class="promo-product-description">
+									<h3>CURRY CHICKEN & BAGUETTE</h3>
+									<p class="promo-text">Tuck yourself into our mouth watering homemade Curry Chicken along with oven baked baguette.</p>
+									<p class="promo-price">$4.20</p>
+								</div>
+							</li>
+							<li>
+								<a href="#"><img src="images/content/promo-product-9.jpg" alt="SAMBAL CHILLI"></a>
+								<div class="promo-product-description">
+									<h3>SAMBAL CHILLI</h3>
+									<p class="promo-text">Enjoy it with our Nasi Lemak/Beehoon sets or just by itself! (Min. 5 portion)</p>
+									<p class="promo-price">$2.20</p>
+								</div>
+							</li>
+						</ul>			
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="space50"></div>
+	<div class="space50"></div>
+
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+
+		});
+
+	</script>
+
+	<!--#include virtual="inc/footer.inc" -->
+</body>
+</html>

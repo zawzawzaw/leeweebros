@@ -11,11 +11,13 @@
           <div class="header-content">
             <div id="header-links"><a href="join.shtml" class="join">JOIN</a> / <a href="login.shtml" class="sign-in">SIGN IN</a></div>
             <div id="header-cart-info">
+              <a href="cart-confirmation.shtml">
                 <div id="cart-icon"><img src="images/icons/cart-img.png" alt="Cart icon"><div class="white-divider"></div></div>  
                 <div id="cart-item-price">
                   <span class="cart-items-count">0</span><span class="cart-items-count-label"> ITEM(S) -</span> 
                   <span class="cart-price-label">$</span><span class="cart-price">0.00</span>
                 </div> 
+              </a>
             </div>
           </div>
         </div>
@@ -43,33 +45,36 @@
                     <a href="#">Our Story</a>
                   </li>
                   <li>
-                    <a href="#">Histroy</a>
+                    <a href="ourhistory.shtml">Histroy</a>
                   </li>
                   <li>
                     <a href="#">The Lee Wee Difference</a>
                   </li>
+                  <li>
+                    <a href="foodphilosophy.shtml">Food Philosophy</a>
+                  </li>
                 </ul>
               </li>
               <li class="food">
-                <a href="#">OUR FOOD</a>
+                <a href="ourfood.shtml">OUR FOOD</a>
                 <ul class="sub-menu six">
                   <li>
-                    <a href="#">Otah</a>
+                    <a href="otah.shtml">Otah</a>
                   </li>
                   <li>
-                    <a href="#">Lunch Boxes</a>
+                    <a href="otah.shtml">Lunch Boxes</a>
                   </li>
                   <li>
-                    <a href="#">Satay</a>
+                    <a href="otah.shtml">Satay</a>
                   </li>
                   <li>
-                    <a href="#">Snacks & Nibbles</a>
+                    <a href="otah.shtml">Snacks & Nibbles</a>
                   </li>
                   <li>
-                    <a href="#">Local Flavours</a>
+                    <a href="otah.shtml">Local Flavours</a>
                   </li>
                   <li>
-                    <a href="#">Condiments</a>
+                    <a href="otah.shtml">Condiments</a>
                   </li>
                 </ul>
               </li>
@@ -91,11 +96,11 @@
                     <a href="deliverytime.shtml">Time Slots</a>
                   </li>
                   <li>
-                    <a href="#">Terms & Conditions</a>
+                    <a href="terms.shtml">Terms & Conditions</a>
                   </li>
                 </ul>
               </li>
-              <li class="outlets"><a href="#">OUTLETS</a></li>
+              <li class="outlets"><a href="ouroutlets.shtml">OUTLETS</a></li>
               <li class="order">
                 <a href="#">ORDER ONLINE</a>
                 <ul class="sub-menu two">
@@ -107,7 +112,7 @@
                   </li>
                 </ul>
               </li>
-              <li class="promo"><a href="#">PROMOTIONS</a></li>
+              <li class="promo"><a href="promotions.shtml">PROMOTIONS</a></li>
               <li class="career"><a href="careers.shtml">CAREERS</a></li>
               <li class="contact"><a href="#">CONTACT</a></li>
             </ul>

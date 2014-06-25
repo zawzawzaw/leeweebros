@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]>
+<!--> 
+<html class=""> 
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<title>Lee Wee Brothers</title>
+	<meta name="description" content="Lee Wee">
+	<meta name="keywords" content="Lee Wee">
+
+	<!--#include virtual="inc/head.inc" -->
+</head>
+<body>
+<!-- 	<div class="image-bg">
+		<div class="top-bg"></div>
+		<div class="middle-bg"></div>
+	</div> -->
+	
+  	<!--#include virtual="inc/header.inc" -->
+	<div id="content-wrapper" class="">
+		<div id="breadcrumb" class="container">
+			<div class="align-left-2">
+				<div class="row">
+					<div class="col-md-12">
+						<a href="#">Home</a> / <a href="#">Our Food</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="our-food" class="container">
+			<div class="align-left-2">
+				<div class="space30"></div>
+				<div class="row">
+					<div class="col-md-12" id="page-title">
+						<h1>OUR FOOD</h1>
+					</div>
+				</div>
+			</div>
+			<div class="space40"></div>
+			<div class="row">
+				<div class="col-md-12" id="banner-img">
+					<img src="images/content/banner-2.jpg" alt="banner">
+				</div>
+			</div>
+			<div class="space30"></div>
+			<div class="row">
+				<div class="col-md-3 col-md-offset-1">
+					<h4>We are proud to be Singaporean, and proud to offer the original Singapore flavour!</h4>
+				</div>
+				<div class="col-md-6 col-md-offset-1">
+					<h2>WE OWN OUR OTAH</h2>
+
+					<div class="space10"></div>
+
+					<p>To show that we care about what we do, we provide only the best local fare to our customers.</p>
+					
+					<div class="space20"></div>
+
+					<h3>No artificial ingredients. No preservatives.</h3>
+					<p>We use 100% natural and fresh ingredients to make our otah and other food, and only prepare our dishes after you order, within 30 minutes.</p>
+
+					<div class="space20"></div>
+
+					<p>Because we believe in providing you the best, each of our food items comes with several options and combinations, so that you can choose what matches your own taste, occasion and lifestyle.</p>
+
+					<div class="space20"></div>
+					
+					<h3>We use home-made recipes.</h3>
+					<p>All our recipes come from the Lee Family's rich heritage, and our family's own unique flavour. Even our ingredients, like our Assam sauce, are made from scratch.</p>
+
+					<div class="space20"></div>
+					
+					<h3>We keep it at affordable prices.</h3>
+					<p>You can enjoy authentic local food without burning a hole in your wallet.</p>
+
+					<div class="space20"></div>
+					
+					<h3>Our otah is the one-and-only original.</h3>
+					<p>It’s no wonder why our customers give the Thumbs Up to Lee Wee & Brothers’ Foodstuff!</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="space50"></div>
+	<div class="space50"></div>
+
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+
+		});
+
+	</script>
+
+	<!--#include virtual="inc/footer.inc" -->
+</body>
+</html>

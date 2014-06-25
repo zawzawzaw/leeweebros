@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]>
+<!--> 
+<html class=""> 
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<title>Lee Wee Brothers</title>
+	<meta name="description" content="Lee Wee">
+	<meta name="keywords" content="Lee Wee">
+
+	<!--#include virtual="inc/head.inc" -->
+</head>
+<body>
+<!-- 	<div class="image-bg">
+		<div class="top-bg"></div>
+		<div class="middle-bg"></div>
+	</div> -->
+	
+  	<!--#include virtual="inc/header.inc" -->
+	<div id="content-wrapper" class="align-left">
+		<div id="breadcrumb" class="container">
+			<!-- <div class="align-left-2"> -->
+				<div class="row">
+					<div class="col-md-12">
+						<a href="#">Home</a> / <a href="#" class="active">Terms & Conditions</a>
+					</div>
+				</div>
+			<!-- </div> -->
+		</div>
+
+		<div id="terms" class="container">
+			
+			<div class="space30"></div>
+			<div class="row">
+				<div class="col-md-9" id="page-title">
+					<h1>TERMS & CONDITIONS</h1>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-9">
+					<div class="space40"></div>
+
+					<h3 class="first-heading">ONLINE / OFFLINE (FAX IN) ORDER</h3>
+
+					<div class="space20"></div>
+
+					<h3>PAYMENT POLICY</h3>
+
+					<ol class="list">
+						<li>All deliveries are strictly cash on delivery.</li>
+						<li>
+							Full advance payment via Funds Transfer (ATM or i-Banking) is applicable for:
+							<ul>
+								<li>2.1  Self-collection at preferred outlets or central kitchen</li>
+								<li>2.2  Delivery orders to public parks, BBQ pits, beaches, chalets and public attractions <br>i.e. Singapore Zoo, Garden by the Bay, Universal Studios.</li>
+							</ul>
+						</li>
+						<li>Lee Wee & Brothers’ Foodstuff Pte Ltd absorbs all prevailing GST charges</li>
+						<li>We reserve the right(s) to cancel any orders for error lapse in payment.</li>
+						<li>A late payment penalty fee shall apply for all overdue payment.</li>
+						<li>We reserve the rights to seize or demand payment for any unpaid delivered item(s) from the receiving party. </li>
+					</ol>
+
+					<div class="space30"></div>
+
+					<h3>DELIVERY AND SURCHARGES</h3>
+
+					<ol class="list">
+						<li>
+							Free delivery to a single location
+							<ul>
+								<li>1.1  For a minimum order of S$100, for all areas except Jurong Island & Sentosa.</li>
+								<li>1.2  For a minimum order of S$120, for delivery to Jurong Island & Sentosa.</li>
+								<li>1.3  For orders below S$100, please arrange for self-collection at our respective outlets.</li>
+							</ul>
+						</li>
+						<li>The exact time of delivery cannot be fixed. However, Lee Wee & Brothers’ Foodstuff Pte Ltd will endeavor to deliver within the selected delivery timing.</li>
+						<li>While every effort is taken to ensure timely delivery, unforeseen circumstances like act-of-God or traffic/parking restrictions may inconvenient delivery. In addition, for delivery to the Central Business District and other selected locations, we reserve the right(s) to request customers to kindly meet our delivery representative at the nearest designated location.</li>
+						<li>
+							All deliveries must be made between 8am to 5pm, otherwise delivery charge is applicable as follows:
+							<ul>
+								<li>4.1  Delivery between 6am to 7:59am <span class="right-align">additional S$30.00</span></li>
+								<li>4.2  Delivery between 5:01pm to 7pm <span class="right-align">additional S$30.00</span></li>
+							</ul>
+						</li>
+						<li>
+							Special delivery arrangements (subject to availability) are chargeable ON TOP of the free delivery timing option (8am – 5pm).
+							<ul>
+								<li>5.1  Delivery time allowance less than 1½ hours</li>
+							</ul>
+							<div class="table-responsive">
+								<table class="table table-bordered">
+							        <thead>
+							          <tr>
+							            <th class="table-head">
+							            	<h2>Delivery Timeslot</h2>
+							            </th>
+							            <th class="table-head">
+							            	<h2>SURCHARGE</h2>
+							            </th>
+							            <th class="table-head">
+							            	<h2>TIME FRAME</h2>
+							            </th>
+							          </tr>
+							        </thead>
+							        <tbody>
+							          <tr>
+							            <td>6:00am – 7:59am</td>
+							            <td>S$30.00</td>
+							            <td>1½ hr</td>
+							          </tr>
+							          <tr>
+							            <td>8:00am – 5:00pm</td>
+							            <td>FREE</td>
+							            <td>1½ hr</td>
+							          </tr>
+							          <tr>
+							            <td>5:01pm – 7:00pm</td>
+							            <td>S$30.00</td>
+							            <td>1½ hr</td>
+							          </tr>
+							        </tbody>
+						      	</table>
+							</div>
+						</li>
+						<li>An additional S$20.00 surcharge is applicable for Christmas Eve, Christmas Day, New Year’s Eve and New Year’s Day</li>
+						<li>An additional S$20.00 surcharge is applicable for Christmas Eve, Christmas Day, New Year’s Eve and New Year’s Day</li>
+						<li>In the event that there is no recipient present at the delivery destination to receive the order, a S$12.00 surcharge is applicable for the next available delivery time slot. </li>
+						<li>
+							In the event when the recipient is present, but there is a lapse in payment, we reserve the right to make a return trip when the full payment is ready, and a S$12.00 surcharge will be applicable.
+							<div class="table-responsive">
+								<table class="table table-bordered">
+							        <thead>
+							          <tr>
+							            <th colspan="2" class="table-head">
+							            	<h2>SURCHARGE</h2>
+							            </th>
+							          </tr>
+							        </thead>
+							        <tbody>
+							          <tr>
+							            <td>Last minute orders – Less than 24 hours’ notice</td>
+							            <td>S$12.00</td>
+							          </tr>
+							          <tr>
+							            <td>Return Trip*</td>
+							            <td>S$12.00</td>
+							          </tr>
+							          <tr>
+							            <td>Order Amendment</td>
+							            <td>S$5.00 per order amendment request</td>
+							          </tr>
+							          <tr>
+							            <td>Cancellation - less than 24 hours’ notice</td>
+							            <td>100% of total invoice amount</td>
+							          </tr>
+							          <tr>
+							          	<td>Delivery on Christmas Eve, Christmas Day, New Year’s Eve and New Year’s Day</td>
+							          	<td>$12.00</td>
+							          </tr>
+							        </tbody>
+						      	</table>
+							</div>
+							<p><span class="red">*</span> Please refer to our delivery policies.</p>
+						</li>
+					</ol>
+					<div class="space30"></div>
+
+					<h3>ORDER POLICY</h3>
+
+					<ol class="list">
+						<li>
+							<p>All orders must be made at least 2 days in advance (subject to first come first serve basis), otherwise an additional S$12.00 surcharge is applicable.</p>
+							<p>&nbsp;</p>
+							<p>We do not accept cancellation with less than 24 hours’ notice; otherwise a 100% surcharge is applicable.</p>
+						</li>
+						<li>All cancellations and amendments must be notified in writing via email/fax and conditions apply.</li>
+						<li>
+							<p>An additional S$5.00 surcharge is applicable for each order amendment request.</p>
+							<p>&nbsp;</p>
+							<p>Customer agrees to visually inspect the goods at the point of delivery and goods received shall be deemed accepted without any further discrepancy. </p>
+						</li>
+						<li>Lee Wee & Brothers’ Foodstuff Pte Ltd reserves the right to alter or modify order specifications to conform to its company policies.</li>
+						<li>Buffet orders are not inclusive of tables, chairs, table cloth and warmers.</li>
+						<li>For buffet orders, boxes or containers will not be provided for take away request.</li>
+						<li>Consuming any take away food for buffet orders will be at one’s own risk and responsibility. </li>
+					</ol>
+
+					<div class="space30"></div>
+
+					<h3>DISCLAIMER</h3>
+
+					<ol class="list">
+						<li>We advise that all orders are to be consumed within 4 hours upon purchase/delivery and are attested to be spoilage free at the point of purchase/delivery. Any food consumed after 4 hours are at the client’s own discretion and therefore becomes their responsibility.</li>
+						<li>We accept no liabilities for any order sold from a third-party reseller.</li>
+						<li>Any disputes and/or disagreements between buyer and third-party reseller will not be entertained.</li>
+						<li>While every care has been taken in providing this information, Lee Wee & Brothers’ Foodstuff Pte Ltd or its agencies cannot be held responsible for any inaccuracy.</li>
+						<li>The information contained herein is subject to change and cannot form part of an offer or contract.</li>
+						<li>For buffet orders, boxes or containers will not be provided for take away request.</li>
+						<li>Consuming any take away food for buffet orders will be at one’s own risk and responsibility. </li>
+					</ol>
+				</div>
+			</div>
+			
+			
+
+
+
+		</div>
+	</div>
+	<div class="space50"></div>
+	<div class="space50"></div>
+
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+
+		});
+
+	</script>
+
+	<!--#include virtual="inc/footer.inc" -->
+</body>
+</html>

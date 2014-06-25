@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]>
+<!--> 
+<html class=""> 
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<title>Lee Wee Brothers</title>
+	<meta name="description" content="Lee Wee">
+	<meta name="keywords" content="Lee Wee">
+
+	<!--#include virtual="inc/head.inc" -->
+</head>
+<body>
+<!-- 	<div class="image-bg">
+		<div class="top-bg"></div>
+		<div class="middle-bg"></div>
+	</div> -->
+	
+  	<!--#include virtual="inc/header.inc" -->
+	<div id="content-wrapper" class="">
+		<div id="breadcrumb" class="container">
+			<div class="align-left-2">
+				<div class="row">
+					<div class="col-md-12">
+						<a href="#">Home</a> / <a href="#">About Us</a> / <a href="#" class="active">Our History</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="our-food" class="container">
+			<div class="align-left-2">
+				<div class="space30"></div>
+				<div class="row">
+					<div class="col-md-12" id="page-title">
+						<h2>a proud family tradition</h2>
+						<h1>thumbs up for lee wee & Brothers</h1>
+					</div>
+				</div>
+			</div>
+			<div class="space40"></div>
+			<div class="row">
+				<div class="col-md-12" id="banner-img">
+					<img src="images/content/banner-3.jpg" alt="banner">
+				</div>
+			</div>
+			<div class="space30"></div>
+			<div class="row">
+				<div class="col-md-4 col-md-offset-1">
+					<h4>Serving inspired ideas sumptuous food & memorable occasions.</h4>
+				</div>
+				<div class="col-md-6">
+					<h2>The Key Ingredients</h2>
+
+					<div class="space10"></div>
+
+					<p>As Singaporeans, Chinese, and Peranakans, food has always been our chief passion. And passion, indeed, is a chief ingredient, above Otah, Sambal Chilli, Assam and Curry.</p>
+					
+					<div class="space20"></div>
+
+					<p>Our founders, Lee Wee, Ben and Mark grew up surrounded by food. Our big family gathers once a week for an authentic Nonya feast, a spread consisting of mouth-wateringly scrumptious cuisine. We would invite you there, surely, but with 20 family members already present (and growing), there’s hardly any room for guests!</p>
+
+					<div class="space20"></div>
+
+					<p>So we devised a plan to share our delectable family flavours with the masses.</p>
+
+					<div class="space20"></div>
+
+					<h3>Our humble beginnings</h3>
+					<p>We set up a stall along Old Airport Road, and at that stall, our mother imparted to us the family heritage recipes.</p>
+
+					<div class="space20"></div>
+
+					<h3>Our mark</h3>
+					<p>Our youngest brother Mark invented our iconic giant aluminium Otah signboard which was first displayed at Old Airport Road outlet. It was handcrafted and painted together with second brother Ben, something which left a deep impression on our customers today.</p>
+
+					<div class="space20"></div>
+					
+					<h3>Our recipes</h3>
+					<p>Our second brother Ben and youngest brother Mark set about immediately to gain tutelage in cooking from our mother, and apply those techniques to food familiar to Singaporeans: Otah, Nasi Lemak and Curry.</p>
+
+					<div class="space20"></div>
+					
+					<h3>Our process</h3>
+					<p>We set up default division of labour where Lee Wee found the best quality ingredients and suppliers, whilst Ben, Mark and wife Angeline managed operations and sales. Up to today, we are still personally sourcing for ingredients, to ensure only the best quality for our customers and clients.</p>
+
+					<div class="space20"></div>
+
+					<p>The quality of our recipe was proven when we broke even at the tender age of 10 months!</p>
+					
+					<div class="space40"></div>
+		
+					<h2>The set up</h2>
+
+					<div class="space10"></div>
+
+					<p>As the business grew after that, we decided to get a proper presence for ourselves.</p>
+
+					<div class="space10"></div>
+
+					<p>In 2001, our father agreed to convert his used car shop at Realty Park into a central kitchen for us. And with that, we were ready to burst forth into the world.</p>
+
+					<div class="space10"></div>
+
+					<p>We were officially christened as Lee Wee & Brothers’ Foodstuff Pte Ltd on 7 December 2004, an event which was greeted enthusiastically by our existing customers.</p>
+	
+					<div class="space10"></div>
+					
+					<p>In the same year, we opened another stall along Hougang, because one stall was simply not enough to fulfil all the orders that were coming in.</p>
+
+					<div class="space40"></div>
+		
+					<h2>cooking for the masses</h2>
+
+					<div class="space10"></div>
+
+					<p>With a tried-and-tested recipe for success, we decided to expand. We opened proper retail outlets at Jurong and Ghim Moh; we also opened outlets at shopping centres like Tampines Mall, NEX and Raffles City.</p>
+
+					<div class="space10"></div>
+
+					<p>At the same time, we matured in our food offering – increasing our variety of Otah from one to ten, and introducing our signature assam, curry and lunchboxes.</p>
+
+					<div class="space10"></div>
+
+					<p>We also expanded into the catering sector, and our clients include statutory boards, banks and MNCs.</p>
+	
+					<div class="space10"></div>
+					
+					<p>A significant achievement for us was attaining the Halal certification in 2005. Thanks to that, we can share our local flavours with our Muslim friends.</p>
+
+					<div class="space40"></div>
+		
+					<h2>setting sail</h2>
+
+					<div class="space10"></div>
+
+					<p>Today, Lee Wee & Brothers' Foodstuff is an established local brand delivering mouth-watering and authentic cuisine at affordable prices.</p>
+
+					<div class="space10"></div>
+
+					<p>From a humble Otah stall with only four staff, we have grown into a successful chain, all kept at the same standard and quality as that initial stall.</p>
+
+					<div class="space10"></div>
+
+					<p>And we are proud to say that we are poised to grow even further.</p>
+	
+					<div class="space10"></div>
+					
+					<p>In between 2003 and 2007, we took part in many food fairs. We came into contact with many local and foreign people, and generated significant interest at the fairs. Buoyed by the resulting confidence, we will be expanding into Malaysia, Indonesia, and Brunei in the coming few years.</p>
+					
+					<div class="space40"></div>
+
+					<h2>thumbs up to mama</h2>
+
+					<div class="space10"></div>
+
+					<p>At Lee Wee & Brothers' Foodstuff, we want our customers to give us the thumbs-up, so we believe in giving the thumbs-up to our people as well.</p>
+
+					<div class="space10"></div>
+
+					<p>And one of the people who has played an instrumental role in our business is our mother, Madam Teo Soh Suat.</p>
+
+					<div class="space10"></div>
+
+					<p>From our earliest days at Old Airport Road, she guided us in producing all our signature recipes, such as otah, assam and curry, and continues to help us today, even at the ripe old age of 67.</p>
+	
+					<div class="space10"></div>
+					
+					<p>Thank you, mom!</p>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="space50"></div>
+	<div class="space50"></div>
+
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+
+		});
+
+	</script>
+
+	<!--#include virtual="inc/footer.inc" -->
+</body>
+</html>

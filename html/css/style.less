@@ -804,6 +804,9 @@ header#main-header {
     }
 
     #header-cart-info {
+      a {
+        color: @white;
+      }
       display: inline-block;
       #cart-icon {
         display: inline-block;
@@ -917,7 +920,7 @@ header#main-header {
             display: none;
             background: @red;
             width: 223px;
-            height: 112px;
+            height: 147px;
             position: absolute;
             top: 54px;
             z-index: 1;
@@ -1363,7 +1366,7 @@ header#main-header {
 
 //  FOOD PHILOSOPHY
 
-#food-philosophy {
+#food-philosophy, #our-food {
   #page-title {
     h2 {
       color: @dark-brown;
@@ -1500,15 +1503,36 @@ header#main-header {
       a {
         padding: 7px 12px;
         &.current {
+          color: @white;
           background: @pagi-brown;
         }
         &.next {
           padding: 7px 9px;
         }
+        &:hover {
+          color: @white;
+          background: @pagi-brown;
+        }
       }
     }
-  }  
+  }
+  #sort-controls {
+    right: -10px;
+    top: 14px;
+    position: absolute;
+    a {
+      width: 95px;
+      display: inline-block;
+      font-size: 11px;
+      background: url(../images/icons/down-arrow.png) no-repeat 44px 6px;   
+      &:first-child {
+        background: url(../images/icons/down-arrow.png) no-repeat 56px 6px;   
+      }
+    }
+  }
 }
+
+//  CATEGORY
 
 #all {
   h2 {
@@ -1516,6 +1540,234 @@ header#main-header {
   }
 }
 
+//  OUR OUTLETS
+
+#our-outlets {
+  h2 {
+    font-size: 14px;
+  }
+
+  h3 {
+    .auto-1-bold;
+    color: @red;
+    font-size: 17px;
+  }
+
+  h4 {
+    .open-sans-semibold;
+    color: @dark-brown-text;
+    font-size: 13px;
+    text-transform: uppercase;
+    text-decoration: underline;
+  }
+
+  a {
+    display: block;
+    color: @dark-brown-text;
+    &:hover {
+      color: @red;
+    }
+  }
+
+  p {
+    color: @dark-brown-text;
+  }
+
+  ul {
+    display: inline-block;
+    margin-right: 24px;
+    li {
+      color: @dark-brown-text;
+      font-size: 13px;
+    }
+  }
+}
+
+//  PROMOTIONS
+
+.promo-product-wrapper {
+  ul {
+    li {
+      width: 302px;
+      float: left;
+      margin-bottom: 50px;
+      .promo-product-description {
+        width: 290px;
+      }
+      h3,p {
+        text-align: center;
+      }
+      h3 {
+        color: @red;
+        line-height: 32px;
+      }
+      .promo-text {
+        height: 50px;
+        width: 270px;
+      }
+      .promo-price {
+        padding-top: 13px;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+//  TERMS
+
+#terms {
+  h3 {
+    color:@dark-brown-text;
+    font-size: 17px;
+    &.first-heading {
+      color:@dark-brown;
+    }
+  }
+  ul,ol {
+    li {
+      color:@dark-brown-text;
+      font-size: 13px;
+    }
+  }
+  ol {
+    margin-left: 18px;
+    li {
+      padding-top: 10px;
+      list-style-type: decimal;
+    }
+  }  
+  ul {
+    li {
+      list-style: none;
+      span.right-align {
+        padding-left: 105px;
+      }
+    }
+  }
+  .table-responsive {
+    border: none;
+    margin-top: 20px;
+    .table {
+      .table-head {
+        background: @red;
+        text-align: center;
+        border: none;
+        border-right: 1px solid @red;
+        h2 {
+          .auto-1-bold;
+          font-size: 13px;
+          color: @white;
+        }
+        p {
+          .open-sans-light;
+          color: @white;
+          font-size: 13px;
+        }
+      }
+    }
+    .table-bordered {
+      border: none;
+      border-bottom: 1px solid @red;
+      tbody {
+        tr {
+          td {
+            text-align: center;
+            border: none;
+            border-left: 1px solid @red;
+            border-right: 1px solid @red;
+            .open-sans;
+            color: @dark-brown;
+            font-size: 13px;
+          }
+        }
+      }
+    }
+  }
+}
+
+//  CART
+
+#cart {
+  ul.progress-indicator {
+    border-bottom: 2px solid @red;
+    position: relative;
+    width: 480px;
+    margin-left: 40px;
+    li {
+      position: absolute;
+      top: -17px;
+
+      .circle-holder {
+        position: relative;
+        top: -6px;
+        width: 12px;
+        .circle-text {
+          position: relative;
+          left: -15px;
+          top: -5px;
+          .auto-1-regular;
+          font-size: 13px;
+          color: @red;
+          &.active {
+            .auto-1-bold;
+          }
+        }
+      }
+
+      &.first {
+        left: 0px;
+        
+      }
+      &.second {
+        left: 94px;
+        .circle-text {
+          left: -20px;
+        }
+      }
+      &.third {
+        left: 187px;
+        .circle-text {
+          left: -28px;
+        }
+      }
+      &.fourth {
+        left: 280px;
+        .circle-text {
+          left: -15px;
+        }
+      }
+      &.fifth {
+        left: 373px;
+        .circle-text {
+          left: -21px;
+        }
+      }
+      &.sixth {
+        left: 469px;
+        .circle-text {
+          left: -30px;
+        }
+      }
+
+      .circle-text {
+        width:30%;
+      }
+      .circle {
+          display: block;
+          width: 100%;
+          height:0;
+          padding-bottom: 100%;
+          background: url(../images/icons/blank-circle.png) no-repeat;
+          &.done {
+            background: url(../images/icons/full-circle.png) no-repeat;
+          }
+      }
+      /*.circle-text div {
+          width:100%;
+      }*/
+    }
+  }
+}
 
 //   _____ ___   ___ _____ _____ ____  
 //  |  ___/ _ \ / _ \_   _| ____|  _ \ 

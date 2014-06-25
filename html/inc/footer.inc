@@ -11,10 +11,10 @@
                 <a href="#">Delivery Information</a>
               </li>
               <li>
-                <a href="#">Delivery Time Slots</a>
+                <a href="deliverytime.shtml">Delivery Time Slots</a>
               </li>
               <li>
-                <a href="#">Terms & Conditions</a>
+                <a href="terms.shtml">Terms & Conditions</a>
               </li>
             </ul>
           </div>
@@ -22,7 +22,7 @@
             <h3>SERVICES</h3>
             <ul>
               <li>
-                <a href="#">Our Food</a>
+                <a href="ourfood.shtml">Our Food</a>
               </li>
               <li>
                 <a href="#">Catering</a>
@@ -39,13 +39,13 @@
             <h3>EXTRAS</h3>
             <ul>
               <li>
-                <a href="#">Promotions</a>
+                <a href="promotions.shtml">Promotions</a>
               </li>
               <li>
                 <a href="#">Specials</a>
               </li>
               <li>
-                <a href="#">Careers</a>
+                <a href="careers.shtml">Careers</a>
               </li>
             </ul>
           </div>
@@ -54,8 +54,8 @@
             <ul>
               <li>
                 <p>Delivery Hotline:</p>
-                <p>6385 9122 / 6385 9133</p>
-                <p>Outlets</p>
+                <p><a href="tel:63859122">6385 9122</a> / <a href="tel:63859133">6385 9133</a></p>
+                <a href="ouroutlets.shtml">Outlets</a>
               </li>
             </ul>
           </div>
@@ -63,7 +63,7 @@
             <h3>SHARE WITH US</h3>
             <ul>
               <li>
-                <a class="facebook" href="#"></a>
+                <a class="facebook" href="https://www.facebook.com/leeweebrothers"></a>
                 <a class="twitter" href="#"></a>
                 <a class="instagram" href="#"></a>
               </li>
