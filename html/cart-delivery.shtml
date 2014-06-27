@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]>
+<!--> 
+<html class=""> 
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<title>Lee Wee Brothers</title>
+	<meta name="description" content="Lee Wee">
+	<meta name="keywords" content="Lee Wee">
+
+	<!--#include virtual="inc/head.inc" -->
+</head>
+<body>
+<!-- 	<div class="image-bg">
+		<div class="top-bg"></div>
+		<div class="middle-bg"></div>
+	</div> -->
+	
+  	<!--#include virtual="inc/header.inc" -->
+	<div id="content-wrapper" class="align-left">
+		<div id="breadcrumb" class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<a href="#">Home</a> / <a href="#" class="active">Shopping Cart</a>
+				</div>
+			</div>
+		</div>
+
+		<div id="cart" class="container">
+			<div class="space30"></div>
+			<div class="row">
+				<div class="col-md-12" id="page-title"><h1>SHOPPING CART</h1></div>
+			</div>
+			<div class="space50"></div>
+			<div class="space20"></div>
+			<div class="progress-indicator-container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
+						<div class="row">
+							<div class="col-md-12">
+								<ul class="progress-indicator">
+									<li class="first">
+										<div class="circle-holder">
+											<div class="circle-text">LOGIN</div>
+											<div class="circle done"></div>
+										</div>
+									</li>
+									<li class="second">
+										<div class="circle-holder">
+											<div class="circle-text">SUMMARY</div>
+											<div class="circle done"></div>
+										</div>
+									</li>
+									<li class="third">
+										<div class="circle-holder">
+											<div class="circle-text">COLLECTION</div>
+											<div class="circle done"></div>
+										</div>
+									</li>
+									<li class="fourth">
+										<div class="circle-holder">
+											<div class="circle-text">ADDRESS</div>
+											<div class="circle done"></div>
+										</div>
+									</li>
+									<li class="fifth">
+										<div class="circle-holder">
+											<div class="circle-text active">DELIVERY</div>
+											<div class="circle done"></div>
+										</div>
+									</li>
+									<li class="sixth">
+										<div class="circle-holder">
+											<div class="circle-text">SUBMISSION</div>
+											<div class="circle"></div>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="space50"></div>
+			<div class="collection-container">
+				<div class="row">
+					<div class="col-md-12">
+						<h2>DELIVERY:</h2>
+						<ul class="payment-method">
+							<li>
+								<input type="radio" name="delivery" value="allotherarea" checked>
+								<label for="online">To all areas excluding Jurong Island & Sentosa</label>
+							</li>
+							<li>
+								<input type="radio" name="delivery" value="jurongsentoaarea" >
+								<label for="atm">To delivery to Jurong Island and Sentosa</label>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="space30"></div>
+				<div class="row">
+					<div class="col-md-12">
+						<h3>SELECT DELIVERY DATE:</h3>
+						<div class="space10"></div>
+						<div class="delivery_date_container">
+							<label for="delivery_date_day">Delivery Date:</label>
+							<div class="dropdown">
+								<select name="delivery_date_day" id="delivery_date_day">
+									<option value="">DD</option>
+								</select>
+							</div>
+							<div class="dropdown">
+								<select name="delivery_date_month" id="delivery_date_month">
+									<option value="">MM</option>
+								</select>
+							</div>
+							<div class="dropdown">
+								<select name="delivery_date_year" id="delivery_date_year">
+									<option value="">YYYY</option>
+								</select>
+							</div>
+							<a href="#" class="calendar"></a>
+							<div class="space10"></div>
+							<p class="note">* Please note that orders must be made at least 2 days in advance. Subject to availability</p>
+						</div>
+						<div class="space10"></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<h3>SELECT TIME OF DELIVERY:</h3>
+						<div class="space10"></div>
+						<div class="delivery_time_container">
+							<label for="">Delivery Time:</label>
+							<div class="dropdown">
+								<select name="delivery_time" id="delivery_time">
+									<option value="5:30 pm – 6:00 pm (Sat/PH only)">5:30 pm – 6:00 pm (Sat/PH only)</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="space10"></div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="consumption_time_container">
+							<label for="">Consumption Time:</label>
+							<div class="dropdown">
+								<select name="consumption_time_hr" id="consumption_time_hr">
+									<option value="">HH</option>
+								</select>
+							</div>
+							<div class="dropdown">
+								<select name="consumption_time_mm" id="consumption_time_mm">
+									<option value="">MM</option>
+								</select>
+							</div>
+							<div class="dropdown">
+								<select name="consumption_time_am_pm" id="consumption_time_am_pm">
+									<option value="">AM/PM</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="space10"></div>
+				<div class="row">
+					<div class="col-md-12">
+						<p class="charges-info">Note: Surcharge is applicable for delivery at selected time range.</p>
+						<ul class="charges-info">
+							<li><p><span class="red">*</span> Additional S$30 surcharge applies.</p></li>
+							<li><p>* Additional S$22 surcharge applies.</p></li>
+							<li><p>* Additional S$20 surcharge applies.</p></li>
+						</ul>
+					</div>
+				</div>
+				<div class="space50"></div>
+				<div class="row">
+					<div class="col-md-2"><button class="button">PREVIOUS</button></div>
+					<div class="col-md-2 col-md-offset-8"><button class="button">NEXT</button></div>
+				</div>			
+			</div>
+
+		</div><!-- end cart -->
+	</div>
+	<div class="space50"></div>
+	<div class="space50"></div>
+
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+
+		});
+
+	</script>
+
+	<!--#include virtual="inc/footer.inc" -->
+</body>
+</html>

@@ -605,16 +605,17 @@ h4{
   color: @dark-brown-text-2;
 }
 
+h5 {
+  .auto-1-bold;
+  font-size: 12px;
+  line-height: 20px;
+  text-transform: uppercase;
+}
+
 
 
 ///
 
-h5{
-  .open-sans-bold;
-  font-size: 16px;
-  line-height: 18px;
-  text-transform: uppercase;
-}
 h6{
   .open-sans-bold;
   font-size: 12px;
@@ -1767,7 +1768,204 @@ header#main-header {
       }*/
     }
   }
+  .cart-container {
+    width: 96%;
+    .cart-heading {
+      div {
+        background: @red;
+        height: 33px;
+        padding-top: 6px;
+        h5 {
+          color: @white;
+          &.product {
+            padding-left: 15px;
+          }
+          &.desc {
+            padding-left: 20px;
+          }
+        }
+      }
+    }
+    .cart-content {
+      margin-top: 15px;
+      input#qty {
+        width: 54px;
+        height: 28px;
+        padding-left: 15px;
+      }
+      .cancel-button {
+        display: inline-block;
+        position: relative;
+      }
+      button.cancel {
+        background: url(../images/icons/cross-icon.png) no-repeat;
+        width: 16px;
+        height: 15px;
+        border: none;
+        position: absolute;
+        top: -12px;
+        left: 2px;
+      }
+      h5 {
+        font-size: 13px;
+        color: @dark-brown;
+      }
+      p {
+        .open-sans;
+        font-size: 13px;
+      }
+      p.price {
+        .open-sans-semibold;
+        font-size: 13px;
+        color: @dark-brown;
+      }
+      .border {
+        border-bottom: 1px solid @brown;
+        padding: 5px 0;
+        margin-bottom: 15px;
+      }
+      p.sub-total-label {
+        .open-sans-bold;
+        font-size: 13px;
+        text-align: right;
+      }
+      p.sub-total {
+        .open-sans-bold;
+        font-size: 13px;
+      }
+      p.delivery-info {
+        text-align: right;
+      }
+    }
+  }
+
+  .order-details-container, .collection-container, .delivery-container {
+    h3 {
+      .auto-1-bold;
+      font-size: 19px;
+      color: @red;
+    }
+    h4 {
+      .auto-1-bold;
+      font-size: 13px;
+      color: @dark-brown;
+    }
+    p {
+      color: @dark-brown-text;
+    }
+    p.billing-address,p.shipping-address {
+      margin-top: -7px;
+    }
+    button.continue {
+      width: 162px;
+    }
+    label {
+      padding-left: 5px;
+      .open-sans-bold;
+      font-size: 13px;
+      color: @dark-brown-text;
+    }
+    p.important {
+      color: @dark-brown-text;
+      a {
+        color: @dark-brown-text;
+        &:hover {
+          color: @red;
+        }
+      }
+    }
+    input[type="radio"] {
+      .opacity(0);
+      z-index: 999;
+    }
+    
+    input[type=radio]:checked + label:before {  
+      content: " ";  
+      background-color: @red;
+      border: 1px solid @red;
+    }
+    ul.payment-method {
+      margin-left: 2px;
+      li {
+        margin-top: 10px;
+      }
+      label {  
+        display: inline-block;  
+        cursor: pointer;  
+        position: relative;
+        padding-left: 7px; 
+        margin-right: 15px;
+        /*z-index: 999;*/
+      }
+      label:before {  
+        content: "";  
+        display: inline-block;  
+        width: 12px;  
+        height: 12px;
+        margin-right: 10px;
+        position: absolute;  
+        left: -15px;
+        bottom: 4px;
+        border: 1px solid @brown;
+        .round(50%);
+        z-index: -999;
+      }
+    }
+    .delivery_date_container,.delivery_time_container,.consumption_time_container {
+      label {
+        padding: 0px;
+      }
+      div.dropdown {
+        display: inline-block;
+        position: relative;
+        &:before {
+          content: '';
+          width:26px; 
+          height:26px;
+          background:url(../images/icons/drop-down-icon.png) no-repeat top left;
+          position:absolute;
+          display:block;
+          right: 0px;
+          pointer-events:none;
+        }
+        select, select[name="delivery_date_year"] {
+          padding-left: 5px;
+          width: 63px;
+          height: 26px;
+        }
+        select[name="delivery_date_year"],select[name="consumption_time_am_pm"] {
+          width: 84px;
+        }
+        select[name="delivery_time"] {
+          width: 221px;
+        }
+      }
+    }
+    .red {
+      color: @red;
+    }
+    .calendar {
+      background: url(../images/icons/calendar-icon.png) no-repeat;
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      position: relative;
+      top: 7px;
+      left: 8px;
+    }
+  }
+  .collection-container {
+    h3 {
+      color:@dark-brown-text;
+      font-size: 14px;
+    }
+    p.note {
+      .open-sans-italic;
+    }
+  }
 }
+
+
 
 //   _____ ___   ___ _____ _____ ____  
 //  |  ___/ _ \ / _ \_   _| ____|  _ \ 

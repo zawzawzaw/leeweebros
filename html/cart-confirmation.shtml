@@ -38,60 +38,216 @@
 			</div>
 			<div class="space50"></div>
 			<div class="space20"></div>
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2">
-					<div class="row">
-						<div class="col-md-12">
-							<ul class="progress-indicator">
-								<li class="first">
-									<div class="circle-holder">
-										<div class="circle-text">LOGIN</div>
-										<div class="circle done"></div>
-									</div>
-								</li>
-								<li class="second">
-									<div class="circle-holder">
-										<div class="circle-text active">SUMMARY</div>
-										<div class="circle done"></div>
-									</div>
-								</li>
-								<li class="third">
-									<div class="circle-holder">
-										<div class="circle-text">COLLECTION</div>
-										<div class="circle"></div>
-									</div>
-								</li>
-								<li class="fourth">
-									<div class="circle-holder">
-										<div class="circle-text">ADDRESS</div>
-										<div class="circle"></div>
-									</div>
-								</li>
-								<li class="fifth">
-									<div class="circle-holder">
-										<div class="circle-text">DELIVERY</div>
-										<div class="circle"></div>
-									</div>
-								</li>
-								<li class="sixth">
-									<div class="circle-holder">
-										<div class="circle-text">SUBMISSION</div>
-										<div class="circle"></div>
-									</div>
-								</li>
-							</ul>
+			<div class="progress-indicator-container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
+						<div class="row">
+							<div class="col-md-12">
+								<ul class="progress-indicator">
+									<li class="first">
+										<div class="circle-holder">
+											<div class="circle-text">LOGIN</div>
+											<div class="circle done"></div>
+										</div>
+									</li>
+									<li class="second">
+										<div class="circle-holder">
+											<div class="circle-text active">SUMMARY</div>
+											<div class="circle done"></div>
+										</div>
+									</li>
+									<li class="third">
+										<div class="circle-holder">
+											<div class="circle-text">COLLECTION</div>
+											<div class="circle"></div>
+										</div>
+									</li>
+									<li class="fourth">
+										<div class="circle-holder">
+											<div class="circle-text">ADDRESS</div>
+											<div class="circle"></div>
+										</div>
+									</li>
+									<li class="fifth">
+										<div class="circle-holder">
+											<div class="circle-text">DELIVERY</div>
+											<div class="circle"></div>
+										</div>
+									</li>
+									<li class="sixth">
+										<div class="circle-holder">
+											<div class="circle-text">SUBMISSION</div>
+											<div class="circle"></div>
+										</div>
+									</li>
+								</ul>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="space30"></div>
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2">
-
+			<div class="space50"></div>
+			<div class="cart-container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="row cart-heading">
+							<div class="col-md-1"></div>
+							<div class="col-md-2"><h5 class="product">PRODUCT</h5></div>
+							<div class="col-md-3"><h5 class="desc">DESCRIPTION</h5></div>
+							<div class="col-md-2"><h5 class="qty">QUANTITY</h5></div>
+							<div class="col-md-2"><h5 class="price">UNIT PRICE</h5></div>
+							<div class="col-md-2"><h5 class="totalprice">TOTAL PRICE</h5></div>
+						</div>
+						<div class="cart-content">
+							<div class="row">
+								<div class="col-md-1"></div>
+								<div class="col-md-2"><img src="images/content/cart-item-1.png" alt="otah"></div>
+								<div class="col-md-3"><h5>Assam fish</h5><p>Cooked or Raw: Cooked</p></div>
+								<div class="col-md-2">
+									<input type="text" name="qty" id="qty">
+									<div class="cancel-button">
+										<button class="cancel"></button>
+									</div>
+								</div>
+								<div class="col-md-2"><p class="price">S$ 2.60</p></div>
+								<div class="col-md-2"><p class="price">S$ 78.60</p></div>
+							</div>
+							<div class="row">
+								<div class="border"></div>	
+							</div>
+							<div class="row">
+								<div class="col-md-1"></div>
+								<div class="col-md-2"><img src="images/content/cart-item-1.png" alt="otah"></div>
+								<div class="col-md-3"><h5>Assam fish</h5><p>Cooked or Raw: Cooked</p></div>
+								<div class="col-md-2">
+									<input type="text" name="qty" id="qty">
+									<div class="cancel-button">
+										<button class="cancel"></button>
+									</div>
+								</div>
+								<div class="col-md-2"><p class="price">S$ 2.60</p></div>
+								<div class="col-md-2"><p class="price">S$ 78.60</p></div>
+							</div>
+							<div class="row">
+								<div class="border"></div>	
+							</div>
+							<div class="row">
+								<div class="col-md-1"></div>
+								<div class="col-md-2"><img src="images/content/cart-item-1.png" alt="otah"></div>
+								<div class="col-md-3"><h5>Assam fish</h5><p>Cooked or Raw: Cooked</p></div>
+								<div class="col-md-2">
+									<input type="text" name="qty" id="qty">
+									<div class="cancel-button">
+										<button class="cancel"></button>
+									</div>
+								</div>
+								<div class="col-md-2"><p class="price">S$ 2.60</p></div>
+								<div class="col-md-2"><p class="price">S$ 78.60</p></div>
+							</div>
+							<div class="row">
+								<div class="border"></div>	
+							</div>
+							<div class="row">
+								<div class="col-md-1"></div>
+								<div class="col-md-2"><img src="images/content/cart-item-1.png" alt="otah"></div>
+								<div class="col-md-3"><h5>Assam fish</h5><p>Cooked or Raw: Cooked</p></div>
+								<div class="col-md-2">
+									<input type="text" name="qty" id="qty">
+									<div class="cancel-button">
+										<button class="cancel"></button>
+									</div>
+								</div>
+								<div class="col-md-2"><p class="price">S$ 2.60</p></div>
+								<div class="col-md-2"><p class="price">S$ 78.60</p></div>
+							</div>
+							<div class="row">
+								<div class="border"></div>	
+							</div>
+							<div class="row">
+								<div class="col-md-2 col-md-offset-7">
+									<p class="sub-total-label">Subtotal:</p>
+								</div>
+								<div class="col-md-2 col-md-offset-1">
+									<p class="sub-total">S$ 70.00</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="border"></div>	
+							</div>
+							<div class="row">
+								<div class="col-md-8 col-md-offset-1">
+									<p class="delivery-info">Remaining amount to be added to your cart in order to obtain free delivery</p>
+									<p class="delivery-info">To Jurong Island or Sentosa:</p>
+									<p class="delivery-info">To other parts of Singapore:</p>
+								</div>
+								<div class="col-md-2 col-md-offset-1">
+									<p class="sub-total">S$ 50.00</p>
+									<p class="sub-total">S$ 30.00</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="border"></div>	
+							</div>
+						</div>
+					</div>
+				</div>				
+			</div>
+			<div class="order-details-container">
+				<div class="row">
+					<div class="col-md-12">
+						<h3>ORDER DETAILS</h3>
+					</div>
+				</div>
+				<div class="space10"></div>
+				<div class="row">
+					<div class="col-md-2">
+						<h4>BILLIN ADDRESS</h4>
+						<p class="billing-address">
+							<span class="name">Lui Yiling</span><br>
+							<span class="address-1">Blk 289A Bukit Batok</span><br>
+							<span class="address-2">St 25 #04-210</span><br>
+							<span class="country">Singapore</span><span class="postcode">650289</span>
+						</p>
+					</div>
+					<div class="col-md-2">
+						<h4>DELIVERY ADDRESS:</h4>
+						<p class="shipping-address">
+							<span class="name">Lui Yiling</span><br>
+							<span class="address-1">Blk 289A Bukit Batok</span><br>
+							<span class="address-2">St 25 #04-210</span><br>
+							<span class="country">Singapore</span><span class="postcode">650289</span>
+						</p>
+					</div>
+				</div>
+				<div class="space40"></div>
+				<div class="row">
+					<div class="col-md-12">
+						<h3>PAYMENT METHOD</h3>
+						<ul class="payment-method">
+							<li><input type="radio" name="paymentmethod" value="online" checked><label for="online">Online Funds Transfer</label></li>
+							<li><input type="radio" name="paymentmethod" value="atm" ><label for="atm">ATM Funds Transfer</label></li>
+							<li><input type="radio" name="paymentmethod" value="cash" ><label for="cash">Payment by cash at any of our outlets</label></li>
+						</ul>
+					</div>
+				</div>
+				<div class="space40"></div>
+				<div class="row">
+					<div class="col-md-7">
+						<p class="important">Please note that this is not a confirmation. Our Customer Service Personnel will contact you to confirm your order within 24 hours. Alternatively, you may call us at <a href="tel:63859122">63859122</a> for further assistance. Bank transfer account information will be provided upon confirmation of order via our customer service personnel.</p>
+					</div>
+				</div>
+				<div class="space30"></div>
+				<div class="row">
+					<div class="col-md-4">
+						<button class="button continue">CONTINUE SHOPPING</button>
+					</div>
+					<div class="col-md-2 col-md-offset-6">
+						<button class="button">NEXT</button>
+					</div>
 				</div>
 			</div>
-			
-		</div>
+
+		</div><!-- end cart -->
 	</div>
 	<div class="space50"></div>
 	<div class="space50"></div>
