@@ -34,7 +34,7 @@
 		<div id="cart" class="container">
 			<div class="space30"></div>
 			<div class="row">
-				<div class="col-md-12" id="page-title"><h1>SHOPPING CART</h1></div>
+				<div class="col-md-12" id="page-title"><h1>RECEVING MODE</h1></div>
 			</div>
 			<div class="space50"></div>
 			<div class="space20"></div>
@@ -58,7 +58,7 @@
 									</li>
 									<li class="third">
 										<div class="circle-holder">
-											<div class="circle-text active">COLLECTION</div>
+											<div class="circle-text active">RECEVING MODE</div>
 											<div class="circle done"></div>
 										</div>
 									</li>
@@ -90,11 +90,17 @@
 			<div class="delivery-container">
 				<div class="row">
 					<div class="col-md-12">
-						<h2>COLLECTION METHODS:</h2>
+						<h2>RECEVING MODE:</h2>
 						<p>Please kindly select the choice of collections below.</p>
 						<ul class="payment-method">
-							<li><input type="radio" name="paymentmethod" value="self" checked><label for="online">Self–Collection</label></li>
-							<li><input type="radio" name="paymentmethod" value="delivery" ><label for="atm">Delivery</label></li>
+							<li>
+								<input type="radio" name="paymentmethod" value="delivery" >
+								<label for="atm" class="radio-label"><span class="radiobtn"></span>Delivery</label>
+							</li>
+							<li>
+								<input type="radio" name="paymentmethod" value="self" checked>
+								<label for="online" class="radio-label"><span class="radiobtn"></span>Self–Collection</label>
+							</li>
 						</ul>
 					</div>
 				</div>

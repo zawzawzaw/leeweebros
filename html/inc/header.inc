@@ -45,7 +45,7 @@
                     <a href="#">Our Story</a>
                   </li>
                   <li>
-                    <a href="ourhistory.shtml">Histroy</a>
+                    <a href="ourhistory.shtml">History</a>
                   </li>
                   <li>
                     <a href="#">The Lee Wee Difference</a>

@@ -26,7 +26,7 @@
 		<div id="breadcrumb" class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<a href="#">Home</a> / <a href="#" class="active">Shopping Cart</a>
+					<a href="#">Home</a> / <a href="#" class="active">Terms of Service</a>
 				</div>
 			</div>
 		</div>
@@ -34,7 +34,7 @@
 		<div id="cart" class="container">
 			<div class="space30"></div>
 			<div class="row">
-				<div class="col-md-12" id="page-title"><h1>SHOPPING CART</h1></div>
+				<div class="col-md-12" id="page-title"><h1>TERMS OF SERVICE</h1></div>
 			</div>
 			<div class="space50"></div>
 			<div class="space20"></div>
@@ -58,20 +58,20 @@
 									</li>
 									<li class="third">
 										<div class="circle-holder">
-											<div class="circle-text active">COLLECTION</div>
+											<div class="circle-text">RECEVING MODE</div>
 											<div class="circle done"></div>
 										</div>
 									</li>
 									<li class="fourth">
 										<div class="circle-holder">
 											<div class="circle-text">ADDRESS</div>
-											<div class="circle"></div>
+											<div class="circle done"></div>
 										</div>
 									</li>
 									<li class="fifth">
 										<div class="circle-holder">
-											<div class="circle-text">DELIVERY</div>
-											<div class="circle"></div>
+											<div class="circle-text active">DELIVERY</div>
+											<div class="circle done"></div>
 										</div>
 									</li>
 									<li class="sixth">
@@ -87,15 +87,22 @@
 				</div>
 			</div>
 			<div class="space50"></div>
-			<div class="delivery-container">
+			<div class="terms-container">
 				<div class="row">
 					<div class="col-md-12">
-						<h2>COLLECTION METHODS:</h2>
-						<p>Please kindly select the choice of collections below.</p>
-						<ul class="payment-method">
-							<li><input type="radio" name="paymentmethod" value="self" checked><label for="online">Self–Collection</label></li>
-							<li><input type="radio" name="paymentmethod" value="delivery" ><label for="atm">Delivery</label></li>
-						</ul>
+						<h2>TERMS OF SERVICE:</h2>
+						<input type="checkbox" name="tnc"><label><span></span>I agree to the terms of service and adhere to them unconditionally.</label><br><a href="#" class="tnc">(Download T&C)</a>
+						
+						
+					</div>
+				</div>
+				<div class="space10"></div>
+				<div class="row">
+					<div class="col-md-12">
+						<h2>SELF–COLLECTION:</h2>
+						<p>If you would like to collect the order yourself or your order is below S$100. <br>
+						(Only Internet Banking accepted.)</p>
+						
 					</div>
 				</div>
 				<div class="space50"></div>

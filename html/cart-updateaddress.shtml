@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]>
+<!--> 
+<html class=""> 
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<title>Lee Wee Brothers</title>
+	<meta name="description" content="Lee Wee">
+	<meta name="keywords" content="Lee Wee">
+
+	<!--#include virtual="inc/head.inc" -->
+</head>
+<body>
+<!-- 	<div class="image-bg">
+		<div class="top-bg"></div>
+		<div class="middle-bg"></div>
+	</div> -->
+	
+  	<!--#include virtual="inc/header.inc" -->
+	<div id="content-wrapper" class="align-left">
+		<div id="breadcrumb" class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<a href="#">Home</a> / <a href="#" class="active">Address</a>
+				</div>
+			</div>
+		</div>
+
+		<div id="cart" class="container">
+			<div class="space30"></div>
+			<div class="row">
+				<div class="col-md-12" id="page-title"><h1>ADDRESS</h1></div>
+			</div>
+			<div class="space50"></div>
+			<div class="space20"></div>
+			<div class="progress-indicator-container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
+						<div class="row">
+							<div class="col-md-12">
+								<ul class="progress-indicator">
+									<li class="first">
+										<div class="circle-holder">
+											<div class="circle-text">LOGIN</div>
+											<div class="circle done"></div>
+										</div>
+									</li>
+									<li class="second">
+										<div class="circle-holder">
+											<div class="circle-text">SUMMARY</div>
+											<div class="circle done"></div>
+										</div>
+									</li>
+									<li class="third">
+										<div class="circle-holder">
+											<div class="circle-text">RECEVING MODE</div>
+											<div class="circle done"></div>
+										</div>
+									</li>
+									<li class="fourth">
+										<div class="circle-holder">
+											<div class="circle-text active">ADDRESS</div>
+											<div class="circle done"></div>
+										</div>
+									</li>
+									<li class="fifth">
+										<div class="circle-holder">
+											<div class="circle-text">DELIVERY</div>
+											<div class="circle"></div>
+										</div>
+									</li>
+									<li class="sixth">
+										<div class="circle-holder">
+											<div class="circle-text">SUBMISSION</div>
+											<div class="circle"></div>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="space50"></div>
+			<div class="address-container">
+				<form name="login" id="addaddress-form" method="post" action="">
+					<div class="row">
+						<div class="col-md-6"><h2>UPDATE BILLING LOCATION:</h2></div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<ul class="payment-method">
+								<li>
+									<input type="radio" name="delivery_location" value="Residential" checked>
+									<label for="online" class="radio-label"><span class="radiobtn"></span>Residential</label>
+								</li>
+								<li>
+									<input type="radio" name="delivery_location" value="Company" >
+									<label for="atm" class="radio-label"><span class="radiobtn"></span>Company</label>
+								</li>
+								<li>
+									<input type="radio" name="delivery_location" value="Chalet" >
+									<label for="atm" class="radio-label"><span class="radiobtn"></span>Chalet</label>
+								</li>
+								<li>
+									<input type="radio" name="delivery_location" value="Public Attractions" >
+									<label for="atm" class="radio-label"><span class="radiobtn"></span>Public Attractions (Sentosa, Gardens By the Bay, etc. )</label>
+								</li>
+								<li>
+									<input type="radio" name="delivery_location" value="Public Spaces" >
+									<label for="atm" class="radio-label"><span class="radiobtn"></span>Public Spaces (Beaches, Parks, etc. )</label>
+								</li>
+							</ul>
+
+							<div class="space20"></div>
+
+							<h2>UPDATE ADDRESS:</h2>
+							<div class="space10"></div>
+
+							<label for="first_name" class="asterisk">
+								<input type="text" name="first_name" class="small-input" placeholder="First Name" value="Yiling">
+							</label>
+							<label for="last_name" class="asterisk">
+								<input type="text" name="last_name" class="small-input" placeholder="Last Name">
+							</label>
+		
+							<label for="company" class="no-asterisk">
+								<input type="text" name="company" class="large-input" placeholder="Company">
+							</label>
+
+							<label for="address_1" class="asterisk">
+								<input type="text" name="address_1" class="large-input" placeholder="Address">
+								<p class="desc">Street address, P.O. box, compagny name, c/o</p>
+							</label>
+						</div>
+						<div class="col-md-6">
+							<div class="space20"></div>
+
+							<label for="address_2" class="no-asterisk">
+								<input type="text" name="address_2" class="large-input" placeholder="Address">
+							</label>
+							<p class="desc">Apartment, suite, unit, building, floor, etc.</p>
+
+							<div class="space10"></div>
+
+							<label for="zip_postal_code" class="asterisk">
+								<input type="text" name="zip_postal_code" class="small-input" placeholder="Zip / Postal Code">
+							</label>
+							<label for="town" class="asterisk">
+								<input type="text" name="town" class="small-input" placeholder="Town">
+							</label>
+
+							<!-- <div class="space10"></div> -->
+
+							<label for="country" class="lbl asterisk-2">Country:
+								<div class="dropdown">
+									<select name="country" class="country">
+										<option value="">Country</option>
+										<option value="Singapore">Singapore</option>
+									</select>
+								</div>
+							</label>
+
+							<div class="space10"></div>
+
+							<label for="addition_info">
+								<textarea name="addition_info" class="push-down" id="" cols="15" rows="5" placeholder="Additional Information:"></textarea>
+							</label>
+
+							<div class="space10"></div>
+
+							<label for="telephone" class="asterisk">
+								<input type="text" name="telephone" class="small-input" placeholder="Telephone">
+							</label>
+							<label for="mobile" class="asterisk">
+								<input type="text" name="mobile" class="small-input" placeholder="Mobile">
+							</label>
+							<p class="desc"><span class="asterisk">*</span> Required field</p>
+						</div>
+					</div>
+					<div class="space50"></div>
+					<div class="row">
+						<div class="col-md-2"><button class="button">SAVE ADDRESS</button></div>
+					</div>		
+				</form>	
+			</div>
+		</div><!-- end cart -->
+	</div>
+	<div class="space50"></div>
+	<div class="space50"></div>
+
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+
+		});
+
+	</script>
+
+	<!--#include virtual="inc/footer.inc" -->
+</body>
+</html>
