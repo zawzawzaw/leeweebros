@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]>
+<!--> 
+<html class=""> 
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<title>Lee Wee Brothers</title>
+	<meta name="description" content="Lee Wee">
+	<meta name="keywords" content="Lee Wee">
+
+	<!--#include virtual="inc/head.inc" -->
+</head>
+<body>
+<!-- 	<div class="image-bg">
+		<div class="top-bg"></div>
+		<div class="middle-bg"></div>
+	</div> -->
+	
+  	<!--#include virtual="inc/header.inc" -->
+	<div id="content-wrapper" class="align-left">
+		<div id="breadcrumb" class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<a href="#">Home</a> / <a href="#" class="active">Address</a>
+				</div>
+			</div>
+		</div>
+
+		<div id="cart" class="container">
+			<div class="space30"></div>
+			<div class="row">
+				<div class="col-md-12" id="page-title"><h1>ADDRESS</h1></div>
+			</div>
+			<div class="space50"></div>
+			<div class="space20"></div>
+			<div class="progress-indicator-container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
+						<div class="row">
+							<div class="col-md-12">
+								<ul class="progress-indicator">
+									<li class="first">
+										<div class="circle-holder">
+											<div class="circle-text">LOGIN</div>
+											<div class="circle done"></div>
+										</div>
+									</li>
+									<li class="second">
+										<div class="circle-holder">
+											<div class="circle-text">SUMMARY</div>
+											<div class="circle done"></div>
+										</div>
+									</li>
+									<li class="third">
+										<div class="circle-holder">
+											<div class="circle-text">RECEVING MODE</div>
+											<div class="circle done"></div>
+										</div>
+									</li>
+									<li class="fourth">
+										<div class="circle-holder">
+											<div class="circle-text active">ADDRESS</div>
+											<div class="circle done"></div>
+										</div>
+									</li>
+									<li class="fifth">
+										<div class="circle-holder">
+											<div class="circle-text">TERMS OF SERVICE</div>
+											<div class="circle"></div>
+										</div>
+									</li>
+									<li class="sixth">
+										<div class="circle-holder">
+											<div class="circle-text">SUBMISSION</div>
+											<div class="circle"></div>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="space50"></div>
+			<div class="select-address-container">
+				<form name="login" id="selectaddress-form" method="post" action="">
+					<div class="row">
+						<div class="col-md-12">
+							<label for="billing_address">Choose a billing address:</label>
+							<div class="dropdown">
+								<select name="billing_address" class="billing_address">
+									<option value="">BLK 289A Bukit Batok St 25 #04-210</option>
+								</select>
+							</div>
+	
+							<div class="space10"></div>
+
+							<input type="checkbox" name="same">
+							<label class="lbl"><span></span>Use the same address for delivery</label>
+
+							<div class="space10"></div>
+
+							<label for="delivery_address">Choose a delivery address:</label>
+							<div class="dropdown">
+								<select name="delivery_address" class="delivery_address">
+									<option value="">BLK 289A Bukit Batok St 25 #04-210</option>
+								</select>
+							</div>
+
+							<div class="space20"></div>
+
+							<button class="add_delivery secondary-btn">ADD DELIVERY ADDRESS</button>
+							<button class="add_billing secondary-btn">ADD BILLING ADDRESS</button>
+
+							<div class="space20"></div>
+			
+							<div class="row">
+								<div class="col-md-2">
+									<h4>BILLIN ADDRESS</h4>
+									<p class="billing-address">
+										<span class="name">Lui Yiling</span><br>
+										<span class="address-1">Blk 289A Bukit Batok</span><br>
+										<span class="address-2">St 25 #04-210</span><br>
+										<span class="country">Singapore</span><span class="postcode">650289</span><br>
+										<span class="tel">T: 65606457</span><br>
+										<span class="mobile">M: 96539739</span>
+									</p>
+									<a href="#" class="update">Update</a>
+								</div>
+								<div class="col-md-2 col-md-offset-1">
+									<h4>DELIVERY ADDRESS:</h4>
+									<p class="shipping-address">
+										<span class="name">Lui Yiling</span><br>
+										<span class="address-1">Blk 289A Bukit Batok</span><br>
+										<span class="address-2">St 25 #04-210</span><br>
+										<span class="country">Singapore</span><span class="postcode">650289</span><br>
+										<span class="tel">T: 65606457</span><br>
+										<span class="mobile">M: 96539739</span>
+									</p>
+									<a href="#" class="update">Update</a>
+								</div>
+							</div>
+
+							<div class="space20"></div>
+
+							<textarea name="special_instruction" id="special_instruction" cols="80" rows="10" placeholder="Special Delivery Instruction"></textarea>
+						</div>
+					</div>
+				</form>	
+			</div>
+			<div class="space50"></div>
+			<div class="row">
+				<div class="col-md-2"><button class="button">PREVIOUS</button></div>
+				<div class="col-md-2 col-md-offset-8"><button class="button">NEXT</button></div>
+			</div>
+		</div><!-- end cart -->
+	</div>
+	<div class="space50"></div>
+	<div class="space50"></div>
+
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+
+		});
+
+	</script>
+
+	<!--#include virtual="inc/footer.inc" -->
+</body>
+</html>

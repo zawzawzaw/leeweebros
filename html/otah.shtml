@@ -37,8 +37,29 @@
 						</div>
 						<div class="row">
 							<ul class="side-menu">
-								<li><a href="ourfood.shtml">OUR FOOD</a></li>
-								<li><a href="#">CATHERING</a></li>
+								<li class="active">
+									<a href="javascript:void(0);" data-toggle="collapse" data-target="#ourfood">OUR FOOD</a>
+									<div id="ourfood" class="collapse in">
+										<ul class="side-sub-menu">
+											<li>Otah</li>
+											<li>Lunch Boxes</li>
+											<li>Satay</li>
+											<li>Snack & Nibbles</li>
+											<li>Local Flavors</li>
+											<li>Condiments</li>
+										</ul>
+									</div>
+								</li>
+								<li>
+									<a href="javascript:void(0);" data-toggle="collapse" data-target="#cathering">CATHERING</a>
+									<div id="cathering" class="collapse">
+										<ul class="side-sub-menu">
+											<li>Mini Buffet</li>
+											<li>Others</li>
+										</ul>
+									</div>
+								</li>
+
 							</ul>
 						</div>
 
@@ -47,8 +68,29 @@
 						<div class="row">
 							<div class="col-md-2" id="page-title"><h1>OTAH</h1></div>
 							<div class="col-md-4 col-md-offset-6" id="sort-controls">
-								<a href="#">SORT BY</a>
-								<a href="#">ITEMS</a>
+								<a href="#">
+									SORT BY
+									<div class="sort">
+										<ul>
+											<li>Default</li>
+											<li>Price (Lowest)</li>
+											<li>Price (Highest)</li>
+											<li>Name (A - Z)</li>
+											<li>Name (Z - A)</li>
+											<li>In-stock first</li>
+										</ul>
+									</div>
+								</a>
+								<a href="#">
+									ITEMS
+									<div class="item">
+										<ul>
+											<li>10</li>
+											<li>20</li>
+											<li>50</li>
+										</ul>
+									</div>
+								</a>
 							</div>
 						</div>
 						<hr class="">
@@ -492,10 +534,22 @@
 	<div class="space50"></div>
 	<div class="space50"></div>
 
+	<script type="text/javascript" src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 
 		$(document).ready(function(){
+			$('.collapse').on('shown.bs.collapse', function (e) {
+			  	$('.side-menu li').removeClass('active');
+			  	$(e.currentTarget).parent('li').addClass('active');
+			});
 
+			$('.side-menu li a').on('click',function(e){
+			    if($(this).next('.collapse').hasClass('in')){
+			        e.stopPropagation();
+			    }else {
+			    	$('.collapse').collapse('hide');
+			    }
+			});
 		});
 
 	</script>

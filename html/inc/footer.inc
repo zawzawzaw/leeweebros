@@ -61,7 +61,7 @@
           </div>
           <div class="col-md-3">
             <h3>SHARE WITH US</h3>
-            <ul>
+            <ul class="social-media">
               <li>
                 <a class="facebook" href="https://www.facebook.com/leeweebrothers"></a>
                 <a class="twitter" href="#"></a>
