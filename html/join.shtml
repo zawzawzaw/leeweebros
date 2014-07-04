@@ -44,7 +44,7 @@
 					<p>I am a new customer.</p>
 				</div>
 			</div>
-			<div class="space20"></div>
+			<div class="space10"></div>
 
 			<form name="login" id="login-form" method="post" action="">
 				<div class="row">
@@ -121,7 +121,7 @@
 					<div class="col-md-12" id="sub-title"><h2>YOUR ADDRESS</h2></div>
 				</div>
 
-				<div class="space20"></div>
+				<div class="space10"></div>
 				<div class="row">
 					<div class="col-md-4">
 						<label for="last_name" class="asterisk">

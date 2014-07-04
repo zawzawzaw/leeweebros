@@ -1,0 +1,12 @@
+/*
+Theme Name: 	LEE WEE
+Theme URI: 		http://www.leeweebrothers.com/
+Description: 	LEE WEE wordpress theme
+Version: 		1.0
+Author: 		Zaw
+Author URI: 	http://www.manic.com.sg
+Tags: 			LEE WEE
+*/
+
+@import url("lib/bootstrap/dist/css/bootstrap.min.css");
+@import url("css/style.css");

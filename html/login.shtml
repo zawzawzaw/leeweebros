@@ -45,7 +45,7 @@
 							<p>Enter your email address to create an account.</p>
 						</div>
 					</div>
-					<div class="space20"></div>
+					<div class="space10"></div>
 					
 					<form name="login" id="login-form" method="post" action="">
 						<div class="row">
