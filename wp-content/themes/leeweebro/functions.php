@@ -27,3 +27,15 @@ function jk_woocommerce_breadcrumbs() {
             'home'        => _x( 'Home', 'breadcrumb', 'woocommerce' ),
         );
 }
+
+// single product custom hooks
+
+add_action( 'woocommerce_single_product_title_custom', 'woocommerce_template_single_title', 5 );
+add_action( 'woocommerce_single_product_image_custom', 'woocommerce_show_product_images', 5 );
+// add_action( 'woocommerce_single_product_summary_custom', 'woocommerce_template_single_title', 5 );
+// add_action( 'woocommerce_single_product_summary_custom', 'woocommerce_show_product_images', 10 );
+add_action( 'woocommerce_single_product_summary_custom', 'woocommerce_template_single_price', 20 );
+add_action( 'woocommerce_single_product_summary_custom', 'woocommerce_template_single_excerpt', 30 );
+add_action( 'woocommerce_single_product_summary_custom', 'woocommerce_template_single_meta', 50 );
+add_action( 'woocommerce_single_product_summary_custom', 'woocommerce_template_single_sharing', 60 );
+add_action( 'woocommerce_single_product_summary_custom', 'woocommerce_template_single_add_to_cart', 40 );

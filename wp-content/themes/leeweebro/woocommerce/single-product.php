@@ -38,16 +38,38 @@ get_header( 'shop' ); ?>
 						</div>
 						<div class="row">
 							<ul class="side-menu">
-								<li><a href="#">OUR FOOD</a></li>
-								<li><a href="#">CATHERING</a></li>
+								<li class="active">
+									<a href="javascript:void(0);" data-toggle="collapse" data-target="#ourfood">OUR FOOD</a>
+									<div id="ourfood" class="collapse in">
+										<ul class="side-sub-menu">
+											<li>Otah</li>
+											<li>Lunch Boxes</li>
+											<li>Satay</li>
+											<li>Snack & Nibbles</li>
+											<li>Local Flavors</li>
+											<li>Condiments</li>
+										</ul>
+									</div>
+								</li>
+								<li>
+									<a href="javascript:void(0);" data-toggle="collapse" data-target="#cathering">CATHERING</a>
+									<div id="cathering" class="collapse">
+										<ul class="side-sub-menu">
+											<li>Mini Buffet</li>
+											<li>Others</li>
+										</ul>
+									</div>
+								</li>
 							</ul>
 						</div>
 					</div>
+					<div class="col-md-9">
 					<?php while ( have_posts() ) : the_post(); ?>
 
 						<?php wc_get_template_part( 'content', 'single-product' ); ?>
 
 					<?php endwhile; // end of the loop. ?>
+					</div>
 					<?php
 						/**
 						 * woocommerce_after_main_content hook
@@ -71,5 +93,25 @@ get_header( 'shop' ); ?>
 	</div>
 	<div class="space50"></div>
 	<div class="space50"></div>
+
+	<script type="text/javascript" src="<?php echo LIB ?>/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+			$('.collapse').on('shown.bs.collapse', function (e) {
+			  	$('.side-menu li').removeClass('active');
+			  	$(e.currentTarget).parent('li').addClass('active');
+			});
+
+			$('.side-menu li a').on('click',function(e){
+			    if($(this).next('.collapse').hasClass('in')){
+			        e.stopPropagation();
+			    }else {
+			    	$('.collapse').collapse('hide');
+			    }
+			});
+		});
+
+	</script>
 
 <?php get_footer( 'shop' ); ?>

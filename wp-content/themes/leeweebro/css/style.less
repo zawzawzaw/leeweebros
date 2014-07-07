@@ -538,7 +538,7 @@ strong {
 
 body{
   .body-font;
-  color: @grey;
+  color: @dark-brown;
   font-size: 12px;
   line-height: 18px;
 }
@@ -575,7 +575,7 @@ a, a:link, a:hover, a:active, a:visited{
 h1 {
   .solano-std-normal;
   font-size: 42px;
-  line-height: 38px;
+  line-height: 36px;
   text-transform: uppercase;
   display: block;
   color: @red;
@@ -928,9 +928,11 @@ header#main-header {
 
             &.two {
               height: 81px;
+              width: 200px;
             }
             &.six {
               height: 215px;
+              width: 200px;
             }
 
             li {
@@ -1096,17 +1098,20 @@ header#main-header {
         margin-bottom: 50px;
         .feature-product-description {
           width: 290px;
+          padding-left: 35px;
         }
         h3,p {
           text-align: center;
-          min-height: 50px;
-          width: 270px;
+          width: 222px;
+        }
+        p:not(.feature-price) {         
+          min-height: 70px;
         }
         h3 {
           color: @red;
           line-height: 32px;
         }
-        .feature-price {
+        p.feature-price {
           padding-top: 13px;
           font-size: 14px;
         }
@@ -1138,6 +1143,9 @@ header#main-header {
 
 #account-login {
   #sub-title {
+    h2 {
+      line-height: 20px;
+    }
     p {
       .open-sans-italic;
       font-size: 12px;
@@ -1233,7 +1241,7 @@ header#main-header {
         margin-right: 0px;
       }
       &.country {
-        width: 95px;     
+        width: 116px;     
         padding-left: 15px; 
       }
     }
@@ -1263,6 +1271,7 @@ header#main-header {
 
     p.desc {
       padding-left: 13px;
+      color: #754c24;
     }
 
     p.create-account-desc {
@@ -1334,6 +1343,8 @@ header#main-header {
         border: none;
         border-right: 1px solid @red;
         h2 {
+          font-size: 15px;
+          line-height: 23px;
           .auto-1-bold;
           color: @white;
         }
@@ -1375,7 +1386,7 @@ header#main-header {
   h2 {
     .auto-1-bold;
     color: @red;
-    font-size: 18px;
+    font-size: 17px;
   }
 
   h3 {
@@ -1406,8 +1417,8 @@ header#main-header {
     .open-sans-italic;
 
     .price {
-      .open-sans-bold;
-      font-size: 19px;      
+      .open-sans-semibold;
+      font-size: 18px;      
     }
     .red {
       color: @red;
@@ -1446,13 +1457,26 @@ header#main-header {
     }
 
   ul.side-menu {
+    border-top: 1px solid @brown;
     margin-left: 15px;
     margin-top: 62px;
     width: 183px;
     li {
-      border-top: 1px solid @brown;
       padding: 6px 0px 2px 0px;
       background: url(../images/icons/triangle-arrow.png) no-repeat 170px 14px;
+
+      &.active {
+        background: url(../images/icons/triangle-arrow-down.png) no-repeat 170px 14px;
+        .transition(background-image 0.2s ease-in-out);
+        a {
+          color: @dark-brown;
+        }
+      }
+
+      a {
+        border-bottom: 1px solid @brown;
+      }
+
       a {
           .solano-std-normal;
           font-size: 21px;
@@ -1464,9 +1488,22 @@ header#main-header {
             color: @dark-brown;
           }
       }
-      &:last-child {
+
+      ul:first-of-type {
+        padding-bottom: 5px;
         border-bottom: 1px solid @brown;
       }
+
+      ul.side-sub-menu {
+        li {
+          /*border: none;*/
+          background: none;
+          a {
+            /*border: none;*/
+          }
+        }
+      }
+
     }
   }
   .selectors {
@@ -1516,16 +1553,60 @@ header#main-header {
     }
   }
   #sort-controls {
-    right: -10px;
+    right: -5px;
     top: 14px;
     position: absolute;
     a {
-      width: 95px;
+      width: 68px;
+      height: 28px;
       display: inline-block;
       font-size: 11px;
-      background: url(../images/icons/down-arrow.png) no-repeat 44px 6px;   
+      background: url(../images/icons/down-arrow.png) no-repeat 50px 11px;
+      padding: 5px 0 0 10px;
+      position: relative;
+      margin-left: 10px;
+
+      div {
+        display: none;
+        position: absolute;
+        top: 28px;
+        z-index: 999;
+        background: @red;
+        width: 68px;
+        height: 63px;
+        left: 0px;
+        padding-left: 10px;
+
+        ul {
+          li {
+            &:hover {
+              color: @dark-brown-text;
+            }
+          }
+        }
+      }
+
       &:first-child {
-        background: url(../images/icons/down-arrow.png) no-repeat 56px 6px;   
+        width: 83px;
+        background: url(../images/icons/down-arrow.png) no-repeat 65px 11px;
+        margin-left: 0px;
+        &:hover {
+          background: url(../images/icons/white-down-arrow.png) no-repeat 65px 11px @red;
+          z-index: 999;
+        }
+
+        div {
+          width: 96px;
+          height: 119px;
+        }
+      }
+      &:hover {
+        color: @white;
+        background: url(../images/icons/white-down-arrow.png) no-repeat 50px 11px @red;
+        z-index: 999;
+        div {
+          display: block;
+        }
       }
     }
   }
@@ -1558,6 +1639,7 @@ header#main-header {
     font-size: 13px;
     text-transform: uppercase;
     text-decoration: underline;
+    line-height: 20px;
   }
 
   a {
@@ -1584,33 +1666,46 @@ header#main-header {
 
 //  PROMOTIONS
 
-.promo-product-wrapper {
-  ul {
-    li {
-      width: 302px;
-      float: left;
-      margin-bottom: 50px;
-      .promo-product-description {
-        width: 290px;
-      }
-      h3,p {
-        text-align: center;
-      }
-      h3 {
-        color: @red;
-        line-height: 32px;
-      }
-      .promo-text {
-        height: 50px;
-        width: 270px;
-      }
-      .promo-price {
-        padding-top: 13px;
-        font-size: 14px;
+#promotions {
+  h2 {
+    font-size: 16px;
+  }
+  .promo-product-wrapper {
+    ul {
+      li {
+        width: 302px;
+        float: left;
+        margin-bottom: 50px;
+        .promo-product-description {
+          width: 290px;
+        }
+        h3,p {
+          text-align: center;
+        }
+        h3 {
+          color: @red;
+          line-height: 32px;
+        }
+        .promo-text {
+          height: 70px;
+          width: 220px;
+          margin-left: 30px;
+        }
+        .promo-price {
+          .open-sans-semibold;
+          padding-top: 13px;
+          font-size: 14px;
+        }
+        .promo-price-2 {
+          .open-sans-italic;
+          font-size: 12px;
+        }
       }
     }
   }
 }
+
+
 
 //  TERMS
 
@@ -1654,10 +1749,11 @@ header#main-header {
         background: @red;
         text-align: center;
         border: none;
-        border-right: 1px solid @red;
+        border-right: 1px solid #fde5c5;
+        padding: 4px;
         h2 {
           .auto-1-bold;
-          font-size: 13px;
+          font-size: 15px;
           color: @white;
         }
         p {
@@ -1689,6 +1785,14 @@ header#main-header {
       }
     }
   }
+  p.refer {
+    .open-sans-italic;
+    font-size: 12px;
+    margin-top: -15px;
+    span.red {
+      color: @red;
+    }
+  }
 }
 
 //  CART
@@ -1697,7 +1801,7 @@ header#main-header {
   ul.progress-indicator {
     border-bottom: 2px solid @red;
     position: relative;
-    width: 480px;
+    width: 560px;
     margin-left: 40px;
     li {
       position: absolute;
@@ -1740,20 +1844,27 @@ header#main-header {
       &.fourth {
         left: 280px;
         .circle-text {
-          left: -21px;
+          left: -17px;
         }
       }
       &.fifth {
         left: 373px;
         .circle-text {
-          left: -49px;
-          width: 120px;
+          left: -24px;
         }
       }
       &.sixth {
         left: 469px;
         .circle-text {
-          left: -30px;
+          left: -48px;
+          width: 120px;
+        }
+      }
+      &.seventh {
+        left: 560px;
+        .circle-text {
+          left: -23px;
+          width: 120px;
         }
       }
 
@@ -2379,6 +2490,8 @@ header#main-header {
   }
 
   ul {
+    position: relative;
+    top: 6px;
     li {
       a {
         font-size: 11px;
