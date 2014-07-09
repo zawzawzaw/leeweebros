@@ -9,6 +9,8 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
+get_header( 'shop' );
+
 global $woocommerce;
 
 wc_print_notices();
@@ -150,3 +152,5 @@ do_action( 'woocommerce_before_cart' ); ?>
 </div>
 
 <?php do_action( 'woocommerce_after_cart' ); ?>
+
+<?php get_footer( 'shop' ); ?>

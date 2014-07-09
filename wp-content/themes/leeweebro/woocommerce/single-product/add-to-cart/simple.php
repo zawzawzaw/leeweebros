@@ -28,7 +28,7 @@ if ( ! $product->is_purchasable() ) return;
 
 	<form class="cart" method="post" enctype='multipart/form-data'>
 		<div class="selectors">
-			<div class="select-type">
+			<!-- <div class="select-type">
 				<div class="dropdown">
 					<label for="type">Cooked or Raw: </label>
 					<select name="type" id="type">
@@ -36,17 +36,17 @@ if ( ! $product->is_purchasable() ) return;
 						<option value="Cooked">Cooked</option>
 					</select>
 				</div>
-			</div>
+			</div> -->
 		
 	 	<?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>
 		 	<div class="select-qty">
-	 	<?php
-	 		if ( ! $product->is_sold_individually() )
-	 			woocommerce_quantity_input( array(
-	 				'min_value' => apply_filters( 'woocommerce_quantity_input_min', 1, $product ),
-	 				'max_value' => apply_filters( 'woocommerce_quantity_input_max', $product->backorders_allowed() ? '' : $product->get_stock_quantity(), $product )
-	 			) );
-	 	?>
+		 	<?php
+		 		if ( ! $product->is_sold_individually() )
+		 			woocommerce_quantity_input( array(
+		 				'min_value' => apply_filters( 'woocommerce_quantity_input_min', 1, $product ),
+		 				'max_value' => apply_filters( 'woocommerce_quantity_input_max', $product->backorders_allowed() ? '' : $product->get_stock_quantity(), $product )
+		 			) );
+		 	?>
 			</div>
 		</div>
 		<div class="space20"></div>

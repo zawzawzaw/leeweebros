@@ -35,36 +35,27 @@ if ( 0 == ( $woocommerce_loop['loop'] - 1 ) % $woocommerce_loop['columns'] || 1 
 if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )
 	$classes[] = 'last';
 ?>
-<li <?php post_class( $classes ); ?>>
-
-	<?php do_action( 'woocommerce_before_shop_loop_item' ); ?>
-
-	<a href="<?php the_permalink(); ?>">
-
-		<?php
-			/**
-			 * woocommerce_before_shop_loop_item_title hook
-			 *
-			 * @hooked woocommerce_show_product_loop_sale_flash - 10
-			 * @hooked woocommerce_template_loop_product_thumbnail - 10
-			 */
-			do_action( 'woocommerce_before_shop_loop_item_title' );
-		?>
-
-		<h3><?php the_title(); ?></h3>
-
-		<?php
-			/**
-			 * woocommerce_after_shop_loop_item_title hook
-			 *
-			 * @hooked woocommerce_template_loop_rating - 5
-			 * @hooked woocommerce_template_loop_price - 10
-			 */
-			do_action( 'woocommerce_after_shop_loop_item_title' );
-		?>
-
-	</a>
-
-	<?php do_action( 'woocommerce_after_shop_loop_item' ); ?>
-
-</li>
+<div <?php post_class( $classes ); ?>>
+	<div class="row">
+		<div class="col-md-4">
+			<a href="<?php the_permalink(); ?>">
+				<?php do_action( 'woocommerce_before_shop_loop_item_title_custom' ); ?>
+				<!-- <img src="images/content/otah-small.png" alt="otah"> -->
+			</a>
+		</div>
+		<div class="col-md-6">
+			<a href="<?php the_permalink(); ?>"><h2><?php the_title(); ?></h2></a>
+			<?php do_action('woocommerce_shop_loop_item_desc_custom'); ?>
+			
+			<?php do_action( 'woocommerce_after_shop_loop_item_custom' ); ?>
+			<div class="space10"></div>
+		</div>
+		<div class="col-md-2">
+			<div class="space40"></div>
+			<?php do_action( 'woocommerce_after_shop_loop_item_title_custom' ); ?>
+			<!-- <p class="price-info"><span class="price">S$0.60</span><br><span class="per-item">per pcs</span></p> -->
+			<div class="space10"></div>
+		</div>
+	</div>
+</div>
+<div class="space30"></div>

@@ -639,6 +639,11 @@ a.underline {
   text-decoration: underline;
 }
 
+// woocommerce hack
+.plus, .minus {
+  display: none;
+}
+
 //   _        _ __   _____  _   _ _____ 
 //  | |      / \\ \ / / _ \| | | |_   _|
 //  | |     / _ \\ V / | | | | | | | |  
@@ -1533,7 +1538,7 @@ header#main-header {
       .round(0px);
     }
   }
-  ul.paginator {
+  ul.paginator, ul.page-numbers {
     li {
       display: inline-block;
       a {
@@ -1545,7 +1550,17 @@ header#main-header {
         &.next {
           padding: 7px 9px;
         }
+        &.prev {
+         padding: 7px 9px; 
+        }
         &:hover {
+          color: @white;
+          background: @pagi-brown;
+        }
+      }
+      span {
+        padding: 7px 12px;
+        &.current {
           color: @white;
           background: @pagi-brown;
         }
@@ -1609,6 +1624,11 @@ header#main-header {
         }
       }
     }
+  }
+
+  // woocommerce hack
+  .single_variation_wrap {
+    display: inline-block;
   }
 }
 

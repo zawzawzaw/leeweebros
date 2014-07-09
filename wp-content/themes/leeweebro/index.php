@@ -1,4 +1,5 @@
-	<?php get_header(); ?>
+<?php get_header(); ?>
+
 <div id="content-wrapper">
 	<div id="main-slider" class="container">
 		<div class="row">
@@ -216,28 +217,5 @@
 	</div>
 </div>
 <div class="space50"></div>
-<script type="text/javascript" src="<?php echo LIB ?>/bootstrap/dist/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="<?php echo LIB ?>/jquery.jcarousel.min.js"></script>
-<script type="text/javascript">
-
-	$(document).ready(function(){
-		$('.carousel').carousel('pause');
-
-		$('.jcarousel').jcarousel({
-	        // Configuration goes here
-	    });
-
-	    $('.jcarousel-control-prev')
-            .jcarouselControl({
-                target: '-=1'
-            });
-
-        $('.jcarousel-control-next')
-            .jcarouselControl({
-                target: '+=1'
-            });
-	});
-
-</script>
 
 <?php get_footer(); ?>

@@ -81,42 +81,54 @@ get_header( 'shop' ); ?>
 									 * @hooked woocommerce_result_count - 20
 									 * @hooked woocommerce_catalog_ordering - 30
 									 */
-									do_action( 'woocommerce_before_shop_loop' );
+									do_action( 'woocommerce_before_shop_loop_custom' );
 								?>
 							</div>
 						</div>
 						<hr class="">
 						<div class="space10"></div>
+						<?php if ( have_posts() ) : ?>
+
+							<?php //woocommerce_product_loop_start(); ?>
+
+								<?php //woocommerce_product_subcategories(); ?>
+
+								<?php while ( have_posts() ) : the_post(); ?>
+
+									<?php wc_get_template_part( 'content', 'product' ); ?>
+
+								<?php endwhile; // end of the loop. ?>
+
+							<?php //woocommerce_product_loop_end(); ?>
+						<hr>
 						<div class="row">
-							<?php if ( have_posts() ) : ?>
+							<div class="col-md-3">
+							<?php
+								/**
+								 * woocommerce_after_shop_loop hook
+								 *
+								 * @hooked woocommerce_pagination - 10
+								 */
+								do_action( 'woocommerce_after_shop_loop' );
+							?>
+							</div>
+							<div class="col-md-4 col-md-offset-5">
+							<?php
+								/**
+								 * woocommerce_after_shop_loop_custom hook
+								 *
+								 * @hooked woocommerce_result_count - 10
+								 */
+								do_action( 'woocommerce_after_shop_loop_custom' );
+							?>
+							</div>
+						</div>
+						<?php elseif ( ! woocommerce_product_subcategories( array( 'before' => woocommerce_product_loop_start( false ), 'after' => woocommerce_product_loop_end( false ) ) ) ) : ?>
 
-								<?php woocommerce_product_loop_start(); ?>
+							<?php wc_get_template( 'loop/no-products-found.php' ); ?>
 
-									<?php woocommerce_product_subcategories(); ?>
-
-									<?php while ( have_posts() ) : the_post(); ?>
-
-										<?php wc_get_template_part( 'content', 'product' ); ?>
-
-									<?php endwhile; // end of the loop. ?>
-
-								<?php woocommerce_product_loop_end(); ?>
-
-								<?php
-									/**
-									 * woocommerce_after_shop_loop hook
-									 *
-									 * @hooked woocommerce_pagination - 10
-									 */
-									do_action( 'woocommerce_after_shop_loop' );
-								?>
-
-							<?php elseif ( ! woocommerce_product_subcategories( array( 'before' => woocommerce_product_loop_start( false ), 'after' => woocommerce_product_loop_end( false ) ) ) ) : ?>
-
-								<?php wc_get_template( 'loop/no-products-found.php' ); ?>
-
-							<?php endif; ?>
-						</div><!-- end row -->
+						<?php endif; ?>
+						
 					</div><!-- end col-md-9 -->
 				</div><!-- end row -->
 			</div><!-- end container -->
@@ -126,24 +138,6 @@ get_header( 'shop' ); ?>
 	<div class="space50"></div>
 	<div class="space50"></div>
 
-	<script type="text/javascript" src="<?php echo LIB ?>/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script type="text/javascript">
-
-		$(document).ready(function(){
-			$('.collapse').on('shown.bs.collapse', function (e) {
-			  	$('.side-menu li').removeClass('active');
-			  	$(e.currentTarget).parent('li').addClass('active');
-			});
-
-			$('.side-menu li a').on('click',function(e){
-			    if($(this).next('.collapse').hasClass('in')){
-			        e.stopPropagation();
-			    }else {
-			    	$('.collapse').collapse('hide');
-			    }
-			});
-		});
-
-	</script>
+	<!--<script type="text/javascript" src="<?php echo LIB ?>/bootstrap/dist/js/bootstrap.min.js"></script>-->
 
 <?php get_footer( 'shop' ); ?>

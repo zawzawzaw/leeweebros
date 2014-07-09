@@ -27,11 +27,9 @@
 	<link rel="stylesheet" href="<?php echo LIB ?>/bootstrap/dist/css/bootstrap-theme.min.css" />
 
 	<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>" />
-
-	<!-- JS Libraries -->
-	<script type="text/javascript" src="<?php echo LIB ?>/jquery/dist/jquery.min.js"></script>
-	<script type="text/javascript" src="<?php echo JS ?>/main.js"></script>
-
+	<?php
+		wp_head();
+	?>
 </head>
 <body>
 	<!-- <div class="image-bg">
@@ -49,7 +47,15 @@
 	        
 	        <div class="col-md-4 col-md-offset-5">
 	          <div class="header-content">
-	            <div id="header-links"><a href="join.shtml" class="join">JOIN</a> / <a href="login.shtml" class="sign-in">SIGN IN</a></div>
+	            <div id="header-links">
+	            	<?php if ( is_user_logged_in() ) { ?>
+					 	<a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('My Account','woothemes'); ?>"><?php _e('My Account','woothemes'); ?></a>
+					 <?php } 
+					 else { ?>
+					 	<a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('Login / Register','woothemes'); ?>"><?php _e('Login / Register','woothemes'); ?></a>
+					 <?php } ?>
+	            	<!-- <a href="join.shtml" class="join">JOIN</a> / <a href="login.shtml" class="sign-in">SIGN IN</a> -->
+	            </div>
 	            <div id="header-cart-info">
 	              <a href="cart-confirmation.shtml">
 	                <div id="cart-icon"><img src="<?php echo IMAGES ?>/icons/cart-img.png" alt="Cart icon"><div class="white-divider"></div></div>  
