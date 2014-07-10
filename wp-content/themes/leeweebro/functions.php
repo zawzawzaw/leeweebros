@@ -152,23 +152,6 @@ wp_enqueue_script( 'bootstrap', get_bloginfo( 'stylesheet_directory' ). '/lib/bo
 wp_enqueue_script( 'jcarousel', get_bloginfo( 'stylesheet_directory' ). '/lib/jquery.jcarousel.min.js', array( 'jquery' ), false, true );
 wp_enqueue_script( 'main', get_bloginfo( 'stylesheet_directory' ). '/js/main.js', array( 'jquery' ), false, true );
 
-// add_action( 'woocommerce_before_customer_login_form', 'jk_login_message' );
-// function jk_login_message() {
-//     if ( get_option( 'woocommerce_enable_myaccount_registration' ) == 'yes' ) {
-	?>
-		<!-- <div class="woocommerce-info">
-			<p><?php _e( 'Returning customers login. New users register for next time so you can:' ); ?></p>
-			<ul>
-				<li><?php _e( 'View your order history' ); ?></li>
-				<li><?php _e( 'Check on your orders' ); ?></li>
-				<li><?php _e( 'Edit your addresses' ); ?></li>
-				<li><?php _e( 'Change your password' ); ?></li>
-			</ul>
-		</div> -->
-	<?php
-// 	}
-// }
-
 // Woocommerce New Customer Admin Notification Email
 // add_action('woocommerce_created_customer', 'admin_email_on_registration');
 // function admin_email_on_registration() {
@@ -191,13 +174,6 @@ function registration_errors_validation($reg_errors, $sanitized_user_login, $use
 		return new WP_Error( 'registration-error', __( 'Please enter your last name.', 'woocommerce' ) );	
 	}
 
-		//save here
-		// echo get_current_user_id();
-
-		
-		// update_user_meta($user_id, 'user_url', $website);
-	
-
 	return $reg_errors;
 }
 
@@ -205,9 +181,37 @@ add_action( 'user_register', 'myplugin_registration_save', 10, 1 );
 
 function myplugin_registration_save( $user_id ) {
 
-	// print_r('herehrerererr'); exit();
-
     if ( isset( $_POST['first_name'] ) )
         update_user_meta($user_id, 'first_name', $_POST['first_name']);
-
+    if( isset( $_POST['last_name'] ) )
+    	update_user_meta($user_id, 'last_name', $_POST['last_name']);
+    if(isset($_POST['title']))
+    	add_user_meta( $user_id, 'title', $_POST['title'] );
+    if(isset($_POST['dob']))
+    	add_user_meta( $user_id, 'dob', $_POST['dob'] );
+    if(isset($_POST['first_name_address']))
+    	add_user_meta( $user_id, 'first_name_address', $_POST['first_name_address'] );
+    if(isset($_POST['last_name_address']))
+    	add_user_meta( $user_id, 'last_name_address', $_POST['last_name_address'] );
+    if(isset($_POST['company']))
+    	add_user_meta( $user_id, 'company', $_POST['company'] );   
+    if(isset($_POST['address_1']))
+    	add_user_meta( $user_id, 'address_1', $_POST['address_1'] );
+    if(isset($_POST['address_2']))
+    	add_user_meta( $user_id, 'address_2', $_POST['address_2'] );
+    if(isset($_POST['zip_postal_code']))
+    	add_user_meta( $user_id, 'zip_postal_code', $_POST['zip_postal_code'] );
+    if(isset($_POST['town']))
+    	add_user_meta( $user_id, 'town', $_POST['town'] );
+    if(isset($_POST['country']))
+    	add_user_meta( $user_id, 'country', $_POST['country'] );
+    if(isset($_POST['addition_info']))
+    	add_user_meta( $user_id, 'addition_info', $_POST['addition_info'] );
+    if(isset($_POST['telephone']))
+    	add_user_meta( $user_id, 'telephone', $_POST['telephone'] );
+    if(isset($_POST['mobile']))
+    	add_user_meta( $user_id, 'mobile', $_POST['mobile'] );
+    if(isset($_POST['future_ref']))
+    	add_user_meta( $user_id, 'future_ref', $_POST['future_ref'] );
+    
 }

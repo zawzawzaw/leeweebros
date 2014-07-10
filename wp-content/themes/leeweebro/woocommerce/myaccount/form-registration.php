@@ -71,16 +71,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<div class="dropdown">
 					<select name="day">
 						<option value="" selected>DD</option>
+						<option value="01" selected>01</option>
 					</select>
 				</div>
 				<div class="dropdown">
 					<select name="month">
 						<option value="" selected>MM</option>
+						<option value="01" selected>01</option>
 					</select>
 				</div>
 				<div class="dropdown">
 					<select name="year">
 						<option value="" selected>YYYY</option>
+						<option value="1950" selected>1950</option>
 					</select>
 				</div>
 			</div>
