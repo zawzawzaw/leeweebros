@@ -152,11 +152,11 @@ wp_enqueue_script( 'bootstrap', get_bloginfo( 'stylesheet_directory' ). '/lib/bo
 wp_enqueue_script( 'jcarousel', get_bloginfo( 'stylesheet_directory' ). '/lib/jquery.jcarousel.min.js', array( 'jquery' ), false, true );
 wp_enqueue_script( 'main', get_bloginfo( 'stylesheet_directory' ). '/js/main.js', array( 'jquery' ), false, true );
 
-add_action( 'woocommerce_before_customer_login_form', 'jk_login_message' );
-function jk_login_message() {
-    if ( get_option( 'woocommerce_enable_myaccount_registration' ) == 'yes' ) {
+// add_action( 'woocommerce_before_customer_login_form', 'jk_login_message' );
+// function jk_login_message() {
+//     if ( get_option( 'woocommerce_enable_myaccount_registration' ) == 'yes' ) {
 	?>
-		<div class="woocommerce-info">
+		<!-- <div class="woocommerce-info">
 			<p><?php _e( 'Returning customers login. New users register for next time so you can:' ); ?></p>
 			<ul>
 				<li><?php _e( 'View your order history' ); ?></li>
@@ -164,10 +164,10 @@ function jk_login_message() {
 				<li><?php _e( 'Edit your addresses' ); ?></li>
 				<li><?php _e( 'Change your password' ); ?></li>
 			</ul>
-		</div>
+		</div> -->
 	<?php
-	}
-}
+// 	}
+// }
 
 // Woocommerce New Customer Admin Notification Email
 // add_action('woocommerce_created_customer', 'admin_email_on_registration');
@@ -183,35 +183,31 @@ function registration_errors_validation($reg_errors, $sanitized_user_login, $use
 	$error = new WP_Error();
 	extract( $_POST );
  
-	if ( empty($customer_first_name) ) {
+	if ( empty($first_name) ) {
 		// $error->add('registration-error', __( 'Please enter your first name.', 'woocommerce' ));
 		return new WP_Error( 'registration-error', __( 'Please enter your first name.', 'woocommerce' ) );
 	}
-	if( empty($customer_last_name) ) {
+	if( empty($last_name) ) {
 		return new WP_Error( 'registration-error', __( 'Please enter your last name.', 'woocommerce' ) );	
 	}
 
-	if($error) {
-		return $error;	
-	}else {
 		//save here
-		echo get_current_user_id();
+		// echo get_current_user_id();
 
 		
 		// update_user_meta($user_id, 'user_url', $website);
-	}
-	print_r($_POST); 
-	echo get_current_user_id();
-	echo 'hi';
-	exit();
 	
 
 	return $reg_errors;
 }
 
-add_filter('woocommerce_checkout_process', 'test');
+add_action( 'user_register', 'myplugin_registration_save', 10, 1 );
 
-function test($test) {
-	print_r($test);
-	exit();
+function myplugin_registration_save( $user_id ) {
+
+	// print_r('herehrerererr'); exit();
+
+    if ( isset( $_POST['first_name'] ) )
+        update_user_meta($user_id, 'first_name', $_POST['first_name']);
+
 }

@@ -94,8 +94,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div class="space10"></div>
 		<div class="row">
 			<div class="col-md-4">
-				<label for="last_name" class="asterisk">
-					<input type="text" name="first_name" class="medium-input" placeholder="First Name">
+				<label for="first_name_address" class="asterisk">
+					<input type="text" name="first_name_address" class="medium-input" placeholder="First Name">
 				</label>
 			</div>
 			<div class="col-md-4 col-md-offset-2">
@@ -111,8 +111,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 		<div class="row">
 			<div class="col-md-4">
-				<label for="last_name" class="asterisk">
-					<input type="text" name="last_name" class="medium-input" placeholder="Last Name">
+				<label for="last_name_address" class="asterisk">
+					<input type="text" name="last_name_address" class="medium-input" placeholder="Last Name">
 				</label>
 				<label for="company" class="no-asterisk">
 					<input type="text" name="company" class="large-input" placeholder="Company">
