@@ -48,12 +48,8 @@
 	        <div class="col-md-4 col-md-offset-5">
 	          <div class="header-content">
 	            <div id="header-links">
-	            	<?php if ( is_user_logged_in() ) { ?>
-					 	<a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('My Account','woothemes'); ?>"><?php _e('My Account','woothemes'); ?></a>
-					 <?php } 
-					 else { ?>
-					 	<a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('Login / Register','woothemes'); ?>"><?php _e('Login / Register','woothemes'); ?></a>
-					 <?php } ?>
+				 	<a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('JOIN','woothemes'); ?>"><?php _e('JOIN','woothemes'); ?></a> / 
+				 	<a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('SIGN IN','woothemes'); ?>"><?php _e('SIGN IN','woothemes'); ?></a>
 	            	<!-- <a href="join.shtml" class="join">JOIN</a> / <a href="login.shtml" class="sign-in">SIGN IN</a> -->
 	            </div>
 	            <div id="header-cart-info">

@@ -168,3 +168,50 @@ function jk_login_message() {
 	<?php
 	}
 }
+
+// Woocommerce New Customer Admin Notification Email
+// add_action('woocommerce_created_customer', 'admin_email_on_registration');
+// function admin_email_on_registration() {
+//     $user_id = get_current_user_id();
+//     wp_new_user_notification( $user_id );
+// }
+
+// Add the code below to your theme's functions.php file to add a confirm password field on the register form under My Accounts.
+add_filter('woocommerce_registration_errors', 'registration_errors_validation', 10, 3);
+function registration_errors_validation($reg_errors, $sanitized_user_login, $user_email) {
+	global $woocommerce;
+	$error = new WP_Error();
+	extract( $_POST );
+ 
+	if ( empty($customer_first_name) ) {
+		// $error->add('registration-error', __( 'Please enter your first name.', 'woocommerce' ));
+		return new WP_Error( 'registration-error', __( 'Please enter your first name.', 'woocommerce' ) );
+	}
+	if( empty($customer_last_name) ) {
+		return new WP_Error( 'registration-error', __( 'Please enter your last name.', 'woocommerce' ) );	
+	}
+
+	if($error) {
+		return $error;	
+	}else {
+		//save here
+		echo get_current_user_id();
+
+		
+		// update_user_meta($user_id, 'user_url', $website);
+	}
+	print_r($_POST); 
+	echo get_current_user_id();
+	echo 'hi';
+	exit();
+	
+
+	return $reg_errors;
+}
+
+add_filter('woocommerce_checkout_process', 'test');
+
+function test($test) {
+	print_r($test);
+	exit();
+}

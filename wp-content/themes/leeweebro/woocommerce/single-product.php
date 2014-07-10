@@ -94,24 +94,4 @@ get_header( 'shop' ); ?>
 	<div class="space50"></div>
 	<div class="space50"></div>
 
-	<script type="text/javascript" src="<?php echo LIB ?>/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script type="text/javascript">
-
-		$(document).ready(function(){
-			$('.collapse').on('shown.bs.collapse', function (e) {
-			  	$('.side-menu li').removeClass('active');
-			  	$(e.currentTarget).parent('li').addClass('active');
-			});
-
-			$('.side-menu li a').on('click',function(e){
-			    if($(this).next('.collapse').hasClass('in')){
-			        e.stopPropagation();
-			    }else {
-			    	$('.collapse').collapse('hide');
-			    }
-			});
-		});
-
-	</script>
-
 <?php get_footer( 'shop' ); ?>

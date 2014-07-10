@@ -49,8 +49,8 @@
 			<form name="login" id="login-form" method="post" action="">
 				<div class="row">
 					<div class="col-md-4">
-						<label for="last_name" class="asterisk">
-							<input type="text" name="first_name" class="medium-input" placeholder="First Name">
+						<label for="customer_first_name" class="asterisk">
+							<input type="text" name="customer_first_name" class="medium-input" placeholder="First Name">
 						</label>
 					</div>
 					<div class="col-md-4 col-md-offset-2">
@@ -61,8 +61,8 @@
 				</div>
 				<div class="row">
 					<div class="col-md-4">
-						<label for="last_name" class="asterisk">
-							<input type="text" name="last_name" class="medium-input" placeholder="Last Name">
+						<label for="customer_last_name" class="asterisk">
+							<input type="text" name="customer_last_name" class="medium-input" placeholder="Last Name">
 						</label>
 					</div>
 					<div class="col-md-5 col-md-offset-2">
