@@ -53,7 +53,7 @@
 	            	<!-- <a href="join.shtml" class="join">JOIN</a> / <a href="login.shtml" class="sign-in">SIGN IN</a> -->
 	            </div>
 	            <div id="header-cart-info">
-	              <a href="cart-confirmation.shtml">
+	              <a href="<?php echo get_permalink( get_option('woocommerce_cart_page_id') ); ?>">
 	                <div id="cart-icon"><img src="<?php echo IMAGES ?>/icons/cart-img.png" alt="Cart icon"><div class="white-divider"></div></div>  
 	                <div id="cart-item-price">
 	                  <span class="cart-items-count">0</span><span class="cart-items-count-label"> ITEM(S) -</span> 

@@ -97,14 +97,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div class="space10"></div>
 		<div class="row">
 			<div class="col-md-4">
-				<label for="first_name_address" class="asterisk">
-					<input type="text" name="first_name_address" class="medium-input" placeholder="First Name">
+				<label for="address_book_1_first_name" class="asterisk">
+					<input type="text" name="address_book_1_first_name" class="medium-input" placeholder="First Name">
 				</label>
 			</div>
 			<div class="col-md-4 col-md-offset-2">
-				<label for="country" class="lbl asterisk-2">Country:
+				<label for="address_book_1_country" class="lbl asterisk-2">Country:
 				<div class="dropdown">
-					<select name="country" class="country">
+					<select name="address_book_1_country" class="country">
 						<option value="">Country</option>
 						<option value="Singapore">Singapore</option>
 					</select>
@@ -114,55 +114,55 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 		<div class="row">
 			<div class="col-md-4">
-				<label for="last_name_address" class="asterisk">
-					<input type="text" name="last_name_address" class="medium-input" placeholder="Last Name">
+				<label for="address_book_1_last_name" class="asterisk">
+					<input type="text" name="address_book_1_last_name" class="medium-input" placeholder="Last Name">
 				</label>
-				<label for="company" class="no-asterisk">
-					<input type="text" name="company" class="large-input" placeholder="Company">
+				<label for="address_book_1_company" class="no-asterisk">
+					<input type="text" name="address_book_1_company" class="large-input" placeholder="Company">
 				</label>
 			</div>
 			<div class="col-md-2 col-md-offset-2">
-				<label for="addition_info">
-					<textarea name="addition_info" id="" cols="15" rows="5" placeholder="Additional Information:"></textarea>
+				<label for="address_book_1_addition_info">
+					<textarea name="address_book_1_addition_info" id="" cols="15" rows="5" placeholder="Additional Information:"></textarea>
 				</label>	
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-6">
-				<label for="address_1" class="asterisk">
-					<input type="text" name="address_1" class="large-input" placeholder="Address">
+				<label for="address_book_1_address_1" class="asterisk">
+					<input type="text" name="address_book_1_address_1" class="large-input" placeholder="Address">
 					<p class="desc">Street address, P.O. box, compagny name, c/o</p>
 				</label>
 			</div>
 			<div class="col-md-6 push-down">
-				<label for="telephone" class="asterisk">
-					<input type="text" name="telephone" class="small-input" placeholder="Telephone">
+				<label for="address_book_1_phone" class="asterisk">
+					<input type="text" name="address_book_1_phone" class="small-input" placeholder="Telephone">
 				</label>
-				<label for="mobile" class="asterisk">
-					<input type="text" name="mobile" class="small-input" placeholder="Mobile">
+				<label for="address_book_1_mobile" class="asterisk">
+					<input type="text" name="address_book_1_mobile" class="small-input" placeholder="Mobile">
 				</label>
 			</div>
 		</div>
 		<div class="space10"></div>
 		<div class="row">
 			<div class="col-md-6">
-				<label for="address_2" class="no-asterisk">
-					<input type="text" name="address_2" class="large-input" placeholder="Address">
+				<label for="address_book_1_address_2" class="no-asterisk">
+					<input type="text" name="address_book_1_address_2" class="large-input" placeholder="Address">
 				</label>
 				<p class="desc">Apartment, suite, unit, building, floor, etc.</p>
 				
 				<div class="space10"></div>
 
-				<label for="zip_postal_code" class="asterisk">
-					<input type="text" name="zip_postal_code" class="small-input" placeholder="Zip / Postal Code">
+				<label for="address_book_1_postcode" class="asterisk">
+					<input type="text" name="address_book_1_postcode" class="small-input" placeholder="Zip / Postal Code">
 				</label>
-				<label for="town" class="asterisk">
-					<input type="text" name="town" class="small-input" placeholder="Town">
+				<label for="address_book_1_town" class="asterisk">
+					<input type="text" name="address_book_1_town" class="small-input" placeholder="Town">
 				</label>
 			</div>
 			<div class="col-md-4">
-				<label for="future_ref">
-					<textarea name="future_ref" id="" cols="15" rows="5" placeholder="Assign an address title for future reference:"></textarea>
+				<label for="address_book_1_future_ref">
+					<textarea name="address_book_1_future_ref" id="" cols="15" rows="5" placeholder="Assign an address title for future reference:"></textarea>
 				</label>
 				<p class="desc"><span class="asterisk">*</span> Required field</p>
 			</div>

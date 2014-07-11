@@ -395,6 +395,15 @@ strong {
        url('../fonts/Knockout-HTF29-JuniorLiteweight.svg#Knockout-HTF29-JuniorLiteweight') format('svg');
 }
 
+@font-face {
+  font-family: 'fontello';
+  src: url('../fonts/fontello.eot?15905336');
+  src: url('../fonts/fontello.eot?15905336#iefix') format('embedded-opentype'),
+       url('../fonts/fontello.woff?15905336') format('woff'),
+       url('../fonts/fontello.ttf?15905336') format('truetype'),
+       url('../fonts/fontello.svg?15905336#fontello') format('svg');
+}
+
 .solano-pro-retro {
   font-family: 'SolanoGothicMVBPro-BdRetro', Verdana, sans-serif;
   font-weight: 300;
@@ -510,6 +519,12 @@ strong {
   font-family: 'Open Sans', Verdana, sans-serif;
   font-weight: 700;
   font-style: normal;
+}
+
+.fontello {
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
 }
 
 
@@ -1942,6 +1957,7 @@ header#main-header {
       .cancel-button {
         display: inline-block;
         position: relative;
+        top: 37px;
       }
       button.cancel {
         background: url(../images/icons/cross-icon.png) no-repeat;
@@ -1985,6 +2001,10 @@ header#main-header {
       p.push-down {
         margin-top: 18px;
       }
+      input[type="submit"] {
+        background: none;
+        .fontello;
+      }
     }
   }
 
@@ -2005,7 +2025,7 @@ header#main-header {
     p.billing-address,p.shipping-address {
       margin-top: -7px;
     }
-    button.continue {
+    button.continue, a.continue {
       width: 162px;
     }
     label {      

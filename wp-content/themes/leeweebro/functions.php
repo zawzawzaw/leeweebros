@@ -189,29 +189,32 @@ function myplugin_registration_save( $user_id ) {
     	add_user_meta( $user_id, 'title', $_POST['title'] );
     if(isset($_POST['dob']))
     	add_user_meta( $user_id, 'dob', $_POST['dob'] );
-    if(isset($_POST['first_name_address']))
-    	add_user_meta( $user_id, 'first_name_address', $_POST['first_name_address'] );
-    if(isset($_POST['last_name_address']))
-    	add_user_meta( $user_id, 'last_name_address', $_POST['last_name_address'] );
-    if(isset($_POST['company']))
-    	add_user_meta( $user_id, 'company', $_POST['company'] );   
-    if(isset($_POST['address_1']))
-    	add_user_meta( $user_id, 'address_1', $_POST['address_1'] );
-    if(isset($_POST['address_2']))
-    	add_user_meta( $user_id, 'address_2', $_POST['address_2'] );
-    if(isset($_POST['zip_postal_code']))
-    	add_user_meta( $user_id, 'zip_postal_code', $_POST['zip_postal_code'] );
-    if(isset($_POST['town']))
-    	add_user_meta( $user_id, 'town', $_POST['town'] );
-    if(isset($_POST['country']))
-    	add_user_meta( $user_id, 'country', $_POST['country'] );
-    if(isset($_POST['addition_info']))
-    	add_user_meta( $user_id, 'addition_info', $_POST['addition_info'] );
-    if(isset($_POST['telephone']))
-    	add_user_meta( $user_id, 'telephone', $_POST['telephone'] );
-    if(isset($_POST['mobile']))
-    	add_user_meta( $user_id, 'mobile', $_POST['mobile'] );
-    if(isset($_POST['future_ref']))
-    	add_user_meta( $user_id, 'future_ref', $_POST['future_ref'] );
-    
+
+    $address_book_1 = get_user_meta($user_id,'address_book_1_first_name',true);
+    if(isset($_POST['address_book_1_first_name']))
+    add_user_meta( $user_id, 'address_book_1_first_name', $_POST['address_book_1_first_name'] );
+    if(isset($_POST['address_book_1_last_name']))
+      add_user_meta( $user_id, 'address_book_1_last_name', $_POST['address_book_1_last_name'] );
+    if(isset($_POST['address_book_1_company']))
+      add_user_meta( $user_id, 'address_book_1_company', $_POST['address_book_1_company'] );   
+    if(isset($_POST['address_book_1_address_1']))
+      add_user_meta( $user_id, 'address_book_1_address_1', $_POST['address_book_1_address_1'] );
+    if(isset($_POST['address_book_1_address_2']))
+      add_user_meta( $user_id, 'address_book_1_address_2', $_POST['address_book_1_address_2'] );
+    if(isset($_POST['address_book_1_country']))
+      add_user_meta( $user_id, 'address_book_1_city', $_POST['address_book_1_country'] );
+    if(isset($_POST['address_book_1_postcode']))
+      add_user_meta( $user_id, 'address_book_1_postcode', $_POST['address_book_1_postcode'] );
+    if(isset($_POST['address_book_1_town']))
+      add_user_meta( $user_id, 'address_book_1_town', $_POST['address_book_1_town'] );
+    if(isset($_POST['address_book_1_country']))
+      add_user_meta( $user_id, 'address_book_1_country', $_POST['address_book_1_country'] );
+    if(isset($_POST['address_book_1_country_addition_info']))
+      add_user_meta( $user_id, 'address_book_1_country_addition_info', $_POST['address_book_1_country_addition_info'] );
+    if(isset($_POST['address_book_1_phone']))
+      add_user_meta( $user_id, 'address_book_1_phone', $_POST['address_book_1_phone'] );
+    if(isset($_POST['address_book_1_mobile']))
+      add_user_meta( $user_id, 'address_book_1_mobile', $_POST['address_book_1_mobile'] );
+    if(isset($_POST['address_book_1_future_ref']))
+      add_user_meta( $user_id, 'address_book_1_future_ref', $_POST['address_book_1_future_ref'] );
 }

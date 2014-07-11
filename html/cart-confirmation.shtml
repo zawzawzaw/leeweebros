@@ -240,7 +240,7 @@
 							</li>
 							<li>
 								<input type="radio" name="paymentmethod" value="cash" >
-								<label for="cash" class="radio-label"><span></span>Payment by cash at any of our outlets</label>
+								<label for="cash" class="radio-label"><span class="radiobtn"></span>Payment by cash at any of our outlets</label>
 							</li>
 						</ul>
 					</div>
