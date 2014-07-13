@@ -884,6 +884,7 @@ header#main-header .header-content #header-cart-info #cart-item-price {
 }
 #special-deal .jcarousel-wrapper .jcarousel ul li .caption {
   margin-top: 24px;
+  color: #42210b;
 }
 #special-deal .jcarousel-wrapper hr {
   border-top: 1px solid #7d5a34;
@@ -1634,6 +1635,10 @@ header#main-header .header-content #header-cart-info #cart-item-price {
 #terms-conditions p.refer span.red {
   color: #da0009;
 }
+#cart {
+  /* woocommerce empty cart msg */
+
+}
 #cart ul.progress-indicator {
   border-bottom: 2px solid #da0009;
   position: relative;
@@ -1723,6 +1728,15 @@ header#main-header .header-content #header-cart-info #cart-item-price {
 #cart ul.progress-indicator li .circle.done {
   background: url(../images/icons/full-circle.png) no-repeat;
 }
+#cart p.cart-empty {
+  margin: 10px 0;
+}
+#cart p.return-to-shop a {
+  width: 118px;
+}
+#cart .woocommerce-message {
+  display: none;
+}
 #cart .cart-container {
   width: 96%;
 }
@@ -1759,7 +1773,7 @@ header#main-header .header-content #header-cart-info #cart-item-price {
   height: 15px;
   border: none;
   position: absolute;
-  top: -15px;
+  top: -24px;
   left: 2px;
 }
 #cart .cart-container .cart-content h5 {

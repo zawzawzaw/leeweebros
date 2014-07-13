@@ -68,6 +68,8 @@
 						        $product = get_product( $featured_query->post->ID );
 						        $price = get_post_meta( get_the_ID(), '_regular_price', true);
 						        $sale = get_post_meta( get_the_ID(), '_sale_price', true);
+
+						        $attributes = $product->get_attributes();
 						?>
 								<li>
 									<a href="<?php echo get_permalink(get_the_ID()); ?>">
@@ -75,8 +77,9 @@
 									</a>
 									<div class="feature-product-description">
 										<h3><?php the_title(); ?></h3>
-										<p class="feature-text"><?php the_excerpt(); ?></p>
+										<p class="feature-text"><?php echo get_the_excerpt(); ?></p>
 										<p class="feature-price">$<?php echo (isset($sale) && !empty($sale)) ? number_format((float)$sale, 2, '.', '') : number_format((float)$price, 2, '.', '');  ?></p>
+										<p class="feature-price-2"><?php echo (isset($attributes['per']['value'])) ? $attributes['per']['value'] : ''; ?></p>
 									</div>
 								</li>
 						<?php        

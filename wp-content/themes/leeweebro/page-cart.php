@@ -22,8 +22,12 @@
 				<div class="row">
 					<div class="col-md-12" id="page-title"><h1><?php the_title(); ?></h1></div>
 				</div>
+				<?php 
+				global $woocommerce;
+				if ( sizeof( $woocommerce->cart->cart_contents ) > 0 ): ?>
 				<div class="space50"></div>
 				<div class="space20"></div>
+				<?php endif; ?>
 				<?php the_content(); ?>
 			</div>
 		</div>

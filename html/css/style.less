@@ -1099,6 +1099,7 @@ header#main-header {
           }
           .caption {
             margin-top: 24px;
+            color: @dark-brown;
           }
         }
       }
@@ -1948,6 +1949,20 @@ header#main-header {
       }*/
     }
   }
+
+  /* woocommerce empty cart msg */
+  p.cart-empty {
+    margin: 10px 0;
+  }
+  p.return-to-shop {
+    a {
+      width: 118px;
+    }
+  }
+  .woocommerce-message {
+    display: none;
+  }
+
   .cart-container {
     width: 96%;
     .cart-heading {
@@ -1984,7 +1999,7 @@ header#main-header {
         height: 15px;
         border: none;
         position: absolute;
-        top: -15px;
+        top: -24px;
         left: 2px;
       }
       h5 {

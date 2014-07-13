@@ -11,8 +11,8 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 global $woocommerce;
 
-if(!empty($_POST))
-	woocommerce_get_template( 'cart/cart-new.php' );
+// if(!empty($_POST))
+// 	woocommerce_get_template( 'cart/cart-new.php' );
 
 // wc_print_notices();
 
@@ -73,7 +73,7 @@ if(!empty($_POST))
 	</div>
 </div>
 <div class="space50"></div>
-<div class="cart-container" <?php echo (isset($_POST)) ? "style='visibility:hidden;'" : ""; ?>>
+<div class="cart-container">
 	<div class="row">
 		<div class="col-md-12">
 

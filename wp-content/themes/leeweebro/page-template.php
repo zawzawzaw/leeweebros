@@ -7,9 +7,9 @@ Template Name: Page Template
 <?php get_header(); ?>
 
 <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
-<div id="content-wrapper" class="<?php echo ($post->post_name=='terms-conditions' || $post->post_name=='our-outlets' || $post->post_name=='promotions') ? 'align-left' : ''; ?>">
+<div id="content-wrapper" class="<?php echo ($post->post_name=='terms-conditions' || $post->post_name=='our-outlets' || $post->post_name=='promotions' || $post->post_name=='careers') ? 'align-left' : ''; ?>">
 	<div id="breadcrumb" class="container">
-		<?php if($post->post_name!=='terms-conditions' && $post->post_name!=='our-outlets' && $post->post_name!=='promotions'): ?>
+		<?php if($post->post_name!=='terms-conditions' && $post->post_name!=='our-outlets' && $post->post_name!=='promotions' && $post->post_name!=='careers'): ?>
 		<div class="align-left-2">
 		<?php endif; ?>
 			<div class="row">
@@ -17,7 +17,7 @@ Template Name: Page Template
 					<?php get_template_part( 'content', 'breadcrumb' ); ?>
 				</div>
 			</div>
-		<?php if($post->post_name!=='terms-conditions' && $post->post_name!=='our-outlets' && $post->post_name!=='promotions'): ?>
+		<?php if($post->post_name!=='terms-conditions' && $post->post_name!=='our-outlets' && $post->post_name!=='promotions' && $post->post_name!=='careers'): ?>
 		</div>
 		<?php endif; ?>
 	</div>
@@ -34,7 +34,7 @@ Template Name: Page Template
 	?>
 
 	<div id="<?php echo ($post->post_name=='terms-conditions') ? $post->post_name : $name; ?>" class="container">
-		<?php if($post->post_name!=='terms-conditions' && $post->post_name!=='our-outlets' && $post->post_name!=='promotions'): ?>
+		<?php if($post->post_name!=='terms-conditions' && $post->post_name!=='our-outlets' && $post->post_name!=='promotions' && $post->post_name!=='careers'): ?>
 		<div class="align-left-2">
 		<?php endif; ?>
 			<div class="space30"></div>
@@ -47,7 +47,7 @@ Template Name: Page Template
 					<h1><?php the_title(); ?></h1>
 				</div>
 			</div>
-		<?php if($post->post_name!=='terms-conditions' && $post->post_name!=='our-outlets' && $post->post_name!=='promotions'): ?>			
+		<?php if($post->post_name!=='terms-conditions' && $post->post_name!=='our-outlets' && $post->post_name!=='promotions' && $post->post_name!=='careers'): ?>			
 		</div>
 		<div class="space40"></div>
 		<div class="row">
@@ -70,12 +70,11 @@ Template Name: Page Template
 					<div class="promo-product-wrapper">
 						<ul>
 							<?php 
-							$args = array(
-							    'post_type' => 'product',  
-							    'meta_key' => '_featured',  
-							    'meta_value' => 'yes',  
-							    'posts_per_page' => -1  
-							);  
+							$args = array( 
+								'post_type' 	 => 'product', 
+								'posts_per_page' => -1, 
+								'product_tag' 	 => 'Special Deal' 
+							);
 							  
 							$featured_query = new WP_Query( $args );
 							      
@@ -88,6 +87,8 @@ Template Name: Page Template
 							        $product = get_product( $featured_query->post->ID );
 							        $price = get_post_meta( get_the_ID(), '_regular_price', true);
 							        $sale = get_post_meta( get_the_ID(), '_sale_price', true);
+
+							        $attributes = $product->get_attributes();
 							?>
 								<li>
 									<a href="<?php echo get_permalink(get_the_ID()); ?>">
@@ -95,9 +96,9 @@ Template Name: Page Template
 									</a>
 									<div class="promo-product-description">
 										<h3><?php the_title(); ?></h3>
-										<?php the_excerpt(); ?>
+										<p class="promo-text"><?php echo get_the_excerpt(); ?></p>
 										<p class="promo-price">$<?php echo (isset($sale) && !empty($sale)) ? number_format((float)$sale, 2, '.', '') : number_format((float)$price, 2, '.', '');  ?></p>
-										<p class="promo-price-2"></p>
+										<p class="promo-price-2"><?php echo (isset($attributes['per']['value'])) ? $attributes['per']['value'] : ''; ?></p>
 									</div>
 								</li>
 							<?php        
