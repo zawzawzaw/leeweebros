@@ -28,4 +28,9 @@ jQuery( function( $ ) {
     $('.jcarousel-control-next').jcarouselControl({
 	    target: '+=1'
 	});
+
+	$('.full-size').on('click', function(e){
+		e.preventDefault();
+		$('.zoom').trigger('click');
+	})
 });

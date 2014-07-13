@@ -65,7 +65,7 @@ get_header( 'shop' ); ?>
 						<div class="row">
 							<?php if ( apply_filters( 'woocommerce_show_page_title', true ) ) : ?>
 
-							<div class="col-md-2" id="page-title">
+							<div class="col-md-12" id="page-title">
 								<h1 class="page-title"><?php woocommerce_page_title(); ?></h1>
 							</div>
 

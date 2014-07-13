@@ -5,33 +5,41 @@
               <h3>INFORMATION</h3>
               <ul>
                 <li>
-                  <a href="#">About Us</a>
+                  <?php $about_us_page = get_page_by_title( 'About Us' ); ?>
+                  <a href="<?php echo get_permalink($about_us_page->ID); ?>">About Us</a>
                 </li>
                 <li>
-                  <a href="#">Delivery Information</a>
+                  <?php $delivery_page = get_page_by_title( 'Delivery' ); ?>
+                  <a href="<?php echo get_permalink($delivery_page->ID); ?>">Delivery Information</a>
                 </li>
                 <li>
-                  <a href="deliverytime.shtml">Delivery Time Slots</a>
+                  <?php $timeslot_page = get_page_by_title( 'Time Slots' ); ?>
+                  <a href="<?php echo get_permalink($timeslot_page->ID); ?>">Delivery Time Slots</a>
                 </li>
                 <li>
-                  <a href="terms.shtml">Terms & Conditions</a>
+                  <?php $term_page = get_page_by_title( 'Terms & Conditions' ); ?>
+                  <a href="<?php echo get_permalink($term_page->ID); ?>">Terms & Conditions</a>
                 </li>
               </ul>
             </div>
-            <div class="col-md-2 col">
+            <div class="col-md-2">
               <h3>SERVICES</h3>
               <ul>
                 <li>
-                  <a href="ourfood.shtml">Our Food</a>
+                  <?php $ourfood_page = get_page_by_title( 'Our Food' ); ?>
+                  <a href="<?php echo get_permalink($ourfood_page->ID); ?>">Our Food</a>
                 </li>
                 <li>
-                  <a href="#">Catering</a>
+                  <?php $catering_page = get_page_by_title( 'Catering' ); ?>
+                  <a href="<?php echo get_permalink($catering_page->ID); ?>">Catering</a>
                 </li>
                 <li>
-                  <a href="#">Delivery</a>
+                  <?php $delivery_page = get_page_by_title( 'Delivery' ); ?>
+                  <a href="<?php echo get_permalink($delivery_page->ID); ?>">Delivery</a>
                 </li>
                 <li>
-                  <a href="#">Order Online</a>
+                  <?php $order_page = get_page_by_title( 'Order Online' ); ?>
+                  <a href="<?php echo get_permalink($order_page->ID); ?>">Order Online</a>
                 </li>
               </ul>
             </div>
@@ -39,13 +47,16 @@
               <h3>EXTRAS</h3>
               <ul>
                 <li>
-                  <a href="promotions.shtml">Promotions</a>
+                  <?php $promotion_page = get_page_by_title( 'Promotions' ); ?>
+                  <a href="<?php echo get_permalink($promotion_page->ID); ?>">Promotions</a>
                 </li>
                 <li>
-                  <a href="#">Specials</a>
+                  <?php //$special_page = get_page_by_title( 'Specials' ); ?>
+                  <a href="#<?php //echo get_permalink($special_page->ID); ?>">Specials</a>
                 </li>
                 <li>
-                  <a href="careers.shtml">Careers</a>
+                  <?php $careers_page = get_page_by_title( 'Careers' ); ?>
+                  <a href="<?php echo get_permalink($careers_page->ID); ?>">Careers</a>
                 </li>
               </ul>
             </div>
@@ -55,7 +66,8 @@
                 <li>
                   <p>Delivery Hotline:</p>
                   <p><a href="tel:63859122">6385 9122</a> / <a href="tel:63859133">6385 9133</a></p>
-                  <a href="ouroutlets.shtml">Outlets</a>
+                  <?php $outlets_page = get_page_by_title( 'Outlets' ); ?>
+                  <a href="<?php echo get_permalink($outlets_page->ID); ?>">Outlets</a>
                 </li>
               </ul>
             </div>

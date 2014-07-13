@@ -55,7 +55,7 @@ if ( ( ! is_home() && ! is_front_page() && ! ( is_post_type_archive() && get_opt
 			echo $before .  '<a href="' . get_term_link( $ancestor->slug, get_query_var( 'taxonomy' ) ) . '">' . esc_html( $ancestor->name ) . '</a>' . $after . $delimiter;
 		}
 
-		echo $before . esc_html( $current_term->name ) . $after;
+		echo $before . '<a href="#" class="active">'.$current_term->name.'</a>' . $after;
 
 	} elseif ( is_tax( 'product_tag' ) ) {
 
@@ -125,7 +125,7 @@ if ( ( ! is_home() && ! is_front_page() && ! ( is_post_type_archive() && get_opt
 
 			}
 
-			echo $before . get_the_title() . $after;
+			echo $before . '<a href="#" class="active">'.get_the_title().'</a>' . $after;
 
 		} elseif ( get_post_type() != 'post' ) {
 

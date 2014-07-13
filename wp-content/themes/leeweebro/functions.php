@@ -9,6 +9,53 @@ define("JS", THEMEROOT."/js");
 define("LIB", THEMEROOT."/lib");
 
 /********************************************************************************************************/
+/* MENUS */
+/********************************************************************************************************/
+
+function register_my_menus(){
+  register_nav_menus(array(
+    'main-menu' => __('Main Menu', 'leeweebro'),
+    'footer-menu' => __('Footer Menu', 'leeweebro')
+  ));
+}
+
+add_action('init', 'register_my_menus');
+
+## adding class name to submenu parent li
+function menu_set_dropdown( $sorted_menu_items, $args ) {
+    $last_top = 0;
+    foreach ( $sorted_menu_items as $key => $obj ) {
+        // it is a top lv item?
+        if ( 0 == $obj->menu_item_parent ) {
+            // set the key of the parent
+            $last_top = $key;
+        } else {
+            $sorted_menu_items[$last_top]->classes['dropdown'] = 'subnav';
+        }
+    }
+    return $sorted_menu_items;
+}
+add_filter( 'wp_nav_menu_objects', 'menu_set_dropdown', 10, 2 );
+
+/********************************************************************************************************/
+/* CUSTOM POST TYPE & META BOXES */
+/********************************************************************************************************/
+
+require 'my-custom-posts.php';
+
+# slider post #
+
+add_post_type('slider', array(
+    'supports' => array('title','aside','thumbnail','editor')
+));
+
+add_taxonomy('place', 'slider', array(
+    'labels' => array('add_new_item' => 'Add New Page')
+));
+
+# end slider #
+
+/********************************************************************************************************/
 /* WOOCOMMERCE */
 /********************************************************************************************************/
 

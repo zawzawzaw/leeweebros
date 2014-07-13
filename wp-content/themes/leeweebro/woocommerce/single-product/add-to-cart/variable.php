@@ -83,9 +83,9 @@ global $woocommerce, $product, $post;
 
 				<!-- <div class="single_variation"></div> -->
 
-				<div class="select-qty variations_button">
-					<?php woocommerce_quantity_input(); ?>
-				</div>
+				<label for="qty">Quantity: </label>
+				<?php woocommerce_quantity_input(); ?>
+				
 
 			</div>
 		</div>

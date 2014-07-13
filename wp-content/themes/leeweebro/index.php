@@ -3,43 +3,8 @@
 <div id="content-wrapper">
 	<div id="main-slider" class="container">
 		<div class="row">
-			<div id="carousel-example-generic" class="col-md-12 carousel slide" data-ride="carousel">
-				<!-- Indicators -->
-				<ol class="carousel-indicators">
-					<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-					<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-					<li data-target="#carousel-example-generic" data-slide-to="2"></li>
-					<li data-target="#carousel-example-generic" data-slide-to="3"></li>
-				</ol>
-
-				<!-- Wrapper for slides -->
-				<div class="carousel-inner">
-					<div class="item active">
-					  <img src="<?php echo IMAGES ?>/home_slider/slider-1.jpg" alt="Main Slider">
-					  <div class="carousel-caption"></div>
-					</div>
-					<div class="item">
-					  <img src="<?php echo IMAGES ?>/home_slider/slider-2.jpg" alt="FISH OTAH">
-					  <div class="carousel-caption">
-					   <h1>FISH OTAH</h1>
-					   <p>﻿﻿A local style recipe for steamed parcels of minced seasoned fish, wrapped in coconut leaves and flame grilled to fragrance.﻿</p>
-					  </div>
-					</div>
-					<div class="item">
-					  <img src="<?php echo IMAGES ?>/home_slider/slider-3.jpg" alt="NASI LEMAK">
-					  <div class="carousel-caption">
-					   <h1>NASI LEMAK</h1>
-					   <p>﻿﻿﻿﻿A local style recipe for steamed parcels of minced seasoned fish, wrapped in coconut leaves and flame grilled to fragrance.﻿</p>
-					  </div>
-					</div>
-					<div class="item">
-					  <img src="<?php echo IMAGES ?>/home_slider/slider-4.jpg" alt="CURRY CHICKEN & BAGUETTE">
-					  <div class="carousel-caption">
-					   <h1>CURRY CHICKEN & BAGUETTE</h1>
-					   <p>﻿﻿﻿﻿A local style recipe for steamed parcels of minced seasoned fish, wrapped in coconut leaves and flame grilled to fragrance.﻿</p>
-					  </div>
-					</div>
-				</div>
+			<div id="myCarousel" class="col-md-12 carousel slide" data-ride="carousel">
+				<?php get_template_part( 'content', 'slider' ); ?>
 			</div>
 		</div>
 	</div>
@@ -59,50 +24,7 @@
 			<div class="col-md-12">
 				<div class="jcarousel-wrapper">
 					<div class="jcarousel" data-jcarousel="true">
-					    <ul>
-					        <li>
-								<img src="<?php echo IMAGES ?>/home_slider/special-deal-slider-1.jpg" alt="CHICKEN SATAY">
-								<div class="caption">
-									<h3>CHICKEN SATAY</h3>
-									<p>$0.50</p>
-								</div>
-					        </li>
-					        <li>
-								<img src="<?php echo IMAGES ?>/home_slider/special-deal-slider-2.jpg" alt="CURRY CHICKEN WITH BAGUETTE">
-								<div class="caption">
-									<h3>CURRY CHICKEN WITH BAGUETTE</h3>
-									<p>$4.20</p>
-								</div>
-					        </li>
-					        <li>
-								<img src="<?php echo IMAGES ?>/home_slider/special-deal-slider-3.jpg" alt="ASSAM PRAWN">
-								<div class="caption">
-									<h3>ASSAM PRAWN</h3>
-									<p>$2.60</p>
-								</div>
-					        </li>
-					        <li>
-								<img src="<?php echo IMAGES ?>/home_slider/special-deal-slider-3.jpg" alt="ASSAM PRAWN">
-								<div class="caption">
-									<h3>ASSAM PRAWN</h3>
-									<p>$2.60</p>
-								</div>
-					        </li>
-					        <li>
-								<img src="<?php echo IMAGES ?>/home_slider/special-deal-slider-2.jpg" alt="CURRY CHICKEN WITH BAGUETTE">
-								<div class="caption">
-									<h3>CURRY CHICKEN WITH BAGUETTE</h3>
-									<p>$4.20</p>
-								</div>
-					        </li>
-					        <li>
-								<img src="<?php echo IMAGES ?>/home_slider/special-deal-slider-1.jpg" alt="CHICKEN SATAY">
-								<div class="caption">
-									<h3>CHICKEN SATAY</h3>
-									<p>$0.50</p>
-								</div>
-					        </li>
-					    </ul>
+					    <?php get_template_part('content', 'sub-slider'); ?>
 					</div>
 					<a href="#" class="jcarousel-control-prev" data-jcarouselcontrol="true"></a>
 					<a href="#" class="jcarousel-control-next" data-jcarouselcontrol="true"></a>
@@ -135,7 +57,7 @@
 						    'posts_per_page' => -1  
 						);  
 						  
-						$featured_query = new WP_Query( $args );  
+						$featured_query = new WP_Query( $args );
 						      
 						if ($featured_query->have_posts()) :   
 						  
@@ -148,10 +70,12 @@
 						        $sale = get_post_meta( get_the_ID(), '_sale_price', true);
 						?>
 								<li>
-									<a href="#"><img src="<?php echo IMAGES ?>/content/feature-product-1.jpg" alt="<?php the_title(); ?>"></a>
+									<a href="<?php echo get_permalink(get_the_ID()); ?>">
+										<?php the_post_thumbnail(); ?>
+									</a>
 									<div class="feature-product-description">
 										<h3><?php the_title(); ?></h3>
-										<?php the_excerpt(); ?>
+										<p class="feature-text"><?php the_excerpt(); ?></p>
 										<p class="feature-price">$<?php echo (isset($sale) && !empty($sale)) ? number_format((float)$sale, 2, '.', '') : number_format((float)$price, 2, '.', '');  ?></p>
 									</div>
 								</li>
@@ -162,54 +86,6 @@
 						  
 						wp_reset_query(); // Remember to reset  
 						?>
-						<!-- <li>
-							<a href="#"><img src="<?php echo IMAGES ?>/content/feature-product-1.jpg" alt="PRAWN OTAH"></a>
-							<div class="feature-product-description">
-								<h3>PRAWN OTAH</h3>
-								<p class="feature-text">A local style recipe for steamed parcels of minced seasoned fish and prawn, wrapped in coconut leaves & flame grilled to fragrance.</p>
-								<p class="feature-price">$0.90</p>
-							</div>
-						</li>
-						<li>
-							<a href="#"><img src="<?php echo IMAGES ?>/content/feature-product-2.jpg" alt="MUTTON SATAY"></a>
-							<div class="feature-product-description">
-								<h3>MUTTON SATAY</h3>
-								<p class="feature-text">Cooked juicy bite-sized meat skewers marinated with special herbs & spices grilled to perfection.</p>
-								<p class="feature-price">$0.55</p>
-							</div>
-						</li>
-						<li>
-							<a href="#"><img src="<?php echo IMAGES ?>/content/feature-product-3.jpg" alt="CRISPY CHICKEN & NASI LEMAK"></a>
-							<div class="feature-product-description">
-								<h3>CRISPY CHICKEN & NASI LEMAK</h3>
-								<p class="feature-text">Fish Fillet fried to golden brown, made into a burger with fresh lettuce and tartar sauce. Delight to the burger-lovers.</p>
-								<p class="feature-price">$3.50</p>
-							</div>
-						</li>
-						<li>
-							<a href="#"><img src="<?php echo IMAGES ?>/content/feature-product-4.jpg" alt="ASSAM PRAWN"></a>
-							<div class="feature-product-description">
-								<h3>ASSAM PRAWN</h3>
-								<p class="feature-text">Prawn seasoned with our popular paste made from an aromatic blend of home-made chilli, vinegar, garlic, lemon grass and</p>
-								<p class="feature-price">$2.60</p>
-							</div>
-						</li>
-						<li>
-							<a href="#"><img src="<?php echo IMAGES ?>/content/feature-product-5.jpg" alt="CURRY CHICKEN & BAGUETTE"></a>
-							<div class="feature-product-description">
-								<h3>CURRY CHICKEN & BAGUETTE</h3>
-								<p class="feature-text">Tuck yourself into our mouth watering homemade Curry Chicken along with oven baked baguette.</p>
-								<p class="feature-price">$4.20</p>
-							</div>
-						</li>
-						<li>
-							<a href="#"><img src="<?php echo IMAGES ?>/content/feature-product-6.jpg" alt="SAMBAL CHILLI"></a>
-							<div class="feature-product-description">
-								<h3>SAMBAL CHILLI</h3>
-								<p class="feature-text">Enjoy it with our Nasi Lemak/Beehoon sets or just by itself! (Min. 5 portion)</p>
-								<p class="feature-price">$2.20</p>
-							</div>
-						</li> -->
 					</ul>			
 				</div>
 			</div>

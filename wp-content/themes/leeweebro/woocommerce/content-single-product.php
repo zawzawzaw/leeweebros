@@ -40,7 +40,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 				 */
 				do_action( 'woocommerce_single_product_image_custom' );
 			?>
-			<a href="#">Print</a> | <a href="#">Full Size</a>
+			<a href="#">Print</a> | <a href="#" class="full-size">Full Size</a>
 		</div>
 		<div class="col-md-6">
 			<?php

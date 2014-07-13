@@ -1,0 +1,1 @@
+<a href="<?php echo home_url(); ?>">Home</a> / <a href="#" class="active"><?php the_title(); ?></a>

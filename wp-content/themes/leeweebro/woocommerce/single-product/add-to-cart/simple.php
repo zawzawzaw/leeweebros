@@ -39,7 +39,7 @@ if ( ! $product->is_purchasable() ) return;
 			</div> -->
 		
 	 	<?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>
-		 	<div class="select-qty">
+		 	<label for="qty">Quantity: </label>
 		 	<?php
 		 		if ( ! $product->is_sold_individually() )
 		 			woocommerce_quantity_input( array(
@@ -47,7 +47,6 @@ if ( ! $product->is_purchasable() ) return;
 		 				'max_value' => apply_filters( 'woocommerce_quantity_input_max', $product->backorders_allowed() ? '' : $product->get_stock_quantity(), $product )
 		 			) );
 		 	?>
-			</div>
 		</div>
 		<div class="space20"></div>
 		<input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $product->id ); ?>" />

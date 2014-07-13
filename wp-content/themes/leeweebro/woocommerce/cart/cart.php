@@ -11,7 +11,10 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 global $woocommerce;
 
-wc_print_notices();
+if(!empty($_POST))
+	woocommerce_get_template( 'cart/cart-new.php' );
+
+// wc_print_notices();
 
 // do_action( 'woocommerce_before_cart' ); ?>
 
@@ -70,11 +73,12 @@ wc_print_notices();
 	</div>
 </div>
 <div class="space50"></div>
-<div class="cart-container">
+<div class="cart-container" <?php echo (isset($_POST)) ? "style='visibility:hidden;'" : ""; ?>>
 	<div class="row">
 		<div class="col-md-12">
 
-			<form action="<?php echo esc_url( WC()->cart->get_cart_url() ); ?>" method="post">
+			<form action="" method="post">
+			<?php //echo esc_url( WC()->cart->get_cart_url() ); ?>
 
 				<?php do_action( 'woocommerce_before_cart_table' ); ?>
 
@@ -102,12 +106,11 @@ wc_print_notices();
 
 									<!-- delete btn -->
 									<div class="col-md-1">
-										<div class="cancel-button">
-											<button class="cancel"></button>
-										</div>
+										<div class="remove-button">
 										<?php
-											//echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf( '<a href="%s" class="remove" title="%s">&times;</a>', esc_url( WC()->cart->get_remove_url( $cart_item_key ) ), __( 'Remove this item', 'woocommerce' ) ), $cart_item_key );
+											echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf( '<a href="%s" class="remove" title="%s"></a>', esc_url( WC()->cart->get_remove_url( $cart_item_key ) ), __( 'Remove this item', 'woocommerce' ) ), $cart_item_key );
 										?>
+										</div>
 									</div>
 
 									<!-- thumbnail image -->
@@ -168,7 +171,9 @@ wc_print_notices();
 
 											echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key );
 										?>
-										<input type="submit" class="button" name="update_cart" value="\e800" style="" /> 
+										<span class="update">
+											<input type="submit" class="button" name="update_cart" value="submit" style="" /> 	
+										</span>
 									</div>
 
 									<!-- indiviudal price -->
@@ -274,7 +279,8 @@ wc_print_notices();
 							<a class="button continue wc-backward" href="<?php echo get_permalink( wc_get_page_id( 'shop' ) ); ?>"><?php _e( 'CONTINUE SHOPPING', 'woocommerce' ) ?></a>
 						</div>
 						<div class="col-md-2 col-md-offset-6">
-							<input type="submit" class="checkout-button button alt wc-forward" name="proceed" value="<?php _e( 'NEXT', 'woocommerce' ); ?>" />
+							<!-- <input type="submit" class="checkout-button button alt wc-forward" name="proceed" value="<?php _e( 'NEXT', 'woocommerce' ); ?>" /> -->
+							<input type="submit" class="button" value="NEXT">
 						</div>
 
 						<?php do_action( 'woocommerce_proceed_to_checkout' ); ?>
