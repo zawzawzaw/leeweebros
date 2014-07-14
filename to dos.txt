@@ -1,12 +1,12 @@
 to dos
 
 min quantity to order
-delete
-load receiving mode page/address/payament before check out (2 payment mode pages)
+free shipping
+load receiving mode page(validation/add surchages)/address/payment before check out (2 payment mode pages)
+variable prices
+
 search
 contact
+
 yiling design fix
 responsive
-free shipping
-
-

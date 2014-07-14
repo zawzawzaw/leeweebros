@@ -195,6 +195,7 @@ wp_deregister_script('jquery');
 // woo commerce JS reset
 wp_dequeue_script('woocommerce');
 wp_enqueue_script( 'woocommerce', get_bloginfo( 'stylesheet_directory' ). '/js/woocommerce.js', array( 'jquery', 'jquery-blockui' ), false, true );
+wp_enqueue_script( 'jqueryui', '//code.jquery.com/ui/1.11.0/jquery-ui.js', array( 'jquery' ), false, true );
 wp_enqueue_script( 'bootstrap', get_bloginfo( 'stylesheet_directory' ). '/lib/bootstrap/dist/js/bootstrap.min.js', array( 'jquery' ), false, true );
 wp_enqueue_script( 'jcarousel', get_bloginfo( 'stylesheet_directory' ). '/lib/jquery.jcarousel.min.js', array( 'jquery' ), false, true );
 wp_enqueue_script( 'main', get_bloginfo( 'stylesheet_directory' ). '/js/main.js', array( 'jquery' ), false, true );
@@ -264,4 +265,48 @@ function myplugin_registration_save( $user_id ) {
       add_user_meta( $user_id, 'address_book_1_mobile', $_POST['address_book_1_mobile'] );
     if(isset($_POST['address_book_1_future_ref']))
       add_user_meta( $user_id, 'address_book_1_future_ref', $_POST['address_book_1_future_ref'] );
+}
+
+// Hook in
+add_filter( 'woocommerce_after_order_notes' , 'custom_override_checkout_fields' );
+
+// Our hooked in function - $fields is passed via the filter!
+function custom_override_checkout_fields( $fields ) { 
+    woocommerce_form_field( 'collection_area', array(
+        'type'          => 'text',
+        'class'         => array('my-field-class form-row-wide'),
+        'label'         => __('test'),
+        'placeholder'   => __('test'),
+        ), $_POST['collection_area']);
+
+    woocommerce_form_field( 'collection_time', array(
+        'type'          => 'text',
+        'class'         => array('my-field-class form-row-wide'),
+        'label'         => __('test'),
+        'placeholder'   => __('test'),
+        ), $_POST['collection_time']);
+
+    return $fields;
+}
+
+/**
+ * Update the order meta with field value
+ */
+add_action( 'woocommerce_checkout_update_order_meta', 'my_custom_checkout_field_update_order_meta' );
+ 
+function my_custom_checkout_field_update_order_meta( $order_id ) {
+    if ( ! empty( $_POST['collection_area'] ) ) {
+        update_post_meta( $order_id, 'Collection Area', sanitize_text_field( $_POST['collection_area'] ) );
+    }
+}
+
+add_action( 'woocommerce_cart_calculate_fees','woocommerce_custom_surcharge' );
+function woocommerce_custom_surcharge() {
+  global $woocommerce;
+ 
+  if ( is_admin() && ! defined( 'DOING_AJAX' ) )
+    return;
+ 
+  $surcharge = 25;
+  $woocommerce->cart->add_fee( 'Surcharge', $surcharge, true, 'standard' ); 
 }

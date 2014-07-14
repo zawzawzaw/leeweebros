@@ -25,6 +25,7 @@
 	<!-- CSS -->
 	<link rel="stylesheet" href="<?php echo LIB ?>/bootstrap/dist/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="<?php echo LIB ?>/bootstrap/dist/css/bootstrap-theme.min.css" />
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
 
 	<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>" />
 	<?php
