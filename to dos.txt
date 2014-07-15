@@ -2,8 +2,9 @@ to dos
 
 min quantity to order
 free shipping
-load receiving mode page(validation/add surchages)/address/payment before check out (2 payment mode pages)
+load receiving mode page(validation/add surchages)/address(validation)/payment before check out (2 payment mode pages)
 variable prices
+logout
 
 search
 contact

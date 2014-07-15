@@ -11,7 +11,9 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 global $woocommerce;
 
-if(!empty($_POST)):
+if(!empty($_POST['collection_area'])):
+	woocommerce_get_template( 'cart/cart-select-address.php' );
+elseif(!empty($_POST)):
 	woocommerce_get_template( 'cart/cart-receiving-mode.php' );
 else:
 	// wc_print_notices();

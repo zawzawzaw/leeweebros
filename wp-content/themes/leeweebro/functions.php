@@ -268,23 +268,40 @@ function myplugin_registration_save( $user_id ) {
 }
 
 // Hook in
+add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields_billing_and_shipping' );
+
+// Our hooked in function - $fields is passed via the filter!
+function custom_override_checkout_fields_billing_and_shipping( $fields ) {
+  $billing_address = json_decode(stripslashes($_POST['billing_address']), true);
+  
+  $fields['billing']['billing_first_name']['default'] = $billing_address['first_name'];
+  $fields['billing']['billing_last_name']['default'] = $billing_address['last_name'];
+
+  return $fields;
+}
+
+// Hook in
 add_filter( 'woocommerce_after_order_notes' , 'custom_override_checkout_fields' );
 
 // Our hooked in function - $fields is passed via the filter!
 function custom_override_checkout_fields( $fields ) { 
-    woocommerce_form_field( 'collection_area', array(
-        'type'          => 'text',
-        'class'         => array('my-field-class form-row-wide'),
-        'label'         => __('test'),
-        'placeholder'   => __('test'),
-        ), $_POST['collection_area']);
 
-    woocommerce_form_field( 'collection_time', array(
-        'type'          => 'text',
-        'class'         => array('my-field-class form-row-wide'),
-        'label'         => __('test'),
-        'placeholder'   => __('test'),
-        ), $_POST['collection_time']);
+    print_r($_POST);
+    print_r($fields);
+
+    // woocommerce_form_field( 'collection_area', array(
+    //     'type'          => 'text',
+    //     'class'         => array('my-field-class form-row-wide'),
+    //     'label'         => __('test'),
+    //     'placeholder'   => __('test'),
+    //     ), $_POST['collection_area']);
+
+    // woocommerce_form_field( 'collection_time', array(
+    //     'type'          => 'text',
+    //     'class'         => array('my-field-class form-row-wide'),
+    //     'label'         => __('test'),
+    //     'placeholder'   => __('test'),
+    //     ), $_POST['collection_time']);
 
     return $fields;
 }

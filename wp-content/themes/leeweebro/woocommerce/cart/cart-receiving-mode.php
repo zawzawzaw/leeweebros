@@ -91,7 +91,7 @@ $total_amount = $woocommerce->cart->total;
 
 <!-- COLLECTION -->
 <div class="collection-container all-container" style="display:none;">
-	<form action="<?php echo esc_url( $woocommerce->cart->get_checkout_url() ); ?>" method="post">
+	<form action="<?php echo esc_url( $woocommerce->cart->get_cart_url() ); ?>" method="post">
 	<div class="row">
 		<div class="col-md-6">
 			<h2>SELF COLLECTION:</h2>
@@ -221,16 +221,16 @@ $total_amount = $woocommerce->cart->total;
 			<!-- <input type="submit" class="checkout-button button alt wc-forward" name="proceed" value="<?php _e( 'NEXT', 'woocommerce' ); ?>" /> -->
 			<input type="submit" class="button" value="NEXT">
 		</div>
-		<?php do_action( 'woocommerce_proceed_to_checkout' ); ?>
+		<?php //do_action( 'woocommerce_proceed_to_checkout' ); ?>
 
-		<?php wp_nonce_field( 'woocommerce-cart' ); ?>
+		<?php //wp_nonce_field( 'woocommerce-cart' ); ?>
 	</div>	
 	</form>		
 </div>
 
 <!-- DELIVERY -->
 <div class="delivery-container all-container" style="display:none;">
-	<form action="<?php echo esc_url( $woocommerce->cart->get_checkout_url() ); ?>" method="post">
+	<form action="<?php echo esc_url( $woocommerce->cart->get_cart_url() ); ?>" method="post">
 		<div class="row">
 			<div class="col-md-12">
 				<h2>DELIVERY:</h2>
@@ -347,9 +347,9 @@ $total_amount = $woocommerce->cart->total;
 			<div class="col-md-2"><button class="button payment-mode-prev">PREVIOUS</button></div>
 			<div class="col-md-2 col-md-offset-8"><input type="submit" class="button" value="NEXT"></div>
 
-			<?php do_action( 'woocommerce_proceed_to_checkout' ); ?>
+			<?php //do_action( 'woocommerce_proceed_to_checkout' ); ?>
 
-			<?php wp_nonce_field( 'woocommerce-cart' ); ?>
+			<?php //wp_nonce_field( 'woocommerce-cart' ); ?>
 		</div>			
 	</form>
 </div>
