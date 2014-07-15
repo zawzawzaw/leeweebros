@@ -887,14 +887,14 @@ header#main-header {
           &.food {
             left: -16px;
             ul.sub-menu {
-              height: 215px;
+              min-height: 215px;
               width: 200px;
             }
           }
           &.catering {
             left: -29px;
             ul.sub-menu {
-              height: 81px;
+              min-height: 81px;
               width: 200px;
             }
           }
@@ -902,7 +902,7 @@ header#main-header {
             width: 112px;
             left: -42px;
             ul.sub-menu {
-              height: 81px;
+              min-height: 81px;
               width: 200px;
             }
           }
@@ -920,7 +920,7 @@ header#main-header {
               left: 13px;  
             }
             ul.sub-menu {
-              height: 81px;
+              min-height: 81px;
               width: 200px;
               li {
                 padding-left: 14px;
@@ -963,10 +963,11 @@ header#main-header {
             display: none;
             background: @red;
             width: 223px;
-            height: 147px;
+            min-height: 147px;
             position: absolute;
             top: 54px;
             z-index: 1;
+            padding-bottom: 10px;
 
             &.two {
               height: 81px;

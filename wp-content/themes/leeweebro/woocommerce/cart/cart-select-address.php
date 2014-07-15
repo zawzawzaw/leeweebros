@@ -1,6 +1,5 @@
 <?php 
 global $woocommerce;
-print_r($_POST);
 ?>
 <div class="progress-indicator-container">
 	<div class="row">
