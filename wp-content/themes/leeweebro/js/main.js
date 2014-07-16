@@ -1,13 +1,48 @@
 jQuery( function( $ ) {
 
 	$(document).ready(function(){
-		// category & product sidebar menu
-		$('.collapse').on('shown.bs.collapse', function (e) {
+
+		var $sideBarMenu = $('.side-menu'),
+			$mainSlider = $('.carousel'),
+			$secondSlider = $('.jcarousel-wrapper'),
+			$singleEntry = $('.entry-summary'),
+			$receivingModeContainer = $('.receiving-mode-container'),
+			$allReceivingModeContainer = $('.all-container'),
+			$receivingModeCollection = $('.collection-container'),
+			$receivingModeDelivery = $('.delivery-container'),
+			$billingDropdown = $('.billing_address'),
+			$shippingDropdown = $('.delivery_address'),
+			$billingInfoList = $('.billing-address'),
+			$shippingInfoList = $('.shipping-address'),
+			$sameasbillingCheckbox = $('input[name="same"]'),
+			$billinginputHidden = $('input#billing_address_hidden'),
+			$shippinginputHidden = $('input#shipping_address_hidden'),
+			$shippingDropdownDiv = $('.delivery_toggle'),
+			$addNewShippingBtn = $('.add_delivery'),
+			$addNewBillingBtn = $('.add_billing');
+			$newBillingAddressForm = $('#billingaddress-form'),
+			$newShippingAddressForm = $('#shippingaddress-form'),
+			$newFormContainer = $('.address-container'),
+			$selectAddressContainer = $('.select-address-container'),
+			$saveDeliveryAddressBtn = $('.save_delivery_address'),
+			$saveBillingAddressBtn = $('.save_billing_address'),
+			$checkoutBtn = $('.submit-to-checkout'),
+			$checkoutForm = $('form#submitcheckout'),
+			$checkOutPaymentModeNextBtn = $('.payment-mode-next'),
+			$paymentModeContainer = $('.payment-mode');
+			$personalPaymentModeContainer = $('.personal-payment'),
+			$corporatePaymentModeContainer = $('.corporate-payment'),
+			$orderSummaryContainer = $('.summary-container'),
+			$orderDetailContainer = $('.order-details-container'),
+			$personalPaymentBtn = $('.personal-payment-save');
+			$coporatePaymentBtn = $('.coporate-payment-save');
+
+		$sideBarMenu.children('li').children('collapse').on('shown.bs.collapse', function (e) {
 		  	$('.side-menu li').removeClass('active');
 		  	$(e.currentTarget).parent('li').addClass('active');
 		});
 
-		$('.side-menu li a').on('click',function(e){
+		$sideBarMenu.children('li').children('a').on('click',function(e){
 		    if($(this).next('.collapse').hasClass('in')){
 		        e.stopPropagation();
 		    }else {
@@ -15,60 +50,72 @@ jQuery( function( $ ) {
 		    }
 		});
 
+		$mainSlider.carousel('pause');
 
-		// main slider
-		$('.carousel').carousel('pause');
+		$secondSlider.children('.jcarousel').jcarousel();
 
-		$('.jcarousel').jcarousel({
-	        // Configuration goes here
-	    });
-
-	    $('.jcarousel-control-prev').jcarouselControl({
+	    $secondSlider.children('.jcarousel-control-prev').jcarouselControl({
 	        target: '-=1'
 	    });
 
-	    $('.jcarousel-control-next').jcarouselControl({
+	    $secondSlider.children('.jcarousel-control-next').jcarouselControl({
 		    target: '+=1'
 		});
 
-		$('.full-size').on('click', function(e){
+		$singleEntry.children('div').children('.full-size').on('click', function(e){
+
 			e.preventDefault();
-			$('.zoom').trigger('click');
+
+			$(this).parent('div').children('div').children('a').trigger('click');
 		});
 
-		$('.receiving-mode-next').on('click', function(e){
+		$receivingModeContainer.find('.receiving-mode-next').on('click', function(e){
+
 			e.preventDefault();
 			
-			var mode = $('input[name="receivingmethod"]:checked').val();
+			var mode = $receivingModeContainer.find('input[name="receivingmethod"]:checked').val();
 
-			$('.all-container').hide();
-			if(mode=='self') {
-				$('.collection-container').show();
-			}else {			
-				$('.delivery-container').show();
-			}
+			$allReceivingModeContainer.hide();
+
+			if(mode=='self') $receivingModeCollection.show(); 
+			else $receivingModeDelivery.show();
+			
 		});
 
-		$('.receiving-mode-prev').on('click', function(e){
+		$allReceivingModeContainer.find('.receiving-mode-prev').on('click', function(e){
+
 			e.preventDefault();
-			$('.all-container').hide();
-			$('.receiving-mode-container').show();
+
+			$allReceivingModeContainer.hide();
+			$receivingModeContainer.show();
 		});
 
-		$('input[name="delivery"]').on('change', function(e){
+		$receivingModeDelivery.find('input[type="submit"]').on('click', function(e){
+
+			e.preventDefault();
 			var cartAmount = $('.cart-amount').val();
-			var location = $(this).val();
+			var location = $receivingModeDelivery.find('input[name="delivery"]:checked').val();
+
+			console.log(cartAmount);
+			console.log(location);
 
 			if(parseFloat(cartAmount) <= 100 && location == 'allotherarea') {
+
 				alert('Minimum purchase of 100S$ require for free delivery to this area.');
-				$('.submit').attr("disabled", true);
+
 			}else if(parseFloat(cartAmount) <= 100 && location == 'jurongsentoaarea') {
+
 				alert('Minimum purchase of 120S$ require for free delivery to this area.');
-				$('.submit').attr("disabled", true);
+
 			}
 			else if(parseFloat(cartAmount) <= 120 && location == 'jurongsentoaarea') {
+
 				alert('Minimum purchase of 120S$ require for free delivery to this area.');
-				$('.submit').attr("disabled", true);
+
+			}else {
+
+				$receivingModeDelivery.find('form').submit();
+
 			}
 
 		});
@@ -100,34 +147,6 @@ jQuery( function( $ ) {
 			e.preventDefault();
 			$('#collection_date').show().focus().hide();
 		});
-
-		var $billingDropdown = $('.billing_address'),
-			$shippingDropdown = $('.delivery_address'),
-			$billingInfoList = $('.billing-address'),
-			$shippingInfoList = $('.shipping-address'),
-			$sameasbillingCheckbox = $('input[name="same"]'),
-			$billinginputHidden = $('input#billing_address_hidden'),
-			$shippinginputHidden = $('input#shipping_address_hidden'),
-			$shippingDropdownDiv = $('.delivery_toggle'),
-			$addNewShippingBtn = $('.add_delivery'),
-			$addNewBillingBtn = $('.add_billing');
-			$newBillingAddressForm = $('#billingaddress-form'),
-			$newShippingAddressForm = $('#shippingaddress-form'),
-			$newFormContainer = $('.address-container'),
-			$selectAddressContainer = $('.select-address-container'),
-			$saveDeliveryAddressBtn = $('.save_delivery_address'),
-			$saveBillingAddressBtn = $('.save_billing_address'),
-			$checkoutBtn = $('.submit-to-checkout'),
-			$checkoutForm = $('form#submitcheckout'),
-			$checkOutPaymentModeNextBtn = $('.payment-mode-next'),
-			$paymentMethodRadioBox = $('input[name=paymentmethod]:checked'),
-			$paymentModeContainer = $('.payment-mode');
-			$personalPaymentModeContainer = $('.personal-payment'),
-			$corporatePaymentModeContainer = $('.corporate-payment'),
-			$orderSummaryContainer = $('.summary-container'),
-			$orderDetailContainer = $('.order-details-container'),
-			$personalPaymentBtn = $('.personal-payment-save');
-			$coporatePaymentBtn = $('.coporate-payment-save');
 
 		$shippingDropdownDiv.hide();
 
@@ -331,7 +350,7 @@ jQuery( function( $ ) {
 			e.preventDefault();
 
 			$paymentModeContainer.hide();
-			var paymentmethod = $paymentMethodRadioBox.val();
+			var paymentmethod = $('input[name=paymentmethod]:checked').val();
 
 			console.log(paymentmethod);
 
@@ -347,6 +366,9 @@ jQuery( function( $ ) {
 		$personalPaymentBtn.on('click', function(e){
 			$personalPaymentModeContainer.hide();
 			$orderSummaryContainer.show();
+
+			$('#payment_method_cod').trigger('click');
+
 			$orderDetailContainer.show();
 		});
 
@@ -356,7 +378,9 @@ jQuery( function( $ ) {
 			$orderDetailContainer.show();
 		});
 		
-
+		$('#confirm-order').on('click', function(e){
+			$('#place_order').trigger('click');
+		})
 
 	});
 	

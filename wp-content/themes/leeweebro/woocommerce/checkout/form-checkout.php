@@ -189,7 +189,7 @@ wc_print_notices();
 
 			</div>
 
-			<?php //do_action( 'woocommerce_checkout_after_customer_details' ); ?>
+			<?php do_action( 'woocommerce_checkout_after_customer_details' ); ?>
 
 			<!-- <h3 id="order_review_heading"><?php _e( 'Your order', 'woocommerce' ); ?></h3> -->
 
@@ -254,7 +254,7 @@ wc_print_notices();
 			<button class="button">PREVIOUS</button>
 		</div>
 		<div class="col-md-2 col-md-offset-6">
-			<button class="button continue">CONFIRM ORDER</button>
+			<button id="confirm-order" class="button continue">CONFIRM ORDER</button>
 		</div>
 	</div>
 </div>

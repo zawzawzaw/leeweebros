@@ -84,7 +84,10 @@ $total_amount = $woocommerce->cart->total;
 	</div>
 	<div class="space50"></div>
 	<div class="row">
-		<div class="col-md-2"><button class="button">PREVIOUS</button></div>
+		<?php 
+		global $woocommerce;
+		$cart_url = $woocommerce->cart->get_cart_url(); ?>
+		<div class="col-md-2"><a href="<?php echo $cart_url; ?>" class="button back-to-cart">PREVIOUS</a></div>
 		<div class="col-md-2 col-md-offset-8"><button class="button receiving-mode-next">NEXT</button></div>
 	</div>			
 </div>
