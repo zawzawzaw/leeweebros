@@ -64,16 +64,16 @@ $total_amount = $woocommerce->cart->total;
 		<div class="col-md-12">
 			<h2>RECEVING MODE:</h2>
 			<p>Please kindly select the choice of collections below.</p>
-			<ul class="payment-method">
+			<ul class="receiving-method">
 				<li>
-					<input type="radio" name="paymentmethod" value="delivery" >
+					<input type="radio" name="receivingmethod" value="delivery" >
 					<label for="atm" class="radio-label">
 						<span class="radiobtn"></span>
 						Delivery
 					</label>
 				</li>
 				<li>
-					<input type="radio" name="paymentmethod" value="self" checked>
+					<input type="radio" name="receivingmethod" value="self" checked>
 					<label for="online" class="radio-label">
 						<span class="radiobtn"></span>
 						Self–Collection
@@ -85,7 +85,7 @@ $total_amount = $woocommerce->cart->total;
 	<div class="space50"></div>
 	<div class="row">
 		<div class="col-md-2"><button class="button">PREVIOUS</button></div>
-		<div class="col-md-2 col-md-offset-8"><button class="button payment-mode-next">NEXT</button></div>
+		<div class="col-md-2 col-md-offset-8"><button class="button receiving-mode-next">NEXT</button></div>
 	</div>			
 </div>
 
@@ -216,7 +216,7 @@ $total_amount = $woocommerce->cart->total;
 	</div>
 	<div class="space50"></div>
 	<div class="row">
-		<div class="col-md-2"><button class="button payment-mode-prev">PREVIOUS</button></div>
+		<div class="col-md-2"><button class="button receiving-mode-prev">PREVIOUS</button></div>
 		<div class="col-md-2 col-md-offset-8">
 			<!-- <input type="submit" class="checkout-button button alt wc-forward" name="proceed" value="<?php _e( 'NEXT', 'woocommerce' ); ?>" /> -->
 			<input type="submit" class="button" value="NEXT">
@@ -344,7 +344,7 @@ $total_amount = $woocommerce->cart->total;
 		</div>
 		<div class="space50"></div>
 		<div class="row">
-			<div class="col-md-2"><button class="button payment-mode-prev">PREVIOUS</button></div>
+			<div class="col-md-2"><button class="button receiving-mode-prev">PREVIOUS</button></div>
 			<div class="col-md-2 col-md-offset-8"><input type="submit" class="button" value="NEXT"></div>
 
 			<?php //do_action( 'woocommerce_proceed_to_checkout' ); ?>

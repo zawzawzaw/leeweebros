@@ -230,41 +230,17 @@ add_action( 'user_register', 'myplugin_registration_save', 10, 1 );
 function myplugin_registration_save( $user_id ) {
 
     if ( isset( $_POST['first_name'] ) )
-        update_user_meta($user_id, 'first_name', $_POST['first_name']);
+      update_user_meta($user_id, 'first_name', $_POST['first_name']);
     if( isset( $_POST['last_name'] ) )
     	update_user_meta($user_id, 'last_name', $_POST['last_name']);
-    if(isset($_POST['title']))
-    	add_user_meta( $user_id, 'title', $_POST['title'] );
-    if(isset($_POST['dob']))
-    	add_user_meta( $user_id, 'dob', $_POST['dob'] );
 
-    $address_book_1 = get_user_meta($user_id,'address_book_1_first_name',true);
-    if(isset($_POST['address_book_1_first_name']))
-    add_user_meta( $user_id, 'address_book_1_first_name', $_POST['address_book_1_first_name'] );
-    if(isset($_POST['address_book_1_last_name']))
-      add_user_meta( $user_id, 'address_book_1_last_name', $_POST['address_book_1_last_name'] );
-    if(isset($_POST['address_book_1_company']))
-      add_user_meta( $user_id, 'address_book_1_company', $_POST['address_book_1_company'] );   
-    if(isset($_POST['address_book_1_address_1']))
-      add_user_meta( $user_id, 'address_book_1_address_1', $_POST['address_book_1_address_1'] );
-    if(isset($_POST['address_book_1_address_2']))
-      add_user_meta( $user_id, 'address_book_1_address_2', $_POST['address_book_1_address_2'] );
-    if(isset($_POST['address_book_1_country']))
-      add_user_meta( $user_id, 'address_book_1_city', $_POST['address_book_1_country'] );
-    if(isset($_POST['address_book_1_postcode']))
-      add_user_meta( $user_id, 'address_book_1_postcode', $_POST['address_book_1_postcode'] );
-    if(isset($_POST['address_book_1_town']))
-      add_user_meta( $user_id, 'address_book_1_town', $_POST['address_book_1_town'] );
-    if(isset($_POST['address_book_1_country']))
-      add_user_meta( $user_id, 'address_book_1_country', $_POST['address_book_1_country'] );
-    if(isset($_POST['address_book_1_country_addition_info']))
-      add_user_meta( $user_id, 'address_book_1_country_addition_info', $_POST['address_book_1_country_addition_info'] );
-    if(isset($_POST['address_book_1_phone']))
-      add_user_meta( $user_id, 'address_book_1_phone', $_POST['address_book_1_phone'] );
-    if(isset($_POST['address_book_1_mobile']))
-      add_user_meta( $user_id, 'address_book_1_mobile', $_POST['address_book_1_mobile'] );
-    if(isset($_POST['address_book_1_future_ref']))
-      add_user_meta( $user_id, 'address_book_1_future_ref', $_POST['address_book_1_future_ref'] );
+    foreach ($_POST as $key => $value) {
+      if($key!='day' && $key!='month' && $key!='year' && $key!='first_name' && $key!='last_name')
+        add_user_meta( $user_id, $key, htmlspecialchars($_POST[$key], ENT_QUOTES, "utf-8") );
+    }
+
+    $dob = htmlspecialchars($_POST['day'], ENT_QUOTES, "utf-8") . '/' . htmlspecialchars($_POST['month'], ENT_QUOTES, "utf-8") . '/' . htmlspecialchars($_POST['year'], ENT_QUOTES, "utf-8");
+    add_user_meta( $user_id, 'date_of_birth', $dob );
 }
 
 // Hook in
@@ -272,10 +248,42 @@ add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields_bil
 
 // Our hooked in function - $fields is passed via the filter!
 function custom_override_checkout_fields_billing_and_shipping( $fields ) {
-  $billing_address = json_decode(stripslashes($_POST['billing_address']), true);
   
-  $fields['billing']['billing_first_name']['default'] = $billing_address['first_name'];
-  $fields['billing']['billing_last_name']['default'] = $billing_address['last_name'];
+  
+
+  update_user_meta($user_id, 'billing_first_name', 'why not updating!');
+  // die('hi');
+
+  $billing_address = json_decode(stripslashes($_POST['billing_address']), true);
+
+  if(isset($billing_address)) {
+    foreach ($billing_address as $key => $value) {
+      if($key!='future_ref') {
+        $billing_key = 'billing_'.$key;
+        $fields['billing'][$billing_key]['default'] = $value;
+        $fields['billing'][$billing_key]['label'] = $key;
+
+        // update saved woocommerce billing shipping in user meta
+        update_user_meta($user_id, $billing_key, $value);
+      }
+    }
+  }
+
+  $shipping_address = json_decode(stripslashes($_POST['shipping_address']), true);
+
+  if(isset($shipping_address)) {
+    foreach ($shipping_address as $key => $value) {
+      $shipping_key = 'shipping_'.$key;
+      $fields['shipping'][$shipping_key]['default'] = $value;
+      $fields['shipping'][$shipping_key]['label'] = $key;
+
+      // update saved woocommerce billing shipping in user meta
+      update_user_meta($user_id, $shipping_key, $value);
+    }
+  }
+
+  $fields['order']['order_comments']['label'] = 'Special Instruction';
+  $fields['order']['order_comments']['default'] = $_POST['special_instruction'];
 
   return $fields;
 }
@@ -286,22 +294,18 @@ add_filter( 'woocommerce_after_order_notes' , 'custom_override_checkout_fields' 
 // Our hooked in function - $fields is passed via the filter!
 function custom_override_checkout_fields( $fields ) { 
 
-    print_r($_POST);
-    print_r($fields);
+    $receiving_mode = json_decode(stripslashes($_POST['receiving_mode']), true);
 
-    // woocommerce_form_field( 'collection_area', array(
-    //     'type'          => 'text',
-    //     'class'         => array('my-field-class form-row-wide'),
-    //     'label'         => __('test'),
-    //     'placeholder'   => __('test'),
-    //     ), $_POST['collection_area']);
-
-    // woocommerce_form_field( 'collection_time', array(
-    //     'type'          => 'text',
-    //     'class'         => array('my-field-class form-row-wide'),
-    //     'label'         => __('test'),
-    //     'placeholder'   => __('test'),
-    //     ), $_POST['collection_time']);
+    if(isset($receiving_mode)) {
+      foreach ($receiving_mode as $key => $value) {
+        woocommerce_form_field( $key, array(
+        'type'          => 'text',
+        'class'         => array('my-field-class form-row-wide'),
+        'label'         => __($key),
+        'placeholder'   => __($key)
+        ), $value);
+      }  
+    }     
 
     return $fields;
 }
@@ -312,8 +316,12 @@ function custom_override_checkout_fields( $fields ) {
 add_action( 'woocommerce_checkout_update_order_meta', 'my_custom_checkout_field_update_order_meta' );
  
 function my_custom_checkout_field_update_order_meta( $order_id ) {
-    if ( ! empty( $_POST['collection_area'] ) ) {
-        update_post_meta( $order_id, 'Collection Area', sanitize_text_field( $_POST['collection_area'] ) );
+    if(isset($_POST)) {
+       foreach ($_POST as $key => $value) {
+        $post_key = '_'.$key;
+
+        update_post_meta( $order_id, $post_key, sanitize_text_field( $_POST[$key] ) );
+      }
     }
 }
 

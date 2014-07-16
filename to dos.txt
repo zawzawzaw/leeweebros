@@ -2,12 +2,19 @@ to dos
 
 min quantity to order
 free shipping
-load receiving mode page(validation/add surchages)/address(validation)/payment before check out (2 payment mode pages)
+load receiving mode page(prev button+delivery price validation+2 form validation+add collection times dropbox+add surchages)
+address page(prev button+3 form validation+existing address update)
+payment before check out (current or default address not overriding previous address/checkout htaccess error)
 variable prices
 logout
+loop side menu
+remove cart messages
+prev button (select address page, )
+
 
 search
 contact
 
 yiling design fix
 responsive
+

@@ -1,6 +1,5 @@
 <?php 
 global $woocommerce;
-print_r($_POST);
 ?>
 <div class="progress-indicator-container">
 	<div class="row">
@@ -168,7 +167,7 @@ print_r($_POST);
 	</div>
 	<div class="space50"></div>
 	<div class="row">
-		<div class="col-md-2"><button class="button">PREVIOUS</button></div>
+		<div class="col-md-2"><button class="button select-address-prev-btn">PREVIOUS</button></div>
 		<div class="col-md-2 col-md-offset-8"><button type="submit" class="button submit-to-checkout">NEXT</button></div>
 	</div>
 </div>
@@ -179,7 +178,7 @@ print_r($_POST);
 		</div>
 		<div class="row">
 			<div class="col-md-6">
-				<ul class="payment-method">
+				<ul class="location">
 					<li>
 						<input type="radio" name="delivery_location" value="Residential" checked>
 						<label for="online" class="radio-label"><span class="radiobtn"></span>Residential</label>
@@ -233,8 +232,8 @@ print_r($_POST);
 
 				<div class="space10"></div>
 
-				<label for="postalcode" class="asterisk">
-					<input type="text" name="postalcode" class="small-input" placeholder="Zip / Postal Code">
+				<label for="postcode" class="asterisk">
+					<input type="text" name="postcode" class="small-input" placeholder="Zip / Postal Code">
 				</label>
 				<label for="town" class="asterisk">
 					<input type="text" name="town" class="small-input" placeholder="Town">
@@ -279,7 +278,7 @@ print_r($_POST);
 		</div>
 		<div class="row">
 			<div class="col-md-6">
-				<ul class="payment-method">
+				<ul class="location">
 					<li>
 						<input type="radio" name="delivery_location" value="Residential" checked>
 						<label for="online" class="radio-label"><span class="radiobtn"></span>Residential</label>
@@ -333,8 +332,8 @@ print_r($_POST);
 
 				<div class="space10"></div>
 
-				<label for="postalcode" class="asterisk">
-					<input type="text" name="postalcode" class="small-input" placeholder="Zip / Postal Code">
+				<label for="postcode" class="asterisk">
+					<input type="text" name="postcode" class="small-input" placeholder="Zip / Postal Code">
 				</label>
 				<label for="town" class="asterisk">
 					<input type="text" name="town" class="small-input" placeholder="Town">
