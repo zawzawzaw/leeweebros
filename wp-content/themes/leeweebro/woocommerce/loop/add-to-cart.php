@@ -31,8 +31,12 @@ global $product;
 		</div>
 		<div class="space20"></div>
 	 	<input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $product->id ); ?>" />
+	 	<?php if (!is_user_logged_in()): ?>
+		<button class="button login-required-btn">Add to cart</button>
+	 	<?php else: ?>
 	 	<button type="submit" class="<?php echo ($product->is_purchasable() && $product->is_in_stock()) ? 'add_to_cart_button' : '' ?> button <?php echo 'product_type_'.esc_attr( $product->product_type ); ?> alt"><?php echo $product->add_to_cart_text(); ?></button>
 		<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
+		<?php endif; ?>
 		<div class="space10"></div>
 	</form>
 
