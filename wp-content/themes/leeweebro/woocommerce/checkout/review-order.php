@@ -39,7 +39,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 							<div class="col-md-2"><p><?php echo (isset($terms[0]->name)) ? $terms[0]->name : ''; ?></p></div>
 							<div class="col-md-3"><h5><?php echo apply_filters( 'woocommerce_cart_item_name', $_product->get_title(), $cart_item, $cart_item_key ); ?></h5><p class="status">Cooked or Raw: Cooked</p></div>
 							<div class="col-md-2">
-								<p class="qty"><?php echo apply_filters( 'woocommerce_checkout_cart_item_quantity', ' <strong class="product-quantity">' . sprintf( '&times; %s', $cart_item['quantity'] ) . '</strong>', $cart_item, $cart_item_key ); ?></p>
+								<p class="qty"><?php echo apply_filters( 'woocommerce_checkout_cart_item_quantity', ' <strong class="product-quantity">' . sprintf( '%s', $cart_item['quantity'] ) . '</strong>', $cart_item, $cart_item_key ); ?></p>
 							</div>
 							<div class="col-md-2"><p class="price">$<?php echo (!empty($_product->sale_price)) ? $_product->sale_price : $_product->regular_price; ?></p></div>
 							<div class="col-md-2"><p class="price"><?php echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ); ?></p></div>

@@ -264,6 +264,12 @@ wc_print_notices();
 		</div>
 	</div>
 	<div class="space30"></div>
+	<div class="row terms-container">
+		<div class="col-md-6">
+			<input type="checkbox" name="tnc"><label><span></span>I agree to the terms of service and adhere to them unconditionally.</label><br><a href="#" class="tnc">(Download T&C)</a>
+		</div>
+	</div>
+	<div class="space30"></div>
 	<div class="row">
 		<div class="col-md-4">
 			<button class="button">PREVIOUS</button>

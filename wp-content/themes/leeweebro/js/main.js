@@ -34,8 +34,9 @@ jQuery( function( $ ) {
 			$corporatePaymentModeContainer = $('.corporate-payment'),
 			$orderSummaryContainer = $('.summary-container'),
 			$orderDetailContainer = $('.order-details-container'),
-			$personalPaymentBtn = $('.personal-payment-save');
-			$corporatePaymentBtn = $('.corporate-payment-save');
+			$personalPaymentBtn = $('.personal-payment-save'),
+			$corporatePaymentBtn = $('.corporate-payment-save'),
+			$checkOutTermContainer = $('.terms-container');
 
 		$sideBarMenu.children('li').children('collapse').on('shown.bs.collapse', function (e) {
 		  	$('.side-menu li').removeClass('active');
@@ -468,7 +469,11 @@ jQuery( function( $ ) {
 
 			var choosedPersonalPaymentMethod = $corporatePaymentModeContainer.find('input[name="corporate_payment_method"]:checked').val();
 
-			$('#payment_method_cod').trigger('click');
+			if(choosedPersonalPaymentMethod=="Corporate cheque") {
+				$('#payment_method_cheque').trigger('click');
+			}else {
+				$('#payment_method_cod').trigger('click');
+			}
 
 			$orderDetailContainer.show();
 			$orderDetailContainer.find('.paymentby-value').html(choosedPersonalPaymentMethod);
@@ -476,10 +481,13 @@ jQuery( function( $ ) {
 		
 		$('#confirm-order').on('click', function(e){
 			e.preventDefault();
-			$(this).attr('disabled', 'disabled');
 
 			$('#place_order').trigger('click');
-		})
+		});
+
+		$checkOutTermContainer.find('input[name="tnc"]').on('click', function(){
+			$('#terms').trigger('click');
+		});	
 
 	});
 	

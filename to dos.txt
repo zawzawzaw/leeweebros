@@ -1,20 +1,26 @@
-to dos
+TO DOs
 
 min quantity to order
-free shipping
-load receiving mode page(prev button+delivery price validation+2 form validation+add collection times dropbox+add surchages)
-address page(prev button+3 form validation+existing address update)
-payment before check out (current or default address not overriding previous address/checkout htaccess error) fixed
 variable prices
-logout
+update in address book
+address page (3 form validation) (at least town to add on register)
+load receiving mode page (prev button + delivery price validation + 2 form validation + add collection times dropbox + add surchages)
+select address page (prev button)
+clickable indicator
 loop side menu
-remove cart messages
-prev button (select address page, )
-
-
-search
-contact
+need to follow new timeslot
 
 yiling design fix
+thank you page
+my account page
+
+contact
+search
 responsive
 
+FIXED
+
+payment before check out (current or default address not overriding previous address/checkout htaccess error)
+remove cart messages (removed in css for now)
+free shipping (done in js)
+address page (prev button + existing address update)

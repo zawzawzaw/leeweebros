@@ -72,7 +72,7 @@ get_header( 'shop' ); ?>
 							<?php endif; ?>
 
 							<div class="col-md-4 col-md-offset-6" id="sort-controls">
-								<?php do_action( 'woocommerce_archive_description' ); ?>
+								<?php //do_action( 'woocommerce_archive_description' ); ?>
 
 								<?php
 									/**
