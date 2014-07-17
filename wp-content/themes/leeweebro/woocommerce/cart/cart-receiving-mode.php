@@ -170,6 +170,7 @@ $total_amount = $woocommerce->cart->total;
 			<div class="space10"></div>
 		</div>
 	</div>
+	<div class="space30"></div>
 	<div class="row">
 		<div class="col-md-12">
 			<h3>PLEASE INDICATE TIME OF COLLECTION:</h3>

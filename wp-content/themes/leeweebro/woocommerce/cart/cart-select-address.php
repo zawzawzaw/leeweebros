@@ -196,11 +196,11 @@ global $woocommerce;
 					</li>
 					<li>
 						<input type="radio" name="delivery_location" value="Public Attractions" >
-						<label for="atm" class="radio-label"><span class="radiobtn"></span>Public Attractions (Sentosa, Gardens By the Bay, etc. )</label>
+						<label for="atm" class="radio-label"><span class="radiobtn"></span>Public Attractions <span class="regular">(Sentosa, Gardens By the Bay, etc.)</span></label>
 					</li>
 					<li>
 						<input type="radio" name="delivery_location" value="Public Spaces" >
-						<label for="atm" class="radio-label"><span class="radiobtn"></span>Public Spaces (Beaches, Parks, etc. )</label>
+						<label for="atm" class="radio-label"><span class="radiobtn"></span>Public Spaces <span class="regular">(Beaches, Parks, etc.)</span></label>
 					</li>
 				</ul>
 
@@ -222,7 +222,7 @@ global $woocommerce;
 
 				<label for="address_1" class="asterisk">
 					<input type="text" name="address_1" class="large-input" placeholder="Address">
-					<p class="desc">Street address, P.O. box, compagny name, c/o</p>
+					<p class="desc">Street address, P.O. box, company name, c/o</p>
 				</label>
 			</div>
 			<div class="col-md-6">
@@ -296,11 +296,11 @@ global $woocommerce;
 					</li>
 					<li>
 						<input type="radio" name="delivery_location" value="Public Attractions" >
-						<label for="atm" class="radio-label"><span class="radiobtn"></span>Public Attractions (Sentosa, Gardens By the Bay, etc. )</label>
+						<label for="atm" class="radio-label"><span class="radiobtn"></span>Public Attractions <span class="regular">(Sentosa, Gardens By the Bay, etc.)</span></label>
 					</li>
 					<li>
 						<input type="radio" name="delivery_location" value="Public Spaces" >
-						<label for="atm" class="radio-label"><span class="radiobtn"></span>Public Spaces (Beaches, Parks, etc. )</label>
+						<label for="atm" class="radio-label"><span class="radiobtn"></span>Public Spaces <span class="regular">(Beaches, Parks, etc.)</span></label>
 					</li>
 				</ul>
 
@@ -322,7 +322,7 @@ global $woocommerce;
 
 				<label for="address_1" class="asterisk">
 					<input type="text" name="address_1" class="large-input" placeholder="Address">
-					<p class="desc">Street address, P.O. box, compagny name, c/o</p>
+					<p class="desc">Street address, P.O. box, company name, c/o</p>
 				</label>
 			</div>
 			<div class="col-md-6">

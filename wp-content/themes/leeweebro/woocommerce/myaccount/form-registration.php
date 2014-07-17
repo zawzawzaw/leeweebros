@@ -83,7 +83,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<div class="dropdown">
 					<select name="year">
 						<option value="" selected>YYYY</option>
-						<option value="1950" selected>1950</option>
+						<?php for($i=1950; $i<=2000; $i++): ?>
+							<option value="<?php echo $i; ?>" <?php echo ($i==1950) ? 'checked' : ''; ?>><?php echo $i; ?></option>
+						<?php endfor; ?>
 					</select>
 				</div>
 			</div>
@@ -131,7 +133,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<div class="col-md-6">
 				<label for="address_book_1_address_1" class="asterisk">
 					<input type="text" name="address_book_1_address_1" class="large-input" placeholder="Address">
-					<p class="desc">Street address, P.O. box, compagny name, c/o</p>
+					<p class="desc">Street address, P.O. box, company name, c/o</p>
 				</label>
 			</div>
 			<div class="col-md-6 push-down">

@@ -57,8 +57,8 @@
 						<li>
 							Full advance payment via Funds Transfer (ATM or i-Banking) is applicable for:
 							<ul>
-								<li>2.1  Self-collection at preferred outlets or central kitchen</li>
-								<li>2.2  Delivery orders to public parks, BBQ pits, beaches, chalets and public attractions <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i.e. Singapore Zoo, Garden by the Bay, Universal Studios.</li>
+								<li><span class="sub-bullet">2.1</span>  Self-collection at preferred outlets or central kitchen</li>
+								<li><span class="sub-bullet">2.2</span>  Delivery orders to public parks, BBQ pits, beaches, chalets and public attractions <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i.e. Singapore Zoo, Garden by the Bay, Universal Studios.</li>
 							</ul>
 						</li>
 						<li>Lee Wee & Brothers’ Foodstuff Pte Ltd absorbs all prevailing GST charges</li>
@@ -75,9 +75,9 @@
 						<li>
 							Free delivery to a single location
 							<ul>
-								<li>1.1  For a minimum order of S$100, for all areas except Jurong Island & Sentosa.</li>
-								<li>1.2  For a minimum order of S$120, for delivery to Jurong Island & Sentosa.</li>
-								<li>1.3  For orders below S$100, please arrange for self-collection at our respective outlets.</li>
+								<li><span class="sub-bullet">1.1</span>  For a minimum order of S$100, for all areas except Jurong Island & Sentosa.</li>
+								<li><span class="sub-bullet">1.2</span>  For a minimum order of S$120, for delivery to Jurong Island & Sentosa.</li>
+								<li><span class="sub-bullet">1.3</span>  For orders below S$100, please arrange for self-collection at our respective outlets.</li>
 							</ul>
 						</li>
 						<li>The exact time of delivery cannot be fixed. However, Lee Wee & Brothers’ Foodstuff Pte Ltd will endeavor to deliver within the selected delivery timing.</li>
@@ -85,14 +85,14 @@
 						<li>
 							All deliveries must be made between 8am to 5pm, otherwise delivery charge is applicable as follows:
 							<ul>
-								<li>4.1  Delivery between 6am to 7:59am <span class="right-align">additional S$30.00</span></li>
-								<li>4.2  Delivery between 5:01pm to 7pm <span class="right-align">additional S$30.00</span></li>
+								<li><span class="sub-bullet">4.1</span>  Delivery between 6am to 7:59am <span class="right-align-3">additional S$30.00</span></li>
+								<li><span class="sub-bullet">4.2</span>  Delivery between 5:01pm to 7pm <span class="right-align-2">additional S$30.00</span></li>
 							</ul>
 						</li>
 						<li>
 							Special delivery arrangements (subject to availability) are chargeable ON TOP of the free delivery timing option (8am – 5pm).
 							<ul>
-								<li>5.1  Delivery time allowance less than 1½ hours <span class="right-align">additional S$22.00</span></li>
+								<li><span class="sub-bullet">5.1</span>  Delivery time allowance less than 1½ hours <span class="right-align">additional S$22.00</span></li>
 								<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Eg. Between 3pm to 4pm</li>
 							</ul>
 							<div class="table-responsive">

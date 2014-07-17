@@ -230,7 +230,7 @@ else:
 						<div class="space10"></div>
 						<div class="row">
 							<div class="col-md-2">
-								<h4>BILLIN ADDRESS</h4>
+								<h4>BILLING ADDRESS</h4>
 								<p class="billing-address">
 									<span class="name">Lui Yiling</span><br>
 									<span class="address-1">Blk 289A Bukit Batok</span><br>

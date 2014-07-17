@@ -52,9 +52,11 @@ else:
 				<?php do_action( 'woocommerce_register_form' ); ?>
 				<?php do_action( 'register_form' ); ?>
 
+				<div class="space10"></div>
+
 				<div class="row">
 					<div class="col-md-12">
-						<input type="submit" class="button" value="Create" name="action" value="<?php _e( 'Register', 'woocommerce' ); ?>">
+						<input type="submit" class="button" name="action" value="<?php _e( 'Create', 'woocommerce' ); ?>">
 					</div>
 				</div>
 

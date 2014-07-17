@@ -236,7 +236,7 @@ wc_print_notices();
 	<div class="space10"></div>
 	<div class="row">
 		<div class="col-md-2">
-			<h4><?php _e( 'BILLIN ADDRESS:', 'woocommerce' ); ?></h4>
+			<h4><?php _e( 'BILLING ADDRESS:', 'woocommerce' ); ?></h4>
 			<?php $billing_address = json_decode(stripslashes($_POST['billing_address']), true); ?>
 			<p class="billing-address">
 				<span class="name"><?php echo $billing_address['first_name'] . ' ' . $billing_address['last_name']; ?></span><br>

@@ -28,6 +28,7 @@
 			</div>
 		</div>
 		<div class="space50"></div>
+		<div class="space30"></div>
 
 	<?php endwhile; ?>
 <?php get_footer(); ?>

@@ -757,6 +757,10 @@ input[type="submit"], .button {
   padding-top: 4px; 
 }
 
+input[type="submit"],button[type="submit"] {
+  padding-top: 0px;
+}
+
 .small-input {
   width: 193px;
   height: 28px;
@@ -1264,7 +1268,7 @@ header#main-header {
       margin-bottom: 13px;
     }
 
-    input[name="address_1"], input[name="address_2"] {
+    input[name="address_book_1_address_1"], input[name="address_book_1_address_2"] {
       margin-bottom: 0px;
     }
 
@@ -1321,6 +1325,7 @@ header#main-header {
     p.create-account-desc {
       .open-sans-semibold;
       font-size: 12px;
+      line-height: 22px;
     }
 
     .push-down {
@@ -1329,7 +1334,7 @@ header#main-header {
   }
 
   .vertical-line {
-    border-left: 1px solid @red;
+    border-left: 1px solid @brown;
     width: 1px;
     height: 216px;
     position: absolute;
@@ -1388,7 +1393,7 @@ header#main-header {
         border-right: 1px solid @red;
         h2 {
           font-size: 15px;
-          line-height: 23px;
+          line-height: 17px;
           .auto-1-bold;
           color: @white;
         }
@@ -1754,6 +1759,7 @@ header#main-header {
         h3 {
           color: @red;
           line-height: 32px;
+          margin-bottom: -5px;
         }
         .promo-text {
           height: 70px;
@@ -1807,6 +1813,15 @@ header#main-header {
       margin-bottom: 0px;
       span.right-align {
         padding-left: 105px;
+      }
+      span.right-align-2 {
+        padding-left: 163px;
+      }
+      span.right-align-3 {
+        padding-left: 165px;
+      }
+      span.sub-bullet {
+        margin-right: 5px;
       }
     }
   }
@@ -2132,6 +2147,7 @@ header#main-header {
       background-color: @red;
       border: 1px solid @red;
     }
+
     ul.receiving-method, ul.payment-mode, ul.payment-method {
       margin-left: 2px;
       li {
@@ -2159,12 +2175,18 @@ header#main-header {
           padding-left: 5px;
           width: 63px;
           height: 26px;
+          .appearance(none);
+          .round(0px);
         }
         select[name="delivery_date_year"],select[name="collection_date_year"],select[name="consumption_time_am_pm"] {
           width: 84px;
+          .appearance(none);
+          .round(0px);
         }
         select[name="delivery_time"],select[name="collection_time"] {
           width: 215px;
+          .appearance(none);
+          .round(0px);
         }
       }
     }
@@ -2200,6 +2222,7 @@ header#main-header {
       margin-top: 10px;
       li {
         margin: 0;
+        padding-bottom: 7px;
       }
     }
   }
@@ -2234,6 +2257,8 @@ header#main-header {
         height: 26px;
         width: 200px;
         padding-left: 5px;
+        .appearance(none);
+        .round(0px);
       }
 
     } 
@@ -2247,6 +2272,10 @@ header#main-header {
       font-size: 13px;
       color: @dark-brown-text;
       margin-left: -16px;
+
+      span.regular {
+        .open-sans;
+      }
     }
 
     input[type="radio"] {
@@ -2357,7 +2386,7 @@ header#main-header {
         }
         &.country {
           width: 95px;     
-          padding-left: 12px; 
+          padding-left: 15px; 
         }
       }
 
