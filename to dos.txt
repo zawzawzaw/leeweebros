@@ -6,19 +6,22 @@ update in address book
 address page (3 form validation) (at least town to add on register)
 load receiving mode page (prev button + delivery price validation + 2 form validation + add collection times dropbox + add surchages)
 select address page (prev button)
+see how the unregister user flow is now
 clickable indicator
 loop side menu
 need to follow new timeslot
+checkbox to select on label click
 
 yiling design fix
 thank you page
-my account page
+my account page 
+check if all details are saved in db
 
 contact
 search
 responsive
 
-FIXED
+DONE
 
 payment before check out (current or default address not overriding previous address/checkout htaccess error)
 remove cart messages (removed in css for now)
