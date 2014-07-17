@@ -100,19 +100,22 @@ wc_print_notices();
 			<h2>PERSONAL PAYMENT METHODS:</h2>
 			<ul class="payment-method">
 				<li>
-					<input type="radio" name="personal_payment_method" value="Cash on delivery" >
+					<input type="radio" name="personal_payment_method" value="Cash on delivery" checked>
 					<label for="atm" class="radio-label"><span class="radiobtn"></span>Cash on delivery</label>
 				</li>
 				<li>
-					<input type="radio" name="personal_payment_method" value="Advance payment by internet funds transfer/ATM" checked>
+					<input type="radio" name="personal_payment_method" value="Advance payment by internet funds transfer/ATM">
 					<label for="online" class="radio-label"><span class="radiobtn"></span>Advance payment by internet funds transfer/ATM</label>
 				</li>
 				<li>
-					<input type="radio" name="personal_payment_method" value="Advance payment by cash at outlets" checked>
+					<input type="radio" name="personal_payment_method" value="Advance payment by cash at outlets">
 					<label for="online" class="radio-label"><span class="radiobtn"></span>Advance payment by cash at outlets:</label>
 					<div class="dropdown">
 						<select name="outlets">
-							<option value="headquarters" selected>Headquarters</option>
+							<option value="Central Kitchen" selected>Central Kitchen</option>
+							<option value="Raffles City Shopping Centre">Raffles City Shopping Centre</option>
+							<option value="Tampines Mall">Tampines Mall</option>
+							<option value="NEX Serangoon">NEX Serangoon</option>
 						</select>
 					</div>
 				</li>
@@ -131,25 +134,37 @@ wc_print_notices();
 			<h2>CORPORATE PAYMENT METHODS:</h2>
 			<ul class="payment-method">
 				<li>
-					<input type="radio" name="corporate_payment_method" value="Cash on delivery" >
+					<input type="radio" name="corporate_payment_method" value="Cash on delivery" checked>
 					<label for="atm" class="radio-label"><span class="radiobtn"></span>Cash on delivery</label>
 				</li>
 				<li>
-					<input type="radio" name="corporate_payment_method" value="Advance payment by internet funds transfer/ATM" checked>
-					<label for="online" class="radio-label"><span class="radiobtn"></span>Advance payment by internet funds transfer/ATM</label>
-					<input type="text" name="outlets">
+					<input type="radio" name="corporate_payment_method" value="Corporate cheque" >
+					<label for="atm" class="radio-label"><span class="radiobtn"></span>Corporate cheque</label>
 				</li>
 				<li>
-					<input type="radio" name="corporate_payment_method" value="Advance payment by cash at outlets" checked>
-					<label for="online" class="radio-label"><span class="radiobtn"></span>Advance payment by cash at outlets:</label>
-					<input type="text" name="outlets">
+					<input type="radio" name="corporate_payment_method" value="Credit Terms" >
+					<label for="atm" class="radio-label"><span class="radiobtn"></span>Credit Terms</label>
+				</li>
+				<li>
+					<input type="radio" name="corporate_payment_method" value="GeBiz" >
+					<label for="atm" class="radio-label"><span class="radiobtn"></span>GeBiz</label>
+				</li>
+				<li>
+					<input type="radio" name="corporate_payment_method" value="AGD E-Invoice. Input blank field for: event name/code">
+					<label for="online" class="radio-label"><span class="radiobtn"></span>AGD E-Invoice. Input blank field for: event name/code</label>
+					<input type="text" name="einvoice">
+				</li>
+				<li>
+					<input type="radio" name="corporate_payment_method" value="Interbank Giro">
+					<label for="online" class="radio-label"><span class="radiobtn"></span>Interbank Giro:</label>
+					<input type="text" name="interbankgiro">
 				</li>
 			</ul>
 		</div>
 	</div>
 	<div class="space50"></div>
 	<div class="row">
-		<div class="col-md-2"><button class="button personal-payment-save">SAVE</button></div>
+		<div class="col-md-2"><button class="button corporate-payment-save">SAVE</button></div>
 	</div>	
 </div>
 
@@ -213,7 +228,7 @@ wc_print_notices();
 		<div class="col-md-12">
 			<?php $receiving_mode = json_decode(stripslashes($_POST['receiving_mode']), true); ?>
 			<ul>
-				<li><span class="paymentby-lbl">Payment By:</span> <span class="paymentby-value">Online Fund Transfer</span></li>
+				<li><span class="paymentby-lbl">Payment By:</span> <span class="paymentby-value"></span></li>
 				<li><span class="collectionby-lbl">Collection By:</span> <span class="collectionby-value"><?php echo (!empty($receiving_mode['collection_area'])) ? 'Collection' : 'Delivery'; ?></span></li>
 			</ul>
 		</div>

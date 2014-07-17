@@ -2210,6 +2210,30 @@ header#main-header {
     }
   }
 
+  .personal-payment {
+    div.dropdown {
+      display: inline-block;
+      position: relative;
+      margin-left: 10px;
+      &:before {
+        content: '';
+        width:26px; 
+        height:26px;
+        background:url(../images/icons/drop-down-icon.png) no-repeat top left;
+        position:absolute;
+        display:block;
+        right: 0px;
+        pointer-events:none;
+      }
+      select[name="outlets"] {
+        height: 26px;
+        width: 200px;
+        padding-left: 5px;
+      }
+
+    } 
+  }
+
   //  ADDRESS
 
   .address-container {

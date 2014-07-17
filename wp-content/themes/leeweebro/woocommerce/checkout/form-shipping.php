@@ -36,7 +36,14 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 			<?php foreach ( $checkout->checkout_fields['shipping'] as $key => $field ) : ?>
 
-				<?php woocommerce_form_field( $key, $field, $checkout->get_value( $key ) ); ?>
+				<?php 
+				$shipping_address = json_decode(stripslashes($_POST['shipping_address']), true); 
+				$strip_shipping_from_key = str_replace('shipping_', '', $key);
+				?>
+
+				<?php if(isset($shipping_address[$strip_shipping_from_key])): $value = $shipping_address[$strip_shipping_from_key]; else: $value = $checkout->get_value( $key ); endif; ?>
+				
+				<?php woocommerce_form_field( $key, $field, $value ); ?>
 
 			<?php endforeach; ?>
 

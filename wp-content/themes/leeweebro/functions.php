@@ -329,9 +329,23 @@ add_action( 'woocommerce_cart_calculate_fees','woocommerce_custom_surcharge' );
 function woocommerce_custom_surcharge() {
   global $woocommerce;
  
-  if ( is_admin() && ! defined( 'DOING_AJAX' ) )
-    return;
- 
-  $surcharge = 25;
-  $woocommerce->cart->add_fee( 'Surcharge', $surcharge, true, 'standard' ); 
+  // if ( is_admin() && ! defined( 'DOING_AJAX' ) )
+  //   return;
+
+  if( isset($_POST['surcharge']) && !empty($_POST['surcharge']) ) $surcharge = $_POST['surcharge'];
+  else if(isset($_POST['receiving_mode'])) {
+    
+    $receiving_mode = json_decode(stripslashes($_POST['receiving_mode']), true);
+    $surcharge = $receiving_mode['surcharge'];
+
+  }else if(isset($_POST['post_data'])) {
+    
+    $post_data = urldecode($_POST['post_data']);
+
+    parse_str($post_data, $post_data_variables);
+    $surcharge = $post_data_variables['surcharge'];
+  } 
+
+  $woocommerce->cart->add_fee( 'Surcharge', $surcharge, true, 'standard' );
+
 }

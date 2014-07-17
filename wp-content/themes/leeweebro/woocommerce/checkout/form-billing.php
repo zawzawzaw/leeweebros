@@ -24,7 +24,14 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 	<?php foreach ( $checkout->checkout_fields['billing'] as $key => $field ) : ?>
 
-		<?php woocommerce_form_field( $key, $field, $checkout->get_value( $key ) ); ?>
+		<?php 
+		$billing_address = json_decode(stripslashes($_POST['billing_address']), true); 
+		$strip_billing_from_key = str_replace('billing_', '', $key);
+		?>
+
+		<?php if(isset($billing_address[$strip_billing_from_key])): $value = $billing_address[$strip_billing_from_key]; else: $value = $checkout->get_value( $key ); endif; ?>
+
+		<?php woocommerce_form_field( $key, $field, $value); ?>
 
 	<?php endforeach; ?>
 

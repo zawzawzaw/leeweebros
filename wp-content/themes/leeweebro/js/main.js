@@ -35,7 +35,7 @@ jQuery( function( $ ) {
 			$orderSummaryContainer = $('.summary-container'),
 			$orderDetailContainer = $('.order-details-container'),
 			$personalPaymentBtn = $('.personal-payment-save');
-			$coporatePaymentBtn = $('.coporate-payment-save');
+			$corporatePaymentBtn = $('.corporate-payment-save');
 
 		$sideBarMenu.children('li').children('collapse').on('shown.bs.collapse', function (e) {
 		  	$('.side-menu li').removeClass('active');
@@ -116,6 +116,47 @@ jQuery( function( $ ) {
 
 				$receivingModeDelivery.find('form').submit();
 
+			}
+		});
+
+		function appendDeliveryTime(key) {
+			var delivery_time = ['<option value="6:00 am - 7:30 am">6:00 am - 7:30 am *</option><option value="6:30 am - 8:00 am">6:30 am - 8:00 am ^</option><option value="7:00 am - 8:30 am">7:00 am - 8:30 am ^</option><option value="7:30 am - 9:00 am">7:30 am - 9:00 am ^</option><option value="8:00 am - 9:30 am">8:00 am - 9:30 am</option><option value="9:00 am - 10:30 am">9:00 am - 10:30 am</option><option value="9:30 am - 11:00 am">9:30 am - 11:00 am</option><option value="10:00 am - 11:30 am">10:00 am - 11:30 am</option><option value="11:30 am - 1:00 pm">11:30 am - 1:00 pm</option><option value="12:00 pm - 1:30 pm">12:00 pm - 1:30 pm</option><option value="12:30 pm - 2:00 pm">12:30 pm - 2:00 pm</option><option value="1:00 pm - 2:30 pm">1:00 pm - 2:30 pm</option><option value="1:30 pm - 3:00 pm">1:30 pm - 3:00 pm</option><option value="2:00 pm - 3:30 pm">2:00 pm - 3:30 pm</option><option value="2:30 pm - 4:00 pm">2:30 pm - 4:00 pm</option><option value="3:00 pm - 4:30 pm">3:00 pm - 4:30 pm</option><option value="3:30 pm - 5:00 pm">3:30 pm - 5:00 pm</option>', 
+			'<option value="6:00 am - 7:30 am">6:00 am - 7:30 am *</option><option value="6:30 am - 8:00 am">6:30 am - 8:00 am ^</option><option value="7:00 am - 8:30 am">7:00 am - 8:30 am ^</option><option value="7:30 am - 9:00 am">7:30 am - 9:00 am ^</option><option value="8:00 am - 9:30 am">8:00 am - 9:30 am</option><option value="8:30 am - 10:00 am">8:30 am - 10:00 am</option><option value="9:00 am - 10:30 am">9:00 am - 10:30 am</option><option value="9:30 am - 11:00 am">9:30 am - 11:00 am</option><option value="10:00 am - 11:30 am">10:00 am - 11:30 am</option><option value="10:30 am - 12:00 pm">10:30 am - 12:00 pm</option><option value="11:00 am - 12:30 pm">11:00 am - 12:30 pm</option><option value="11:30 am - 1:00 pm">11:30 am - 1:00 pm</option><option value="12:00 pm - 1:30 pm">12:00 pm - 1:30 pm</option><option value="12:30 pm - 2:00 pm">12:30 pm - 2:00 pm</option><option value="1:00 pm - 2:30 pm">1:00 pm - 2:30 pm</option><option value="1:30 pm - 3:00 pm">1:30 pm - 3:00 pm</option><option value="2:00 pm - 3:30 pm">2:00 pm - 3:30 pm</option><option value="2:30 pm - 4:00 pm">2:30 pm - 4:00 pm</option><option value="3:00 pm - 4:30 pm">3:00 pm - 4:30 pm</option><option value="3:30 pm - 5:00 pm">3:30 pm - 5:00 pm</option><option value="4:00 pm - 5:30 pm">4:00 pm - 5:30 pm ^</option><option value="4:30 pm - 6:00 pm">4:30 pm - 6:00 pm ^</option><option value="4:00 pm - 5:30 pm (Sat/PH only)">4:00 pm - 5:30 pm (Sat/PH only)</option><option value="4:30 pm - 6:00 pm (Sat/PH only)">4:30 pm - 6:00 pm (Sat/PH only)</option>'];
+
+			var certain_delivery_time_additional_30 = ['6:00 am - 7:30 am'];
+			var certain_delivery_time_additional_22 = ['6:30 am - 8:00 am','7:00 am - 8:30 am','7:30 am - 9:00 am','4:00 pm - 5:30 pm','4:30 pm to 6:00 pm'];
+
+			$receivingModeDelivery.find('select[name="delivery_time"]').html('').append(delivery_time[key]).off('change').on('change', function(e){
+				
+				var selectedDeliveryTime = $(this).val();
+				if($.inArray(selectedDeliveryTime, certain_delivery_time_additional_30) != -1){
+
+					$receivingModeDelivery.find('input[name="surcharge"]').val(30);
+
+				}else if($.inArray(selectedDeliveryTime, certain_delivery_time_additional_22) != -1) {
+
+					$receivingModeDelivery.find('input[name="surcharge"]').val(22);
+
+				}else {
+
+					$receivingModeDelivery.find('input[name="surcharge"]').val(0);
+
+				}
+
+			}).trigger('change');
+		}
+
+		// by default;
+		appendDeliveryTime(0);
+
+		$receivingModeDelivery.find('input[name="delivery"]').on('change', function(e){
+
+			e.preventDefault();
+
+			if($(this).val()=="allotherarea") {
+				appendDeliveryTime(0);
+			}else {
+				appendDeliveryTime(1);
 			}
 
 		});
@@ -207,6 +248,8 @@ jQuery( function( $ ) {
 
 					$shippingDropdownDiv.slideUp();
 
+					$shippingInfoList.next('.update').html('');
+
 				}else {
 
 					$shippingDropdownDiv.slideDown();
@@ -240,9 +283,10 @@ jQuery( function( $ ) {
 					show_shipping_address_data(billingAddress);
 					$shippinginputHidden.val(billingAddress_json);
 
-					$shippingDropdownDiv.slideUp();
-
 				}
+
+				$shippingDropdownDiv.slideUp();
+
 			}else {
 				hide_shipping_address_data();
 				$shippinginputHidden.val('');
@@ -250,6 +294,37 @@ jQuery( function( $ ) {
 				$shippingDropdownDiv.slideDown();
 				$shippingDropdown.trigger('change');
 			}
+		});
+
+		function setAddressInTheForm(billingAddress) {
+			$newFormContainer.find('input[name="first_name"]').val(billingAddress.first_name);
+			$newFormContainer.find('input[name="last_name"]').val(billingAddress.last_name);
+			$newFormContainer.find('input[name="company"]').val(billingAddress.company);
+			$newFormContainer.find('input[name="address_1"]').val(billingAddress.address_1);
+			$newFormContainer.find('input[name="address_2"]').val(billingAddress.address_2);
+			$newFormContainer.find('input[name="postcode"]').val(billingAddress.postcode);
+			$newFormContainer.find('select[name="country"]').val(billingAddress.country);
+			$newFormContainer.find('textarea[name="addition_info"]').val(billingAddress.addition_info);
+			$newFormContainer.find('input[name="phone"]').val(billingAddress.phone);
+			$newFormContainer.find('input[name="mobile"]').val(billingAddress.mobile);
+		}
+
+		$billingInfoList.next('.update').on('click', function(e){
+			
+			e.preventDefault();
+
+			if($billingDropdown.val()){
+
+				var billingAddress_json = $billingDropdown.val();
+				var billingAddress = jQuery.parseJSON( billingAddress_json );
+
+				setAddressInTheForm(billingAddress);
+			}
+
+			$selectAddressContainer.hide();
+			$newFormContainer.show();
+			$newBillingAddressForm.show();
+
 		});
 
 		$shippingDropdown.on('change', function(e){
@@ -273,15 +348,6 @@ jQuery( function( $ ) {
 
 		});
 
-		$addNewShippingBtn.on('click', function(e){
-
-			e.preventDefault();
-
-			$selectAddressContainer.hide();
-			$newFormContainer.show();
-			$newShippingAddressForm.show();
-		});
-
 		$addNewBillingBtn.on('click', function(e){
 
 			e.preventDefault();
@@ -289,6 +355,15 @@ jQuery( function( $ ) {
 			$selectAddressContainer.hide();
 			$newFormContainer.show();
 			$newBillingAddressForm.show();
+		});
+
+		$addNewShippingBtn.on('click', function(e){
+
+			e.preventDefault();
+
+			$selectAddressContainer.hide();
+			$newFormContainer.show();
+			$newShippingAddressForm.show();
 		});
 
 		/* SERIALIZING OBJ */
@@ -309,21 +384,6 @@ jQuery( function( $ ) {
 		    return o;
 		};
 
-		$saveDeliveryAddressBtn.on('click', function(e){
-
-			e.preventDefault();
-
-			$selectAddressContainer.show();
-			$newFormContainer.hide();
-			$newShippingAddressForm.hide();
-
-			var fields = $( this ).closest('form').serializeObject();
-			var shipping_fields_json = JSON.stringify(fields);
-
-			show_shipping_address_data(fields);
-			$shippinginputHidden.val(shipping_fields_json);
-		});
-
 		$saveBillingAddressBtn.on('click', function(e){
 
 			e.preventDefault();
@@ -336,8 +396,31 @@ jQuery( function( $ ) {
 			var billing_fields_json = JSON.stringify(fields);
 
 			show_billing_address_data(fields);
+			$billingInfoList.next('.update').html('');
 			$billinginputHidden.val(billing_fields_json);
 
+			if($sameasbillingCheckbox.prop('checked')){
+				show_shipping_address_data(fields);
+				$shippingInfoList.next('.update').html('');
+				$shippinginputHidden.val(billing_fields_json);
+			}
+
+		});
+
+		$saveDeliveryAddressBtn.on('click', function(e){
+
+			e.preventDefault();
+
+			$selectAddressContainer.show();
+			$newFormContainer.hide();
+			$newShippingAddressForm.hide();
+
+			var fields = $( this ).closest('form').serializeObject();
+			var shipping_fields_json = JSON.stringify(fields);
+
+			show_shipping_address_data(fields);
+			$shippingInfoList.next('.update').html('');
+			$shippinginputHidden.val(shipping_fields_json);
 		});
 
 		$checkoutBtn.on('click', function(e){
@@ -364,21 +447,37 @@ jQuery( function( $ ) {
 		});
 
 		$personalPaymentBtn.on('click', function(e){
+			e.preventDefault();
+
 			$personalPaymentModeContainer.hide();
 			$orderSummaryContainer.show();
+
+			var choosedPersonalPaymentMethod = $personalPaymentModeContainer.find('input[name="personal_payment_method"]:checked').val();
 
 			$('#payment_method_cod').trigger('click');
 
 			$orderDetailContainer.show();
+			$orderDetailContainer.find('.paymentby-value').html(choosedPersonalPaymentMethod);
 		});
 
-		$coporatePaymentBtn.on('click', function(e){
+		$corporatePaymentBtn.on('click', function(e){
+			e.preventDefault();
+
 			$corporatePaymentModeContainer.hide();
 			$orderSummaryContainer.show();
+
+			var choosedPersonalPaymentMethod = $corporatePaymentModeContainer.find('input[name="corporate_payment_method"]:checked').val();
+
+			$('#payment_method_cod').trigger('click');
+
 			$orderDetailContainer.show();
+			$orderDetailContainer.find('.paymentby-value').html(choosedPersonalPaymentMethod);
 		});
 		
 		$('#confirm-order').on('click', function(e){
+			e.preventDefault();
+			$(this).attr('disabled', 'disabled');
+
 			$('#place_order').trigger('click');
 		})
 

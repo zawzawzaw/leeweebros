@@ -167,7 +167,10 @@ global $woocommerce;
 	</div>
 	<div class="space50"></div>
 	<div class="row">
-		<div class="col-md-2"><button class="button select-address-prev-btn">PREVIOUS</button></div>
+		<form action="" method="post">
+			<input type="hidden" name="">
+		</form>
+		<div class="col-md-2"><button type="submit" class="button select-address-prev-btn">PREVIOUS</button></div>
 		<div class="col-md-2 col-md-offset-8"><button type="submit" class="button submit-to-checkout">NEXT</button></div>
 	</div>
 </div>
@@ -235,8 +238,8 @@ global $woocommerce;
 				<label for="postcode" class="asterisk">
 					<input type="text" name="postcode" class="small-input" placeholder="Zip / Postal Code">
 				</label>
-				<label for="town" class="asterisk">
-					<input type="text" name="town" class="small-input" placeholder="Town">
+				<label for="city" class="asterisk">
+					<input type="text" name="city" class="small-input" placeholder="Town">
 				</label>
 
 				<!-- <div class="space10"></div> -->
@@ -335,8 +338,8 @@ global $woocommerce;
 				<label for="postcode" class="asterisk">
 					<input type="text" name="postcode" class="small-input" placeholder="Zip / Postal Code">
 				</label>
-				<label for="town" class="asterisk">
-					<input type="text" name="town" class="small-input" placeholder="Town">
+				<label for="city" class="asterisk">
+					<input type="text" name="city" class="small-input" placeholder="Town">
 				</label>
 
 				<!-- <div class="space10"></div> -->

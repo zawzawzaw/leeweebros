@@ -101,26 +101,26 @@ $total_amount = $woocommerce->cart->total;
 			<p class="sub-head-desc">Kindly select the appropriate delivery/collection location below.</p>
 			<ul class="collection-places">
 				<li>
-					<input type="radio" name="collection_area" value="allotherarea" checked>
+					<input type="radio" name="collection_area" value="Central Kitchen" checked>
 					<label for="online" class="radio-label"><span class="radiobtn"></span>Central Kitchen</label> 
 					<span class="address">42 Lorong 1 Realty Park 536959</span>
 				</li>
 				<li>
-					<input type="radio" name="collection_area" value="jurongsentoaarea" >
+					<input type="radio" name="collection_area" value="Raffles City Shopping Centre" >
 					<label for="atm" class="radio-label"><span class="radiobtn"></span>Raffles City Shopping Centre</label><span class="address">#B1-57, 252 North Bridge Road 179103</span>
 				</li>
 				<li>
-					<input type="radio" name="collection_area" value="jurongsentoaarea" >
+					<input type="radio" name="collection_area" value="Tampines Mall" >
 					<label for="atm" class="radio-label"><span class="radiobtn"></span>Tampines Mall</label> 
 					<span class="address">#B1-K6, 4 Tampines Central 5 529510</span>
 				</li>
 				<li>
-					<input type="radio" name="collection_area" value="jurongsentoaarea" >
+					<input type="radio" name="collection_area" value="NEX Serangoon" >
 					<label for="atm" class="radio-label"><span class="radiobtn"></span>NEX Serangoon</label> 
 					<span class="address">#B1-K6, 23 Serangoon Central 556083</span>
 				</li>
 				<li>
-					<input type="radio" name="collection_area" value="jurongsentoaarea" >
+					<input type="radio" name="collection_area" value="Other Selected Locations" >
 					<label for="atm" class="radio-label"><span class="radiobtn"></span>Other Selected Locations</label><span class="address">Our Customer Service Personnel will advise you</span>
 				</li>
 			</ul>
@@ -178,7 +178,30 @@ $total_amount = $woocommerce->cart->total;
 				<label for="collection_time">Collection Time:</label>
 				<div class="dropdown">
 					<select name="collection_time" id="collection_time">
-						<option value="5:30 pm – 6:00 pm (Sat/PH only)">5:30 pm – 6:00 pm (Sat/PH only)</option>
+						<option value="6:00 am - 7:30 am">6:00 am - 7:30 am</option>
+						<option value="6:30 am - 8:00 am">6:30 am - 8:00 am</option>
+						<option value="7:00 am - 8:30 am">7:00 am - 8:30 am</option>
+						<option value="7:30 am - 9:00 am">7:30 am - 9:00 am</option>
+						<option value="8:00 am - 9:30 am">8:00 am - 9:30 am</option>
+						<option value="8:30 am - 10:00 am">8:30 am - 10:00 am</option>
+						<option value="9:00 am - 10:30 am">9:00 am - 10:30 am</option>
+						<option value="9:30 am - 11:00 am">9:30 am - 11:00 am</option>
+						<option value="10:00 am - 11:30 am">10:00 am - 11:30 am</option>
+						<option value="10:30 am - 12:00 pm">10:30 am - 12:00 pm</option>
+						<option value="11:00 am - 12:30 pm">11:00 am - 12:30 pm</option>
+						<option value="11:30 am - 1:00 pm">11:30 am - 1:00 pm</option>
+						<option value="12:00 pm - 1:30 pm">12:00 pm - 1:30 pm</option>
+						<option value="12:30 pm - 2:00 pm">12:30 pm - 2:00 pm</option>
+						<option value="1:00 pm - 2:30 pm">1:00 pm - 2:30 pm</option>
+						<option value="1:30 pm - 3:00 pm">1:30 pm - 3:00 pm</option>
+						<option value="2:00 pm - 3:30 pm">2:00 pm - 3:30 pm</option>
+						<option value="2:30 pm - 4:00 pm">2:30 pm - 4:00 pm</option>
+						<option value="3:00 pm - 4:30 pm">3:00 pm - 4:30 pm</option>
+						<option value="3:30 pm - 5:00 pm">3:30 pm - 5:00 pm</option>
+						<option value="4:00 pm - 5:30 pm">4:00 pm - 5:30 pm</option>
+						<option value="4:30 pm - 6:00 pm">4:30 pm - 6:00 pm</option>
+						<option value="4:00 pm - 5:30 pm (Sat/PH only)">4:00 pm - 5:30 pm (Sat/PH only)</option>
+						<option value="4:30 pm - 6:00 pm (Sat/PH only)">4:30 pm - 6:00 pm (Sat/PH only)</option>
 					</select>
 				</div>
 			</div>
@@ -297,9 +320,10 @@ $total_amount = $woocommerce->cart->total;
 					<label for="delivery_time">Delivery Time:</label>
 					<div class="dropdown">
 						<select name="delivery_time" id="delivery_time">
-							<option value="5:30 pm – 6:00 pm (Sat/PH only)">5:30 pm – 6:00 pm (Sat/PH only)</option>
+							
 						</select>
 					</div>
+					<input type="hidden" name="surcharge" value="0">
 				</div>
 			</div>
 		</div>
@@ -339,9 +363,8 @@ $total_amount = $woocommerce->cart->total;
 			<div class="col-md-12">
 				<p class="charges-info">Note: Surcharge is applicable for delivery at selected time range.</p>
 				<ul class="charges-info">
-					<li><p><span class="red">*</span> Additional S$30 surcharge applies.</p></li>
-					<li><p>* Additional S$22 surcharge applies.</p></li>
-					<li><p>* Additional S$20 surcharge applies.</p></li>
+					<li><p>* Additional S$30 surcharge applies.</p></li>
+					<li><p>^ Additional S$22 surcharge applies.</p></li>
 				</ul>
 			</div>
 		</div>

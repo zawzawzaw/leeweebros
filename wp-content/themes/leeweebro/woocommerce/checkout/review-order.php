@@ -59,7 +59,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 					<p class="delivery-charge-lbl"><?php _e( 'Delivery Surcharge:', 'woocommerce' ); ?></p>
 				</div>
 				<div class="col-md-2 col-md-offset-1">
-					<p class="sub-total"><?php wc_cart_totals_subtotal_html(); ?></p>
+					<p class="sub-total"><?php wc_cart_totals_subtotal_html(); ?></p>			
 					<?php foreach ( WC()->cart->get_fees() as $fee ) : ?>
 						<p class="delivery-charge"><?php wc_cart_totals_fee_html( $fee ); ?></p>
 					<?php endforeach; ?>
