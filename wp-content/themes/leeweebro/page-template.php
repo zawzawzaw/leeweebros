@@ -96,7 +96,11 @@ Template Name: Page Template
 									</a>
 									<div class="promo-product-description">
 										<h3><?php the_title(); ?></h3>
-										<p class="promo-text"><?php echo get_the_excerpt(); ?></p>
+										<?php 
+										$the_str = substr(get_the_excerpt(), 0, 135);
+										$the_str = trim(preg_replace( '/\s+/', ' ', $the_str));
+										?>
+										<p class="promo-text"><?php echo $the_str; ?></p>
 										<p class="promo-price">$<?php echo (isset($sale) && !empty($sale)) ? number_format((float)$sale, 2, '.', '') : number_format((float)$price, 2, '.', '');  ?></p>
 										<p class="promo-price-2"><?php echo (isset($attributes['per']['value'])) ? $attributes['per']['value'] : ''; ?></p>
 									</div>

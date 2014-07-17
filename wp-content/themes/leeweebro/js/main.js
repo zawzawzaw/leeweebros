@@ -489,6 +489,10 @@ jQuery( function( $ ) {
 			$('#terms').trigger('click');
 		});	
 
+		$('.radio-label').on('click', function(e){
+			$(this).prev('input[type="radio"]').trigger('click');
+		});
+
 	});
 	
 });

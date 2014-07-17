@@ -935,7 +935,9 @@ header#main-header .header-content #header-cart-info #cart-item-price {
 }
 #feature-product .feature-product-wrapper ul li h3 {
   color: #da0009;
-  line-height: 32px;
+  line-height: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 #feature-product .feature-product-wrapper ul li p.feature-price {
   padding-top: 13px;
