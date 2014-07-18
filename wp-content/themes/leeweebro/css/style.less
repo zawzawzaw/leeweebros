@@ -543,6 +543,10 @@ strong {
   .open-sans;
 }
 
+.red-text{
+  color: @red;
+}
+
 
 //    ____ _____ _   _ _____ ____      _    _
 //   / ___| ____| \ | | ____|  _ \    / \  | |
@@ -1866,6 +1870,8 @@ header#main-header {
         width: 302px;
         float: left;
         margin-bottom: 50px;
+        min-height: 420px;
+
         .promo-product-description {
           width: 290px;
         }
@@ -1878,7 +1884,9 @@ header#main-header {
           margin-bottom: -5px;
         }
         .promo-text {
-          height: 70px;
+          //height: 70px;
+          min-height: 70px;
+
           width: 220px;
           margin-left: 30px;
         }
@@ -1937,7 +1945,7 @@ header#main-header {
         padding-left: 165px;
       }
       span.sub-bullet {
-        margin-right: 5px;
+        //margin-right: 5px;     - cannot have
       }
     }
   }
@@ -2801,6 +2809,24 @@ header#main-header {
       }
       p.copy-right {
         margin-top: 40px;
+      }
+    }
+  }
+}
+
+
+//      _   _    ___ ____  _   _ ____    _____ ____ ___ _____ 
+//     | | / \  |_ _|  _ \| | | / ___|  | ____|  _ \_ _|_   _|
+//  _  | |/ _ \  | || |_) | | | \___ \  |  _| | | | | |  | |  
+// | |_| / ___ \ | ||  _ <| |_| |___) | | |___| |_| | |  | |  
+//  \___/_/   \_\___|_| \_\\___/|____/  |_____|____/___| |_|  
+// 
+
+#terms-conditions{
+  ol.list{
+    > li{
+      > ul{
+        padding-top: 5px;
       }
     }
   }
