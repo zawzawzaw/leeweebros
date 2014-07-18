@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]>
+<!--> 
+<html class=""> 
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<title>Lee Wee Brothers</title>
+	<meta name="description" content="Lee Wee">
+	<meta name="keywords" content="Lee Wee">
+
+	<!--#include virtual="inc/head.inc" -->
+</head>
+<body>
+<!-- 	<div class="image-bg">
+		<div class="top-bg"></div>
+		<div class="middle-bg"></div>
+	</div> -->
+	
+  	<!--#include virtual="inc/header.inc" -->
+	<div id="content-wrapper" class="">
+		<div id="breadcrumb" class="container">
+			<div class="align-left-2">
+				<div class="row">
+					<div class="col-md-12">
+						<a href="#">Home</a> / <a href="#">About Us</a> / <a href="#" class="active">Food Philosophy</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="food-philosophy" class="container">
+			<div class="align-left-2">
+				<div class="space30"></div>
+				<div class="row">
+					<div class="col-md-12" id="page-title">
+						<h2>THE LEE WEE DIFFERENCE</h2>
+						<h1>OUR FOOD PHILOSOPHY</h1>
+					</div>
+				</div>
+			</div>
+			<!-- <div class="space20"></div> -->
+			<!-- <div class="row">
+				<div class="col-md-12" id="banner-img">
+					<img src="images/content/banner-1.jpg" alt="banner">
+				</div>
+			</div> -->
+			<div class="space30"></div>
+			<div class="row">
+				<div class="col-md-12">
+					<h2>A Day In The Life Of…</h2>
+
+					<strong>We are proud to be Singaporeans, and proud to offer the original Singapore flavour!</strong>
+
+					To show that we care about what we do, we provide only the best local fare to our customers.
+
+					<strong>No artificial ingredients. No preservatives.</strong> We use 100% natural and fresh ingredients to make our otah and other food, and only prepare our dishes after you order.
+
+					Because we believe in providing you the best, each of our food items comes with several options and combinations, so that you can choose what matches your own taste, occasion and lifestyle.
+
+					<strong>We use home-made recipes.</strong> All our recipes come from the Lee Family’s rich heritage, and our family’s own unique flavour. Even our ingredients, like our Assam sauce, are made from scratch.
+
+					Most importantly, we keep it at affordable prices, so that you can enjoy authentic local food without burning a hole in your wallet.
+
+					<strong>Our otah is the one-and-only original;</strong> it’s no wonder why our customers give the Thumbs Up to Lee Wee &amp; Brothers’
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="space50"></div>
+	<div class="space50"></div>
+
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+
+		});
+
+	</script>
+
+	<!--#include virtual="inc/footer.inc" -->
+</body>
+</html>

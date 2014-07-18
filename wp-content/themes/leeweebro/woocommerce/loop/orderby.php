@@ -20,11 +20,10 @@ if ( 1 == $wp_query->found_posts || ! woocommerce_products_will_display() )
 		SORT BY
 		<div class="sort">
 			<ul id="orderby">
-				<li>Default</li>
+				<li>None</li>
 				<li>Price (Lowest)</li>
 				<li>Price (Highest)</li>
 				<li>Name (A - Z)</li>
-				<li>Name (Z - A)</li>
 				<li>In-stock first</li>
 			</ul>
 		</div>

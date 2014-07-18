@@ -21,41 +21,41 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 
  * { margin: 0; padding: 0; }
 
 input {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
-	display: block;
+  display: block;
 }
 body {
-	line-height: 100%;
+  line-height: 100%;
 }
 blockquote, q {
-	quotes: none;
+  quotes: none;
 }
 blockquote:before, blockquote:after,
 q:before, q:after {
-	content: '';
-	content: none;
+  content: '';
+  content: none;
 }
 
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 * {
@@ -65,15 +65,15 @@ table {
 }
 
 ul, ol, li {
-	list-style-type: none;
+  list-style-type: none;
 }
 
 input, textarea {
-	outline: none;
+  outline: none;
 }
 
 strong {
-	font-weight: bold;
+  font-weight: bold;
 }
 
 .fr { float: right; }
@@ -541,6 +541,10 @@ strong {
 
 .body-font{
   .open-sans;
+}
+
+.red-text{
+  color: @red;
 }
 
 
@@ -1782,7 +1786,7 @@ header#main-header {
 
         div {
           width: 96px;
-          height: 119px;
+          height: 100px;
         }
       }
       &:hover {
@@ -1800,6 +1804,16 @@ header#main-header {
   .single_variation_wrap {
     display: inline-block;
   }
+  
+  div.product {
+    a {
+      img {
+        width: 220px;
+        height: 171px;
+      }
+    }
+  }
+
 }
 
 //  CATEGORY
@@ -1866,6 +1880,8 @@ header#main-header {
         width: 302px;
         float: left;
         margin-bottom: 50px;
+        min-height: 420px;
+
         .promo-product-description {
           width: 290px;
         }
@@ -1878,7 +1894,9 @@ header#main-header {
           margin-bottom: -5px;
         }
         .promo-text {
-          height: 70px;
+          //height: 70px;
+          min-height: 70px;
+
           width: 220px;
           margin-left: 30px;
         }
@@ -1926,7 +1944,9 @@ header#main-header {
     li {
       list-style: none;
       padding-top: 0px;
-      margin-bottom: 0px;
+      margin-bottom: 7px;
+      margin-top: 7px;
+
       span.right-align {
         padding-left: 105px;
       }
@@ -1937,7 +1957,7 @@ header#main-header {
         padding-left: 165px;
       }
       span.sub-bullet {
-        margin-right: 5px;
+        //margin-right: 5px;     - cannot have
       }
     }
   }
@@ -2525,6 +2545,9 @@ header#main-header {
 
       p.desc {
         padding-left: 8px;
+        em, i {
+          font-style: italic;
+        }
       }
 
       button.button {
@@ -2801,6 +2824,28 @@ header#main-header {
       }
       p.copy-right {
         margin-top: 40px;
+      }
+    }
+  }
+}
+
+.item-price-to-left {
+  padding-left: 0px;
+}
+
+
+//      _   _    ___ ____  _   _ ____    _____ ____ ___ _____ 
+//     | | / \  |_ _|  _ \| | | / ___|  | ____|  _ \_ _|_   _|
+//  _  | |/ _ \  | || |_) | | | \___ \  |  _| | | | | |  | |  
+// | |_| / ___ \ | ||  _ <| |_| |___) | | |___| |_| | |  | |  
+//  \___/_/   \_\___|_| \_\\___/|____/  |_____|____/___| |_|  
+// 
+
+#terms-conditions{
+  ol.list{
+    > li{
+      > ul{
+        padding-top: 5px;
       }
     }
   }
