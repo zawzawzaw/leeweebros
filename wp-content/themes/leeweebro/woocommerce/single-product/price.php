@@ -17,7 +17,7 @@ $per_attribute = $product->get_attribute( 'per' );
 <div class="space10"></div>
 <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
 
-	<p class="price price-info"><span class="price red"><?php echo $product->get_price_html(); ?></span> <span class="per-item"><?php echo $per_attribute; ?></span></p>
+	<p class="price price-info"><span class="price"><?php echo $product->get_price_html(); ?></span> <span class="per-item"><?php echo $per_attribute; ?></span></p>
 
 	<meta itemprop="price" content="<?php echo $product->get_price(); ?>" />
 	<meta itemprop="priceCurrency" content="<?php echo get_woocommerce_currency(); ?>" />

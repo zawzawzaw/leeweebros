@@ -1,16 +1,13 @@
 TO DOs
 
 variable prices
-see how the unregister user flow is now
 address page (3 form validation) (at least town to add on register)
 load receiving mode page (prev button + delivery price validation + 2 form validation + add collection times dropbox + add surchages)
 select address page (prev button)
 clickable indicator
-need to follow new timeslot
 update in address book
 
 thank you page
-my account page 
 check if all details are saved correctly in db
 image sizes
 
@@ -27,3 +24,6 @@ address page (prev button + existing address update)
 checkbox to select on label click
 loop side menu
 min quantity to order
+see how the unregister user flow is now
+need to follow new timeslot
+my account page 

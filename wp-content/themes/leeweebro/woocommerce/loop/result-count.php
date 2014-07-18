@@ -28,9 +28,11 @@ if ( ! woocommerce_products_will_display() )
 	if ( 1 == $total ) {
 		_e( 'Showing the single result', 'woocommerce' );
 	} elseif ( $total <= $per_page || -1 == $per_page ) {
-		printf( _x( 'Showing %1$d to %2$d of %3$d (%4$d page)', '%1$d = first, %2$d = last, %3$d = total, %4$d = total_page', 'woocommerce' ), $first, $last, $total, $total_page );
+		// printf( _x( 'Showing %1$d - %2$d of %3$d (%4$d page)', '%1$d = first, %2$d = last, %3$d = total, %4$d = total_page', 'woocommerce' ), $first, $last, $total, $total_page );
+		printf( _x( 'Showing %1$d - %2$d of %3$d', '%1$d = first, %2$d = last, %3$d = total, %4$d = total_page', 'woocommerce' ), $first, $last, $total, $total_page );
 	} else {
-		printf( _x( 'Showing %1$d to %2$d of %3$d (%4$d pages)', '%1$d = first, %2$d = last, %3$d = total, %4$d = total_page', 'woocommerce' ), $first, $last, $total, $total_page );
+		printf( _x( 'Showing %1$d - %2$d of %3$d', '%1$d = first, %2$d = last, %3$d = total, %4$d = total_page', 'woocommerce' ), $first, $last, $total, $total_page );
+		// printf( _x( 'Showing %1$d - %2$d of %3$d (%4$d pages)', '%1$d = first, %2$d = last, %3$d = total, %4$d = total_page', 'woocommerce' ), $first, $last, $total, $total_page );
 	}
 	?>
 </p>
