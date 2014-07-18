@@ -71,13 +71,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<div class="dropdown">
 					<select name="day">
 						<option value="" selected>DD</option>
-						<option value="01" selected>01</option>
+						<?php for($i=1; $i<=30; $i++): ?>
+							<option value="<?php echo $i; ?>" <?php echo ($i==1) ? 'checked' : ''; ?>><?php echo $i; ?></option>
+						<?php endfor; ?>
 					</select>
 				</div>
 				<div class="dropdown">
 					<select name="month">
 						<option value="" selected>MM</option>
-						<option value="01" selected>01</option>
+						<?php for($i=1; $i<=12; $i++): ?>
+							<option value="<?php echo $i; ?>" <?php echo ($i==1) ? 'checked' : ''; ?>><?php echo $i; ?></option>
+						<?php endfor; ?>
 					</select>
 				</div>
 				<div class="dropdown">

@@ -39,13 +39,13 @@ $total_amount = $woocommerce->cart->total;
 								<div class="circle"></div>
 							</div>
 						</li>
-						<li class="sixth">
+						<!-- <li class="sixth">
 							<div class="circle-holder">
 								<div class="circle-text">TERMS OF SERVICE</div>
 								<div class="circle"></div>
 							</div>
-						</li>
-						<li class="seventh">
+						</li> -->
+						<li class="sixth">
 							<div class="circle-holder">
 								<div class="circle-text">SUBMISSION</div>
 								<div class="circle"></div>
@@ -231,8 +231,7 @@ $total_amount = $woocommerce->cart->total;
 				</div>
 				<div class="dropdown">
 					<select name="consumption_time_am_pm" id="consumption_time_am_pm">
-						<option value="">AM/PM</option>
-						<option value="AM">AM</option>
+						<option value="AM" selected>AM</option>
 						<option value="PM">PM</option>
 					</select>
 				</div>
@@ -246,7 +245,7 @@ $total_amount = $woocommerce->cart->total;
 		<div class="col-md-2"><button class="button receiving-mode-prev">PREVIOUS</button></div>
 		<div class="col-md-2 col-md-offset-8">
 			<!-- <input type="submit" class="checkout-button button alt wc-forward" name="proceed" value="<?php _e( 'NEXT', 'woocommerce' ); ?>" /> -->
-			<input type="submit" class="button" value="NEXT">
+			<input type="submit" id="receiving-mode-collection-submit" class="button" value="NEXT">
 		</div>
 		<?php //do_action( 'woocommerce_proceed_to_checkout' ); ?>
 
@@ -307,6 +306,7 @@ $total_amount = $woocommerce->cart->total;
 					</div>
 					<a href="#" id="delivery_datepicker" class="calendar"></a>
 					<input type="text" id="delivery_date" style="display:none;" />
+					<div class="error-msg error-delivery-date"></div>
 					<div class="space10"></div>
 					<p class="note">* Please note that orders must be made at least 2 days in advance. Subject to availability</p>
 				</div>
@@ -351,8 +351,7 @@ $total_amount = $woocommerce->cart->total;
 					</div>
 					<div class="dropdown">
 						<select name="consumption_time_am_pm" id="consumption_time_am_pm">
-							<option value="">AM/PM</option>
-							<option value="AM">AM</option>
+							<option value="AM" selected>AM</option>
 							<option value="PM">PM</option>
 						</select>
 					</div>
@@ -372,7 +371,7 @@ $total_amount = $woocommerce->cart->total;
 		<div class="space50"></div>
 		<div class="row">
 			<div class="col-md-2"><button class="button receiving-mode-prev">PREVIOUS</button></div>
-			<div class="col-md-2 col-md-offset-8"><input type="submit" class="button" value="NEXT"></div>
+			<div class="col-md-2 col-md-offset-8"><input type="submit" id="receiving-mode-delivery-submit" class="button" value="NEXT"></div>
 
 			<?php //do_action( 'woocommerce_proceed_to_checkout' ); ?>
 

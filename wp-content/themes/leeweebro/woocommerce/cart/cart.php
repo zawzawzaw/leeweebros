@@ -56,13 +56,13 @@ else:
 									<div class="circle"></div>
 								</div>
 							</li>
-							<li class="sixth">
+							<!-- <li class="sixth">
 								<div class="circle-holder">
 									<div class="circle-text">TERMS OF SERVICE</div>
 									<div class="circle"></div>
 								</div>
-							</li>
-							<li class="seventh">
+							</li> -->
+							<li class="sixth">
 								<div class="circle-holder">
 									<div class="circle-text">SUBMISSION</div>
 									<div class="circle"></div>

@@ -10,6 +10,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 global $woocommerce, $product;
+$min_order = $product->get_attribute( 'min order' );
 
 if ( ! $product->is_purchasable() ) return;
 ?>
@@ -49,8 +50,10 @@ if ( ! $product->is_purchasable() ) return;
 		 	?>
 		</div>
 		<div class="space20"></div>
+		<span id="min-order" style="display:none;"><?php echo (!empty($min_order)) ? $min_order : 1; ?></span>
 		<input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $product->id ); ?>" />
 	 	<button type="submit" class="single_add_to_cart_button button alt"><?php echo $product->single_add_to_cart_text(); ?></button>
+	 	<span class="error-msg"></span>
 	 	<div class="space10"></div>
 
 		<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>

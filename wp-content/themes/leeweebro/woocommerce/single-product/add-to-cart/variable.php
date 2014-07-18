@@ -10,6 +10,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 global $woocommerce, $product, $post;
+$min_order = $product->get_attribute( 'min order' );
 ?>
 
 <?php do_action( 'woocommerce_before_add_to_cart_form' ); ?>
@@ -90,10 +91,12 @@ global $woocommerce, $product, $post;
 			</div>
 		</div>
 		<div class="space20"></div>
+		<span id="min-order" style="display:none;"><?php echo (!empty($min_order)) ? $min_order : 1; ?></span>
 		<input type="hidden" name="add-to-cart" value="<?php echo $product->id; ?>" />
 		<input type="hidden" name="variation_id" value="" />
 		<input type="hidden" name="product_id" value="<?php echo esc_attr( $post->ID ); ?>" />
 		<button type="submit" class="single_add_to_cart_button button alt"><?php echo $product->single_add_to_cart_text(); ?></button>
+		<span class="error-msg"></span>
 		<?php do_action( 'woocommerce_after_single_variation' ); ?>
 		<div class="space10"></div>
 		<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>

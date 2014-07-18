@@ -36,9 +36,10 @@ jQuery( function( $ ) {
 			$orderDetailContainer = $('.order-details-container'),
 			$personalPaymentBtn = $('.personal-payment-save'),
 			$corporatePaymentBtn = $('.corporate-payment-save'),
-			$checkOutTermContainer = $('.terms-container');
+			$checkOutTermContainer = $('.terms-container'),
+			$progressIndicator = $('.progress-indicator-container');
 
-		$sideBarMenu.children('li').children('collapse').on('shown.bs.collapse', function (e) {
+		$sideBarMenu.children('li').children('.collapse').on('shown.bs.collapse', function (e) {
 		  	$('.side-menu li').removeClass('active');
 		  	$(e.currentTarget).parent('li').addClass('active');
 		});
@@ -97,35 +98,56 @@ jQuery( function( $ ) {
 			var cartAmount = $('.cart-amount').val();
 			var location = $receivingModeDelivery.find('input[name="delivery"]:checked').val();
 
-			console.log(cartAmount);
-			console.log(location);
+			var day = $(this).parent('div').parent('div').parent('form').find('select[name="delivery_date_day"]').val();
+			var month = $(this).parent('div').parent('div').parent('form').find('select[name="delivery_date_month"]').val();
+			var year = $(this).parent('div').parent('div').parent('form').find('select[name="delivery_date_year"]').val();
+
+			var delivery_date = month + ' ' + day + ' ' + year;
+			var formattedDate = new Date(delivery_date);
+
+			var twoDayInAdvance = addDays(new Date(), 2);
+
+			var error = false;
 
 			if(parseFloat(cartAmount) <= 100 && location == 'allotherarea') {
 
 				alert('Minimum purchase of 100S$ require for free delivery to this area.');
+				error = true;
 
 			}else if(parseFloat(cartAmount) <= 100 && location == 'jurongsentoaarea') {
 
 				alert('Minimum purchase of 120S$ require for free delivery to this area.');
+				error = true;
 
-			}
-			else if(parseFloat(cartAmount) <= 120 && location == 'jurongsentoaarea') {
+			}else if(parseFloat(cartAmount) <= 120 && location == 'jurongsentoaarea') {
 
 				alert('Minimum purchase of 120S$ require for free delivery to this area.');
-
-			}else {
-
-				$receivingModeDelivery.find('form').submit();
+				error = true;
 
 			}
+
+			if(day == "" || month == "" || year == "") {
+
+				$('.error-delivery-date').html('Please select delivery date.');
+				error = true;
+
+			}else if(twoDayInAdvance > formattedDate) {
+
+				$('.error-delivery-date').html('Orders must be made at least 2 days in advance.');
+				error = true;
+
+			}else $('.error-delivery-date').html('');
+
+			if(error==false) $receivingModeDelivery.find('form').submit();
+
 		});
 
 		function appendDeliveryTime(key) {
-			var delivery_time = ['<option value="6:00 am - 7:30 am">6:00 am - 7:30 am *</option><option value="6:30 am - 8:00 am">6:30 am - 8:00 am ^</option><option value="7:00 am - 8:30 am">7:00 am - 8:30 am ^</option><option value="7:30 am - 9:00 am">7:30 am - 9:00 am ^</option><option value="8:00 am - 9:30 am">8:00 am - 9:30 am</option><option value="9:00 am - 10:30 am">9:00 am - 10:30 am</option><option value="9:30 am - 11:00 am">9:30 am - 11:00 am</option><option value="10:00 am - 11:30 am">10:00 am - 11:30 am</option><option value="11:30 am - 1:00 pm">11:30 am - 1:00 pm</option><option value="12:00 pm - 1:30 pm">12:00 pm - 1:30 pm</option><option value="12:30 pm - 2:00 pm">12:30 pm - 2:00 pm</option><option value="1:00 pm - 2:30 pm">1:00 pm - 2:30 pm</option><option value="1:30 pm - 3:00 pm">1:30 pm - 3:00 pm</option><option value="2:00 pm - 3:30 pm">2:00 pm - 3:30 pm</option><option value="2:30 pm - 4:00 pm">2:30 pm - 4:00 pm</option><option value="3:00 pm - 4:30 pm">3:00 pm - 4:30 pm</option><option value="3:30 pm - 5:00 pm">3:30 pm - 5:00 pm</option>', 
-			'<option value="6:00 am - 7:30 am">6:00 am - 7:30 am *</option><option value="6:30 am - 8:00 am">6:30 am - 8:00 am ^</option><option value="7:00 am - 8:30 am">7:00 am - 8:30 am ^</option><option value="7:30 am - 9:00 am">7:30 am - 9:00 am ^</option><option value="8:00 am - 9:30 am">8:00 am - 9:30 am</option><option value="8:30 am - 10:00 am">8:30 am - 10:00 am</option><option value="9:00 am - 10:30 am">9:00 am - 10:30 am</option><option value="9:30 am - 11:00 am">9:30 am - 11:00 am</option><option value="10:00 am - 11:30 am">10:00 am - 11:30 am</option><option value="10:30 am - 12:00 pm">10:30 am - 12:00 pm</option><option value="11:00 am - 12:30 pm">11:00 am - 12:30 pm</option><option value="11:30 am - 1:00 pm">11:30 am - 1:00 pm</option><option value="12:00 pm - 1:30 pm">12:00 pm - 1:30 pm</option><option value="12:30 pm - 2:00 pm">12:30 pm - 2:00 pm</option><option value="1:00 pm - 2:30 pm">1:00 pm - 2:30 pm</option><option value="1:30 pm - 3:00 pm">1:30 pm - 3:00 pm</option><option value="2:00 pm - 3:30 pm">2:00 pm - 3:30 pm</option><option value="2:30 pm - 4:00 pm">2:30 pm - 4:00 pm</option><option value="3:00 pm - 4:30 pm">3:00 pm - 4:30 pm</option><option value="3:30 pm - 5:00 pm">3:30 pm - 5:00 pm</option><option value="4:00 pm - 5:30 pm">4:00 pm - 5:30 pm ^</option><option value="4:30 pm - 6:00 pm">4:30 pm - 6:00 pm ^</option><option value="4:00 pm - 5:30 pm (Sat/PH only)">4:00 pm - 5:30 pm (Sat/PH only)</option><option value="4:30 pm - 6:00 pm (Sat/PH only)">4:30 pm - 6:00 pm (Sat/PH only)</option>'];
+			var delivery_time = ['<option value="06:00 am - 07:30 am">06:00 am - 07:30 am *</option><option value="06:30 am - 08:00 am">06:30 am - 08:00 am ^</option><option value="07:00 am - 08:30 am">07:00 am - 08:30 am ^</option><option value="07:30 am - 09:00 am">07:30 am - 09:00 am ^</option><option value="08:00 am - 09:30 am">08:00 am - 09:30 am</option><option value="08:30 am - 10:00 am">08:30 am - 10:00 am</option><option value="09:00 am - 10:30 am">09:00 am - 10:30 am</option><option value="09:30 am - 11:00 am">09:30 am - 11:00 am</option><option value="10:00 am - 11:30 am">10:00 am - 11:30 am</option><option value="10:30 am - 12:00 am">10:30 am - 12:00 am</option><option value="11:00 am - 12:30 am">11:00 am - 12:30 am</option><option value="11:30 am - 01:00 pm">11:30 am - 01:00 pm</option><option value="12:00 pm - 01:30 pm">12:00 pm - 01:30 pm</option><option value="12:30 pm - 02:00 pm">12:30 pm - 02:00 pm</option><option value="01:00 pm - 02:30 pm">01:00 pm - 02:30 pm</option><option value="01:30 pm - 03:00 pm">01:30 pm - 03:00 pm</option><option value="02:00 pm - 03:30 pm">02:00 pm - 03:30 pm</option><option value="02:30 pm - 04:00 pm">02:30 pm - 04:00 pm</option><option value="03:00 pm - 04:30 pm">03:00 pm - 04:30 pm</option><option value="03:30 pm - 05:00 pm">03:30 pm - 05:00 pm</option>', 
+			'<option value="06:00 am - 07:30 am">06:00 am - 07:30 am *</option><option value="06:30 am - 08:00 am">06:30 am - 08:00 am ^</option><option value="07:00 am - 08:30 am">07:00 am - 08:30 am ^</option><option value="07:30 am - 09:00 am">07:30 am - 09:00 am ^</option><option value="08:00 am - 09:30 am">08:00 am - 09:30 am</option><option value="08:30 am - 10:00 am">08:30 am - 10:00 am</option><option value="09:00 am - 10:30 am">09:00 am - 10:30 am</option><option value="09:30 am - 11:00 am">09:30 am - 11:00 am</option><option value="10:00 am - 11:30 am">10:00 am - 11:30 am</option><option value="10:30 am - 12:00 pm">10:30 am - 12:00 pm</option><option value="11:00 am - 12:30 pm">11:00 am - 12:30 pm</option><option value="11:30 am - 01:00 pm">11:30 am - 01:00 pm</option><option value="12:00 pm - 01:30 pm">12:00 pm - 01:30 pm</option><option value="12:30 pm - 02:00 pm">12:30 pm - 02:00 pm</option><option value="01:00 pm - 02:30 pm">01:00 pm - 02:30 pm</option><option value="01:30 pm - 03:00 pm">01:30 pm - 03:00 pm</option><option value="02:00 pm - 03:30 pm">02:00 pm - 03:30 pm</option><option value="02:30 pm - 04:00 pm">02:30 pm - 04:00 pm</option><option value="03:00 pm - 04:30 pm">03:00 pm - 04:30 pm</option><option value="03:30 pm - 05:00 pm">03:30 pm - 05:00 pm</option><option value="04:00 pm - 05:30 pm (Sat/PH only)">04:00 pm - 05:30 pm (Sat/PH only)</option><option value="04:30 pm - 06:00 pm (Sat/PH only)">04:30 pm - 06:00 pm (Sat/PH only)</option>'];
 
-			var certain_delivery_time_additional_30 = ['6:00 am - 7:30 am'];
-			var certain_delivery_time_additional_22 = ['6:30 am - 8:00 am','7:00 am - 8:30 am','7:30 am - 9:00 am','4:00 pm - 5:30 pm','4:30 pm to 6:00 pm'];
+			var certain_delivery_time_additional_30 = ['06:00 am - 07:30 am'];
+			var certain_delivery_time_additional_22 = ['06:30 am - 08:00 am','07:00 am - 08:30 am','07:30 am - 09:00 am','04:00 pm - 05:30 pm','04:30 pm to 06:00 pm'];
 
 			$receivingModeDelivery.find('select[name="delivery_time"]').html('').append(delivery_time[key]).off('change').on('change', function(e){
 				
@@ -163,6 +185,7 @@ jQuery( function( $ ) {
 		});
 
 		$('#delivery_date').datepicker({
+			minDate: 2,
 			onSelect: function(dateText) {
 				var pieces = dateText.split("/");
 		        $("#delivery_date_month").val(pieces[0]);
@@ -177,6 +200,7 @@ jQuery( function( $ ) {
 		});
 
 		$('#collection_date').datepicker({
+			minDate: 2,
 			onSelect: function(dateText) {
 				var pieces = dateText.split("/");
 		        $("#collection_date_month").val(pieces[0]);
@@ -189,6 +213,10 @@ jQuery( function( $ ) {
 			e.preventDefault();
 			$('#collection_date').show().focus().hide();
 		});
+
+		function addDays(theDate, days) {
+		    return new Date(theDate.getTime() + days*24*60*60*1000);
+		}
 
 		$shippingDropdownDiv.hide();
 
@@ -436,8 +464,6 @@ jQuery( function( $ ) {
 			$paymentModeContainer.hide();
 			var paymentmethod = $('input[name=paymentmethod]:checked').val();
 
-			console.log(paymentmethod);
-
 			if(paymentmethod == 'Personal Payment') {
 
 				$personalPaymentModeContainer.show();
@@ -459,6 +485,9 @@ jQuery( function( $ ) {
 
 			$orderDetailContainer.show();
 			$orderDetailContainer.find('.paymentby-value').html(choosedPersonalPaymentMethod);
+
+			$progressIndicator.find('.sixth').children('.circle-holder').children('.circle-text').addClass('active');
+			$progressIndicator.find('.sixth').children('.circle-holder').children('.circle').addClass('done');
 		});
 
 		$corporatePaymentBtn.on('click', function(e){
@@ -492,6 +521,26 @@ jQuery( function( $ ) {
 		$('.radio-label').on('click', function(e){
 			$(this).prev('input[type="radio"]').trigger('click');
 		});
+
+		$('select[name="outlets"]').on('change', function(e){
+			e.preventDefault();
+			$(this).parent('div').parent('li').find('input[type="radio"]').trigger('click');
+		});
+
+		$('.single_add_to_cart_button').on('click', function(e){
+			e.preventDefault();
+
+			var minOrder = $(this).parent('form').find('#min-order').html();
+
+			console.log(minOrder);
+
+			if($.isNumeric(minOrder) && minOrder > $(this).parent('form').find('#qty').val() ) {
+				$(this).parent('form').children('.error-msg').html('Min Order of '+minOrder+' is required.');
+
+			}else {
+				$(this).parent('form').submit();
+			}
+		})
 
 	});
 	

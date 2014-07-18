@@ -37,24 +37,32 @@ get_header( 'shop' ); ?>
 						<div class="row">
 							<ul class="side-menu">
 								<li class="active">
-									<a href="javascript:void(0);" data-toggle="collapse" data-target="#ourfood">OUR FOOD</a>
+									<a class="parent-side-menu-item" href="javascript:void(0);" data-toggle="collapse" data-target="#ourfood">OUR FOOD</a>
+									<?php 
+										// Set up the objects needed
+										$my_wp_query = new WP_Query();
+										$all_wp_pages = $my_wp_query->query(array('post_type' => 'page','posts_per_page' => -1));
+										$our_food_page = get_page_by_title( 'Our Food' );
+		          						$catering_page = get_page_by_title( 'Catering' ); 
+		          						// Filter through all pages and find Portfolio's children
+										$our_food_children = get_page_children( $our_food_page->ID, $all_wp_pages );
+										$catering_children = get_page_children( $catering_page->ID, $all_wp_pages );
+	          						?>
 									<div id="ourfood" class="collapse in">
 										<ul class="side-sub-menu">
-											<li>Otah</li>
-											<li>Lunch Boxes</li>
-											<li>Satay</li>
-											<li>Snack & Nibbles</li>
-											<li>Local Flavors</li>
-											<li>Condiments</li>
+											<?php foreach ($our_food_children as $key => $child) { ?>
+												<li><a href="<?php echo get_permalink( $child->ID ); ?>"><?php echo $child->post_title; ?></a></li>	
+											<?php } ?>
 										</ul>
 									</div>
 								</li>
 								<li>
-									<a href="javascript:void(0);" data-toggle="collapse" data-target="#cathering">CATHERING</a>
+									<a class="parent-side-menu-item" href="javascript:void(0);" data-toggle="collapse" data-target="#cathering">CATHERING</a>
 									<div id="cathering" class="collapse">
 										<ul class="side-sub-menu">
-											<li>Mini Buffet</li>
-											<li>Others</li>
+											<?php foreach ($catering_children as $key => $child) { ?>
+												<li><a href="<?php echo get_permalink( $child->ID ); ?>"><?php echo $child->post_title; ?></a></li>	
+											<?php } ?>
 										</ul>
 									</div>
 								</li>

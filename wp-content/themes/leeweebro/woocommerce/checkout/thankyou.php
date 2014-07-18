@@ -33,9 +33,25 @@ if ( $order ) : ?>
 
 	<?php else : ?>
 
-		<p><?php _e( 'Thank you. Your order has been received.', 'woocommerce' ); ?></p>
+		<div class="row">
+			<div class="col-md-12" id="page-title"><h1><?php _e( 'Thank you. Your order has been received.', 'woocommerce' ); ?></h1></div>
+		</div>
+		<div class="space20"></div>
+		<div class="complete-container">
+			<div class="row">
+				<div class="col-md-9">
+					<div class="space10"></div>
+					<h2>ORDER: <?php echo $order->get_order_number(); ?></h2>
+					<div class="space10"></div>
+					<h3>Thank you for shopping with Lee Wee & Brothers' Foodstuff Pte Ltd!</h3>
+					<div class="space10"></div>
+					<p>You will receive an email confirmation shortly at email address you provided during checkout and our customer service personnel will contact you within 24hours via telephone to confirm your order.</p>
+				</div>
+			</div>
+			<div class="space50"></div>	
+		</div>
 
-		<ul class="order_details">
+		<!-- <ul class="order_details">
 			<li class="order">
 				<?php _e( 'Order:', 'woocommerce' ); ?>
 				<strong><?php echo $order->get_order_number(); ?></strong>
@@ -55,15 +71,15 @@ if ( $order ) : ?>
 			</li>
 			<?php endif; ?>
 			<li><?php echo get_post_meta( $order->id, 'Collection Area', true ); ?></li>
-		</ul>
+		</ul> -->
 		<div class="clear"></div>
 
 	<?php endif; ?>
 
 	
 
-	<?php do_action( 'woocommerce_thankyou_' . $order->payment_method, $order->id ); ?>
-	<?php do_action( 'woocommerce_thankyou', $order->id ); ?>
+	<?php //do_action( 'woocommerce_thankyou_' . $order->payment_method, $order->id ); ?>
+	<?php //do_action( 'woocommerce_thankyou', $order->id ); ?>
 
 <?php else : ?>
 
