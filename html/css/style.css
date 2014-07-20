@@ -1006,6 +1006,10 @@ header#main-header .header-content #header-cart-info #cart-item-price {
 #account-login .woocommerce .woocommerce-message a:hover {
   color: #da0009;
 }
+#account-login .order-info mark {
+  background: none;
+  font-weight: bold;
+}
 #account-login .myorder-container {
   width: 96%;
   margin-left: 16px;

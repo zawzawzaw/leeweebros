@@ -13,6 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 wc_print_notices(); ?>
 
+<div class="space10"></div>
 
 <div class="row" id="my-account">
 	<div id="sub-title" class="col-md-12">
