@@ -63,6 +63,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<select name="title">
 						<option value="Mr">Mr</option>
 						<option value="Mrs">Mrs</option>
+						<option value="Ms">Ms</option>
+						<option value="Miss">Miss</option>
 					</select>
 				</div>
 			</div>
@@ -87,7 +89,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<div class="dropdown">
 					<select name="year">
 						<option value="" selected>YYYY</option>
-						<?php for($i=1950; $i<=2000; $i++): ?>
+						<?php for($i=1920; $i<=2000; $i++): ?>
 							<option value="<?php echo $i; ?>" <?php echo ($i==1950) ? 'checked' : ''; ?>><?php echo $i; ?></option>
 						<?php endfor; ?>
 					</select>
@@ -111,8 +113,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<label for="address_book_1_country" class="lbl asterisk-2">Country:
 				<div class="dropdown">
 					<select name="address_book_1_country" class="country">
-						<option value="">Country</option>
-						<option value="Singapore">Singapore</option>
+						<option value="Singapore" selected="selected">Singapore</option>
 					</select>
 				</div>
 				</label>

@@ -1231,6 +1231,19 @@ header#main-header {
       }
     }
   }
+  .woocommerce {
+    .woocommerce-message {
+      display: block;
+      color: red;
+      a {
+        font-size: 12px;
+        color: @dark-brown;
+        &:hover {
+          color: @red;
+        }
+      }
+    }
+  }
 
   .myorder-container {
     width: 96%;
@@ -1348,12 +1361,12 @@ header#main-header {
 
     label {
       position: relative;
-      input[type="text"],input[type="password"] {
+      input[type="text"],input[type="email"],input[type="password"] {
         padding-left: 12px;      
       }
 
       &.asterisk {
-        input[type="text"],input[type="password"] {
+        input[type="text"],input[type="email"],input[type="password"] {
           padding-left: 18px;
         }
         &:after {
@@ -1365,7 +1378,7 @@ header#main-header {
         }
       }
       &.asterisk-2 {
-        input[type="text"],input[type="password"] {
+        input[type="text"],input[type="email"],input[type="password"] {
           padding-left: 18px;
         }
         &:after {
@@ -1381,7 +1394,7 @@ header#main-header {
       }
     }
 
-    input[type="text"] {
+    input[type="text"],input[type="email"],input[type="password"] {
       margin-bottom: 13px;
     }
 
@@ -1419,8 +1432,9 @@ header#main-header {
     }
 
     input[type="submit"] {
-      width: 70px;
-      height: 29px;
+      width: auto;
+      padding: 5px 10px;
+      font-style: normal;
     }
 
     p {
