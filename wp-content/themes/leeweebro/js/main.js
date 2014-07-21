@@ -11,6 +11,7 @@ jQuery( function( $ ) {
 			$allReceivingModeContainer = $('.all-container'),
 			$receivingModeCollection = $('.collection-container'),
 			$receivingModeDelivery = $('.delivery-container'),
+			$addressContainer = $('.address-container'),
 			$billingDropdown = $('.billing_address'),
 			$shippingDropdown = $('.delivery_address'),
 			$billingInfoList = $('.billing-address'),
@@ -128,6 +129,56 @@ jQuery( function( $ ) {
 					required : "Please fill in your email address",
 					email: "Invalid email address"
 				},
+			}
+		});
+
+		$addressContainer.find('form#billingaddress-form').validate({
+			rules: {
+				first_name: "required",
+				last_name : "required",
+				address_1: "required",
+				postcode: {
+					required : true
+				},
+				city : "required",
+				country: "required",
+				mobile: "required"
+			},
+			messages: {
+				first_name: "Please fill in your first name",
+				last_name : "Please fill in your last name",
+				address_1: "Please fill in your address",
+				postcode: {
+					required : "Please fill in your post code"
+				},
+				city : "Please fill in your town / city name",
+				country: "Please fill in your country",
+				mobile: "Please fill in your mobile"
+			}
+		});
+
+		$addressContainer.find('form#shippingaddress-form').validate({
+			rules: {
+				first_name: "required",
+				last_name : "required",
+				address_1: "required",
+				postcode: {
+					required : true
+				},
+				city : "required",
+				country: "required",
+				mobile: "required"
+			},
+			messages: {
+				first_name: "Please fill in your first name",
+				last_name : "Please fill in your last name",
+				address_1: "Please fill in your address",
+				postcode: {
+					required : "Please fill in your post code"
+				},
+				city : "Please fill in your town / city name",
+				country: "Please fill in your country",
+				mobile: "Please fill in your mobile"
 			}
 		});
 
@@ -603,39 +654,42 @@ jQuery( function( $ ) {
 
 			e.preventDefault();
 
-			$selectAddressContainer.show();
-			$newFormContainer.hide();
-			$newBillingAddressForm.hide();
+			if($('form#billingaddress-form').valid()) {
+				$selectAddressContainer.show();
+				$newFormContainer.hide();
+				$newBillingAddressForm.hide();
 
-			var fields = $( this ).closest('form').serializeObject();
-			var billing_fields_json = JSON.stringify(fields);
+				var fields = $( this ).closest('form').serializeObject();
+				var billing_fields_json = JSON.stringify(fields);
 
-			show_billing_address_data(fields);
-			$billingInfoList.next('.update').html('');
-			$billinginputHidden.val(billing_fields_json);
+				show_billing_address_data(fields);
+				$billingInfoList.next('.update').html('');
+				$billinginputHidden.val(billing_fields_json);
 
-			if($sameasbillingCheckbox.prop('checked')){
-				show_shipping_address_data(fields);
-				$shippingInfoList.next('.update').html('');
-				$shippinginputHidden.val(billing_fields_json);
+				if($sameasbillingCheckbox.prop('checked')){
+					show_shipping_address_data(fields);
+					$shippingInfoList.next('.update').html('');
+					$shippinginputHidden.val(billing_fields_json);
+				}
 			}
-
 		});
 
 		$saveDeliveryAddressBtn.on('click', function(e){
 
 			e.preventDefault();
 
-			$selectAddressContainer.show();
-			$newFormContainer.hide();
-			$newShippingAddressForm.hide();
+			if($('form#shippingaddress-form').valid()) {
+				$selectAddressContainer.show();
+				$newFormContainer.hide();
+				$newShippingAddressForm.hide();
 
-			var fields = $( this ).closest('form').serializeObject();
-			var shipping_fields_json = JSON.stringify(fields);
+				var fields = $( this ).closest('form').serializeObject();
+				var shipping_fields_json = JSON.stringify(fields);
 
-			show_shipping_address_data(fields);
-			$shippingInfoList.next('.update').html('');
-			$shippinginputHidden.val(shipping_fields_json);
+				show_shipping_address_data(fields);
+				$shippingInfoList.next('.update').html('');
+				$shippinginputHidden.val(shipping_fields_json);
+			}
 		});
 
 		$checkoutBtn.on('click', function(e){

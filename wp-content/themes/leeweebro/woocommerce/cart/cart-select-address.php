@@ -260,7 +260,7 @@ global $woocommerce;
 
 				<div class="space10"></div>
 
-				<label for="telephone" class="asterisk">
+				<label for="telephone" class="">
 					<input type="text" name="phone" class="small-input" placeholder="Telephone">
 				</label>
 				<label for="mobile" class="asterisk">
@@ -271,7 +271,7 @@ global $woocommerce;
 		</div>
 		<div class="space50"></div>
 		<div class="row">
-			<div class="col-md-2"><button class="button save_delivery_address">SAVE ADDRESS</button></div>
+			<div class="col-md-2"><button type="submit" class="button save_delivery_address">SAVE ADDRESS</button></div>
 		</div>		
 	</form>
 	<form name="login" id="billingaddress-form" method="post" action="" style="display:none;">
@@ -359,7 +359,7 @@ global $woocommerce;
 
 				<div class="space10"></div>
 
-				<label for="telephone" class="asterisk">
+				<label for="telephone" class="">
 					<input type="text" name="phone" class="small-input" placeholder="Telephone">
 				</label>
 				<label for="mobile" class="asterisk">
@@ -370,7 +370,7 @@ global $woocommerce;
 		</div>
 		<div class="space50"></div>
 		<div class="row">
-			<div class="col-md-2"><button class="button save_billing_address">SAVE ADDRESS</button></div>
+			<div class="col-md-2"><button type="submit" class="button save_billing_address">SAVE ADDRESS</button></div>
 		</div>		
 	</form>	
 </div>

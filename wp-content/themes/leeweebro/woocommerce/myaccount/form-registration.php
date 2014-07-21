@@ -142,7 +142,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				</label>
 			</div>
 			<div class="col-md-6 push-down">
-				<label for="address_book_1_phone" class="asterisk">
+				<label for="address_book_1_phone" class="">
 					<input type="text" name="address_book_1_phone" class="small-input" placeholder="Telephone">
 				</label>
 				<label for="address_book_1_mobile" class="asterisk">
@@ -155,8 +155,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<div class="col-md-6">
 				<label for="address_book_1_address_2" class="no-asterisk">
 					<input type="text" name="address_book_1_address_2" class="large-input" placeholder="Address">
+					<p class="desc">Apartment, suite, unit, building, floor, etc.</p>
 				</label>
-				<p class="desc">Apartment, suite, unit, building, floor, etc.</p>
 				
 				<div class="space10"></div>
 
