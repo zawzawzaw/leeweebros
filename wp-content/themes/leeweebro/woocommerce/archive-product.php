@@ -110,7 +110,7 @@ get_header( 'shop' ); ?>
 							<?php //woocommerce_product_loop_end(); ?>
 						<hr>
 						<div class="row">
-							<div class="col-md-3">
+							<div class="col-md-8">
 							<?php
 								/**
 								 * woocommerce_after_shop_loop hook
@@ -120,7 +120,7 @@ get_header( 'shop' ); ?>
 								do_action( 'woocommerce_after_shop_loop' );
 							?>
 							</div>
-							<div class="col-md-3 col-md-offset-5">
+							<div class="col-md-3">
 							<?php
 								/**
 								 * woocommerce_after_shop_loop_custom hook
