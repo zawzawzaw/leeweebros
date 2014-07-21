@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <?php wc_print_notices(); ?>
 
-<form action="" id="login-form" method="post">
+<form action="" id="login-form" method="post" class="editaccount">
 
 	<div class="row">
 		<div class="col-md-12">

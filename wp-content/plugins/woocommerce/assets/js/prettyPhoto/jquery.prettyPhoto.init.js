@@ -8,7 +8,8 @@ $(function() {
 		theme: 'pp_woocommerce',
 		horizontal_padding: 20,
 		opacity: 0.8,
-		deeplinking: false
+		deeplinking: false,
+		overlay_gallery: false
 	});
 	$("a[data-rel^='prettyPhoto']").prettyPhoto({
 		hook: 'data-rel',
@@ -16,7 +17,8 @@ $(function() {
 		theme: 'pp_woocommerce',
 		horizontal_padding: 20,
 		opacity: 0.8,
-		deeplinking: false
+		deeplinking: false,
+		overlay_gallery: false
 	});
 
 });

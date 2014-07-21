@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         <div class="row">
             <div class="col-md-12">
                 <label for="user_login" class="asterisk">
-                    <input type="text" name="user_login" id="user_login" class="input-text medium-input" placeholder="Username or email" />
+                    <input type="text" name="user_login" id="user_login" class="input-text medium-input required" placeholder="Username or email" />
                 </label>
             </div>
         </div>

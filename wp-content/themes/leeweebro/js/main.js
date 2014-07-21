@@ -106,6 +106,31 @@ jQuery( function( $ ) {
 			}
 		});
 
+		$accountLoginContainer.find('form.lost_reset_password').validate({
+			messages: {
+				user_login: "Please fill in your login name or email"
+			}
+		});
+
+		$accountLoginContainer.find('form.editaccount').validate({
+			rules: {
+				account_first_name: "required",
+				account_last_name : "required",
+				account_email: {
+					required : true,
+					email: true
+				},
+			},
+			messages: {
+				account_first_name: "Please fill in your first name",
+				account_last_name : "Please fill in your last name",
+				account_email: {
+					required : "Please fill in your email address",
+					email: "Invalid email address"
+				},
+			}
+		});
+
 		$sideBarMenu.children('li').children('.collapse').on('shown.bs.collapse', function (e) {
 		  	$('.side-menu li').removeClass('active');
 		  	$(e.currentTarget).parent('li').addClass('active');

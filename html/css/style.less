@@ -1423,6 +1423,10 @@ header#main-header {
       margin-bottom: 13px;
     }
 
+    label[for="user_login"],label[for="account_first_name"],label[for="account_last_name"],label[for="account_email"] {
+      margin-left: 5px;
+    }
+
     input[name="address_book_1_address_1"], input[name="address_book_1_address_2"] {
       margin-bottom: 0px;
     }
@@ -2869,12 +2873,18 @@ header#main-header {
       }
       a.facebook {
         background: url(../images/icons/fb-icon.png) no-repeat top left;
+        background-size: 22px 21px;
+        -webkit-background-size: 22px 21px;
       }
       a.twitter {
         background: url(../images/icons/twitter-icon.png) no-repeat top left;
+        background-size: 22px 21px;
+        -webkit-background-size: 22px 21px;
       }
       a.instagram {
         background: url(../images/icons/instagram-icon.png) no-repeat top left;
+        background-size: 22px 21px;
+        -webkit-background-size: 22px 21px;
       }
       p {
         font-size: 11px;
@@ -2911,5 +2921,14 @@ header#main-header {
 }
 
 .breadcrumb-wrapper{
-  width: 183px;
+  //width: 183px;
+  width: 200px;
+}
+
+// remove pretty photo / lightbox stuff.
+a.pp_previous, a.pp_next, pp_arrow_previous, pp_arrow_next{
+  display: none !important;
+}
+.pp_gallery{
+  display: none !important;
 }
