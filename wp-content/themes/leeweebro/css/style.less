@@ -664,11 +664,20 @@ a.underline {
 }
 
 ul.woocommerce-error {
-  background: @white;
+  /*background: @white;*/
   color: @red;
-  padding: 10px;
-  margin-bottom: 30px;
-  border: 1px solid @red;
+  /*padding: 10px;*/
+  /*margin-bottom: 30px;*/
+  /*border: 1px solid @red;*/
+  li {
+    a {
+      font-size: 12px;
+      color: @dark-brown-text;
+      &:hover {
+        color: @red;
+      }
+    }
+  }
 }
 
 .woocommerce-message {
@@ -679,6 +688,11 @@ span.error-msg, div.error-msg {
   display: inline;
   color: @red;
   margin-left: 10px;
+}
+
+label.error {
+  color: @red!important;
+  margin-bottom: 0px!important;
 }
 
 //   _        _ __   _____  _   _ _____ 
@@ -1402,6 +1416,10 @@ header#main-header {
     }
 
     input[type="text"],input[type="email"],input[type="password"] {
+      /*margin-bottom: 13px;*/
+    }
+
+    label {
       margin-bottom: 13px;
     }
 

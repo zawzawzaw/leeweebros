@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 	</div>
 	<div class="space10"></div>
-	<form name="login" id="login-form" class="register" method="post">
+	<form name="login" id="login-form" class="registeration" method="post">
 
 		<?php do_action( 'woocommerce_register_form_start' ); ?>
 
@@ -32,12 +32,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div class="row">
 			<div class="col-md-4">
 				<label for="first_name" class="asterisk">
-					<input type="text" name="first_name" id="first_name" class="input-text medium-input" placeholder="First Name" value="<?php echo (!empty($_POST['first_name'])) ? esc_attr( $_POST['first_name'] ) : ""; ?>">
+					<input type="text" name="first_name" id="first_name" class="input-text medium-input required" placeholder="First Name" value="<?php echo (!empty($_POST['first_name'])) ? esc_attr( $_POST['first_name'] ) : ""; ?>">
 				</label>
 			</div>
 			<div class="col-md-4 col-md-offset-2">
 				<label for="email" class="asterisk">
-					<input type="text" name="email" id="reg_email" class="input-text medium-input" placeholder="<?php _e( 'Email', 'woocommerce' ); ?>" value="<?php echo (isset($_POST['email'])) ? esc_attr( $_POST['email'] ) : esc_attr($_GET['email']); ?>">
+					<input type="text" name="email" id="reg_email" class="input-text medium-input required" placeholder="<?php _e( 'Email', 'woocommerce' ); ?>" value="<?php echo (isset($_POST['email'])) ? esc_attr( $_POST['email'] ) : esc_attr($_GET['email']); ?>">
 				</label>
 			</div>
 		</div>

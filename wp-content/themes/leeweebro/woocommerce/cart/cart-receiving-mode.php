@@ -166,6 +166,7 @@ $total_amount = $woocommerce->cart->total;
 				</div>
 				<a href="#" id="collection_datepicker" class="calendar"></a>
 				<input type="text" id="collection_date" style="display:none;" />
+				<div class="error-msg error-collection-date"></div>
 			</div>
 			<div class="space10"></div>
 		</div>
@@ -235,6 +236,7 @@ $total_amount = $woocommerce->cart->total;
 						<option value="PM">PM</option>
 					</select>
 				</div>
+				<div class="error-msg error-consumption-time"></div>
 				<div class="space10"></div>
 				<p class="note">* Please note that orders must be made at least 2 days in advance. Subject to availability on a first come first serve basis</p>
 			</div>
@@ -265,10 +267,12 @@ $total_amount = $woocommerce->cart->total;
 					<li>
 						<input type="radio" name="delivery" value="allotherarea" checked>
 						<label for="online" class="radio-label"><span class="radiobtn"></span>All areas excluding Jurong Island & Sentosa</label>
+						<div class="error-msg error-deliver-otherarea"></div>
 					</li>
 					<li>
 						<input type="radio" name="delivery" value="jurongsentoaarea" >
 						<label for="atm" class="radio-label"><span class="radiobtn"></span>Jurong Island and Sentosa</label>
+						<div class="error-msg error-deliver-sentosa"></div>
 					</li>
 				</ul>
 			</div>
@@ -355,6 +359,7 @@ $total_amount = $woocommerce->cart->total;
 							<option value="PM">PM</option>
 						</select>
 					</div>
+					<div class="error-msg error-consumption-time"></div>
 				</div>
 			</div>
 		</div>

@@ -167,8 +167,8 @@ global $woocommerce;
 	</div>
 	<div class="space50"></div>
 	<div class="row">
-		<form name="backtoreceivingmode" action="" method="post">
-			<input type="hidden" name="">
+		<form id="backtoreceivingmode" action="<?php echo esc_url( $woocommerce->cart->get_cart_url() ); ?>" method="post">
+			<input type="hidden" name="receiving">
 		</form>
 		<div class="col-md-2"><button type="submit" class="button select-address-prev-btn">PREVIOUS</button></div>
 		<div class="col-md-2 col-md-offset-8"><button type="submit" class="button submit-to-checkout">NEXT</button></div>

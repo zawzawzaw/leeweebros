@@ -12,8 +12,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 
-<?php wc_print_notices(); ?>
-
 <?php 
 if(isset($_GET['action'])=='register'):
     woocommerce_get_template( 'myaccount/form-registration.php' );
@@ -44,7 +42,7 @@ else:
 				<div class="row">
 					<div class="col-md-12">
 						<label for="reg_email">
-							<input type="text" name="email" id="reg_email" class="input-text medium-input" placeholder="<?php _e( 'Email Address', 'woocommerce' ); ?>" value="<?php if ( ! empty( $_POST['email'] ) ) echo esc_attr( $_POST['email'] ); ?>" />
+							<input type="text" name="email" id="reg_email" class="input-text medium-input required email" placeholder="<?php _e( 'Email Address', 'woocommerce' ); ?>" value="<?php if ( ! empty( $_POST['email'] ) ) echo esc_attr( $_POST['email'] ); ?>" />
 						</label>
 					</div>
 				</div>
@@ -78,19 +76,20 @@ else:
 					<p>I am a returning customer.</p>
 				</div>
 			</div>
+			
+			
 			<div class="space20"></div>
 
 			<form method="post" id="login-form" class="login">
-
+				<?php wc_print_notices(); ?>
 				<?php do_action( 'woocommerce_login_form_start' ); ?>
-				
 				<div class="row">
 					<div class="col-md-12">
 						<label for="username">
-							<input type="text" name="username" id="username" class="medium-input input-text" value="<?php if ( ! empty( $_POST['username'] ) ) echo esc_attr( $_POST['username'] ); ?>" placeholder="<?php _e( 'Email Address', 'woocommerce' ); ?>">
+							<input type="text" name="username" id="username" class="medium-input input-text required" value="<?php if ( ! empty( $_POST['username'] ) ) echo esc_attr( $_POST['username'] ); ?>" placeholder="<?php _e( 'User Name or Email Address', 'woocommerce' ); ?>">
 						</label>
 						<label for="password">
-							<input type="password" name="password" id="password" class="medium-input input-text" placeholder="<?php _e( 'Password', 'woocommerce' ); ?>">
+							<input type="password" name="password" id="password" class="medium-input input-text required" placeholder="<?php _e( 'Password', 'woocommerce' ); ?>">
 						</label>
 					</div>
 				</div>

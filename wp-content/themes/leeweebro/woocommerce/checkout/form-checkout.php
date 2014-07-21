@@ -89,7 +89,12 @@ wc_print_notices();
 	</div>
 	<div class="space50"></div>
 	<div class="row">
-		<!-- <div class="col-md-2"><button class="button">PREVIOUS</button></div> -->
+		<form id="backtoselectaddress" action="<?php echo esc_url( $woocommerce->cart->get_cart_url() ); ?>" method="post">
+			<?php $receiving_mode = json_decode(stripslashes($_POST['receiving_mode']), true); ?>
+			<input type="hidden" name="collection_area" value="<?php echo (!empty($receiving_mode['collection_area'])) ? $receiving_mode['collection_area'] : ''; ?>">
+			<input type="hidden" name="delivery" value="<?php echo (!empty($receiving_mode['delivery'])) ? $receiving_mode['delivery'] : ''; ?>">
+		</form>
+		<div class="col-md-2"><button class="button payment-mode-prev-btn">PREVIOUS</button></div>
 		<div class="col-md-2 col-md-offset-8"><button class="button payment-mode-next">NEXT</button></div>
 	</div>			
 </div>
@@ -266,13 +271,13 @@ wc_print_notices();
 	<div class="space30"></div>
 	<div class="row terms-container">
 		<div class="col-md-6">
-			<input type="checkbox" name="tnc"><label><span></span>I agree to the terms of service and adhere to them unconditionally.</label><br><a href="#" class="tnc">(Download T&C)</a>
+			<input type="checkbox" name="tnc"><label class="checkbox-label"><span></span>I agree to the terms of service and adhere to them unconditionally.</label><br><a href="#" class="tnc">(Download T&C)</a>
 		</div>
 	</div>
 	<div class="space30"></div>
 	<div class="row">
 		<div class="col-md-4">
-			<button class="button">PREVIOUS</button>
+			<button class="button submission-prev-btn">PREVIOUS</button>
 		</div>
 		<div class="col-md-2 col-md-offset-6">
 			<button id="confirm-order" class="button continue">CONFIRM ORDER</button>

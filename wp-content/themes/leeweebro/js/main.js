@@ -2,7 +2,8 @@ jQuery( function( $ ) {
 
 	$(document).ready(function(){
 
-		var $sideBarMenu = $('.side-menu'),
+		var $accountLoginContainer = $('#account-login'),
+			$sideBarMenu = $('.side-menu'),
 			$mainSlider = $('.carousel'),
 			$secondSlider = $('.jcarousel-wrapper'),
 			$singleEntry = $('.entry-summary'),
@@ -28,6 +29,10 @@ jQuery( function( $ ) {
 			$saveBillingAddressBtn = $('.save_billing_address'),
 			$checkoutBtn = $('.submit-to-checkout'),
 			$checkoutForm = $('form#submitcheckout'),
+			$backToReceivingModeBtn = $('.select-address-prev-btn'),
+			$backToReceivingModeForm = $('#backtoreceivingmode'),
+			$backToSelectAddressBtn = $('.payment-mode-prev-btn'),
+			$backToSelectAddressForm = $('#backtoselectaddress'),
 			$checkOutPaymentModeNextBtn = $('.payment-mode-next'),
 			$paymentModeContainer = $('.payment-mode');
 			$personalPaymentModeContainer = $('.personal-payment'),
@@ -37,7 +42,69 @@ jQuery( function( $ ) {
 			$personalPaymentBtn = $('.personal-payment-save'),
 			$corporatePaymentBtn = $('.corporate-payment-save'),
 			$checkOutTermContainer = $('.terms-container'),
-			$progressIndicator = $('.progress-indicator-container');
+			$progressIndicator = $('.progress-indicator-container'),
+			$submissionPrevBtn = $('.submission-prev-btn'),
+			$confirmOrderBtn = $('#confirm-order');
+
+		$accountLoginContainer.find('form.register').validate({
+			messages: {
+				email: {
+					required: "Please fill in your email address",
+					email: "Invalid email address"
+				}
+  			}
+		});
+		$accountLoginContainer.find('form.login').validate({
+			rules: {
+				username : "required",
+				password : {
+					required: true,
+					minlength: 5
+				}
+			},
+			messages: {
+				username: "Please fill in your user name",
+				password: {
+				  required: "Please fill in your password"
+				}
+  			}
+		});
+		$accountLoginContainer.find('form.registeration').validate({
+			rules: {
+				first_name: "required",
+				last_name : "required",
+				email: {
+					required : true,
+					email: true
+				},
+				address_book_1_first_name: "required",
+				address_book_1_last_name: "required",
+				address_book_1_address_1: "required",
+				address_book_1_postcode: {
+					required : true
+				},
+				address_book_1_city : "required",
+				address_book_1_country: "required",
+				address_book_1_mobile: "required"
+			},
+			messages: {
+				first_name: "Please fill in your first name",
+				last_name : "Please fill in your last name",
+				email: {
+					required : "Please fill in your email address",
+					email: "Invalid email address"
+				},
+				address_book_1_first_name: "Please fill in your first name",
+				address_book_1_last_name: "Please fill in your last name",
+				address_book_1_address_1: "Please fill in your address",
+				address_book_1_postcode: {
+					required : "Please fill in your post code"
+				},
+				address_book_1_city : "Please fill in your town/city name",
+				address_book_1_country: "Please fill in your country",
+				address_book_1_mobile: "Please fill in your mobile"
+			}
+		});
 
 		$sideBarMenu.children('li').children('.collapse').on('shown.bs.collapse', function (e) {
 		  	$('.side-menu li').removeClass('active');
@@ -92,6 +159,82 @@ jQuery( function( $ ) {
 			$receivingModeContainer.show();
 		});
 
+		function addDays(theDate, days) {
+		    return new Date(theDate.getTime() + days*24*60*60*1000);
+		}
+
+		function convertAMPM(hr, min, ampm){
+
+			hr = parseInt(hr, 10);
+			min = parseInt(min, 10);
+
+			if(ampm == "PM" && hr<12) hr = hr+12;
+			if(ampm == "AM" && hr==12) hr = hr-12;
+
+			var sHours = hr.toString();
+			var sMinutes = min.toString();
+
+
+			if(hr<10) sHours = "0" + sHours;
+			if(min<10) sMinutes = "0" + sMinutes;
+
+			sSecs = "00";
+
+			return sHours + ':' + sMinutes + ':' + sSecs;
+		}
+
+		$receivingModeCollection.find('input[type="submit"]').on('click', function(e){
+			e.preventDefault();
+
+			var day = $(this).parent('div').parent('div').parent('form').find('select[name="collection_date_day"]').val();
+			var month = $(this).parent('div').parent('div').parent('form').find('select[name="collection_date_month"]').val();
+			var year = $(this).parent('div').parent('div').parent('form').find('select[name="collection_date_year"]').val();
+			var hr = $(this).parent('div').parent('div').parent('form').find('select[name="consumption_time_hr"]').val();
+			var min = $(this).parent('div').parent('div').parent('form').find('select[name="consumption_time_mm"]').val();
+			var ampm = $(this).parent('div').parent('div').parent('form').find('select[name="consumption_time_am_pm"]').val();			
+
+			// set required time
+			var validTimes = ['06:00:00', '18:00:00'];
+			var formattedTime = convertAMPM(hr, min, ampm);
+
+			// set required date
+			var collection_date = month + ' ' + day + ' ' + year;
+			var formattedDate = new Date(collection_date);
+
+			var twoDayInAdvance = addDays(new Date(), 1);
+
+			var error = false;
+
+			// collection date
+			if(day == "" || month == "" || year == "") {
+
+				$('.error-collection-date').html('Please select collection date.');
+				error = true;
+
+			}else if(twoDayInAdvance > formattedDate) {
+
+				$('.error-collection-date').html('Orders must be made at least 2 days in advance.');
+				error = true;
+
+			}else $('.error-collection-date').html('');
+
+			// consumption time
+			if(hr == "" || min == "" || ampm == "") {
+
+				$('.error-consumption-time').html('Please select consumption time.');
+				error = true;
+
+			}else if(validTimes[0] > formattedTime || formattedTime > validTimes[1]) {
+
+				$('.error-consumption-time').html('Please choose within collection time constraint.');
+				error = true;
+
+			}else $('.error-consumption-time').html('');
+
+			if(error==false) $receivingModeDelivery.find('form').submit();
+
+		});
+
 		$receivingModeDelivery.find('input[type="submit"]').on('click', function(e){
 
 			e.preventDefault();
@@ -101,31 +244,41 @@ jQuery( function( $ ) {
 			var day = $(this).parent('div').parent('div').parent('form').find('select[name="delivery_date_day"]').val();
 			var month = $(this).parent('div').parent('div').parent('form').find('select[name="delivery_date_month"]').val();
 			var year = $(this).parent('div').parent('div').parent('form').find('select[name="delivery_date_year"]').val();
+			var hr = $(this).parent('div').parent('div').parent('form').find('select[name="consumption_time_hr"]').val();
+			var min = $(this).parent('div').parent('div').parent('form').find('select[name="consumption_time_mm"]').val();
+			var ampm = $(this).parent('div').parent('div').parent('form').find('select[name="consumption_time_am_pm"]').val();
 
+			// set required time
+			var validTimes = ['06:00:00', '18:00:00'];
+			var formattedTime = convertAMPM(hr, min, ampm);
+
+			// set required date
 			var delivery_date = month + ' ' + day + ' ' + year;
 			var formattedDate = new Date(delivery_date);
 
-			var twoDayInAdvance = addDays(new Date(), 2);
+			var twoDayInAdvance = addDays(new Date(), 1);
 
 			var error = false;
 
+			// delivery area
 			if(parseFloat(cartAmount) <= 100 && location == 'allotherarea') {
 
-				alert('Minimum purchase of 100S$ require for free delivery to this area.');
-				error = true;
-
-			}else if(parseFloat(cartAmount) <= 100 && location == 'jurongsentoaarea') {
-
-				alert('Minimum purchase of 120S$ require for free delivery to this area.');
+				$('.error-deliver-sentosa').html('');
+				$('.error-deliver-otherarea').html('Minimum purchase of 100S$ require for free delivery to this area.');
 				error = true;
 
 			}else if(parseFloat(cartAmount) <= 120 && location == 'jurongsentoaarea') {
 
-				alert('Minimum purchase of 120S$ require for free delivery to this area.');
+				$('.error-deliver-otherarea').html('');
+				$('.error-deliver-sentosa').html('Minimum purchase of 120S$ require for free delivery to this area.');
 				error = true;
 
+			}else {
+				$('.error-deliver-otherarea').html('');
+				$('.error-deliver-sentosa').html('');
 			}
 
+			// delivery date
 			if(day == "" || month == "" || year == "") {
 
 				$('.error-delivery-date').html('Please select delivery date.');
@@ -137,6 +290,18 @@ jQuery( function( $ ) {
 				error = true;
 
 			}else $('.error-delivery-date').html('');
+
+
+			// consumption time
+			if(hr == "" || min == "" || ampm == "") {
+
+				$('.error-consumption-time').html('Please select consumption time.');
+				error = true;
+			}else if(validTimes[0] > formattedTime || formattedTime > validTimes[1]) {
+
+				$('.error-consumption-time').html('Please choose within delivery time constraint.');
+				error = true;
+			}else $('.error-consumption-time').html('');
 
 			if(error==false) $receivingModeDelivery.find('form').submit();
 
@@ -213,10 +378,6 @@ jQuery( function( $ ) {
 			e.preventDefault();
 			$('#collection_date').show().focus().hide();
 		});
-
-		function addDays(theDate, days) {
-		    return new Date(theDate.getTime() + days*24*60*60*1000);
-		}
 
 		$shippingDropdownDiv.hide();
 
@@ -458,6 +619,12 @@ jQuery( function( $ ) {
 			$checkoutForm.submit();
 		});
 
+		$backToReceivingModeBtn.on('click', function(e){
+			e.preventDefault();
+
+			$backToReceivingModeForm.submit();
+		});
+
 		$checkOutPaymentModeNextBtn.on('click', function(e){
 			e.preventDefault();
 
@@ -471,6 +638,12 @@ jQuery( function( $ ) {
 				$corporatePaymentModeContainer.show();
 			}
 
+		});
+
+		$backToSelectAddressBtn.on('click', function(e) {
+			e.preventDefault();
+
+			$backToSelectAddressForm.submit();
 		});
 
 		$personalPaymentBtn.on('click', function(e){
@@ -506,9 +679,20 @@ jQuery( function( $ ) {
 
 			$orderDetailContainer.show();
 			$orderDetailContainer.find('.paymentby-value').html(choosedPersonalPaymentMethod);
+
+			$progressIndicator.find('.sixth').children('.circle-holder').children('.circle-text').addClass('active');
+			$progressIndicator.find('.sixth').children('.circle-holder').children('.circle').addClass('done');
+		});
+
+		$submissionPrevBtn.on('click', function(e){
+			e.preventDefault();
+
+			$paymentModeContainer.show();
+			$orderSummaryContainer.hide();
+			$orderDetailContainer.hide();
 		});
 		
-		$('#confirm-order').on('click', function(e){
+		$confirmOrderBtn.on('click', function(e){
 			e.preventDefault();
 
 			$('#place_order').trigger('click');
@@ -518,14 +702,22 @@ jQuery( function( $ ) {
 			$('#terms').trigger('click');
 		});	
 
+		// general trigger click event
+
 		$('.radio-label').on('click', function(e){
 			$(this).prev('input[type="radio"]').trigger('click');
+		});
+
+		$('.checkbox-label').on('click', function(e){
+			$(this).prev('input[type="checkbox"]').trigger('click');
 		});
 
 		$('select[name="outlets"]').on('change', function(e){
 			e.preventDefault();
 			$(this).parent('div').parent('li').find('input[type="radio"]').trigger('click');
 		});
+
+		// min order validation
 
 		$('.single_add_to_cart_button').on('click', function(e){
 			e.preventDefault();
@@ -540,7 +732,7 @@ jQuery( function( $ ) {
 			}else {
 				$(this).parent('form').submit();
 			}
-		})
+		});
 
 	});
 	
