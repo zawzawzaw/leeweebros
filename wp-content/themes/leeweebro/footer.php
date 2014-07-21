@@ -66,7 +66,7 @@
                 <li>
                   <p>Delivery Hotline:</p>
                   <p><a href="tel:63859122">6385 9122</a> / <a href="tel:63859133">6385 9133</a></p>
-                  <?php $outlets_page = get_page_by_title( 'Outlets' ); ?>
+                  <?php $outlets_page = get_page_by_title( 'Our Outlets' ); ?>
                   <a href="<?php echo get_permalink($outlets_page->ID); ?>">Outlets</a>
                 </li>
               </ul>

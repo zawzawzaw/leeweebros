@@ -6,10 +6,7 @@ load receiving mode page (prev button + delivery price validation + 2 form valid
 select address page (prev button)
 clickable indicator
 update in address book
-
-thank you page
 check if all details are saved correctly in db
-image sizes
 
 contact
 search
@@ -27,3 +24,5 @@ min quantity to order
 see how the unregister user flow is now
 need to follow new timeslot
 my account page 
+image sizes
+thank you page
