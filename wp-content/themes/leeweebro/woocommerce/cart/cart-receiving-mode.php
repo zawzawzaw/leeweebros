@@ -125,13 +125,13 @@ $total_amount = $woocommerce->cart->total;
 				</li>
 			</ul>
 		</div>
-		<div class="col-md-1">
+		<!-- <div class="col-md-1">
 			<div class="vertical-line"></div>
 		</div>
 		<div class="col-md-4">
 			<h2>DELIVERY:</h2>
 			<p>Delivery is not available for orders below $100.</p>
-		</div>
+		</div> -->
 	</div>
 	<div class="space30"></div>
 	<div class="row">

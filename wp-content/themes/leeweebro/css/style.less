@@ -1421,7 +1421,7 @@ header#main-header {
     }
 
     label {
-      margin-bottom: 13px;
+      margin-bottom: 20px;
     }
 
     label[for="user_login"],label[for="account_first_name"],label[for="account_last_name"],label[for="account_email"] {
@@ -1493,18 +1493,14 @@ header#main-header {
       margin-top: 10px;
     }
 
-    label#address_book_1_postcode-error {
-      display: block;
-    }
-
-    label#address_book_1_city-error {
-      display: block;
-    }
-
-    label#address_book_1_mobile-error {
+    label.error {
       position: absolute;
       top: 28px;
       left: 0px;
+    }
+
+    label#address_book_1_address_1-error {
+      top: 42px;
     }
   }
 
@@ -2546,6 +2542,7 @@ header#main-header {
 
       label:not(.radio-label) {
         position: relative;
+        margin-bottom: 23px;
         input[type="text"],input[type="password"] {
           padding-left: 12px;   
         }
@@ -2580,7 +2577,17 @@ header#main-header {
       }
 
       input[type="text"] {
-        margin-bottom: 13px;
+        /*margin-bottom: 13px;*/
+      }
+
+      label.error {
+        position: absolute;
+        top: 28px;
+        left: 0px;
+      }
+
+      label#address_1-error {
+        top: 43px;
       }
 
       input[name="address_1"], input[name="address_2"] {

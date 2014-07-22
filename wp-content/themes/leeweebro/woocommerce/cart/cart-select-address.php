@@ -74,19 +74,15 @@ global $woocommerce;
 						}
 					}
 
+					$address_keys = array('future_ref', 'address_1', 'address_2', 'country', 'postcode', 'phone', 'mobile', 'first_name', 'last_name', 'company', 'city', 'town');
+
 					for($i=0;$i<=$address_count-1;$i++) {
-						$address_book[$i]['future_ref'] = get_user_meta( get_current_user_id(), 'address_book_1_future_ref', true );
-						$address_book[$i]['address_1'] = get_user_meta( get_current_user_id(), 'address_book_1_address_1', true ); 
-						$address_book[$i]['address_2'] = get_user_meta( get_current_user_id(), 'address_book_1_address_2', true );
-						$address_book[$i]['country'] = get_user_meta( get_current_user_id(), 'address_book_1_country', true ); 
-						$address_book[$i]['postcode'] = get_user_meta( get_current_user_id(), 'address_book_1_postcode', true ); 
-						$address_book[$i]['phone'] = get_user_meta( get_current_user_id(), 'address_book_1_phone', true ); 
-						$address_book[$i]['mobile'] = get_user_meta( get_current_user_id(), 'address_book_1_mobile', true );
-						$address_book[$i]['first_name'] = get_user_meta( get_current_user_id(), 'address_book_1_first_name', true );
-						$address_book[$i]['last_name'] = get_user_meta( get_current_user_id(), 'address_book_1_last_name', true );
-						$address_book[$i]['company'] = get_user_meta( get_current_user_id(), 'address_book_1_company', true );
-						$address_book[$i]['city'] = get_user_meta( get_current_user_id(), 'address_book_1_city', true );
-						$address_book[$i]['town'] = get_user_meta( get_current_user_id(), 'address_book_1_town', true );	
+
+						foreach ($address_keys as $key => $address_key) {
+							$j = $i + 1;
+							$address_book_key = 'address_book_' . $j . '_' . $address_key;
+							$address_book[$i][$address_key] = get_user_meta( get_current_user_id(), $address_book_key, true );	
+						}
 					}
 					?>
 					<select name="billing_address" class="billing_address">
@@ -150,12 +146,14 @@ global $woocommerce;
 					</div>
 				</div>
 
+				<div class="row"><div class="col-md-5"><div class="error-select-address"></div></div></div>
+
 				<div class="space20"></div>
 				
 				<form id="submitcheckout" action="<?php echo esc_url( $woocommerce->cart->get_checkout_url() ); ?>" method="post">
-					<input type="hidden" name="billing_address" id="billing_address_hidden" />
-					<input type="hidden" name="shipping_address" id="shipping_address_hidden" />
-					<input type="hidden" name="receiving_mode" value="<?php echo htmlspecialchars(json_encode($_POST)); ?>" />
+					<input type="hidden" name="billing_address" id="billing_address_hidden" class="required" />
+					<input type="hidden" name="shipping_address" id="shipping_address_hidden" class="required" />
+					<input type="hidden" name="receiving_mode" value="<?php echo htmlspecialchars(json_encode($_POST)); ?>" class="required" />
 					<textarea name="special_instruction" id="special_instruction" cols="80" rows="10" placeholder="Special Delivery Instruction"></textarea>
 
 					<?php do_action( 'woocommerce_proceed_to_checkout' ); ?>
@@ -177,7 +175,7 @@ global $woocommerce;
 <div class="address-container" style="display:none;">
 	<form name="login" id="shippingaddress-form" method="post" action="" style="display:none;">
 		<div class="row">
-			<div class="col-md-6"><h2>SELECT DELIVERY LOCATION TYPE:</h2></div>
+			<div class="col-md-6"><h2 class="delivery-location-title">SELECT DELIVERY LOCATION TYPE:</h2></div>
 		</div>
 		<div class="row">
 			<div class="col-md-6">
@@ -206,7 +204,7 @@ global $woocommerce;
 
 				<div class="space20"></div>
 
-				<h2>ADD NEW ADDRESS:</h2>
+				<h2 class="delivery-address-title">ADD NEW ADDRESS:</h2>
 				<div class="space10"></div>
 
 				<label for="first_name" class="asterisk">
@@ -230,9 +228,9 @@ global $woocommerce;
 
 				<label for="address_2" class="no-asterisk">
 					<input type="text" name="address_2" class="large-input" placeholder="Address">
+					<p class="desc">Apartment, suite, unit, building, floor, etc.</p>
 				</label>
-				<p class="desc">Apartment, suite, unit, building, floor, etc.</p>
-
+				
 				<div class="space10"></div>
 
 				<label for="postcode" class="asterisk">
@@ -266,6 +264,9 @@ global $woocommerce;
 				<label for="mobile" class="asterisk">
 					<input type="text" name="mobile" class="small-input" placeholder="Mobile">
 				</label>
+				<input type="hidden" name="existing_or_new" />
+				<input type="hidden" name="address_book_id" />
+				<input type="hidden" name="same_as_billing" />
 				<p class="desc"><span class="asterisk">*</span> Required field</p>
 			</div>
 		</div>
@@ -276,36 +277,36 @@ global $woocommerce;
 	</form>
 	<form name="login" id="billingaddress-form" method="post" action="" style="display:none;">
 		<div class="row">
-			<div class="col-md-6"><h2>ADD BILLING LOCATION:</h2></div>
+			<div class="col-md-6"><h2 class="billing-location-title">ADD BILLING LOCATION:</h2></div>
 		</div>
 		<div class="row">
 			<div class="col-md-6">
 				<ul class="location">
 					<li>
-						<input type="radio" name="delivery_location" value="Residential" checked>
+						<input type="radio" name="billing_location" value="Residential" checked>
 						<label for="online" class="radio-label"><span class="radiobtn"></span>Residential</label>
 					</li>
 					<li>
-						<input type="radio" name="delivery_location" value="Company" >
+						<input type="radio" name="billing_location" value="Company" >
 						<label for="atm" class="radio-label"><span class="radiobtn"></span>Company</label>
 					</li>
 					<li>
-						<input type="radio" name="delivery_location" value="Chalet" >
+						<input type="radio" name="billing_location" value="Chalet" >
 						<label for="atm" class="radio-label"><span class="radiobtn"></span>Chalet</label>
 					</li>
 					<li>
-						<input type="radio" name="delivery_location" value="Public Attractions" >
+						<input type="radio" name="billing_location" value="Public Attractions" >
 						<label for="atm" class="radio-label"><span class="radiobtn"></span>Public Attractions <span class="regular">(Sentosa, Gardens By the Bay, etc.)</span></label>
 					</li>
 					<li>
-						<input type="radio" name="delivery_location" value="Public Spaces" >
+						<input type="radio" name="billing_location" value="Public Spaces" >
 						<label for="atm" class="radio-label"><span class="radiobtn"></span>Public Spaces <span class="regular">(Beaches, Parks, etc.)</span></label>
 					</li>
 				</ul>
 
 				<div class="space20"></div>
 
-				<h2>ADD NEW ADDRESS:</h2>
+				<h2 class="billing-address-title">ADD NEW ADDRESS:</h2>
 				<div class="space10"></div>
 
 				<label for="first_name" class="asterisk">
@@ -329,8 +330,8 @@ global $woocommerce;
 
 				<label for="address_2" class="no-asterisk">
 					<input type="text" name="address_2" class="large-input" placeholder="Address">
-				</label>
-				<p class="desc">Apartment, suite, unit, building, floor, etc.</p>
+					<p class="desc">Apartment, suite, unit, building, floor, etc.</p>
+				</label>				
 
 				<div class="space10"></div>
 
@@ -365,6 +366,8 @@ global $woocommerce;
 				<label for="mobile" class="asterisk">
 					<input type="text" name="mobile" class="small-input" placeholder="Mobile">
 				</label>
+				<input type="hidden" name="existing_or_new" />
+				<input type="hidden" name="address_book_id" />
 				<p class="desc"><span class="asterisk">*</span> Required field</p>
 			</div>
 		</div>

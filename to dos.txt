@@ -1,11 +1,9 @@
 TO DOs
 
 variable prices
-address page (3 form validation) (at least town to add on register)
-load receiving mode page (prev button + delivery price validation + 2 form validation + add collection times dropbox + add surchages)
 clickable indicator
-update in address book
-check if all details are saved correctly in db
+check if 2 new address to add in address book
+prev
 
 contact
 search
@@ -26,3 +24,7 @@ my account page
 image sizes
 thank you page
 select address page (prev button)
+check if all details are saved correctly in db
+address page (3 form validation) (at least town to add on register)
+load receiving mode page (prev button + delivery price validation + 2 form validation + add collection times dropbox + add surchages)
+update in address book

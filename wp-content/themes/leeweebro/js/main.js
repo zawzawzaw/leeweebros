@@ -132,6 +132,8 @@ jQuery( function( $ ) {
 			}
 		});
 
+		$addressContainer
+
 		$addressContainer.find('form#billingaddress-form').validate({
 			rules: {
 				first_name: "required",
@@ -180,6 +182,25 @@ jQuery( function( $ ) {
 				country: "Please fill in your country",
 				mobile: "Please fill in your mobile"
 			}
+		});
+
+		$selectAddressContainer.find('form#submitcheckout').validate({
+			ignore: [],
+			rules: {
+				billing_address: "required",
+				shipping_address: "required"
+			},
+			messages: {
+				billing_address: "Please select existing or add new billing address",
+				shipping_address: "Please select existing or add new delivery address"
+			},
+			errorPlacement: function(error, element) {
+			    if (element.attr("name") == "billing_address" || element.attr("name") == "shipping_address") {
+			      	$('.error-select-address').html(error);
+			    }else {
+			      	error.insertAfter(element);
+			    }
+		  	}
 		});
 
 		$sideBarMenu.children('li').children('.collapse').on('shown.bs.collapse', function (e) {
@@ -270,7 +291,8 @@ jQuery( function( $ ) {
 			var ampm = $(this).parent('div').parent('div').parent('form').find('select[name="consumption_time_am_pm"]').val();			
 
 			// set required time
-			var validTimes = ['06:00:00', '18:00:00'];
+			var validTimes = ['06:00:00', '23:59:00'];
+			var validTimes2 = ['06:00:00', '22:00:00'];
 			var formattedTime = convertAMPM(hr, min, ampm);
 
 			// set required date
@@ -302,12 +324,12 @@ jQuery( function( $ ) {
 
 			}else if(validTimes[0] > formattedTime || formattedTime > validTimes[1]) {
 
-				$('.error-consumption-time').html('Please choose within collection time constraint.');
+				$('.error-consumption-time').html('We recommend to consume the food within 4 hrs after collection.');
 				error = true;
 
 			}else $('.error-consumption-time').html('');
 
-			if(error==false) $receivingModeDelivery.find('form').submit();
+			if(error==false) $receivingModeCollection.find('form').submit();
 
 		});
 
@@ -326,6 +348,7 @@ jQuery( function( $ ) {
 
 			// set required time
 			var validTimes = ['06:00:00', '18:00:00'];
+			var validTimes2 = ['06:00:00', '22:00:00'];
 			var formattedTime = convertAMPM(hr, min, ampm);
 
 			// set required date
@@ -375,7 +398,7 @@ jQuery( function( $ ) {
 				error = true;
 			}else if(validTimes[0] > formattedTime || formattedTime > validTimes[1]) {
 
-				$('.error-consumption-time').html('Please choose within delivery time constraint.');
+				$('.error-consumption-time').html('We recommend to consume the food within 4 hrs after collection.');
 				error = true;
 			}else $('.error-consumption-time').html('');
 
@@ -470,6 +493,7 @@ jQuery( function( $ ) {
 			$shippingInfoList.children('.address-2').html(shippingAddress.address_2);
 			$shippingInfoList.children('.country').html(shippingAddress.country);
 			$shippingInfoList.children('.postcode').html(shippingAddress.postcode);
+			$billingInfoList.children('.city').html(shippingAddress.city);
 			$shippingInfoList.children('.tel').html(shippingAddress.phone);
 			$shippingInfoList.children('.mobile').html(shippingAddress.mobile);
 			$shippingInfoList.next('.update').html('UPDATE');
@@ -488,6 +512,7 @@ jQuery( function( $ ) {
 			$billingInfoList.children('.address-2').html(billingAddress.address_2);
 			$billingInfoList.children('.country').html(billingAddress.country);
 			$billingInfoList.children('.postcode').html(billingAddress.postcode);
+			$billingInfoList.children('.city').html(billingAddress.city);
 			$billingInfoList.children('.tel').html(billingAddress.phone);
 			$billingInfoList.children('.mobile').html(billingAddress.mobile);
 			$billingInfoList.next('.update').html('UPDATE');
@@ -513,9 +538,6 @@ jQuery( function( $ ) {
 					$shippinginputHidden.val(billingAddress_json);
 
 					$shippingDropdownDiv.slideUp();
-
-					$shippingInfoList.next('.update').html('');
-
 				}else {
 
 					$shippingDropdownDiv.slideDown();
@@ -541,6 +563,9 @@ jQuery( function( $ ) {
 
 			// if shipping is the same
 			if($(this).prop('checked')) {
+				var fields = $('form#billingaddress-form').serializeObject();
+				var billing_fields_json = JSON.stringify(fields);
+
 				if($billingDropdown.val()){
 
 					var billingAddress_json = $billingDropdown.val();
@@ -549,30 +574,63 @@ jQuery( function( $ ) {
 					show_shipping_address_data(billingAddress);
 					$shippinginputHidden.val(billingAddress_json);
 
+				}else if(fields) {
+					show_shipping_address_data(fields);
+					$shippingInfoList.next('.update').html('');
+					$shippinginputHidden.val(billing_fields_json);					
 				}
 
 				$shippingDropdownDiv.slideUp();
 
 			}else {
-				hide_shipping_address_data();
-				$shippinginputHidden.val('');
+				if($billingDropdown.val()!='') {
+					hide_shipping_address_data();
+					$shippinginputHidden.val('');
+				}
 
 				$shippingDropdownDiv.slideDown();
-				$shippingDropdown.trigger('change');
+				
+				if($shippingDropdown.val())
+					$shippingDropdown.trigger('change');
 			}
 		});
 
-		function setAddressInTheForm(billingAddress) {
-			$newFormContainer.find('input[name="first_name"]').val(billingAddress.first_name);
-			$newFormContainer.find('input[name="last_name"]').val(billingAddress.last_name);
-			$newFormContainer.find('input[name="company"]').val(billingAddress.company);
-			$newFormContainer.find('input[name="address_1"]').val(billingAddress.address_1);
-			$newFormContainer.find('input[name="address_2"]').val(billingAddress.address_2);
-			$newFormContainer.find('input[name="postcode"]').val(billingAddress.postcode);
-			$newFormContainer.find('select[name="country"]').val(billingAddress.country);
-			$newFormContainer.find('textarea[name="addition_info"]').val(billingAddress.addition_info);
-			$newFormContainer.find('input[name="phone"]').val(billingAddress.phone);
-			$newFormContainer.find('input[name="mobile"]').val(billingAddress.mobile);
+		function setAddressInTheForm(Address, dropDownIndex) {
+			$newFormContainer.find('input[name="first_name"]').val(Address.first_name);
+			$newFormContainer.find('input[name="last_name"]').val(Address.last_name);
+			$newFormContainer.find('input[name="company"]').val(Address.company);
+			$newFormContainer.find('input[name="address_1"]').val(Address.address_1);
+			$newFormContainer.find('input[name="address_2"]').val(Address.address_2);
+			$newFormContainer.find('input[name="postcode"]').val(Address.postcode);
+			$newFormContainer.find('input[name="city"]').val(Address.city);
+			$newFormContainer.find('select[name="country"]').val(Address.country);
+			$newFormContainer.find('textarea[name="addition_info"]').val(Address.addition_info);
+			$newFormContainer.find('input[name="phone"]').val(Address.phone);
+			$newFormContainer.find('input[name="mobile"]').val(Address.mobile);
+			$newFormContainer.find('input[name="existing_or_new"]').val('existing');
+			$newFormContainer.find('input[name="address_book_id"]').val(dropDownIndex);
+		}
+
+		function clearAddressIntheForm(dropDownLastIndex) {
+			$newFormContainer.find('input[name="first_name"]').val('');
+			$newFormContainer.find('input[name="last_name"]').val('');
+			$newFormContainer.find('input[name="company"]').val('');
+			$newFormContainer.find('input[name="address_1"]').val('');
+			$newFormContainer.find('input[name="address_2"]').val('');
+			$newFormContainer.find('input[name="postcode"]').val('');
+			$newFormContainer.find('input[name="city"]').val('');
+			$newFormContainer.find('textarea[name="addition_info"]').val('');
+			$newFormContainer.find('input[name="phone"]').val('');
+			$newFormContainer.find('input[name="mobile"]').val('');
+			$newFormContainer.find('input[name="existing_or_new"]').val('new');
+			$newFormContainer.find('input[name="address_book_id"]').val(dropDownLastIndex);
+
+			console.log($sameasbillingCheckbox.prop('checked'));
+			if($sameasbillingCheckbox.prop('checked')) {
+				$newFormContainer.find('input[name="same_as_billing"]').val('yes');
+			}else {
+				$newFormContainer.find('input[name="same_as_billing"]').val('no');
+			}
 		}
 
 		$billingInfoList.next('.update').on('click', function(e){
@@ -584,12 +642,51 @@ jQuery( function( $ ) {
 				var billingAddress_json = $billingDropdown.val();
 				var billingAddress = jQuery.parseJSON( billingAddress_json );
 
-				setAddressInTheForm(billingAddress);
+				var billingDropdownIndex = $billingDropdown.prop("selectedIndex");
+
+				console.log(billingDropdownIndex);
+
+				setAddressInTheForm(billingAddress, billingDropdownIndex);
+
+				$newFormContainer.find('.billing-location-title').html('UPDATE BILLING LOCATION TYPE:')
+				$newFormContainer.find('.billing-address-title').html('UPDATE ADDRESS:')
 			}
 
 			$selectAddressContainer.hide();
 			$newFormContainer.show();
 			$newBillingAddressForm.show();
+
+		});
+
+		$shippingInfoList.next('.update').on('click', function(e){
+			
+			e.preventDefault();
+
+			if($shippingDropdown.val()){
+
+				var shippingAddress_json = $shippingDropdown.val();
+				var shippingAddress = jQuery.parseJSON( shippingAddress_json );
+
+				var shippingDropdownIndex = $shippingDropdown.prop("selectedIndex");
+
+				setAddressInTheForm(shippingAddress, shippingDropdownIndex);
+
+				$newFormContainer.find('.delivery-location-title').html('UPDATE DELIVERY LOCATION TYPE:')
+				$newFormContainer.find('.delivery-address-title').html('UPDATE ADDRESS:')
+
+			}else if($billingDropdown.val()){
+
+				var billingAddress_json = $billingDropdown.val();
+				var billingAddress = jQuery.parseJSON( billingAddress_json );
+
+				var billingDropdownIndex = $billingDropdown.prop("selectedIndex");
+
+				setAddressInTheForm(billingAddress, billingDropdownIndex);
+			}
+
+			$selectAddressContainer.hide();
+			$newFormContainer.show();
+			$newShippingAddressForm.show();
 
 		});
 
@@ -617,18 +714,34 @@ jQuery( function( $ ) {
 		$addNewBillingBtn.on('click', function(e){
 
 			e.preventDefault();
+			var billingDropdownIndex = $('.billing_address option:last-child').index();
+
+			console.log(billingDropdownIndex)
 
 			$selectAddressContainer.hide();
 			$newFormContainer.show();
+			clearAddressIntheForm(billingDropdownIndex);
+			$newFormContainer.find('.billing-location-title').html('ADD BILLING LOCATION TYPE:')
+			$newFormContainer.find('.billing-address-title').html('ADD NEW ADDRESS:')
+
 			$newBillingAddressForm.show();
 		});
 
 		$addNewShippingBtn.on('click', function(e){
 
 			e.preventDefault();
+			var shippingDropdownIndex = $('.delivery_address option:last-child').index();
+
+			console.log(shippingDropdownIndex)
+
+			if($sameasbillingCheckbox.prop('checked')) $sameasbillingCheckbox.trigger('click');
 
 			$selectAddressContainer.hide();
 			$newFormContainer.show();
+			clearAddressIntheForm(shippingDropdownIndex);
+			$newFormContainer.find('.delivery-location-title').html('ADD DELIVERY LOCATION TYPE:')
+			$newFormContainer.find('.delivery-address-title').html('ADD NEW ADDRESS:')
+
 			$newShippingAddressForm.show();
 		});
 
@@ -695,7 +808,9 @@ jQuery( function( $ ) {
 		$checkoutBtn.on('click', function(e){
 			e.preventDefault();
 
-			$checkoutForm.submit();
+			if($('form#submitcheckout').valid()){
+				$checkoutForm.submit();
+			}
 		});
 
 		$backToReceivingModeBtn.on('click', function(e){

@@ -244,28 +244,43 @@ function myplugin_registration_save( $user_id ) {
     add_user_meta( $user_id, 'date_of_birth', $dob );
 }
 
-// Hook in
+// Hook in (existing woocommerce fields override)
 add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields_billing_and_shipping' );
 
 // Our hooked in function - $fields is passed via the filter!
 function custom_override_checkout_fields_billing_and_shipping( $fields ) {
-  
-  
-
-  update_user_meta($user_id, 'billing_first_name', 'why not updating!');
-  // die('hi');
 
   $billing_address = json_decode(stripslashes($_POST['billing_address']), true);
+  $address_book_index = 1;
+  $user_id = get_current_user_id();
 
   if(isset($billing_address)) {
+    $existing_or_new = $billing_address['existing_or_new'];
+    $address_book_id = $billing_address['address_book_id'];
+
     foreach ($billing_address as $key => $value) {
       if($key!='future_ref') {
+
+        // to save in order flow
         $billing_key = 'billing_'.$key;
         $fields['billing'][$billing_key]['default'] = $value;
         $fields['billing'][$billing_key]['label'] = $key;
 
-        // update saved woocommerce billing shipping in user meta
-        update_user_meta($user_id, $billing_key, $value);
+        // to save to address book
+        if($existing_or_new=="new") {
+
+          $address_book_index = $address_book_id + 1;
+          $address_book_key = 'address_book_'.$address_book_index.'_'.$key;
+          update_user_meta($user_id, $address_book_key, $value);
+
+        }else if($existing_or_new=="existing") {
+
+          $address_book_index = $address_book_id;
+          $address_book_key = 'address_book_'.$address_book_index.'_'.$key;
+          // echo $user_id . ' ' . $address_book_key . ' ' . $value . '<br>';
+          update_user_meta($user_id, $address_book_key, $value);
+
+        }
       }
     }
   }
@@ -273,23 +288,65 @@ function custom_override_checkout_fields_billing_and_shipping( $fields ) {
   $shipping_address = json_decode(stripslashes($_POST['shipping_address']), true);
 
   if(isset($shipping_address)) {
+    $existing_or_new = $shipping_address['existing_or_new'];
+    $address_book_id = $shipping_address['address_book_id'];
+    $same_as_billing = $shipping_address['same_as_billing'];
+
     foreach ($shipping_address as $key => $value) {
+
+      // to save in order flow
       $shipping_key = 'shipping_'.$key;
       $fields['shipping'][$shipping_key]['default'] = $value;
       $fields['shipping'][$shipping_key]['label'] = $key;
 
-      // update saved woocommerce billing shipping in user meta
-      update_user_meta($user_id, $shipping_key, $value);
+      // to save to address book
+      if($existing_or_new=="new") {
+
+        if($same_as_billing=='no') {
+          $address_book_index = $address_book_id + 2;
+        }else {
+          $address_book_index = $address_book_id + 1;
+        }
+        
+        $address_book_key = 'address_book_'.$address_book_index.'_'.$key;
+        update_user_meta($user_id, $address_book_key, $value);
+
+      }else if($existing_or_new=="existing") {
+
+        $address_book_index = $address_book_id;
+        $address_book_key = 'address_book_'.$address_book_index.'_'.$key;
+        // echo $user_id . ' ' . $address_book_key . ' ' . $value . '<br>';
+        update_user_meta($user_id, $address_book_key, $value);
+
+      }
     }
   }
 
   $fields['order']['order_comments']['label'] = 'Special Instruction';
   $fields['order']['order_comments']['default'] = $_POST['special_instruction'];
 
+  // remove required phone
+  $fields['shipping']['shipping_phone'] = array(
+    'label'     => __('Phone', 'woocommerce'),
+    'placeholder'   => _x('Phone', 'placeholder', 'woocommerce'),
+    'required'  => false,
+    'class'     => array('form-row-wide'),
+    'clear'     => true
+  );
+
+  // remove required phone
+  $fields['billing']['billing_phone'] = array(
+    'label'     => __('Phone', 'woocommerce'),
+    'placeholder'   => _x('Phone', 'placeholder', 'woocommerce'),
+    'required'  => false,
+    'class'     => array('form-row-wide'),
+    'clear'     => true
+  );
+
   return $fields;
 }
 
-// Hook in
+// Hook in (adding new checkout fields)
 add_filter( 'woocommerce_after_order_notes' , 'custom_override_checkout_fields' );
 
 // Our hooked in function - $fields is passed via the filter!
