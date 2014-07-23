@@ -87,11 +87,13 @@ global $woocommerce;
 					?>
 					<select name="billing_address" class="billing_address">
 						<option value="">SELECT EXISTING ADDRESS</option>
-						<?php foreach ($address_book as $key => $address): ?>
-							<?php if(!empty($address['first_name'])): ?>
-								<option value="<?php echo htmlspecialchars(json_encode($address)); ?>"><?php echo (!empty($address['future_ref'])) ? $address['future_ref'] : $address['address_1']; ?></option>
-							<?php endif; ?>
-						<?php endforeach; ?>
+						<?php if(isset($address_book) && !empty($address_book)): ?>
+							<?php foreach ($address_book as $key => $address): ?>
+								<?php if(!empty($address['first_name'])): ?>
+									<option value="<?php echo htmlspecialchars(json_encode($address)); ?>"><?php echo (!empty($address['future_ref'])) ? $address['future_ref'] : $address['address_1']; ?></option>
+								<?php endif; ?>
+							<?php endforeach; ?>
+						<?php endif; ?>
 					</select>
 				</div>
 
@@ -107,9 +109,13 @@ global $woocommerce;
 					<div class="dropdown">
 						<select name="delivery_address" class="delivery_address">
 							<option value="">SELECT EXISTING ADDRESS</option>
-							<?php foreach ($address_book as $key => $address): ?>
-								<option value="<?php echo htmlspecialchars(json_encode($address)); ?>"><?php echo (!empty($address['future_ref'])) ? $address['future_ref'] : $address['address_1']; ?></option>
-							<?php endforeach; ?>
+							<?php if(isset($address_book) && !empty($address_book)): ?>
+								<?php foreach ($address_book as $key => $address): ?>
+									<?php if(!empty($address['first_name'])): ?>
+										<option value="<?php echo htmlspecialchars(json_encode($address)); ?>"><?php echo (!empty($address['future_ref'])) ? $address['future_ref'] : $address['address_1']; ?></option>
+									<?php endif; ?>
+								<?php endforeach; ?>
+							<?php endif; ?>
 						</select>
 					</div>
 				</div>
