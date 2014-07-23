@@ -163,7 +163,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<label for="address_book_1_postcode" class="asterisk">
 					<input type="text" name="address_book_1_postcode" class="small-input" placeholder="Zip / Postal Code">
 				</label>
-				<label for="address_book_1_city" class="asterisk">
+				<label for="address_book_1_city" class="">
 					<input type="text" name="address_book_1_city" class="small-input" placeholder="Town">
 				</label>
 			</div>

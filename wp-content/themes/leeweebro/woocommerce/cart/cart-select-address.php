@@ -67,11 +67,11 @@ global $woocommerce;
 					for($i=1;$i<=1000;$i++) {
 						$key = 'address_book_'.$i.'_address_1';
 						$address_1 = get_user_meta( get_current_user_id(), $key, true );
-						if(empty($address_1)) {
-							break;
-						}else {
+						// if(empty($address_1)) {
+						// 	break;
+						// }else {
 							$address_count++;
-						}
+						// }
 					}
 
 					$address_keys = array('future_ref', 'address_1', 'address_2', 'country', 'postcode', 'phone', 'mobile', 'first_name', 'last_name', 'company', 'city', 'town');
@@ -88,7 +88,9 @@ global $woocommerce;
 					<select name="billing_address" class="billing_address">
 						<option value="">SELECT EXISTING ADDRESS</option>
 						<?php foreach ($address_book as $key => $address): ?>
-							<option value="<?php echo htmlspecialchars(json_encode($address)); ?>"><?php echo (!empty($address['future_ref'])) ? $address['future_ref'] : $address['address_1']; ?></option>
+							<?php if(!empty($address['first_name'])): ?>
+								<option value="<?php echo htmlspecialchars(json_encode($address)); ?>"><?php echo (!empty($address['future_ref'])) ? $address['future_ref'] : $address['address_1']; ?></option>
+							<?php endif; ?>
 						<?php endforeach; ?>
 					</select>
 				</div>
@@ -236,7 +238,7 @@ global $woocommerce;
 				<label for="postcode" class="asterisk">
 					<input type="text" name="postcode" class="small-input" placeholder="Zip / Postal Code">
 				</label>
-				<label for="city" class="asterisk">
+				<label for="city" class="">
 					<input type="text" name="city" class="small-input" placeholder="Town">
 				</label>
 
@@ -338,7 +340,7 @@ global $woocommerce;
 				<label for="postcode" class="asterisk">
 					<input type="text" name="postcode" class="small-input" placeholder="Zip / Postal Code">
 				</label>
-				<label for="city" class="asterisk">
+				<label for="city" class="">
 					<input type="text" name="city" class="small-input" placeholder="Town">
 				</label>
 

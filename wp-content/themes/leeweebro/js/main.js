@@ -47,6 +47,10 @@ jQuery( function( $ ) {
 			$submissionPrevBtn = $('.submission-prev-btn'),
 			$confirmOrderBtn = $('#confirm-order');
 
+		$.validator.addMethod("alphanumeric", function(value, element) {
+	        return this.optional(element) || /^[a-z0-9\-\s]+$/i.test(value);
+	    }, "Letter and number only please");
+
 		$accountLoginContainer.find('form.register').validate({
 			messages: {
 				email: {
@@ -58,18 +62,15 @@ jQuery( function( $ ) {
 		$accountLoginContainer.find('form.login').validate({
 			rules: {
 				username : {
-					required: true,
-					alphanumeric: true
+					required: true
 				},
 				password : {
-					required: true,
-					minlength: 5
+					required: true
 				}
 			},
 			messages: {
 				username: {
-					required: "Please fill in your user name",
-					alphanumeric: "Letter and number only please"
+					required: "Please fill in your user name"
 				},
 				password: {
 				  required: "Please fill in your password"
@@ -102,10 +103,6 @@ jQuery( function( $ ) {
 				address_book_1_postcode: {
 					required : true,
 					number: true
-				},
-				address_book_1_city : {
-					required: true,
-					alphanumeric: true
 				},
 				address_book_1_country: {
 					required: true,
@@ -142,10 +139,6 @@ jQuery( function( $ ) {
 					required : "Please fill in your post code",
 					number: "Invalid postal code"
 				},
-				address_book_1_city : {
-					required: "Please fill in your town/city name",
-					alphanumeric: "Letter and number only please"
-				},
 				address_book_1_country: {
 					required: "Please fill in your country",
 					alphanumeric: "Letter and number only please"
@@ -160,14 +153,12 @@ jQuery( function( $ ) {
 		$accountLoginContainer.find('form.lost_reset_password').validate({
 			rules: {
 				user_login: {
-					required: true,
-					alphanumeric: true
+					required: true
 				}
 			},
 			messages: {
 				user_login: {
-					required: "Please fill in your login name or email",
-					alphanumeric: "Letter and number only please"
+					required: "Please fill in your login name or email"
 				}
 			}
 		});
@@ -218,10 +209,6 @@ jQuery( function( $ ) {
 					required : true,
 					number: true
 				},
-				city : {
-					required: true,
-					alphanumeric: true
-				},
 				country: {
 					required: true,
 					alphanumeric: true
@@ -244,10 +231,6 @@ jQuery( function( $ ) {
 				postcode: {
 					required : "Please fill in your post code",
 					number: "Invalid postal code"
-				},
-				city : {
-					required: "Please fill in your town / city name",
-					alphanumeric: "Letter and number only please"
 				},
 				country: {
 					required: "Please fill in your country",
@@ -275,10 +258,6 @@ jQuery( function( $ ) {
 					required : true,
 					number: true
 				},
-				city : {
-					required: true,
-					alphanumeric: true
-				},
 				country: {
 					required: true,
 					alphanumeric: true
@@ -301,10 +280,6 @@ jQuery( function( $ ) {
 				postcode: {
 					required : "Please fill in your post code",
 					number: "Invalid postal code"
-				},
-				city : {
-					required: "Please fill in your town / city name",
-					alphanumeric: "Letter and number only please"
 				},
 				country: {
 					required: "Please fill in your country",
@@ -334,6 +309,87 @@ jQuery( function( $ ) {
 			      	error.insertAfter(element);
 			    }
 		  	}
+		});
+
+		function setAddressFormValue(Address, addressBookIndex){
+			$accountLoginContainer.find('input[name="first_name"]').val(Address.first_name);
+			$accountLoginContainer.find('input[name="last_name"]').val(Address.last_name);
+			$accountLoginContainer.find('input[name="company"]').val(Address.company);
+			$accountLoginContainer.find('input[name="address_1"]').val(Address.address_1);
+			$accountLoginContainer.find('input[name="address_2"]').val(Address.address_2);
+			$accountLoginContainer.find('input[name="postcode"]').val(Address.postcode);
+			$accountLoginContainer.find('input[name="city"]').val(Address.city);
+			$accountLoginContainer.find('select[name="country"]').val(Address.country);
+			$accountLoginContainer.find('textarea[name="addition_info"]').val(Address.addition_info);
+			$accountLoginContainer.find('input[name="phone"]').val(Address.phone);
+			$accountLoginContainer.find('input[name="mobile"]').val(Address.mobile);
+			$accountLoginContainer.find('input[name="address_book_id"]').val(addressBookIndex);
+		}
+
+		$accountLoginContainer.find('.update').on('click', function(e){
+			e.preventDefault();
+
+			var address_json = $(this).prev('input').val();
+			var addressBookIndex = $(this).parent('li').find('p').data('book');
+			
+			var Address = jQuery.parseJSON( address_json );
+
+			$accountLoginContainer.find('.address-container').children('.address-title').html('UPDATE NEW ADDRESS:')
+			$accountLoginContainer.find('.myaddress-container').hide();
+			$accountLoginContainer.find('.address-container').show();
+
+			setAddressFormValue(Address, addressBookIndex);
+		});
+
+		$accountLoginContainer.find('.save_address').click(function(e) {
+			e.preventDefault();
+
+			var fields = $(this).closest('form').serializeObject();
+			var address_fields_json = JSON.stringify(fields);
+
+			$.ajax({
+		       type: "POST",
+		       url: ajaxurl,
+		       data: "action=saveaddress&postdata="+address_fields_json,
+		       success: function(msg){
+		            $accountLoginContainer.find('.myaddress-container').show();
+					$accountLoginContainer.find('.address-container').hide();
+
+					var addressIndex = fields.address_book_id;
+						addressSelector = 'p.my-address-'+addressIndex;
+
+					$(addressSelector).children('span.name').html(fields.first_name + ' ' +fields.last_name);
+					$(addressSelector).children('span.address-1').html(fields.address_1);
+					$(addressSelector).children('span.address-2').html(fields.address_2);
+					$(addressSelector).children('span.country').html(fields.country);
+					$(addressSelector).children('span.postcode').html(fields.postcode);
+					$(addressSelector).children('span.mobile').html(fields.mobile);
+		       }
+		   });
+		});
+
+		$accountLoginContainer.find('.delete_address').click(function(e) {
+			e.preventDefault();
+
+			var address_json = $(this).prev().prev('input').val();
+
+			var Address = jQuery.parseJSON( address_json );
+			Address.address_book_id = $(this).parent('li').find('p').data('book');
+
+			var address_fields_json = JSON.stringify(Address);
+
+			$.ajax({
+		       	type: "POST",
+		       	url: ajaxurl,
+		       	data: "action=deleteaddress&postdata="+address_fields_json,
+		       	success: function(msg){
+	        		var addressIndex = Address.address_book_id;
+						addressSelector = 'p.my-address-'+addressIndex;
+
+					$(addressSelector).parent('li').remove();
+		       	}
+		   });
+
 		});
 
 		$sideBarMenu.children('li').children('.collapse').on('shown.bs.collapse', function (e) {

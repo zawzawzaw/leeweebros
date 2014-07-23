@@ -17,7 +17,7 @@ $order = new WC_Order( $order_id );
 
 <div class="myorder-container shop_table order_details">
 	<div class="row">
-		<div class="col-md-10">
+		<div class="col-md-12">
 			<div class="row myorder-heading">
 				<div class="col-md-5 product-name"><h5><?php _e( 'Product', 'woocommerce' ); ?></h5></div>
 				<div class="col-md-5 product-total"><h5><?php _e( 'Total', 'woocommerce' ); ?></h5></div>
@@ -86,6 +86,30 @@ $order = new WC_Order( $order_id );
 				do_action( 'woocommerce_order_items_table', $order );
 				?>
 			</div>
+		</div>
+	</div>
+</div>
+
+<div class="space20"></div>
+
+<div class="more-order-details">
+	<div class="row">
+		<div class="col-md-12">
+			<ul>
+				<li><span class="paymentby-lbl">Payment By:</span> <?php echo $order->payment_method_title; ?></li>
+				<li><span class="receivingmode-lbl">Receiving Mode:</span> <?php echo (isset($order->delivery)) ? 'Delivery' : 'Self Collection'; ?></li>
+				<?php if(isset($order->collection_area)): ?>
+				<li><span class="collectionplace-lbl">Collection Place:</span> <?php echo $order->collection_area; ?></li>
+				<li><span class="collectiondate-lbl">Collection Date:</span> <?php echo $order->collection_date_day . '/' . $order->collection_date_month . '/'. $order->collection_date_year; ?></li>
+				<li><span class="collectiontime-lbl">Collection Time:</span> <?php echo $order->collection_time; ?></li>
+				<?php endif; ?>
+				<?php if(isset($order->delivery)): ?>
+				<li><span class="deliveryplace-lbl">Delivery Location:</span> <?php echo ($order->delivery=='allotherarea') ? 'All areas excluding Jurong Island & Sentosa' : 'Jurong Island and Sentosa'; ?></li>
+				<li><span class="deliverydate-lbl">Delivery Date:</span> <?php echo $order->delivery_date_day . '/' . $order->delivery_date_month . '/'. $order->delivery_date_year; ?></li>
+				<li><span class="deliverytime-lbl">Delivery Time:</span> <?php echo $order->delivery_time; ?></li>
+				<?php endif; ?>
+				<li><span class="deliverytime-lbl">Consumption Time:</span> <?php echo $order->consumption_time_hr . ':'. $order->consumption_time_mm . ':' . $order->consumption_time_am_pm; ?></li>
+			</ul>
 		</div>
 	</div>
 </div>

@@ -199,7 +199,7 @@ wp_enqueue_script( 'jqueryui', '//code.jquery.com/ui/1.11.0/jquery-ui.js', array
 wp_enqueue_script( 'bootstrap', get_bloginfo( 'stylesheet_directory' ). '/lib/bootstrap/dist/js/bootstrap.min.js', array( 'jquery' ), false, true );
 wp_enqueue_script( 'jcarousel', get_bloginfo( 'stylesheet_directory' ). '/lib/jquery.jcarousel.min.js', array( 'jquery' ), false, true );
 wp_enqueue_script( 'validator', get_bloginfo( 'stylesheet_directory' ). '/lib/jquery.validate.min.js', array( 'jquery' ), false, true );
-wp_enqueue_script( 'additionalvalidator', get_bloginfo( 'stylesheet_directory' ). '/lib/additional-methods.min.js', array( 'jquery' ), false, true );
+// wp_enqueue_script( 'additionalvalidator', get_bloginfo( 'stylesheet_directory' ). '/lib/additional-methods.min.js', array( 'jquery' ), false, true );
 wp_enqueue_script( 'main', get_bloginfo( 'stylesheet_directory' ). '/js/main.js', array( 'jquery' ), false, true );
 
 // Woocommerce New Customer Admin Notification Email
@@ -304,13 +304,15 @@ function custom_override_checkout_fields_billing_and_shipping( $fields ) {
       if($existing_or_new=="new") {
 
         if($same_as_billing=='no') {
-          $address_book_index = $address_book_id + 2;
-        }else {
-          $address_book_index = $address_book_id + 1;
-        }
+          // if billing was also new address
+          if($billing_address['existing_or_new']=="new")
+            $address_book_index = $address_book_id + 2;
+          else
+            $address_book_index = $address_book_id + 1;
         
-        $address_book_key = 'address_book_'.$address_book_index.'_'.$key;
-        update_user_meta($user_id, $address_book_key, $value);
+          $address_book_key = 'address_book_'.$address_book_index.'_'.$key;
+          update_user_meta($user_id, $address_book_key, $value);
+        }
 
       }else if($existing_or_new=="existing") {
 
@@ -335,10 +337,28 @@ function custom_override_checkout_fields_billing_and_shipping( $fields ) {
     'clear'     => true
   );
 
+  // remove required city
+  $fields['shipping']['shipping_city'] = array(
+    'label'     => __('City', 'woocommerce'),
+    'placeholder'   => _x('City', 'placeholder', 'woocommerce'),
+    'required'  => false,
+    'class'     => array('form-row-wide'),
+    'clear'     => true
+  );
+
   // remove required phone
   $fields['billing']['billing_phone'] = array(
     'label'     => __('Phone', 'woocommerce'),
     'placeholder'   => _x('Phone', 'placeholder', 'woocommerce'),
+    'required'  => false,
+    'class'     => array('form-row-wide'),
+    'clear'     => true
+  );
+
+  // remove required city
+  $fields['billing']['billing_city'] = array(
+    'label'     => __('City', 'woocommerce'),
+    'placeholder'   => _x('City', 'placeholder', 'woocommerce'),
     'required'  => false,
     'class'     => array('form-row-wide'),
     'clear'     => true
@@ -407,4 +427,48 @@ function woocommerce_custom_surcharge() {
 
   $woocommerce->cart->add_fee( 'Surcharge', $surcharge, true, 'standard' );
 
+}
+
+// alter the subscriptions error
+function my_woocommerce_add_error( $error ) {
+
+    if (strpos($error,'The password you entered for the username') !== false) {
+        $lost_password_url = esc_url( wc_lostpassword_url() );
+        $error = '<strong>ERROR: </strong>Username or password is incorrect. <a href="'.$lost_password_url.'">Lost your password?</a>';
+    }
+    return $error;
+}
+add_filter( 'woocommerce_add_error', 'my_woocommerce_add_error' );
+
+// ajax
+add_action('wp_head','my_ajaxurl');
+function my_ajaxurl() {
+  $html = '<script type="text/javascript">';
+  $html .= 'var ajaxurl = "' . admin_url( 'admin-ajax.php' ) . '"';
+  $html .= '</script>';
+  echo $html;
+}
+
+// save address ajax
+add_action('wp_ajax_saveaddress', 'saveaddress_ajax');
+function saveaddress_ajax() {
+    $address_array = json_decode(stripslashes($_POST['postdata']), true);
+    $user_id = get_current_user_id();
+
+    foreach ($address_array as $key => $address) {
+      $address_book_key = 'address_book_'.$address_array['address_book_id'].'_'.$key;
+      update_user_meta($user_id, $address_book_key, $address);
+    }
+}
+
+// delete address ajax
+add_action('wp_ajax_deleteaddress', 'delete_address_ajax');
+function delete_address_ajax() {
+    $address_array = json_decode(stripslashes($_POST['postdata']), true);
+    $user_id = get_current_user_id();
+
+    foreach ($address_array as $key => $address) {
+      $address_book_key = 'address_book_'.$address_array['address_book_id'].'_'.$key;
+      delete_user_meta($user_id, $address_book_key);
+    }
 }
