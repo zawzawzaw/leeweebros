@@ -106,7 +106,7 @@ $order = new WC_Order( $order_id );
 			<ul>
 				<?php
 					if ( $order->billing_email ) echo '<li><span class="email-lbl">' . __( 'Email: ', 'woocommerce' ) . '</span><span>' . $order->billing_email . '</span></li>';
-					if ( $order->billing_phone ) echo '<li><span class="telephone-lbl">' . __( 'Telephone: ', 'woocommerce' ) . '</span><span>' . $order->billing_phone . '</span></li>';
+					if ( $order->billing_mobile ) echo '<li><span class="telephone-lbl">' . __( 'Mobile: ', 'woocommerce' ) . '</span><span>' . $order->billing_mobile . '</span></li>';
 
 					// Additional customer details hook
 					do_action( 'woocommerce_order_details_after_customer_details', $order );

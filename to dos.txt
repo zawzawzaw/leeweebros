@@ -2,8 +2,9 @@ TO DOs
 
 variable prices
 clickable indicator
-check if 2 new address to add in address book
 prev
+my account
+login form error msg
 
 contact
 search
@@ -28,3 +29,4 @@ check if all details are saved correctly in db
 address page (3 form validation) (at least town to add on register)
 load receiving mode page (prev button + delivery price validation + 2 form validation + add collection times dropbox + add surchages)
 update in address book
+check if 2 new address to add in address book

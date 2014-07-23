@@ -57,14 +57,20 @@ jQuery( function( $ ) {
 		});
 		$accountLoginContainer.find('form.login').validate({
 			rules: {
-				username : "required",
+				username : {
+					required: true,
+					alphanumeric: true
+				},
 				password : {
 					required: true,
 					minlength: 5
 				}
 			},
 			messages: {
-				username: "Please fill in your user name",
+				username: {
+					required: "Please fill in your user name",
+					alphanumeric: "Letter and number only please"
+				},
 				password: {
 				  required: "Please fill in your password"
 				}
@@ -72,59 +78,124 @@ jQuery( function( $ ) {
 		});
 		$accountLoginContainer.find('form.registeration').validate({
 			rules: {
-				first_name: "required",
-				last_name : "required",
+				first_name: {
+					required: true,
+					alphanumeric: true
+				},
+				last_name : {
+					required: true,
+					alphanumeric: true
+				},
 				email: {
 					required : true,
 					email: true
 				},
-				address_book_1_first_name: "required",
-				address_book_1_last_name: "required",
+				address_book_1_first_name: {
+					required: true,
+					alphanumeric: true
+				},
+				address_book_1_last_name: {
+					required: true,
+					alphanumeric: true
+				},
 				address_book_1_address_1: "required",
 				address_book_1_postcode: {
-					required : true
+					required : true,
+					number: true
 				},
-				address_book_1_city : "required",
-				address_book_1_country: "required",
-				address_book_1_mobile: "required"
+				address_book_1_city : {
+					required: true,
+					alphanumeric: true
+				},
+				address_book_1_country: {
+					required: true,
+					alphanumeric: true
+				},
+				address_book_1_mobile: {
+					required: true,
+					number: true
+				}
 			},
 			messages: {
-				first_name: "Please fill in your first name",
-				last_name : "Please fill in your last name",
+				first_name: {
+					required: "Please fill in your first name",
+					alphanumeric: "Letter and number only please"
+				},
+				last_name : {
+					required: "Please fill in your last name",
+					alphanumeric: "Letter and number only please"
+				},
 				email: {
 					required : "Please fill in your email address",
 					email: "Invalid email address"
 				},
-				address_book_1_first_name: "Please fill in your first name",
-				address_book_1_last_name: "Please fill in your last name",
+				address_book_1_first_name: {
+					required: "Please fill in your first name",
+					alphanumeric: "Letter and number only please"
+				},
+				address_book_1_last_name: {
+					required: "Please fill in your last name",
+					alphanumeric: "Letter and number only please"
+				},
 				address_book_1_address_1: "Please fill in your address",
 				address_book_1_postcode: {
-					required : "Please fill in your post code"
+					required : "Please fill in your post code",
+					number: "Invalid postal code"
 				},
-				address_book_1_city : "Please fill in your town/city name",
-				address_book_1_country: "Please fill in your country",
-				address_book_1_mobile: "Please fill in your mobile"
+				address_book_1_city : {
+					required: "Please fill in your town/city name",
+					alphanumeric: "Letter and number only please"
+				},
+				address_book_1_country: {
+					required: "Please fill in your country",
+					alphanumeric: "Letter and number only please"
+				},
+				address_book_1_mobile: {
+					required: "Please fill in your mobile",
+					number: "Invalid mobile no."
+				}
 			}
 		});
 
 		$accountLoginContainer.find('form.lost_reset_password').validate({
+			rules: {
+				user_login: {
+					required: true,
+					alphanumeric: true
+				}
+			},
 			messages: {
-				user_login: "Please fill in your login name or email"
+				user_login: {
+					required: "Please fill in your login name or email",
+					alphanumeric: "Letter and number only please"
+				}
 			}
 		});
 
 		$accountLoginContainer.find('form.editaccount').validate({
 			rules: {
-				account_first_name: "required",
-				account_last_name : "required",
+				account_first_name: {
+					required: true,
+					alphanumeric: true
+				},
+				account_last_name : {
+					required: true,
+					alphanumeric: true
+				},
 				account_email: {
 					required : true,
 					email: true
 				},
 			},
 			messages: {
-				account_first_name: "Please fill in your first name",
-				account_last_name : "Please fill in your last name",
+				account_first_name: {
+					required: "Please fill in your first name",
+					alphanumeric: "Letter and number only please"
+				},
+				account_last_name : {
+					required: "Please fill in your last name",
+					alphanumeric: "Letter and number only please"
+				},
 				account_email: {
 					required : "Please fill in your email address",
 					email: "Invalid email address"
@@ -132,55 +203,117 @@ jQuery( function( $ ) {
 			}
 		});
 
-		$addressContainer
-
 		$addressContainer.find('form#billingaddress-form').validate({
 			rules: {
-				first_name: "required",
-				last_name : "required",
+				first_name: {
+					required: true,
+					alphanumeric: true
+				},
+				last_name : {
+					required: true,
+					alphanumeric: true
+				},
 				address_1: "required",
 				postcode: {
-					required : true
+					required : true,
+					number: true
 				},
-				city : "required",
-				country: "required",
-				mobile: "required"
+				city : {
+					required: true,
+					alphanumeric: true
+				},
+				country: {
+					required: true,
+					alphanumeric: true
+				},
+				mobile: {
+					required: true,
+					number: true
+				}
 			},
 			messages: {
-				first_name: "Please fill in your first name",
-				last_name : "Please fill in your last name",
+				first_name: {
+					required: "Please fill in your first name",
+					alphanumeric: "Letter and number only please"
+				},
+				last_name : {
+					required: "Please fill in your last name",
+					alphanumeric: "Letter and number only please"
+				},
 				address_1: "Please fill in your address",
 				postcode: {
-					required : "Please fill in your post code"
+					required : "Please fill in your post code",
+					number: "Invalid postal code"
 				},
-				city : "Please fill in your town / city name",
-				country: "Please fill in your country",
-				mobile: "Please fill in your mobile"
+				city : {
+					required: "Please fill in your town / city name",
+					alphanumeric: "Letter and number only please"
+				},
+				country: {
+					required: "Please fill in your country",
+					alphanumeric: "Letter and number only please"
+				},
+				mobile: {
+					required: "Please fill in your mobile",
+					number: "Invalid mobile no."
+				}
 			}
 		});
 
 		$addressContainer.find('form#shippingaddress-form').validate({
 			rules: {
-				first_name: "required",
-				last_name : "required",
+				first_name: {
+					required: true,
+					alphanumeric: true
+				},
+				last_name : {
+					required: true,
+					alphanumeric: true
+				},
 				address_1: "required",
 				postcode: {
-					required : true
+					required : true,
+					number: true
 				},
-				city : "required",
-				country: "required",
-				mobile: "required"
+				city : {
+					required: true,
+					alphanumeric: true
+				},
+				country: {
+					required: true,
+					alphanumeric: true
+				},
+				mobile: {
+					required: true,
+					number: true
+				}
 			},
 			messages: {
-				first_name: "Please fill in your first name",
-				last_name : "Please fill in your last name",
+				first_name: {
+					required: "Please fill in your first name",
+					alphanumeric: "Letter and number only please"
+				},
+				last_name : {
+					required: "Please fill in your last name",
+					alphanumeric: "Letter and number only please"
+				},
 				address_1: "Please fill in your address",
 				postcode: {
-					required : "Please fill in your post code"
+					required : "Please fill in your post code",
+					number: "Invalid postal code"
 				},
-				city : "Please fill in your town / city name",
-				country: "Please fill in your country",
-				mobile: "Please fill in your mobile"
+				city : {
+					required: "Please fill in your town / city name",
+					alphanumeric: "Letter and number only please"
+				},
+				country: {
+					required: "Please fill in your country",
+					alphanumeric: "Letter and number only please"
+				},
+				mobile: {
+					required: "Please fill in your mobile",
+					number: "Invalid mobile no."
+				}
 			}
 		});
 
