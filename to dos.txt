@@ -1,6 +1,6 @@
 TO DOs
 
-select address to test
+select address to test (tested so far ok)
 prev
 clickable indicator
 my account add addresss
