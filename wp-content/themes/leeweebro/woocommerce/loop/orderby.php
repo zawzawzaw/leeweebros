@@ -66,7 +66,7 @@ if ( 1 == $wp_query->found_posts || ! woocommerce_products_will_display() )
 			<ul id="item">
 				<li>10</li>
 				<li>20</li>
-				<li>50</li>
+				<li>All</li>
 			</ul>
 		</div>
 	</a>
@@ -85,7 +85,6 @@ if ( 1 == $wp_query->found_posts || ! woocommerce_products_will_display() )
 			   	''       => __('ITEMS', 'woocommerce'),
 				'10' 		=> __('10', 'woocommerce'),
 				'20' 		=> __('20', 'woocommerce'),
-				'50' 		=> __('50', 'woocommerce'),
 				'-1' 		=> __('All', 'woocommerce'),
 			));
 

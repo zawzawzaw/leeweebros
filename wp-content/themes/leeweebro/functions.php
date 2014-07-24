@@ -231,10 +231,14 @@ add_action( 'user_register', 'myplugin_registration_save', 10, 1 );
 
 function myplugin_registration_save( $user_id ) {
 
-    if ( isset( $_POST['first_name'] ) )
+    if ( isset( $_POST['first_name'] ) ) {
       update_user_meta($user_id, 'first_name', $_POST['first_name']);
-    if( isset( $_POST['last_name'] ) )
+      update_user_meta($user_id, 'address_book_1_first_name', $_POST['last_name']);
+    }
+    if( isset( $_POST['last_name'] ) ) {
     	update_user_meta($user_id, 'last_name', $_POST['last_name']);
+      update_user_meta($user_id, 'address_book_1_last_name', $_POST['last_name']);
+    }
 
     foreach ($_POST as $key => $value) {
       if($key!='day' && $key!='month' && $key!='year' && $key!='first_name' && $key!='last_name')
@@ -436,6 +440,7 @@ function my_woocommerce_add_error( $error ) {
         $lost_password_url = esc_url( wc_lostpassword_url() );
         $error = '<strong>ERROR: </strong>Username or password is incorrect. <a href="'.$lost_password_url.'">Lost your password?</a>';
     }
+    
     return $error;
 }
 add_filter( 'woocommerce_add_error', 'my_woocommerce_add_error' );

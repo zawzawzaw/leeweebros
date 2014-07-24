@@ -45,7 +45,8 @@ jQuery( function( $ ) {
 			$checkOutTermContainer = $('.terms-container'),
 			$progressIndicator = $('.progress-indicator-container'),
 			$submissionPrevBtn = $('.submission-prev-btn'),
-			$confirmOrderBtn = $('#confirm-order');
+			$confirmOrderBtn = $('#confirm-order'),
+			$cartContainer = $('.cart-container');
 
 		$.validator.addMethod("alphanumeric", function(value, element) {
 	        return this.optional(element) || /^[a-z0-9\-\s]+$/i.test(value);
@@ -334,38 +335,93 @@ jQuery( function( $ ) {
 			
 			var Address = jQuery.parseJSON( address_json );
 
-			$accountLoginContainer.find('.address-container').children('.address-title').html('UPDATE NEW ADDRESS:')
+			$accountLoginContainer.find('.address-title').html('UPDATE NEW ADDRESS:')
 			$accountLoginContainer.find('.myaddress-container').hide();
 			$accountLoginContainer.find('.address-container').show();
 
 			setAddressFormValue(Address, addressBookIndex);
 		});
 
+		$accountLoginContainer.find('#address-form').validate({
+			rules: {
+				first_name: {
+					required: true,
+					alphanumeric: true
+				},
+				last_name : {
+					required: true,
+					alphanumeric: true
+				},
+				address_1: "required",
+				postcode: {
+					required : true,
+					number: true
+				},
+				country: {
+					required: true,
+					alphanumeric: true
+				},
+				mobile: {
+					required: true,
+					number: true
+				}
+			},
+			messages: {
+				first_name: {
+					required: "Please fill in your first name",
+					alphanumeric: "Letter and number only please"
+				},
+				last_name : {
+					required: "Please fill in your last name",
+					alphanumeric: "Letter and number only please"
+				},
+				address_1: "Please fill in your address",
+				postcode: {
+					required : "Please fill in your post code",
+					number: "Invalid postal code"
+				},
+				country: {
+					required: "Please fill in your country",
+					alphanumeric: "Letter and number only please"
+				},
+				mobile: {
+					required: "Please fill in your mobile",
+					number: "Invalid mobile no."
+				}
+			}
+		});
+
 		$accountLoginContainer.find('.save_address').click(function(e) {
 			e.preventDefault();
 
-			var fields = $(this).closest('form').serializeObject();
-			var address_fields_json = JSON.stringify(fields);
+			console.log($(this).closest('form').valid())
 
-			$.ajax({
-		       type: "POST",
-		       url: ajaxurl,
-		       data: "action=saveaddress&postdata="+address_fields_json,
-		       success: function(msg){
-		            $accountLoginContainer.find('.myaddress-container').show();
-					$accountLoginContainer.find('.address-container').hide();
+			if($(this).closest('form').valid()) {
 
-					var addressIndex = fields.address_book_id;
-						addressSelector = 'p.my-address-'+addressIndex;
+				var fields = $(this).closest('form').serializeObject();
+				var address_fields_json = JSON.stringify(fields);
 
-					$(addressSelector).children('span.name').html(fields.first_name + ' ' +fields.last_name);
-					$(addressSelector).children('span.address-1').html(fields.address_1);
-					$(addressSelector).children('span.address-2').html(fields.address_2);
-					$(addressSelector).children('span.country').html(fields.country);
-					$(addressSelector).children('span.postcode').html(fields.postcode);
-					$(addressSelector).children('span.mobile').html(fields.mobile);
-		       }
-		   });
+				$.ajax({
+			       type: "POST",
+			       url: ajaxurl,
+			       data: "action=saveaddress&postdata="+address_fields_json,
+			       success: function(msg){
+			            $accountLoginContainer.find('.myaddress-container').show();
+						$accountLoginContainer.find('.address-container').hide();
+
+						var addressIndex = fields.address_book_id;
+							addressSelector = 'p.my-address-'+addressIndex;
+
+						$(addressSelector).children('span.name').html(fields.first_name + ' ' +fields.last_name);
+						$(addressSelector).children('span.address-1').html(fields.address_1);
+						$(addressSelector).children('span.address-2').html(fields.address_2);
+						$(addressSelector).children('span.country').html(fields.country);
+						$(addressSelector).children('span.postcode').html(fields.postcode);
+						$(addressSelector).children('span.mobile').html(fields.mobile);
+			       }
+			   	});
+
+			}
 		});
 
 		$accountLoginContainer.find('.delete_address').click(function(e) {
@@ -1103,17 +1159,50 @@ jQuery( function( $ ) {
 		// min order validation
 
 		$('.single_add_to_cart_button').on('click', function(e){
+
 			e.preventDefault();
 
-			var minOrder = $(this).parent('form').find('#min-order').html();
+			var minOrder = parseFloat($(this).parent('form').find('#min-order').html());
+			var currentQty = parseFloat($(this).parent('form').find('#qty').val());
 
-			console.log(minOrder);
-
-			if($.isNumeric(minOrder) && minOrder > $(this).parent('form').find('#qty').val() ) {
+			if($.isNumeric(minOrder) && minOrder > currentQty ) {
+				console.log($(this).parent('form').find('#qty').val());
 				$(this).parent('form').children('.error-msg').html('Min Order of '+minOrder+' is required.');
 
 			}else {
 				$(this).parent('form').submit();
+			}
+
+		});
+
+		$( '.variations_form .variations select' ).on('change', function(e){
+
+			e.preventDefault();
+			var selectedAttr = $(this).val();
+
+			// for single
+			$(this).closest('form').parent('div').find('.variable-price').hide();
+			$(this).closest('form').parent('div').find('.'+selectedAttr).show();
+
+			// for loop
+			$(this).closest('form').parent('div').next('div').find('.variable-price').hide();
+			$(this).closest('form').parent('div').next('div').find('.'+selectedAttr).show();
+
+		});
+
+		$cartContainer.find('input[name="update_cart"]').on('click', function(e){
+			var minOrder = parseFloat($(this).prev('span#min-order').html());
+			var currentQty = parseFloat($(this).parent().prev('#qty').val());
+
+			if($.isNumeric(minOrder) && minOrder > currentQty ) {
+				$(this).parent('span.update').next('.error-msg').html('Min Order of '+minOrder+' is required.').css({
+					display: "block",
+					width: "150px",
+					"margin-left": "0px"
+				});
+
+				return false;
+
 			}
 		});
 

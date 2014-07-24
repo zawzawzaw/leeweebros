@@ -102,6 +102,8 @@ else:
 								$_product     = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 								$product_id   = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
 
+								$min_order = $_product->get_attribute( 'min order' );
+
 								if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
 									?>
 									<div class="row">
@@ -174,8 +176,10 @@ else:
 												echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key );
 											?>
 											<span class="update">
+												<span id="min-order" style="display:none;"><?php echo (!empty($min_order)) ? $min_order : 1; ?></span>
 												<input type="submit" class="button" name="update_cart" value="submit" style="" /> 	
 											</span>
+											<span class="error-msg"></span>
 										</div>
 
 										<!-- indiviudal price -->

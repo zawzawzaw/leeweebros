@@ -48,9 +48,10 @@ if ( $customer_orders ) : ?>
 
 				?><tr class="order">
 					<td class="order-number">
-						<a href="<?php echo $order->get_view_order_url(); ?>">
-							<?php echo $order->get_order_number(); ?>
-						</a>
+						<?php echo $order->get_order_number(); ?>
+						<!-- <a href="<?php echo $order->get_view_order_url(); ?>">
+							
+						</a> -->
 					</td>
 					<td class="order-date">
 						<time datetime="<?php echo date( 'Y-m-d', strtotime( $order->order_date ) ); ?>" title="<?php echo esc_attr( strtotime( $order->order_date ) ); ?>"><?php echo date_i18n( get_option( 'date_format' ), strtotime( $order->order_date ) ); ?></time>

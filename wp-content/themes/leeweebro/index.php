@@ -55,7 +55,7 @@
 						    'meta_key' => '_featured',  
 						    'meta_value' => 'yes',  
 						    'posts_per_page' => -1  
-						);  
+						);
 						  
 						$featured_query = new WP_Query( $args );
 						      
@@ -63,11 +63,22 @@
 						  
 						    while ($featured_query->have_posts()) :   
 						      
-						        $featured_query->the_post();  
+						        $featured_query->the_post();
 						          
 						        $product = get_product( $featured_query->post->ID );
-						        $price = get_post_meta( get_the_ID(), '_regular_price', true);
-						        $sale = get_post_meta( get_the_ID(), '_sale_price', true);
+
+						        if($product->product_type=='variable') {
+						        	$product = new WC_Product_Variable( $featured_query->post->ID );
+						        	$available_variations = $product->get_available_variations();
+						        	$variation_id=$available_variations[0]['variation_id'];
+						        	$variable_product1= new WC_Product_Variation( $variation_id );
+						        	$price = $variable_product1 ->regular_price;
+									$sale = $variable_product1 ->sale_price;
+
+						        }else {
+							        $price = get_post_meta( get_the_ID(), '_regular_price', true);
+							        $sale = get_post_meta( get_the_ID(), '_sale_price', true);
+						        }
 
 						        $attributes = $product->get_attributes();
 						?>

@@ -1,10 +1,11 @@
 TO DOs
 
-variable prices
-clickable indicator
+select address to test
 prev
-my account
-login form error msg
+clickable indicator
+my account add addresss
+shop select option
+
 
 contact
 search
@@ -30,3 +31,6 @@ address page (3 form validation) (at least town to add on register)
 load receiving mode page (prev button + delivery price validation + 2 form validation + add collection times dropbox + add surchages)
 update in address book
 check if 2 new address to add in address book
+variable prices
+login form error msg
+update on cart min quantity!

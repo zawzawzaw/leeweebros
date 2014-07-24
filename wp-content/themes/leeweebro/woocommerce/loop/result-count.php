@@ -24,6 +24,9 @@ if ( ! woocommerce_products_will_display() )
 	$total_page = ceil($total/$per_page);
 	$first    = ( $per_page * $paged ) - $per_page + 1;
 	$last     = min( $total, $wp_query->get( 'posts_per_page' ) * $paged );
+	if($last==-1){
+		$last = $total;
+	}
 
 	if ( 1 == $total ) {
 		_e( 'Showing the single result', 'woocommerce' );
