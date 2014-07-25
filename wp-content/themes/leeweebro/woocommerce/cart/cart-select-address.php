@@ -140,7 +140,7 @@ global $woocommerce;
 						</p>
 						<a href="#" class="update"></a>
 					</div>
-					<div class="col-md-2 col-md-offset-1">
+					<div class="col-md-2 align-left-3">
 						<h4></h4>
 						<p class="shipping-address">
 							<span class="name"></span><br>

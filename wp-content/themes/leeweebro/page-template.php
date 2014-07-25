@@ -85,8 +85,19 @@ Template Name: Page Template
 							        $featured_query->the_post();  
 							          
 							        $product = get_product( $featured_query->post->ID );
-							        $price = get_post_meta( get_the_ID(), '_regular_price', true);
-							        $sale = get_post_meta( get_the_ID(), '_sale_price', true);
+							        
+							        if($product->product_type=='variable') {
+							        	$product = new WC_Product_Variable( $featured_query->post->ID );
+							        	$available_variations = $product->get_available_variations();
+							        	$variation_id=$available_variations[0]['variation_id'];
+							        	$variable_product1= new WC_Product_Variation( $variation_id );
+							        	$price = $variable_product1 ->regular_price;
+										$sale = $variable_product1 ->sale_price;
+
+							        }else {
+								        $price = get_post_meta( get_the_ID(), '_regular_price', true);
+								        $sale = get_post_meta( get_the_ID(), '_sale_price', true);
+							        }
 
 							        $attributes = $product->get_attributes();
 							?>
@@ -97,10 +108,12 @@ Template Name: Page Template
 									<div class="promo-product-description">
 										<h3><?php the_title(); ?></h3>
 										<?php 
-										$the_str = substr(get_the_excerpt(), 0, 135);
-										$the_str = trim(preg_replace( '/\s+/', ' ', $the_str));
-										?>
-										<p class="promo-text"><?php echo $the_str; ?></p>
+										$my_excerpt = get_the_excerpt();
+										if ( $my_excerpt != '' ) {
+											$custom_excerpt = explode('<br>',$my_excerpt);
+
+										} ?>
+										<p class="promo-text"><?php echo $custom_excerpt[0]; ?></p>
 										<p class="promo-price">$<?php echo (isset($sale) && !empty($sale)) ? number_format((float)$sale, 2, '.', '') : number_format((float)$price, 2, '.', '');  ?></p>
 										<p class="promo-price-2"><?php echo (isset($attributes['per']['value'])) ? $attributes['per']['value'] : ''; ?></p>
 									</div>

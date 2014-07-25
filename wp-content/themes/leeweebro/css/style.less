@@ -752,6 +752,10 @@ label.error {
   margin-left: 20px;
 }
 
+.align-left-3 {
+  margin-left: 13px;
+}
+
 //   ___ _   _ ____  _   _ _____ 
 //  |_ _| \ | |  _ \| | | |_   _|
 //   | ||  \| | |_) | | | | | |  
@@ -1200,6 +1204,10 @@ header#main-header {
           line-height: 20px;
           margin-top: 10px;
           margin-bottom: 10px;
+          min-height: 40px;
+        }
+        p.feature-text {
+          min-height: 90px;
         }
         p.feature-price {
           padding-top: 13px;
@@ -1492,6 +1500,12 @@ header#main-header {
     p.desc {
       padding-left: 13px;
       color: #754c24;
+      span.italic {
+        font-style: italic;
+      }
+      em, i {
+        font-style: italic;
+      }
     }
 
     p.create-account-desc {
@@ -1668,6 +1682,9 @@ header#main-header {
 
         p.desc {
           padding-left: 8px;
+          span.italic {
+            font-style: italic;
+          }
           em, i {
             font-style: italic;
           }
@@ -1813,6 +1830,9 @@ header#main-header {
     span.italic {
       font-style: italic;
     }
+    em, i {
+      font-style: italic;
+    }
   }
 
   p, label {
@@ -1911,9 +1931,10 @@ header#main-header {
       }
     }
     input#qty {
-      width: 26px;
+      width: 30px;
       height: 26px;
-      padding-left: 7px;
+      /*padding-left: 7px;*/
+      text-align: center;
     }
     select {
       padding-left: 7px;
@@ -2125,10 +2146,11 @@ header#main-header {
           color: @red;
           line-height: 32px;
           margin-bottom: -5px;
+          min-height: 40px;
         }
         .promo-text {
           //height: 70px;
-          min-height: 70px;
+          min-height: 110px;
 
           width: 220px;
           margin-left: 30px;
@@ -2789,6 +2811,9 @@ header#main-header {
 
       p.desc {
         padding-left: 8px;
+        span.italic {
+          font-style: italic;
+        }
         em, i {
           font-style: italic;
         }
@@ -2935,6 +2960,9 @@ header#main-header {
         .open-sans-bold;
         font-size: 13px;
         color: @red;
+      }
+      p.qty {
+        text-align: center;
       }
     }
   }

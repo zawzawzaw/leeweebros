@@ -91,8 +91,10 @@ wc_print_notices();
 	<div class="row">
 		<form id="backtoselectaddress" action="<?php echo esc_url( $woocommerce->cart->get_cart_url() ); ?>" method="post">
 			<?php $receiving_mode = json_decode(stripslashes($_POST['receiving_mode']), true); ?>
-			<input type="hidden" name="collection_area" value="<?php echo (!empty($receiving_mode['collection_area'])) ? $receiving_mode['collection_area'] : ''; ?>">
-			<input type="hidden" name="delivery" value="<?php echo (!empty($receiving_mode['delivery'])) ? $receiving_mode['delivery'] : ''; ?>">
+			<?php foreach ($receiving_mode as $key => $rcm) { ?>
+				<input type="hidden" name="<?php echo $key; ?>" value="<?php echo $rcm; ?>">
+			<?php } ?>
+
 		</form>
 		<div class="col-md-2"><button class="button payment-mode-prev-btn">PREVIOUS</button></div>
 		<div class="col-md-2 col-md-offset-8"><button class="button payment-mode-next">NEXT</button></div>

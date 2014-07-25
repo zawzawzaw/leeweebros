@@ -57,7 +57,7 @@ get_header( 'shop' ); ?>
 									</div>
 								</li>
 								<li>
-									<a class="parent-side-menu-item" href="javascript:void(0);" data-toggle="collapse" data-target="#cathering">CATHERING</a>
+									<a class="parent-side-menu-item" href="javascript:void(0);" data-toggle="collapse" data-target="#cathering">CATERING</a>
 									<div id="cathering" class="collapse">
 										<ul class="side-sub-menu">
 											<?php foreach ($catering_children as $key => $child) { ?>

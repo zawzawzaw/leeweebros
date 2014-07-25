@@ -57,6 +57,7 @@ $total_amount = $woocommerce->cart->total;
 		</div>
 	</div>
 </div>
+
 <div class="space50"></div>
 
 <div class="receiving-mode-container all-container">
@@ -84,12 +85,12 @@ $total_amount = $woocommerce->cart->total;
 	</div>
 	<div class="space50"></div>
 	<div class="row">
-		<?php 
+		<?php
 		global $woocommerce;
 		$cart_url = $woocommerce->cart->get_cart_url(); ?>
 		<div class="col-md-2"><a href="<?php echo $cart_url; ?>" class="button back-to-cart">PREVIOUS</a></div>
 		<div class="col-md-2 col-md-offset-8"><button class="button receiving-mode-next">NEXT</button></div>
-	</div>			
+	</div>
 </div>
 
 <!-- COLLECTION -->
@@ -102,25 +103,25 @@ $total_amount = $woocommerce->cart->total;
 			<ul class="collection-places">
 				<li>
 					<input type="radio" name="collection_area" value="Central Kitchen" checked>
-					<label for="online" class="radio-label"><span class="radiobtn"></span>Central Kitchen</label> 
+					<label for="online" class="radio-label"><span class="radiobtn"></span>Central Kitchen</label>
 					<span class="address">42 Lorong 1 Realty Park 536959</span>
 				</li>
 				<li>
-					<input type="radio" name="collection_area" value="Raffles City Shopping Centre" >
+					<input type="radio" name="collection_area" value="Raffles City Shopping Centre">
 					<label for="atm" class="radio-label"><span class="radiobtn"></span>Raffles City Shopping Centre</label><span class="address">#B1-57, 252 North Bridge Road 179103</span>
 				</li>
 				<li>
-					<input type="radio" name="collection_area" value="Tampines Mall" >
-					<label for="atm" class="radio-label"><span class="radiobtn"></span>Tampines Mall</label> 
+					<input type="radio" name="collection_area" value="Tampines Mall">
+					<label for="atm" class="radio-label"><span class="radiobtn"></span>Tampines Mall</label>
 					<span class="address">#B1-K6, 4 Tampines Central 5 529510</span>
 				</li>
 				<li>
-					<input type="radio" name="collection_area" value="NEX Serangoon" >
-					<label for="atm" class="radio-label"><span class="radiobtn"></span>NEX Serangoon</label> 
+					<input type="radio" name="collection_area" value="NEX Serangoon">
+					<label for="atm" class="radio-label"><span class="radiobtn"></span>NEX Serangoon</label>
 					<span class="address">#B1-K6, 23 Serangoon Central 556083</span>
 				</li>
 				<li>
-					<input type="radio" name="collection_area" value="Other Selected Locations" >
+					<input type="radio" name="collection_area" value="Other Selected Locations">
 					<label for="atm" class="radio-label"><span class="radiobtn"></span>Other Selected Locations</label><span class="address">Our Customer Service Personnel will advise you</span>
 				</li>
 			</ul>
@@ -209,9 +210,11 @@ $total_amount = $woocommerce->cart->total;
 			</div>
 		</div>
 	</div>
-	<div class="space10"></div>
+	<div class="space30"></div>
 	<div class="row">
 		<div class="col-md-12">
+			<h3>PLEASE INDICATE TIME OF CONSUMPTION:</h3>
+			<div class="space10"></div>
 			<div class="consumption_time_container">
 				<label for="consumption_time">Consumption Time:</label>
 				<div class="dropdown">

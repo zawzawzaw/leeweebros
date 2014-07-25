@@ -88,7 +88,13 @@
 									</a>
 									<div class="feature-product-description">
 										<h3><?php the_title(); ?></h3>
-										<p class="feature-text"><?php echo get_the_excerpt(); ?></p>
+										<?php 
+										$my_excerpt = get_the_excerpt();
+										if ( $my_excerpt != '' ) {
+											$custom_excerpt = explode('<br>',$my_excerpt);
+
+										} ?>
+										<p class="feature-text"><?php echo $custom_excerpt[0]; ?></p>
 										<p class="feature-price">$<?php echo (isset($sale) && !empty($sale)) ? number_format((float)$sale, 2, '.', '') : number_format((float)$price, 2, '.', '');  ?></p>
 										<p class="feature-price-2"><?php echo (isset($attributes['per']['value'])) ? $attributes['per']['value'] : ''; ?></p>
 									</div>

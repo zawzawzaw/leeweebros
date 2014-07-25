@@ -109,6 +109,9 @@ jQuery( function( $ ) {
 					required: true,
 					alphanumeric: true
 				},
+				address_book_1_phone: {
+					number: true
+				},
 				address_book_1_mobile: {
 					required: true,
 					number: true
@@ -143,6 +146,9 @@ jQuery( function( $ ) {
 				address_book_1_country: {
 					required: "Please fill in your country",
 					alphanumeric: "Letter and number only please"
+				},
+				address_book_1_phone: {
+					number: "Invalid phone no."
 				},
 				address_book_1_mobile: {
 					required: "Please fill in your mobile",
@@ -1156,21 +1162,30 @@ jQuery( function( $ ) {
 			$(this).parent('div').parent('li').find('input[type="radio"]').trigger('click');
 		});
 
+		function isInt(value) {
+		   return !isNaN(value) && parseInt(Number(value)) == value;
+		}
+
 		// min order validation
 
-		$('.single_add_to_cart_button').on('click', function(e){
+		$('.single_add_to_cart_button, .add_to_cart_button').on('click', function(e){
 
 			e.preventDefault();
 
-			var minOrder = parseFloat($(this).parent('form').find('#min-order').html());
-			var currentQty = parseFloat($(this).parent('form').find('#qty').val());
+			var minOrder = parseInt($(this).parent('form').find('#min-order').html());
+			var currentQty = $(this).parent('form').find('#qty').val();
 
-			if($.isNumeric(minOrder) && minOrder > currentQty ) {
-				console.log($(this).parent('form').find('#qty').val());
-				$(this).parent('form').children('.error-msg').html('Min Order of '+minOrder+' is required.');
+			if (isInt(currentQty)) {
 
+				if($.isNumeric(minOrder) && minOrder > currentQty ) {
+					console.log($(this).parent('form').find('#qty').val());
+					$(this).parent('form').children('.error-msg').html('Min Order of '+minOrder+' is required.');
+
+				}else {
+					$(this).parent('form').submit();
+				}
 			}else {
-				$(this).parent('form').submit();
+				$(this).parent('form').children('.error-msg').html('Quantity is not a valid number!');
 			}
 
 		});
@@ -1189,20 +1204,34 @@ jQuery( function( $ ) {
 			$(this).closest('form').parent('div').next('div').find('.'+selectedAttr).show();
 
 		});
+		$( '.variations_form .variations select' ).trigger('change');
 
 		$cartContainer.find('input[name="update_cart"]').on('click', function(e){
-			var minOrder = parseFloat($(this).prev('span#min-order').html());
-			var currentQty = parseFloat($(this).parent().prev('#qty').val());
+			var minOrder = parseInt($(this).prev('span#min-order').html());
+			var currentQty = $(this).parent().prev('#qty').val();
 
-			if($.isNumeric(minOrder) && minOrder > currentQty ) {
-				$(this).parent('span.update').next('.error-msg').html('Min Order of '+minOrder+' is required.').css({
-					display: "block",
-					width: "150px",
-					"margin-left": "0px"
-				});
+			if (isInt(currentQty)) {
+				if($.isNumeric(minOrder) && minOrder > currentQty ) {
+					$(this).parent('span.update').next('.error-msg').html('Min Order of '+minOrder+' is required.').css({
+						display: "block",
+						width: "150px",
+						"margin-left": "0px"
+					});
+
+					return false;
+
+				}else {
+					return true;
+				}
+
+			}else {
+				$(this).parent('span.update').next('.error-msg').html('Quantity is not a valid number!').css({
+						display: "block",
+						width: "150px",
+						"margin-left": "0px"
+					});
 
 				return false;
-
 			}
 		});
 
