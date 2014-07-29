@@ -1,11 +1,9 @@
 TO DOs
 
 select address to test (tested so far ok)
-prev
 clickable indicator
 shop select option
-
-
+cart tnc
 contact
 search
 responsive
@@ -33,3 +31,4 @@ check if 2 new address to add in address book
 variable prices
 login form error msg
 update on cart min quantity!
+previous

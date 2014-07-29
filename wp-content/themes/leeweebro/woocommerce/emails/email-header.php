@@ -47,9 +47,9 @@ $template_header = "
 	border-top-left-radius:6px !important;
 	border-top-right-radius:6px !important;
 	border-bottom: 0;
-	font-family:Arial;
+	/*font-family:Arial;
 	font-weight:bold;
-	line-height:100%;
+	line-height:100%;*/
 	vertical-align:middle;
 ";
 $body_content = "
@@ -59,9 +59,17 @@ $body_content = "
 ";
 $body_content_inner = "
 	color: $text_lighter_20;
-	font-family:Arial;
+
+	/*font-family:Arial;
 	font-size:14px;
-	line-height:150%;
+	line-height:150%;*/
+
+  	font-family: 'Open Sans', Verdana, sans-serif;
+  	font-weight: 400;
+  	font-style: normal;
+  	font-size: 13px;
+	line-height: 18px;
+	color: #603913;
 	text-align:left;
 ";
 $header_content_h1 = "
@@ -70,11 +78,19 @@ $header_content_h1 = "
 	padding: 28px 24px;
 	text-shadow: 0 1px 0 $base_lighter_20;
 	display:block;
-	font-family:Arial;
+	/*font-family:Arial;
 	font-size:30px;
-	font-weight:bold;
+	font-weight:bold;*/
+	font-family: 'SolanoGothicMVBStd-Bd', Verdana, sans-serif;
+	font-weight: 300;
+	font-style: normal;
+	font-size: 42px;
+	line-height: 36px;
+	text-transform: uppercase;
+	display: block;
+	color: #da0009;
 	text-align:left;
-	line-height: 150%;
+	/*line-height: 150%;*/
 ";
 ?>
 <!DOCTYPE html>
@@ -82,6 +98,24 @@ $header_content_h1 = "
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title><?php echo get_bloginfo( 'name' ); ?></title>
+        <style>
+			@font-face {
+			  font-family: 'SolanoGothicMVBStd-Bd';
+			  src: url('http://103.25.202.72/wp-content/themes/leeweebro/fonts/SolanoGothicMVBStd-Bd.eot?') format('eot'), 
+			       url('http://103.25.202.72/wp-content/themes/leeweebro/fonts/SolanoGothicMVBStd-Bd.otf')  format('opentype'),
+			       url('http://103.25.202.72/wp-content/themes/leeweebro/fonts/SolanoGothicMVBStd-Bd.woff') format('woff'), 
+			       url('http://103.25.202.72/wp-content/themes/leeweebro/fonts/SolanoGothicMVBStd-Bd.ttf')  format('truetype'),
+			       url('http://103.25.202.72/wp-content/themes/leeweebro/fonts/SolanoGothicMVBStd-Bd.svg#SolanoGothicMVBStd-Bd') format('svg');
+			}
+			@font-face {
+			  font-family: 'Auto1-Bold';
+			  src: url('http://103.25.202.72/wp-content/themes/leeweebro/fonts/Auto1-Bold.eot?') format('eot'), 
+			       url('http://103.25.202.72/wp-content/themes/leeweebro/fonts/Auto1-Bold.woff') format('woff'), 
+			       url('http://103.25.202.72/wp-content/themes/leeweebro/fonts/Auto1-Bold.ttf')  format('truetype'),
+			       url('http://103.25.202.72/wp-content/themes/leeweebro/fonts/Auto1-Bold.svg#Auto1-Bold') format('svg');
+			}
+        </style>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700' rel='stylesheet' type='text/css'>
 	</head>
     <body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
     	<div style="<?php echo $wrapper; ?>">
@@ -91,7 +125,6 @@ $header_content_h1 = "
                     	<table border="0" cellpadding="0" cellspacing="0" width="600" id="template_container" style="<?php echo $template_container; ?>">
                         	<tr>
                         		<td align="center" valign="top">
-                        			<hr style="margin-left: 24px;margin-right: 24px;border: none;height: 1px;background:#da0009;">
                         			<?php
 			                			if ( $img = get_option( 'woocommerce_email_header_image' ) ) {
 			                				echo '<p style="margin-top:47px;"><img src="' . esc_url( $img ) . '" alt="' . get_bloginfo( 'name' ) . '" /></p>';
@@ -105,6 +138,7 @@ $header_content_h1 = "
                                 	<table border="0" cellpadding="0" cellspacing="0" width="600" id="template_header" style="<?php echo $template_header; ?>">
                                         <tr>
                                             <td>
+                                            	<hr style="margin-left: 24px;margin-right: 24px;border: none;height: 1px;background:#da0009;">
                                             	<h1 style="<?php echo $header_content_h1; ?>"><?php echo $email_heading; ?></h1>
                                             </td>
                                         </tr>
