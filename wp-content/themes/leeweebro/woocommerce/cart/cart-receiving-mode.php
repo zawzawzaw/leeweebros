@@ -65,6 +65,7 @@ $total_amount = $woocommerce->cart->total;
 		<div class="col-md-12">
 			<h2>RECEVING MODE:</h2>
 			<p>Please kindly select the choice of collections below.</p>
+			<input type="hidden" name="cart-amount" class="cart-amount" value="<?php echo $total_amount; ?>">
 			<ul class="receiving-method">
 				<li>
 					<input type="radio" name="receivingmethod" value="delivery" >
@@ -72,6 +73,7 @@ $total_amount = $woocommerce->cart->total;
 						<span class="radiobtn"></span>
 						Delivery
 					</label>
+					<div class="error-msg error-deliver"></div>
 				</li>
 				<li>
 					<input type="radio" name="receivingmethod" value="self" checked>

@@ -281,6 +281,7 @@ global $woocommerce;
 		<div class="space50"></div>
 		<div class="row">
 			<div class="col-md-2"><button type="submit" class="button save_delivery_address">SAVE ADDRESS</button></div>
+			<div class="col-md-2"><button type="submit" class="button cancel_delivery_address">CANCEL</button></div>
 		</div>		
 	</form>
 	<form name="login" id="billingaddress-form" method="post" action="" style="display:none;">
@@ -382,6 +383,7 @@ global $woocommerce;
 		<div class="space50"></div>
 		<div class="row">
 			<div class="col-md-2"><button type="submit" class="button save_billing_address">SAVE ADDRESS</button></div>
+			<div class="col-md-2"><button type="submit" class="button cancel_billing_address">CANCEL</button></div>
 		</div>		
 	</form>	
 </div>

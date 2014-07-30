@@ -491,11 +491,21 @@ jQuery( function( $ ) {
 			e.preventDefault();
 			
 			var mode = $receivingModeContainer.find('input[name="receivingmethod"]:checked').val();
+			var cartAmount = $('.cart-amount').val();
 
-			$allReceivingModeContainer.hide();
+			if(cartAmount<100 && mode=='delivery') {
+				$('.error-deliver').html('Minimum purchase of S$100 required for free delivery.');
+			}else if(cartAmount>100 && mode=='delivery') {
+				$allReceivingModeContainer.hide();
+				$receivingModeDelivery.show();
+			}else if(mode=='self') {
+				$allReceivingModeContainer.hide();
+				$receivingModeCollection.show(); 
+			}
 
-			if(mode=='self') $receivingModeCollection.show(); 
-			else $receivingModeDelivery.show();
+			
+			// if(mode=='self') $receivingModeCollection.show(); 
+			// else $receivingModeDelivery.show();
 			
 		});
 
@@ -614,13 +624,13 @@ jQuery( function( $ ) {
 			if(parseFloat(cartAmount) <= 100 && location == 'allotherarea') {
 
 				$('.error-deliver-sentosa').html('');
-				$('.error-deliver-otherarea').html('Minimum purchase of 100S$ require for free delivery to this area.');
+				$('.error-deliver-otherarea').html('Minimum purchase of S$100 required for free delivery to this area.');
 				error = true;
 
 			}else if(parseFloat(cartAmount) <= 120 && location == 'jurongsentoaarea') {
 
 				$('.error-deliver-otherarea').html('');
-				$('.error-deliver-sentosa').html('Minimum purchase of 120S$ require for free delivery to this area.');
+				$('.error-deliver-sentosa').html('Minimum purchase of S$120 required for free delivery to this area.');
 				error = true;
 
 			}else {

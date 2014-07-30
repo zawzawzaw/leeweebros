@@ -25,8 +25,8 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 <?php 
 $subtotal = WC()->cart->subtotal; 
 
-$remaining_jurong_sentosa = 120 - intval($subtotal);
-$remaining_other = 100 - intval($subtotal);
+$remaining_jurong_sentosa = 120 - floatval($subtotal);
+$remaining_other = 100 - floatval($subtotal);
 ?>
 <?php if($remaining_jurong_sentosa > 0 || $remaining_other > 0): ?>
 <div class="row">
