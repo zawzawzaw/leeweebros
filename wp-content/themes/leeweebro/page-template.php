@@ -4,12 +4,16 @@ Template Name: Page Template
 */
 ?>
 
-<?php get_header(); ?>
+<?php 
+get_header(); 
+?>
+
+<?php remove_filter ('the_content', 'wpautop'); ?>
 
 <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
-<div id="content-wrapper" class="<?php echo ($post->post_name=='terms-conditions' || $post->post_name=='our-outlets' || $post->post_name=='promotions' || $post->post_name=='careers') ? 'align-left' : ''; ?>">
+<div id="content-wrapper" class="<?php echo ($post->post_name=='terms-conditions' || $post->post_name=='our-outlets' || $post->post_name=='promotions' || $post->post_name=='careers' || $post->post_name=='contact') ? 'align-left' : ''; ?>">
 	<div id="breadcrumb" class="container">
-		<?php if($post->post_name!=='terms-conditions' && $post->post_name!=='our-outlets' && $post->post_name!=='promotions' && $post->post_name!=='careers'): ?>
+		<?php if($post->post_name!=='terms-conditions' && $post->post_name!=='our-outlets' && $post->post_name!=='promotions' && $post->post_name!=='careers' && $post->post_name!=='contact'): ?>
 		<div class="align-left-2">
 		<?php endif; ?>
 			<div class="row">
@@ -17,7 +21,7 @@ Template Name: Page Template
 					<?php get_template_part( 'content', 'breadcrumb' ); ?>
 				</div>
 			</div>
-		<?php if($post->post_name!=='terms-conditions' && $post->post_name!=='our-outlets' && $post->post_name!=='promotions' && $post->post_name!=='careers'): ?>
+		<?php if($post->post_name!=='terms-conditions' && $post->post_name!=='our-outlets' && $post->post_name!=='promotions' && $post->post_name!=='careers' && $post->post_name!=='contact'): ?>
 		</div>
 		<?php endif; ?>
 	</div>
@@ -34,7 +38,7 @@ Template Name: Page Template
 	?>
 
 	<div id="<?php echo ($post->post_name=='terms-conditions') ? $post->post_name : $name; ?>" class="container">
-		<?php if($post->post_name!=='terms-conditions' && $post->post_name!=='our-outlets' && $post->post_name!=='promotions' && $post->post_name!=='careers'): ?>
+		<?php if($post->post_name!=='terms-conditions' && $post->post_name!=='our-outlets' && $post->post_name!=='promotions' && $post->post_name!=='careers' && $post->post_name!=='contact'): ?>
 		<div class="align-left-2">
 		<?php endif; ?>
 			<div class="space30"></div>
@@ -47,7 +51,7 @@ Template Name: Page Template
 					<h1><?php the_title(); ?></h1>
 				</div>
 			</div>
-		<?php if($post->post_name!=='terms-conditions' && $post->post_name!=='our-outlets' && $post->post_name!=='promotions' && $post->post_name!=='careers'): ?>			
+		<?php if($post->post_name!=='terms-conditions' && $post->post_name!=='our-outlets' && $post->post_name!=='promotions' && $post->post_name!=='careers' && $post->post_name!=='contact'): ?>			
 		</div>
 		<div class="space40"></div>
 		<div class="row">
@@ -127,6 +131,94 @@ Template Name: Page Template
 							?>
 						</ul>			
 					</div>
+				</div>
+			</div>
+		<?php elseif($post->post_name=='contact'): ?>
+			<div class="space20"></div>
+			<div class="row">
+				<div class="col-md-12">
+					<div id="google-map-canvas"></div>
+				</div>
+			</div>
+			<div class="space50"></div>
+			<div class="row">
+
+				<?php the_content(); ?>
+
+				<div class="col-md-6 col-md-offset-1">
+					<h2>GET IN TOUCH</h2>
+					For questions about an order or for more information about our products.
+					<div class="space20"></div>
+					<?php 
+					if(isset($_POST['subject'])) {
+						$subject = htmlspecialchars($_POST['subject'], ENT_QUOTES, 'UTF-8');
+						$email = htmlspecialchars($_POST['email'], ENT_QUOTES, 'UTF-8');
+						$message = htmlspecialchars($_POST['message'], ENT_QUOTES, 'UTF-8');
+						$to = get_option( 'admin_email' ); 
+
+						$headers[] = 'From: '.$email.' <'.$email.'>';
+						$attachments = '';
+					}
+					?>
+					<form id="contact-form" action="" method="post" name="login">
+						<?php if(isset($_POST['subject'])): ?>
+						<div class="row">
+							<div class="col-md-12">
+								<p class="msg">
+									<?php
+									if( wp_mail( $to, $subject, $message, $headers, $attachments ) ) {
+									    // the message was sent...
+									    echo 'Your message was sent successfully!';
+									} else {
+									    // the message was not sent...
+									    echo 'Sorry, your message was not sent! Please try again later.';
+									}
+									?>
+								</p>
+								<div class="space20"></div>
+							</div>
+						</div>
+						<?php endif; ?>
+						<div class="row">
+							<div class="col-md-12">
+
+								<label class="lbl asterisk-2" for="subject">Subject Heading:</label>
+								<div class="dropdown">
+									<select name="subject">
+										<option value="">Choose</option>
+										<option value="customer service">Customer Service</option>
+										<option value="webmaster">Webmaster</option>
+									</select>
+								</div>
+								<span class="desc">For any question about a product, an order</span>
+
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<label class="asterisk" for="email">
+									<input class="medium-input" name="email" type="text" placeholder="Email Address" />
+								</label>
+							</div>
+						</div>
+						<!-- <div class="row">
+							<div class="col-md-12">
+								<label class="right-arrow" for="attachment">
+									<button class="attachment">Choose Attach File</button>
+								</label>
+							</div>
+						</div> -->
+						<div class="row">
+							<div class="col-md-12">
+								<label class="asterisk" for="message">
+									<textarea id="" cols="15" name="message" rows="5" placeholder="Message"></textarea>
+								</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-2 col-md-offset-8"><input name="submit" type="submit" value="Send" /></div>
+						</div>
+					</form>
 				</div>
 			</div>
 		<?php else: ?>

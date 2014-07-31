@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 global $woocommerce;
 
 wc_print_notices();
-
+$receiving_mode = json_decode(stripslashes($_POST['receiving_mode']), true);
 ?>
 
 <div class="progress-indicator-container">
@@ -90,7 +90,6 @@ wc_print_notices();
 	<div class="space50"></div>
 	<div class="row">
 		<form id="backtoselectaddress" action="<?php echo esc_url( $woocommerce->cart->get_cart_url() ); ?>" method="post">
-			<?php $receiving_mode = json_decode(stripslashes($_POST['receiving_mode']), true); ?>
 			<?php foreach ($receiving_mode as $key => $rcm) { ?>
 				<input type="hidden" name="<?php echo $key; ?>" value="<?php echo $rcm; ?>">
 			<?php } ?>
@@ -106,10 +105,12 @@ wc_print_notices();
 		<div class="col-md-12">
 			<h2>PERSONAL PAYMENT METHODS:</h2>
 			<ul class="payment-method">
+				<?php if(empty($receiving_mode['collection_area'])): ?>
 				<li>
 					<input type="radio" name="personal_payment_method" value="Cash on delivery" checked>
 					<label for="atm" class="radio-label"><span class="radiobtn"></span>Cash on delivery</label>
 				</li>
+				<?php endif; ?>
 				<li>
 					<input type="radio" name="personal_payment_method" value="Advance payment by internet funds transfer/ATM">
 					<label for="online" class="radio-label"><span class="radiobtn"></span>Advance payment by internet funds transfer/ATM</label>
@@ -131,7 +132,8 @@ wc_print_notices();
 	</div>
 	<div class="space50"></div>
 	<div class="row">
-		<div class="col-md-2"><button class="button personal-payment-save">SAVE</button></div>
+		<div class="col-md-1"><button class="button personal-payment-save">SAVE</button></div>
+		<div class="col-md-1"><button class="button personal-payment-cancel">CANCEL</button></div>
 	</div>	
 </div>
 
@@ -140,10 +142,12 @@ wc_print_notices();
 		<div class="col-md-12">
 			<h2>CORPORATE PAYMENT METHODS:</h2>
 			<ul class="payment-method">
+				<?php if(empty($receiving_mode['collection_area'])): ?>
 				<li>
 					<input type="radio" name="corporate_payment_method" value="Cash on delivery" checked>
 					<label for="atm" class="radio-label"><span class="radiobtn"></span>Cash on delivery</label>
 				</li>
+				<?php endif; ?>
 				<li>
 					<input type="radio" name="corporate_payment_method" value="Corporate cheque" >
 					<label for="atm" class="radio-label"><span class="radiobtn"></span>Corporate cheque</label>
@@ -171,7 +175,8 @@ wc_print_notices();
 	</div>
 	<div class="space50"></div>
 	<div class="row">
-		<div class="col-md-2"><button class="button corporate-payment-save">SAVE</button></div>
+		<div class="col-md-1"><button class="button corporate-payment-save">SAVE</button></div>
+		<div class="col-md-1"><button class="button corporate-payment-cancel">CANCEL</button></div>
 	</div>	
 </div>
 
@@ -233,7 +238,6 @@ wc_print_notices();
 	<div class="space10"></div>
 	<div class="row">
 		<div class="col-md-12">
-			<?php $receiving_mode = json_decode(stripslashes($_POST['receiving_mode']), true); ?>
 			<ul>
 				<li><span class="paymentby-lbl">Payment By:</span> <span class="paymentby-value"></span></li>
 				<li><span class="collectionby-lbl">Collection By:</span> <span class="collectionby-value"><?php echo (!empty($receiving_mode['collection_area'])) ? 'Collection' : 'Delivery'; ?></span></li>

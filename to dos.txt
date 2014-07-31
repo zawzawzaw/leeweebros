@@ -1,12 +1,13 @@
 TO DOs
 
-select address to test (tested so far ok)
+cart tnc to check with nik
+500 internal server error
+Payment modes options to check with nik again (asked) to check payment at counter option
 clickable indicator
-shop select option
-cart tnc
-contact
-search
 responsive
+hide checkout title on thankyou
+guest checkout to check on their existing site to put error msg on login/register page
+edm to finalise
 
 DONE
 yiling design fix
@@ -32,3 +33,14 @@ variable prices
 login form error msg
 update on cart min quantity!
 previous
+select address to test (tested so far ok)
+tnc copy change
+remove cash on delivery if its collection 
+name in my account
+beef satay min order to check with nik
+search
+shop select option
+remove checkout & payment from menu? to check with nik
+menu parent to be clickable again (done for now)
+careers apply btn (done for now)
+contact

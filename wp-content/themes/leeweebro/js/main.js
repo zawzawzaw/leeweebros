@@ -28,6 +28,8 @@ jQuery( function( $ ) {
 			$selectAddressContainer = $('.select-address-container'),
 			$saveDeliveryAddressBtn = $('.save_delivery_address'),
 			$saveBillingAddressBtn = $('.save_billing_address'),
+			$cancelBillingAddressBtn = $('.cancel_billing_address'),
+			$cancelDeliveryAddressBtn = $('.cancel_delivery_address'),
 			$checkoutBtn = $('.submit-to-checkout'),
 			$checkoutForm = $('form#submitcheckout'),
 			$backToReceivingModeBtn = $('.select-address-prev-btn'),
@@ -42,11 +44,14 @@ jQuery( function( $ ) {
 			$orderDetailContainer = $('.order-details-container'),
 			$personalPaymentBtn = $('.personal-payment-save'),
 			$corporatePaymentBtn = $('.corporate-payment-save'),
+			$personalPaymentCancelBtn = $('.personal-payment-cancel'),
+			$corporatePaymentCancelBtn = $('.corporate-payment-cancel'),
 			$checkOutTermContainer = $('.terms-container'),
 			$progressIndicator = $('.progress-indicator-container'),
 			$submissionPrevBtn = $('.submission-prev-btn'),
 			$confirmOrderBtn = $('#confirm-order'),
-			$cartContainer = $('.cart-container');
+			$cartContainer = $('.cart-container'),
+			$contactContainer = $('#contact');
 
 		$.validator.addMethod("alphanumeric", function(value, element) {
 	        return this.optional(element) || /^[a-z0-9\-\s]+$/i.test(value);
@@ -1048,6 +1053,15 @@ jQuery( function( $ ) {
 			}
 		});
 
+		$cancelBillingAddressBtn.on('click', function(e){
+
+			e.preventDefault();
+			$selectAddressContainer.show();
+			$newFormContainer.hide();
+			$newBillingAddressForm.hide();
+
+		});
+
 		$saveDeliveryAddressBtn.on('click', function(e){
 
 			e.preventDefault();
@@ -1064,6 +1078,15 @@ jQuery( function( $ ) {
 				$shippingInfoList.next('.update').html('');
 				$shippinginputHidden.val(shipping_fields_json);
 			}
+		});
+
+		$cancelDeliveryAddressBtn.on('click', function(e){
+
+			e.preventDefault();
+			$selectAddressContainer.show();
+			$newFormContainer.hide();
+			$newShippingAddressForm.hide();
+
 		});
 
 		$checkoutBtn.on('click', function(e){
@@ -1118,6 +1141,11 @@ jQuery( function( $ ) {
 			$progressIndicator.find('.sixth').children('.circle-holder').children('.circle').addClass('done');
 		});
 
+		$personalPaymentCancelBtn.on('click', function(e){
+			$paymentModeContainer.show();
+			$personalPaymentModeContainer.hide();
+		});
+
 		$corporatePaymentBtn.on('click', function(e){
 			e.preventDefault();
 
@@ -1137,6 +1165,11 @@ jQuery( function( $ ) {
 
 			$progressIndicator.find('.sixth').children('.circle-holder').children('.circle-text').addClass('active');
 			$progressIndicator.find('.sixth').children('.circle-holder').children('.circle').addClass('done');
+		});
+
+		$corporatePaymentCancelBtn.on('click', function(e){
+			$paymentModeContainer.show();
+			$corporatePaymentModeContainer.hide();
 		});
 
 		$submissionPrevBtn.on('click', function(e){
@@ -1245,6 +1278,89 @@ jQuery( function( $ ) {
 			}
 		});
 
+		$contactContainer.find('#contact-form').validate({
+			rules: {
+				subject: {
+					required: true
+				},
+				email : {
+					required: true,
+					email: true
+				},
+				message: "required"
+			},
+			messages: {
+				subject: {
+					required: "Please choose subject",
+				},
+				email : {
+					required: "Please fill in your email",
+					email: "Invalid email"
+				},
+				message: "Please fill in your message"
+			},
+			errorPlacement: function(error, element) {
+			    if (element.attr("name") == "subject") {
+			      	error.insertAfter(element.parent());
+			    }else {
+			      	error.insertAfter(element);
+			    }
+		  	}
+		});
+
+	});	
+
+	var map;
+	function initialize() {
+		var styles = [
+		    {
+		        "stylers": [
+		            {
+		                "hue": "#dd0d0d"
+		            }
+		        ]
+		    },
+		    {
+		        "featureType": "road",
+		        "elementType": "labels",
+		        "stylers": [
+		            {
+		                "visibility": "off"
+		            }
+		        ]
+		    },
+		    {
+		        "featureType": "road",
+		        "elementType": "geometry",
+		        "stylers": [
+		            {
+		                "lightness": 100
+		            },
+		            {
+		                "visibility": "simplified"
+		            }
+		        ]
+		    }
+		];
+
+
+		var mapOptions = {
+			mapTypeControlOptions: {  
+		    	mapTypeIds: ['Styled']  
+			},  
+			zoom: 16,
+			center: new google.maps.LatLng(1.367607,103.890236),
+			disableDefaultUI: true,   
+			mapTypeId: 'Styled'
+		};
+		map = new google.maps.Map(document.getElementById('google-map-canvas'),
+		  mapOptions);
+		var styledMapType = new google.maps.StyledMapType(styles, { name: 'Styled' });  
+		map.mapTypes.set('Styled', styledMapType);
+	}
+
+	//Add onload to body
+	$(window).load(function(){
+	    initialize();
 	});
-	
 });

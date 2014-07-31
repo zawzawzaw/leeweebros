@@ -90,7 +90,7 @@ if ( ( ! is_home() && ! is_front_page() && ! ( is_post_type_archive() && get_opt
 
 		if ( is_search() ) {
 
-			echo $before . '<a href="' . get_post_type_archive_link( 'product' ) . '">' . $_name . '</a>' . $delimiter . __( 'Search results for &ldquo;', 'woocommerce' ) . get_search_query() . '&rdquo;' . $after;
+			echo $before . '<a href="' . get_post_type_archive_link( 'product' ) . '">' . $_name . '</a><a href="#" class="active">' . $delimiter . __( 'Search results', 'woocommerce' ) . '</a>';
 
 		} elseif ( is_paged() ) {
 
@@ -98,7 +98,7 @@ if ( ( ! is_home() && ! is_front_page() && ! ( is_post_type_archive() && get_opt
 
 		} else {
 
-			echo $before . $_name . $after;
+			echo '<a href="#" class="active">' . $before . $_name . $after . '</a>';
 
 		}
 
@@ -166,7 +166,7 @@ if ( ( ! is_home() && ! is_front_page() && ! ( is_post_type_archive() && get_opt
 
 	} elseif ( is_page() && !$post->post_parent ) {
 
-		echo $before . get_the_title() . $after;
+		echo '<a href="#" class="active">' . $before . get_the_title() . $after . '</a>';
 
 	} elseif ( is_page() && $post->post_parent ) {
 

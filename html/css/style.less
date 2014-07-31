@@ -932,14 +932,14 @@ header#main-header {
             }
           }
           &.food {
-            left: -16px;
+            left: -11px;
             ul.sub-menu {
               min-height: 215px;
               width: 200px;
             }
           }
           &.catering {
-            left: -29px;
+            left: -18px;
             ul.sub-menu {
               min-height: 81px;
               width: 200px;
@@ -947,7 +947,7 @@ header#main-header {
           }
           &.delivery {
             width: 112px;
-            left: -42px;
+            left: -24px;
             ul.sub-menu {
               min-height: 81px;
               width: 200px;
@@ -955,7 +955,7 @@ header#main-header {
           }
           &.outlets {
             width: 96px;
-            left: -52px;
+            left: -22px;
             a {
               left: 14px;
             }
@@ -976,24 +976,28 @@ header#main-header {
           }
           &.promo {
             width: 136px;
-            left: -67px;
+            left: -16px;
             a {
               left: 17px;
             }
           }
           &.career {
             width: 112px;
-            left: -78px;
+            left: -18px;
             a {
               left: 21px;
             }
           }
           &.contact {
             width: 112px;
-            left: -94px;
+            left: -28px;
             a {
               left: 21px;
             }
+          }
+          &.faqs {
+            left: -32px;
+            width: 82px;
           }
 
           &:hover {
@@ -2069,7 +2073,7 @@ header#main-header {
 
 #individual {
   div.product {
-    a {
+    div.images {
       img {
         width: 320px;
         height: 249px;
@@ -3110,6 +3114,173 @@ header#main-header {
 .item-price-to-left {
   padding-left: 0px;
 }
+
+
+/* contact */
+
+#contact {
+  #google-map-canvas {
+    width: 928px;
+    height: 302px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  p {
+    .open-sans-italic;
+    font-size: 12px;
+  }
+
+  p.msg {
+    color: @red;
+    font-size: 13px;
+  }
+
+  .align-left-3 {
+    margin-left: 45px;
+  }
+
+  form#contact-form {
+    font-size: 12px;
+
+    label {
+      color: @dark-brown;
+    }
+
+    div.dropdown {
+      display: inline-block;
+      position: relative;
+      &:before {
+        content: '';
+        width:26px; 
+        height:26px;
+        background:url(../images/icons/drop-down-icon.png) no-repeat top left;
+        position:absolute;
+        display:block;
+        right: 0px;
+        pointer-events:none;
+      }
+    }
+
+    label {
+      position: relative;
+      margin-bottom: 20px;
+
+      input[type="text"],input[type="email"]{
+        padding-left: 12px;      
+        width: 300px;
+      }
+
+      &.asterisk {
+        input[type="text"],input[type="email"],textarea{
+          padding-left: 18px;
+        }
+        &:after {
+          content: '*';
+          position: absolute;
+          color: @red;
+          top: 5px;
+          left: 10px;
+        }
+      }
+      &.asterisk-2 {
+        input[type="text"],input[type="email"] {
+          padding-left: 18px;
+        }
+        &:after {
+          content: '*';
+          position: absolute;
+          color: @red;
+          top: 0px;
+          left: -9px;
+        }
+      }
+      &.right-arrow {
+        &:after {
+          content: '.';
+          text-indent: -9999px;
+          position: absolute;
+          color: @red;
+          top: 12px;
+          left: 165px;
+          background:url(../images/icons/triangle-arrow.png) no-repeat top right;
+          width: 10px;
+          height: 10px;
+        }
+      }
+    }
+
+    label[for="subject"] {
+      margin-bottom: 0px;
+      margin-left: 8px;
+    }
+
+    span.desc {
+      .open-sans-italic;
+      font-size: 11px;
+      display: block;
+      margin-left: 105px;
+      margin-top: 7px;
+      margin-bottom: 20px;
+    }
+
+    select {
+      width: 140px;
+      height: 26px;
+      margin-right: 11px;
+      .appearance(none);
+      .round(0px);
+      padding-left: 3px;
+
+      &:last-child {
+        margin-right: 0px;
+      }
+      &.country {
+        width: 116px;     
+        padding-left: 15px; 
+      }
+    }
+
+    textarea {
+      padding-left: 12px;
+      padding-top: 5px;
+      width: 393px;
+      height: 130px;
+    }
+
+    button.attachment {
+      background: none;
+      border: 1px solid #C69C6D;
+      padding: 5px 73px 5px 10px;
+    }
+
+    input[type="submit"] {
+      width: auto;
+      padding: 5px 15px;
+      font-style: normal;
+    }
+
+    label.error {
+      position: absolute;
+      top: 28px;
+      left: 0px;
+    }
+
+    label#message-error {
+      top: 133px;
+      left: 0;
+    }
+
+    label#subject-error {
+      position: static;
+      top: 0px;
+      left: 0px;
+    }
+  }
+}
+
 
 
 //      _   _    ___ ____  _   _ ____    _____ ____ ___ _____ 

@@ -42,8 +42,7 @@
 	    <header id="main-header" class="container">
 	      <div class="row">
 	        <div class="col-md-3">
-	          <button class="search-btn"></button>
-	          <input type="text" id="search" name="search" placeholder="SEARCH" />
+			  <?php get_product_search_form(); ?>
 	        </div>
 	        
 	        <div class="col-md-4 col-md-offset-5">

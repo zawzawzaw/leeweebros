@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]>
+<!--> 
+<html class=""> 
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<title>Lee Wee Brothers</title>
+	<meta name="description" content="Lee Wee">
+	<meta name="keywords" content="Lee Wee">
+
+	<!--#include virtual="inc/head.inc" -->
+</head>
+<body>
+<!-- 	<div class="image-bg">
+		<div class="top-bg"></div>
+		<div class="middle-bg"></div>
+	</div> -->
+	
+  	<!--#include virtual="inc/header.inc" -->
+	<div id="content-wrapper" class="">
+		<div id="breadcrumb" class="container">
+			<div class="align-left-2">
+				<div class="row">
+					<div class="col-md-12">
+						<a href="#">Home</a> / <a href="#">About Us</a> / <a href="#" class="active">Food Philosophy</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="contact" class="container">
+			<div class="align-left-2">
+				<div class="space30"></div>
+				<div class="row">
+					<div class="col-md-12" id="page-title">
+						<h2>THE LEE WEE DIFFERENCE</h2>
+						<h1>OUR FOOD PHILOSOPHY</h1>
+					</div>
+				</div>
+			</div>
+			<div class="space20"></div>
+			<div class="space20"></div>
+			<div class="row">
+				<div class="col-md-12">
+					<div id="google-map-canvas"></div>
+				</div>
+			</div>
+			<div class="space50"></div>
+			<div class="row">
+				<div class="col-md-4 col-md-offset-1">
+					<h4>Thank you for your visit. Here you can ask us any questions or simply leave a comment on our brand and products.</h4>
+				</div>
+				<div class="col-md-5 col-md-offset-1">
+					<h2>GET IN TOUCH</h2>
+					<p>For questions about an order or for more information about our products.</p>
+					<div class="space20"></div>
+					<form name="login" id="contact-form" method="post" action="">
+						<div class="row">
+							<div class="col-md-12">
+								<label for="subject" class="lbl">Subject Heading:</label>
+								<div class="dropdown">
+									<select name="subject">
+										<option value="">Choose</option>
+										<option value="customer service">Customer Service</option>
+										<option value="webmaster">Webmaster</option>
+									</select>
+								</div>
+								<span>For any question about a product, an order</span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<label for="email" class="asterisk">
+									<input type="text" name="email" class="medium-input" placeholder="Email Address">
+								</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<label for="attachment">
+									<button class="attachment">Choose Attach File</button>
+								</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<label for="message" class="asterisk">
+									<textarea name="message" id="" cols="15" rows="5" placeholder="Message"></textarea>
+								</label>	
+							</div>
+						</div>
+						<div class="space10"></div>
+						<div class="row">
+							<div class="col-md-2 col-md-offset-8">
+								<input type="submit" value="Send" name="submit">
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="space50"></div>
+	<div class="space50"></div>
+
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+
+		});
+
+	</script>
+
+	<!--#include virtual="inc/footer.inc" -->
+</body>
+</html>

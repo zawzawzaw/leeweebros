@@ -56,6 +56,23 @@ add_taxonomy('place', 'slider', array(
 # end slider #
 
 /********************************************************************************************************/
+/* ADD WIDGETS SUPPORT */
+/********************************************************************************************************/
+
+function arphabet_widgets_init() {
+
+    register_sidebar( array(
+        'name' => 'Home right sidebar',
+        'id' => 'home_right_1',
+        'before_widget' => '<div>',
+        'after_widget' => '</div>',
+        'before_title' => '<h2 class="rounded">',
+        'after_title' => '</h2>',
+    ) );
+}
+add_action( 'widgets_init', 'arphabet_widgets_init' );
+
+/********************************************************************************************************/
 /* WOOCOMMERCE */
 /********************************************************************************************************/
 
@@ -117,7 +134,7 @@ if ( ! function_exists( 'woocommerce_template_loop_add_to_cart' ) ) {
   function woocommerce_template_loop_add_to_cart() {
     global $product;
 
-    if ($product->product_type == "variable" && (is_product() || is_product_category() || is_product_tag())) {
+    if ($product->product_type == "variable") {
       woocommerce_variable_add_to_cart();
     }
     else {
@@ -199,6 +216,7 @@ wp_enqueue_script( 'jqueryui', '//code.jquery.com/ui/1.11.0/jquery-ui.js', array
 wp_enqueue_script( 'bootstrap', get_bloginfo( 'stylesheet_directory' ). '/lib/bootstrap/dist/js/bootstrap.min.js', array( 'jquery' ), false, true );
 wp_enqueue_script( 'jcarousel', get_bloginfo( 'stylesheet_directory' ). '/lib/jquery.jcarousel.min.js', array( 'jquery' ), false, true );
 wp_enqueue_script( 'validator', get_bloginfo( 'stylesheet_directory' ). '/lib/jquery.validate.min.js', array( 'jquery' ), false, true );
+wp_enqueue_script( 'googlemap', '//maps.googleapis.com/maps/api/js?v=3.exp', array( 'jquery' ), false, true );
 // wp_enqueue_script( 'additionalvalidator', get_bloginfo( 'stylesheet_directory' ). '/lib/additional-methods.min.js', array( 'jquery' ), false, true );
 wp_enqueue_script( 'main', get_bloginfo( 'stylesheet_directory' ). '/js/main.js', array( 'jquery' ), false, true );
 
@@ -478,44 +496,15 @@ function delete_address_ajax() {
     }
 }
 
-// order meta
+add_action('get_product_search_form', 'custom_wc_search');
 
-add_action( 'woocommerce_email_order_meta', 'woo_add_order_notes_to_email' );
+// custom woocommerce search
+function custom_wc_search() {
+  $html = '<form role="search" method="get" id="searchform" action="'. esc_url( home_url( '/'  ) ) .'">
+    <button id="searchsubmit" class="search-btn"></button>
+    <input type="text" value="'. get_search_query() .'" name="s" id="search" placeholder="SEARCH" />
+    <input type="hidden" name="post_type" value="product" />
+</form>';
 
-function woo_add_order_notes_to_email() {
-
-  global $woocommerce, $post;
-
-  $args = array(
-    'post_id'   => $post->ID,
-    'approve'   => 'approve',
-    'type'    => 'order_note'
-  );
-
-  $notes = get_comments( $args );
-  
-  echo '<h2>' . __( 'Order Notes', 'woocommerce' ) . '</h2>';
-
-  echo '<ul class="order_notes">';
-
-  if ( $notes ) {
-    foreach( $notes as $note ) {
-      $note_classes = get_comment_meta( $note->comment_ID, 'is_customer_note', true ) ? array( 'customer-note', 'note' ) : array( 'note' );
-
-      ?>
-      <li rel="comment_ID ) ; ?>" class="">
-        <div class="note_content">
-          comment_content ) ) ); ?>
-        </div>
-        <p class="meta">
-          comment_date_gmt ), current_time( 'timestamp', 1 ) ) ); ?>
-        </p>
-      </li>
-      <?php
-    }
-  } else {
-    echo '<li>' . __( 'There are no notes for this order yet.', 'woocommerce' ) . '</li>';
-  }
-
-  echo '</ul>';
+  return $html;
 }
