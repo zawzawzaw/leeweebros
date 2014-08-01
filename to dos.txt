@@ -2,7 +2,7 @@ TO DOs
 
 cart tnc to check with nik
 500 internal server error
-Payment modes options to check with nik again (asked) to check payment at counter option
+Payment gateway
 clickable indicator
 responsive
 hide checkout title on thankyou
@@ -44,3 +44,4 @@ remove checkout & payment from menu? to check with nik
 menu parent to be clickable again (done for now)
 careers apply btn (done for now)
 contact
+to add (add to cart) on home page feature product

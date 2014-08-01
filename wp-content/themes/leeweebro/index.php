@@ -1,4 +1,6 @@
-<?php get_header(); ?>
+<?php get_header();
+global $woocommerce;
+?>
 
 <div id="content-wrapper">
 	<div id="main-slider" class="container">
@@ -81,6 +83,17 @@
 						        }
 
 						        $attributes = $product->get_attributes();
+
+
+						        foreach ($attributes as $key => $att) {
+						        	if (strpos($att['value'],'|') !== false) {
+						        		$att_pa = $att['name'];
+						        		$att_value_arr = explode('|', $att['value']);
+						        		$att_value = trim($att_value_arr[0]);
+						        	}
+						        }
+
+						        // print_r($attributes);
 						?>
 								<li>
 									<a href="<?php echo get_permalink(get_the_ID()); ?>">
@@ -95,8 +108,21 @@
 
 										} ?>
 										<p class="feature-text"><?php echo $custom_excerpt[0]; ?></p>
-										<p class="feature-price">$<?php echo (isset($sale) && !empty($sale)) ? number_format((float)$sale, 2, '.', '') : number_format((float)$price, 2, '.', '');  ?></p>
-										<p class="feature-price-2"><?php echo (isset($attributes['per']['value'])) ? $attributes['per']['value'] : ''; ?></p>
+										
+										<div class="row cta">
+											<div class="col-md-6">
+												<p class="feature-price">$<?php echo (isset($sale) && !empty($sale)) ? number_format((float)$sale, 2, '.', '') : number_format((float)$price, 2, '.', '');  ?></p>
+												<p class="feature-price-2"><?php echo (isset($attributes['per']['value'])) ? $attributes['per']['value'] : ''; ?></p>
+											</div>
+											<?php if($product->product_type=='variable'): 
+											$cart_url = $woocommerce->cart->get_cart_url();
+											?>
+											<div class="col-md-6"><a href="<?php echo $cart_url; ?>?add-to-cart=<?php echo $product->id; ?>&variation_id=<?php echo $variation_id; ?>&attribute_<?php echo strtolower($att_pa); ?>=<?php echo strtolower($att_value); ?>" class="button add-to-cart">Add to cart</a></div>
+											<?php else: ?>
+											<div class="col-md-6"><a href="<?php echo esc_url( $product->add_to_cart_url() ); ?>" class="button add-to-cart">Add to cart</a></div>
+											<?php endif; ?>
+										</div>
+										
 									</div>
 								</li>
 						<?php        
