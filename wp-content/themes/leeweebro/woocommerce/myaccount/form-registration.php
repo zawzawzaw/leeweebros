@@ -138,7 +138,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 				</label>
 			</div>
 		</div>
-		<div class="space10"></div>
 		<div class="row">
 			<div class="col-md-6">
 				<label for="address_book_1_address_2" class="no-asterisk">

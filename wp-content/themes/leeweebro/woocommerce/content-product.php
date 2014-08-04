@@ -51,7 +51,7 @@ if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )
 			<div class="space10"></div>
 		</div>
 		<div class="col-md-2" style="padding-left:0;">
-			<div class="space40"></div>
+			<!-- <div class="space40"></div> -->
 			<?php do_action( 'woocommerce_after_shop_loop_item_title_custom' ); ?>
 			<!-- <p class="price-info"><span class="price">S$0.60</span><br><span class="per-item">per pcs</span></p> -->
 			<div class="space10"></div>

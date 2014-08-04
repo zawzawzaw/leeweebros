@@ -603,7 +603,7 @@ h1 {
 h2{
   .auto-1-bold;
   font-size: 17px;
-  line-height: 28px;
+  line-height: 24px;
   text-transform: uppercase;
   display: block;
   color: @dark-brown;
@@ -1220,6 +1220,10 @@ header#main-header {
         }
         p.feature-price {
           font-size: 14px;
+          .open-sans-semibold;
+        }
+        p.feature-price-2 {
+          .open-sans-italic;
         }
         p.feature-price, p.feature-price-2 {
           text-align: left;
@@ -1228,7 +1232,7 @@ header#main-header {
           margin-top: 10px;
         }
         .add-to-cart {
-          margin-top:4px;
+          margin-top:3px;
         }
       }
     }
@@ -1392,6 +1396,10 @@ header#main-header {
   form#login-form {
     font-size: 12px;
 
+    .less-height {
+      height: 87px;
+    }
+
     label {
       color: @dark-brown;
     }
@@ -1460,6 +1468,14 @@ header#main-header {
       margin-bottom: 20px;
     }
 
+    label[for="address_book_1_address_2"] {
+      margin-bottom: 0px;
+    }
+
+    label[for="address_book_1_address_1"] {
+      margin-bottom: 13px;
+    }
+
     label[for="user_login"],label[for="account_first_name"],label[for="account_last_name"],label[for="account_email"] {
       margin-left: 5px;
     }
@@ -1503,6 +1519,10 @@ header#main-header {
       font-style: normal;
     }
 
+    input[name="login"] {
+      margin-top: 7px;
+    }
+
     p {
       .open-sans-italic;
       font-size: 11px;      
@@ -1528,7 +1548,7 @@ header#main-header {
     p.create-account-desc {
       .open-sans-semibold;
       font-size: 12px;
-      line-height: 22px;
+      line-height: 18px;
     }
 
     .push-down {
@@ -1566,6 +1586,7 @@ header#main-header {
   }
   
   .myaddress-container {
+    margin-top: 8px;
     ul {
       li {
         display: inline-block;
@@ -1810,6 +1831,10 @@ header#main-header {
     color: @red;
     .open-sans-semibold;
   }
+
+  p.one-line {
+    width: 560px;
+  }
 }
 
 //  Individual // All
@@ -1825,9 +1850,11 @@ header#main-header {
 
   h2 {
     font-size: 21px;
+    text-transform: none;
   }
   p.price-info {
     .open-sans-italic;
+    padding-top: 3px;
 
     .price {
       .open-sans-semibold;
@@ -1844,11 +1871,18 @@ header#main-header {
 
   p.desc {
     width: 87%;
+    position: relative;
+    /*min-height: 135px;*/
+
     span.italic {
       font-style: italic;
     }
     em, i {
       font-style: italic;
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+      width: 275px;
     }
   }
 
@@ -2230,6 +2264,15 @@ header#main-header {
       }
       span.sub-bullet {
         //margin-right: 5px;     - cannot have
+        display: block;
+        float: left;
+      }
+      span.sub-list {
+        display: block;
+        margin-left: 27px;
+      }
+      span.sub-list-2 {
+        margin-left: 8px;
       }
     }
   }
@@ -2569,6 +2612,7 @@ header#main-header {
       div.dropdown {
         display: inline-block;
         position: relative;
+        margin-right: 8px;
         &:before {
           content: '';
           width:26px; 
@@ -2592,7 +2636,7 @@ header#main-header {
           .round(0px);
         }
         select[name="delivery_time"],select[name="collection_time"] {
-          width: 215px;
+          width: 231px;
           .appearance(none);
           .round(0px);
         }

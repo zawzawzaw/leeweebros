@@ -25,7 +25,7 @@ if($product->product_type=='variable') {
 ?>
 
 <?php if ( $price_html = $product->get_price_html() ) : ?>
-	<div class="space40"></div>
+	<!-- <div class="space40"></div> -->
 	<p class="price-info">
 		<?php 
 		if($product->product_type=='variable'):

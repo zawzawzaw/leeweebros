@@ -286,7 +286,7 @@ class WC_Emails {
 		$show_fields = apply_filters( 'woocommerce_email_order_meta_keys', array(), $sent_to_admin );
 
 		if ( $order->customer_note )
-			$meta[ __( 'Note', 'woocommerce' ) ] = wptexturize( $order->customer_note );
+			$meta[ __( 'ADDITIONAL INFORMATION/REQUEST', 'woocommerce' ) ] = wptexturize( $order->customer_note );
 
 		if ( $show_fields )
 			foreach ( $show_fields as $key => $field ) {

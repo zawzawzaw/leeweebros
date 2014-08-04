@@ -59,11 +59,6 @@ $body_content = "
 ";
 $body_content_inner = "
 	color: $text_lighter_20;
-
-	/*font-family:Arial;
-	font-size:14px;
-	line-height:150%;*/
-
   	font-family: 'Open Sans', Verdana, sans-serif;
   	font-weight: 400;
   	font-style: normal;
@@ -75,12 +70,10 @@ $body_content_inner = "
 $header_content_h1 = "
 	color: " . esc_attr( $base_text ) . ";
 	margin:0;
-	padding: 28px 24px;
+	/*padding: 28px 24px;*/
+	padding: 32px 24px 0px 20px;
 	text-shadow: 0 1px 0 $base_lighter_20;
 	display:block;
-	/*font-family:Arial;
-	font-size:30px;
-	font-weight:bold;*/
 	font-family: 'SolanoGothicMVBStd-Bd', Verdana, sans-serif;
 	font-weight: 300;
 	font-style: normal;
@@ -90,7 +83,6 @@ $header_content_h1 = "
 	display: block;
 	color: #da0009;
 	text-align:left;
-	/*line-height: 150%;*/
 ";
 ?>
 <!DOCTYPE html>

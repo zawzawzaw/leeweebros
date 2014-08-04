@@ -124,7 +124,6 @@ $order = new WC_Order( $order_id );
 			<h2><?php _e( 'Customer details', 'woocommerce' ); ?></h2>
 		</div>
 	</div>
-	<div class="space10"></div>
 	<div class="row">
 		<div class="col-md-12">
 			<ul>
@@ -143,7 +142,7 @@ $order = new WC_Order( $order_id );
 
 	<div class="row">
 		<div class="col-md-3">
-			<h2>BILLIN ADDRESS</h2>
+			<h2>BILLING ADDRESS</h2>
 			<p class="billing-address">
 				<?php
 					if ( ! $order->get_formatted_billing_address() ) _e( 'N/A', 'woocommerce' ); else echo $order->get_formatted_billing_address();
