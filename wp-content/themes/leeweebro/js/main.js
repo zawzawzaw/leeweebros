@@ -1132,8 +1132,20 @@ jQuery( function( $ ) {
 
 			var choosedPersonalPaymentMethod = $personalPaymentModeContainer.find('input[name="personal_payment_method"]:checked').val();
 
-			$('#payment_method_cod').trigger('click');
-
+			if(choosedPersonalPaymentMethod=='Advance payment by internet funds transfer/ATM') {
+				$('#payment_method_advance_payment_by_internet_banking_atm').trigger('click');
+				$('input#pay_by_cash_outlet').attr('value', '');
+			}
+			else if(choosedPersonalPaymentMethod=='Advance payment by cash at outlets') {
+				$('#payment_method_advance_payment_by_cash_at_outlets').trigger('click');
+				var chosenOutlet = $('select[name="outlets"]').val();
+				$('input#pay_by_cash_outlet').attr('value', chosenOutlet);
+			}
+			else {
+				$('#payment_method_cod').trigger('click');
+				$('input#pay_by_cash_outlet').attr('value', '');
+			}
+				
 			$orderDetailContainer.show();
 			$orderDetailContainer.find('.paymentby-value').html(choosedPersonalPaymentMethod);
 
@@ -1156,8 +1168,10 @@ jQuery( function( $ ) {
 
 			if(choosedPersonalPaymentMethod=="Corporate cheque") {
 				$('#payment_method_cheque').trigger('click');
+				$('input#pay_by_cash_outlet').attr('value', '');
 			}else {
 				$('#payment_method_cod').trigger('click');
+				$('input#pay_by_cash_outlet').attr('value', '');
 			}
 
 			$orderDetailContainer.show();

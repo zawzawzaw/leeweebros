@@ -96,7 +96,7 @@ $order = new WC_Order( $order_id );
 	<div class="row">
 		<div class="col-md-12">
 			<ul>
-				<li><span class="paymentby-lbl">Payment By:</span> <?php echo $order->payment_method_title; ?></li>
+				<li><span class="paymentby-lbl">Payment By:</span> <?php echo $order->payment_method_title; ?> <?php echo (!empty($order->pay_by_cash_outlet)) ? $order->pay_by_cash_outlet : '' ; ?></li>
 				<li><span class="receivingmode-lbl">Receiving Mode:</span> <?php echo (isset($order->delivery)) ? 'Delivery' : 'Self Collection'; ?></li>
 				<?php if(isset($order->collection_area)): ?>
 				<li><span class="collectionplace-lbl">Collection Place:</span> <?php echo $order->collection_area; ?></li>

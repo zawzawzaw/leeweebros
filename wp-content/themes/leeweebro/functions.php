@@ -408,6 +408,13 @@ function custom_override_checkout_fields( $fields ) {
       }  
     }     
 
+    woocommerce_form_field( 'pay_by_cash_outlet', array(
+        'type'          => 'text',
+        'class'         => array('my-field-class form-row-wide'),
+        'label'         => __('pay_by_cash_outlet'),
+        'placeholder'   => __('Pay By Cash Outlet')
+        ), '');
+
     return $fields;
 }
 
