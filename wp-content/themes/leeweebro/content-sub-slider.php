@@ -24,7 +24,7 @@
 									$sale = get_post_meta( get_the_ID(), '_sale_price', true);
 									$price = get_post_meta( get_the_ID(), '_regular_price', true);
 								?>
-								<p>S$<?php echo (!empty($sale)) ? number_format((float)$sale, 2, '.', '') : number_format((float)$price, 2, '.', ''); ?></p>
+								<p>$<?php echo (!empty($sale)) ? number_format((float)$sale, 2, '.', '') : number_format((float)$price, 2, '.', ''); ?></p>
 							</div>
 						</a>
 					</li>

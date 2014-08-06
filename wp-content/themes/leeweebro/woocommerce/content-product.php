@@ -40,7 +40,6 @@ if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )
 		<div class="col-md-4">
 			<a href="<?php the_permalink(); ?>">
 				<?php do_action( 'woocommerce_before_shop_loop_item_title_custom' ); ?>
-				<!-- <img src="images/content/otah-small.png" alt="otah"> -->
 			</a>
 		</div>
 		<div class="col-md-6">
