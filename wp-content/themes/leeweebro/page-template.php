@@ -147,7 +147,7 @@ get_header();
 
 				<div class="col-md-6 col-md-offset-1">
 					<h2>GET IN TOUCH</h2>
-					For questions about an order or for more information about our products.
+					For enquiries about your orders or if you want more information about our products.
 					<div class="space20"></div>
 					<?php 
 					if(isset($_POST['subject'])) {
@@ -186,11 +186,12 @@ get_header();
 								<div class="dropdown">
 									<select name="subject">
 										<option value="">Choose</option>
-										<option value="customer service">Customer Service</option>
-										<option value="webmaster">Webmaster</option>
+										<option value="enquiries">Enquiries</option>
+										<option value="feedback">Feedback</option>
+										<option value="technical">Technical Issues</option>
 									</select>
 								</div>
-								<span class="desc">For any question about a product, an order</span>
+								<span class="desc"></span><!-- For any question about a product, an order -->
 
 							</div>
 						</div>

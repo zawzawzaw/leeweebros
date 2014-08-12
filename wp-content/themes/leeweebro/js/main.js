@@ -51,7 +51,8 @@ jQuery( function( $ ) {
 			$submissionPrevBtn = $('.submission-prev-btn'),
 			$confirmOrderBtn = $('#confirm-order'),
 			$cartContainer = $('.cart-container'),
-			$contactContainer = $('#contact');
+			$contactContainer = $('#contact'),
+			$allProductContainer = $('#content-wrapper #all');
 
 		$.validator.addMethod("alphanumeric", function(value, element) {
 	        return this.optional(element) || /^[a-z0-9\-\s]+$/i.test(value);
@@ -1322,6 +1323,38 @@ jQuery( function( $ ) {
 		  	}
 		});
 
+		function toggleView(){
+			$allProductContainer.find('.product').toggleClass('grid').children('div').toggleClass('row').children('div').toggleClass();
+			$allProductContainer.find('.product').children('div').children('div:last-child').toggleClass('price-wrapper');
+			$allProductContainer.find('.product').next('div').toggleClass();
+			$allProductContainer.find('.product').next('div:last-child').toggleClass('space30');
+			$allProductContainer.find('.product').children('div').find('.desc').css('min-height', '105px');
+		}
+
+		var view = $.cookie("view");
+		console.log(view)
+
+		if(view=='gridview') {
+			$('#viewby li#gridview').trigger('click');
+			toggleView();
+		}
+		else $('#viewby li#listview').trigger('click');
+
+		$('#viewby li').on('click', function(e){
+			e.preventDefault();
+			var selectedId = $(this).attr('id');
+			view = $.cookie("view");
+
+			console.log(selectedId)
+			console.log(view)
+
+			if(view==selectedId) return false;
+			else {
+				$.cookie("view", selectedId, { expires : 10 });
+				toggleView();
+			}
+		});
+
 	});	
 
 	var map;
@@ -1357,13 +1390,13 @@ jQuery( function( $ ) {
 		    }
 		];
 
-
+		var myLatlng = new google.maps.LatLng(1.367607,103.890236);
 		var mapOptions = {
 			mapTypeControlOptions: {  
 		    	mapTypeIds: ['Styled']  
 			},  
 			zoom: 16,
-			center: new google.maps.LatLng(1.367607,103.890236),
+			center: myLatlng,
 			disableDefaultUI: true,   
 			mapTypeId: 'Styled'
 		};
@@ -1371,6 +1404,13 @@ jQuery( function( $ ) {
 		  mapOptions);
 		var styledMapType = new google.maps.StyledMapType(styles, { name: 'Styled' });  
 		map.mapTypes.set('Styled', styledMapType);
+
+
+		var marker = new google.maps.Marker({
+			position: myLatlng,
+			map: map,
+			title: 'Lee Wee Bros'
+		});
 	}
 
 	//Add onload to body

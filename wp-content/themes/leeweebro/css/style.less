@@ -932,6 +932,9 @@ header#main-header {
             color: @dark-brown;
           }
           &.about {
+            > a {
+              cursor: default;
+            }
             ul.sub-menu {
               min-height: 115px;
             }
@@ -944,6 +947,9 @@ header#main-header {
             }
           }
           &.catering {
+            > a {
+              cursor: default;
+            }
             left: -18px;
             ul.sub-menu {
               min-height: 81px;
@@ -951,6 +957,9 @@ header#main-header {
             }
           }
           &.delivery {
+            > a {
+              cursor: default;
+            }
             width: 112px;
             left: -24px;
             ul.sub-menu {
@@ -1151,8 +1160,10 @@ header#main-header {
           color: @dark-brown;
           img {
             display: block;
-            max-width: 100%;
-            height: auto !important;
+            /*max-width: 100%;
+            height: auto !important;*/
+            width: 290px;
+            height: 225px;
           }
           .caption {
             margin-top: 24px;
@@ -1216,7 +1227,7 @@ header#main-header {
           min-height: 40px;
         }
         p.feature-text {
-          min-height: 90px;
+          min-height: 10px;
         }
         p.feature-price {
           font-size: 14px;
@@ -1231,10 +1242,12 @@ header#main-header {
         .cta {
           margin-top: 10px;
         }
-        .add-to-cart {
-          margin-top:3px;
-        }
         a {
+          color: @dark-brown;
+          &.add-to-cart {
+            color: @white;
+            margin-top:3px;
+          }
           img {
             width: 290px;
             height: 225px;
@@ -2047,7 +2060,7 @@ header#main-header {
       background: url(../images/icons/down-arrow.png) no-repeat 50px 11px;
       padding: 5px 0 0 10px;
       position: relative;
-      margin-left: 10px;
+      margin-left: 8px;
 
       div {
         display: none;
@@ -2060,6 +2073,11 @@ header#main-header {
         left: 0px;
         padding-left: 10px;
 
+        &.view {
+          width: 83px;
+          height: 43px;
+        }
+
         ul {
           li {
             &:hover {
@@ -2069,7 +2087,12 @@ header#main-header {
         }
       }
 
-      &:first-child {
+      &#view-by {
+        width: 83px;
+        background-position-x: 65px;
+      }
+
+      &#order-by {
         width: 83px;
         background: url(../images/icons/down-arrow.png) no-repeat 65px 11px;
         margin-left: 0px;
@@ -2118,6 +2141,19 @@ header#main-header {
         width: 220px;
         height: 171px;
       }
+    }
+  }
+
+  div.grid {
+    float: left;
+    width: 33%;
+    height: 470px;
+
+    div.price-wrapper {
+      position: relative;
+      top: -76px;
+      left: 170px;
+      width: 65px;
     }
   }
 }
@@ -3169,6 +3205,7 @@ header#main-header {
       }
       p.copy-right {
         margin-top: 40px;
+        min-width: 270px;
       }
     }
   }

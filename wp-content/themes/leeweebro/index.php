@@ -98,32 +98,34 @@ global $woocommerce;
 								<li>
 									<a href="<?php echo get_permalink(get_the_ID()); ?>">
 										<?php the_post_thumbnail(); ?>
-									</a>
-									<div class="feature-product-description">
-										<h3><?php the_title(); ?></h3>
-										<?php 
-										$my_excerpt = get_the_excerpt();
-										if ( $my_excerpt != '' ) {
-											$custom_excerpt = explode('<br>',$my_excerpt);
+									
+										<div class="feature-product-description">
+											<h3><?php the_title(); ?></h3>
+											<?php
+											$my_excerpt = the_excerpt_max_charlength(120);
 
-										} ?>
-										<p class="feature-text"><?php echo $custom_excerpt[0]; ?></p>
-										
-										<div class="row cta">
-											<div class="col-md-6">
-												<p class="feature-price">$<?php echo (isset($sale) && !empty($sale)) ? number_format((float)$sale, 2, '.', '') : number_format((float)$price, 2, '.', '');  ?></p>
-												<p class="feature-price-2"><?php echo (isset($attributes['per']['value'])) ? $attributes['per']['value'] : ''; ?></p>
+											if ( $my_excerpt != '' ) {
+												$custom_excerpt = explode('<br>',$my_excerpt);
+
+											} ?>
+											<p class="feature-text"><?php echo $custom_excerpt[0]; ?></p>
+											
+											<div class="row cta">
+												<div class="col-md-6">
+													<p class="feature-price">$<?php echo (isset($sale) && !empty($sale)) ? number_format((float)$sale, 2, '.', '') : number_format((float)$price, 2, '.', '');  ?></p>
+													<p class="feature-price-2"><?php echo (isset($attributes['per']['value'])) ? $attributes['per']['value'] : ''; ?></p>
+												</div>
+												<?php if($product->product_type=='variable'): 
+												$cart_url = $woocommerce->cart->get_cart_url();
+												?>
+												<div class="col-md-6"><a href="<?php echo $cart_url; ?>?add-to-cart=<?php echo $product->id; ?>&variation_id=<?php echo $variation_id; ?>&attribute_<?php echo strtolower($att_pa); ?>=<?php echo strtolower($att_value); ?>" class="button add-to-cart">Add to cart</a></div>
+												<?php else: ?>
+												<div class="col-md-6"><a href="<?php echo esc_url( $product->add_to_cart_url() ); ?>" class="button add-to-cart">Add to cart</a></div>
+												<?php endif; ?>
 											</div>
-											<?php if($product->product_type=='variable'): 
-											$cart_url = $woocommerce->cart->get_cart_url();
-											?>
-											<div class="col-md-6"><a href="<?php echo $cart_url; ?>?add-to-cart=<?php echo $product->id; ?>&variation_id=<?php echo $variation_id; ?>&attribute_<?php echo strtolower($att_pa); ?>=<?php echo strtolower($att_value); ?>" class="button add-to-cart">Add to cart</a></div>
-											<?php else: ?>
-											<div class="col-md-6"><a href="<?php echo esc_url( $product->add_to_cart_url() ); ?>" class="button add-to-cart">Add to cart</a></div>
-											<?php endif; ?>
+											
 										</div>
-										
-									</div>
+									</a>
 								</li>
 						<?php        
 						    endwhile;

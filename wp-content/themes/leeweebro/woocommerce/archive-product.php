@@ -45,8 +45,18 @@ get_header( 'shop' ); ?>
 										$our_food_page = get_page_by_title( 'Our Food' );
 		          						$catering_page = get_page_by_title( 'Catering' ); 
 		          						// Filter through all pages and find Portfolio's children
-										$our_food_children = get_page_children( $our_food_page->ID, $all_wp_pages );
+										// $our_food_children = get_page_children( $our_food_page->ID, $all_wp_pages );
 										$catering_children = get_page_children( $catering_page->ID, $all_wp_pages );
+
+										$args = array(
+											'order'=> 'ASC',
+											'orderby'=> 'menu_order',
+											'post_parent' => $our_food_page->ID,
+											'post_type' => 'page'
+										);
+
+										$our_food_children = get_children( $args );
+
 	          						?>
 									<div id="ourfood" class="collapse in">
 										<ul class="side-sub-menu">
@@ -57,8 +67,8 @@ get_header( 'shop' ); ?>
 									</div>
 								</li>
 								<li>
-									<a class="parent-side-menu-item" href="javascript:void(0);" data-toggle="collapse" data-target="#cathering">CATERING</a>
-									<div id="cathering" class="collapse">
+									<a class="parent-side-menu-item" href="javascript:void(0);" data-toggle="collapse" data-target="#catering">CATERING</a>
+									<div id="catering" class="collapse">
 										<ul class="side-sub-menu">
 											<?php foreach ($catering_children as $key => $child) { ?>
 												<li><a href="<?php echo get_permalink( $child->ID ); ?>"><?php echo $child->post_title; ?></a></li>	
@@ -79,7 +89,7 @@ get_header( 'shop' ); ?>
 
 							<?php endif; ?>
 
-							<div class="col-md-4 col-md-offset-6" id="sort-controls">
+							<div class="col-md-5" id="sort-controls">
 								<?php //do_action( 'woocommerce_archive_description' ); ?>
 
 								<?php

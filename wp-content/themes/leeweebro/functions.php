@@ -195,17 +195,20 @@ function custom_woocommerce_catalog_orderby_in_stock_asc( $sortby ) {
 // now we set our cookie if we need to
 function dl_sort_by_page($count) {
   if (isset($_COOKIE['shop_pageResults'])) { // if normal page load with cookie
-     $count = $_COOKIE['shop_pageResults'];
+    $count = $_COOKIE['shop_pageResults'];
   }
   if (isset($_GET['items'])) { //if form submitted
-    setcookie('shop_pageResults', $_GET['items'], time()+1209600, '/', 'www.your-domain-goes-here.com', false); //this will fail if any part of page has been output- hope this works!
+    setcookie('shop_pageResults', $_GET['items'], time()+1209600, '/', '103.25.202.72', false); //this will fail if any part of page has been output- hope this works!
     $count = $_GET['items'];
+  }else {
+    $count = 12; // default count
   }
   // else normal page load and no cookie
   return $count;
 }
  
 add_filter('loop_shop_per_page','dl_sort_by_page');
+// add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 12;' ), 20 );
 
 wp_deregister_script('jquery');
 
@@ -514,4 +517,23 @@ function custom_wc_search() {
 </form>';
 
   return $html;
+}
+
+function the_excerpt_max_charlength($charlength) {
+  $excerpt = get_the_excerpt();
+  $charlength++;
+
+  if ( strlen( $excerpt ) > $charlength ) {
+    $subex = mb_substr( $excerpt, 0, $charlength - 5 );
+    $exwords = explode( ' ', $subex );
+    $excut = - ( strlen( $exwords[ count( $exwords ) - 1 ] ) );
+    if ( $excut < 0 ) {
+      echo mb_substr( $subex, 0, $excut );
+    } else {
+      echo $subex;
+    }
+    echo '[...]';
+  } else {
+    echo $excerpt;
+  }
 }

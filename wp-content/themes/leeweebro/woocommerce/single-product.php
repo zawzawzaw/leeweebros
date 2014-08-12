@@ -59,8 +59,8 @@ get_header( 'shop' ); ?>
 									</div>
 								</li>
 								<li>
-									<a class="parent-side-menu-item" href="javascript:void(0);" data-toggle="collapse" data-target="#cathering">CATHERING</a>
-									<div id="cathering" class="collapse">
+									<a class="parent-side-menu-item" href="javascript:void(0);" data-toggle="collapse" data-target="#catering">CATERING</a>
+									<div id="catering" class="collapse">
 										<ul class="side-sub-menu">
 											<?php foreach ($catering_children as $key => $child) { ?>
 												<li><a href="<?php echo get_permalink( $child->ID ); ?>"><?php echo $child->post_title; ?></a></li>	

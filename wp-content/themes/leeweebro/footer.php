@@ -8,9 +8,13 @@
                   <?php $about_us_page = get_page_by_title( 'About Us' ); ?>
                   <a href="<?php echo get_permalink($about_us_page->ID); ?>">About Us</a>
                 </li>
-                <li>
+                <!-- <li>
                   <?php $delivery_page = get_page_by_title( 'Delivery' ); ?>
                   <a href="<?php echo get_permalink($delivery_page->ID); ?>">Delivery Information</a>
+                </li> -->
+                <li>
+                  <?php $faq_page = get_page_by_title( 'Faqs' ); ?>
+                  <a href="<?php echo get_permalink($faq_page->ID); ?>">FAQs</a>
                 </li>
                 <li>
                   <?php $timeslot_page = get_page_by_title( 'Time Slots' ); ?>
@@ -33,14 +37,14 @@
                   <?php $catering_page = get_page_by_title( 'Catering' ); ?>
                   <a href="<?php echo get_permalink($catering_page->ID); ?>">Catering</a>
                 </li>
-                <li>
+                <!-- <li>
                   <?php $delivery_page = get_page_by_title( 'Delivery' ); ?>
                   <a href="<?php echo get_permalink($delivery_page->ID); ?>">Delivery</a>
-                </li>
-                <li>
+                </li> -->
+                <!-- <li>
                   <?php $order_page = get_page_by_title( 'Order Online' ); ?>
                   <a href="<?php echo get_permalink($order_page->ID); ?>">Order Online</a>
-                </li>
+                </li> -->
               </ul>
             </div>
             <div class="col-md-2">
@@ -50,10 +54,10 @@
                   <?php $promotion_page = get_page_by_title( 'Promotions' ); ?>
                   <a href="<?php echo get_permalink($promotion_page->ID); ?>">Promotions</a>
                 </li>
-                <li>
+                <!-- <li>
                   <?php //$special_page = get_page_by_title( 'Specials' ); ?>
                   <a href="#<?php //echo get_permalink($special_page->ID); ?>">Specials</a>
-                </li>
+                </li> -->
                 <li>
                   <?php $careers_page = get_page_by_title( 'Careers' ); ?>
                   <a href="<?php echo get_permalink($careers_page->ID); ?>">Careers</a>
@@ -76,10 +80,10 @@
               <ul>
                 <li>
                   <a class="facebook" href="https://www.facebook.com/leeweebrothers"></a>
-                  <a class="twitter" href="#"></a>
+                  <!-- <a class="twitter" href="#"></a> -->
                   <a class="instagram" href="#"></a>
                 </li>
-                <li><p class="copy-right">&copy; LEE WEE & BROTHERS' PTE LTD.</p></li>
+                <li><p class="copy-right">&copy; LEE WEE & BROTHERS' FOODSTUFF PTE LTD.</p></li>
               </ul>
             </div>
           </div>
