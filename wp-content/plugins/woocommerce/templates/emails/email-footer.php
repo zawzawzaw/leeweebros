@@ -34,7 +34,6 @@ $credit = "
                                                     </tr>
                                                 </table>
                                                 <!-- End Content -->
-                                                <hr style="margin-left: 24px;margin-right: 24px;border: none;height: 1px;background:#da0009;">
                                             </td>
                                         </tr>
                                     </table>

@@ -43,7 +43,7 @@ if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )
 			</a>
 		</div>
 		<div class="col-md-6">
-			<a href="<?php the_permalink(); ?>"><h2><?php the_title(); ?></h2></a>
+			<a href="<?php the_permalink(); ?>"><h2><?php echo (strlen(get_the_title()) > 20) ? substr(get_the_title(), 0, 20) . '...' : get_the_title(); ?></h2></a>
 			<?php do_action('woocommerce_shop_loop_item_desc_custom'); ?>
 			
 			<?php do_action( 'woocommerce_after_shop_loop_item_custom' ); ?>

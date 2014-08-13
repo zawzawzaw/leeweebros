@@ -130,7 +130,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				</label>
 			</div>
 			<div class="col-md-6">
-				<label for="address_book_1_phone" class="">
+				<label for="address_book_1_phone" class="asterisk">
 					<input type="text" name="address_book_1_phone" class="small-input" placeholder="Telephone">
 				</label>
 				<label for="address_book_1_mobile" class="asterisk">

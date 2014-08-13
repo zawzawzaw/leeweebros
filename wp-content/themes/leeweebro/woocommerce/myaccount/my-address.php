@@ -151,7 +151,7 @@ if ( $address_book ) : ?>
 
 				<div class="space10"></div>
 
-				<label for="telephone" class="">
+				<label for="phone" class="asterisk">
 					<input type="text" name="phone" class="small-input" placeholder="Telephone">
 				</label>
 				<label for="mobile" class="asterisk">

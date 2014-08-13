@@ -116,6 +116,7 @@ jQuery( function( $ ) {
 					alphanumeric: true
 				},
 				address_book_1_phone: {
+					required: true,
 					number: true
 				},
 				address_book_1_mobile: {
@@ -154,10 +155,11 @@ jQuery( function( $ ) {
 					alphanumeric: "Letter and number only please"
 				},
 				address_book_1_phone: {
+					required: "Please fill in your phone no",
 					number: "Invalid phone no."
 				},
 				address_book_1_mobile: {
-					required: "Please fill in your mobile",
+					required: "Please fill in your mobile no",
 					number: "Invalid mobile no."
 				}
 			}
@@ -226,6 +228,10 @@ jQuery( function( $ ) {
 					required: true,
 					alphanumeric: true
 				},
+				phone: {
+					required: true,
+					number: true
+				},
 				mobile: {
 					required: true,
 					number: true
@@ -249,8 +255,12 @@ jQuery( function( $ ) {
 					required: "Please fill in your country",
 					alphanumeric: "Letter and number only please"
 				},
+				phone: {
+					required: "Please fill in your phone no",
+					number: "Invalid phone no."
+				},
 				mobile: {
-					required: "Please fill in your mobile",
+					required: "Please fill in your mobile no",
 					number: "Invalid mobile no."
 				}
 			}
@@ -275,6 +285,10 @@ jQuery( function( $ ) {
 					required: true,
 					alphanumeric: true
 				},
+				phone: {
+					required: true,
+					number: true
+				},
 				mobile: {
 					required: true,
 					number: true
@@ -298,8 +312,12 @@ jQuery( function( $ ) {
 					required: "Please fill in your country",
 					alphanumeric: "Letter and number only please"
 				},
+				phone: {
+					required: "Please fill in your phone no",
+					number: "Invalid phone no."
+				},
 				mobile: {
-					required: "Please fill in your mobile",
+					required: "Please fill in your mobile no",
 					number: "Invalid mobile no."
 				}
 			}
@@ -373,6 +391,10 @@ jQuery( function( $ ) {
 					required: true,
 					alphanumeric: true
 				},
+				phone: {
+					required: true,
+					number: true
+				},
 				mobile: {
 					required: true,
 					number: true
@@ -396,8 +418,12 @@ jQuery( function( $ ) {
 					required: "Please fill in your country",
 					alphanumeric: "Letter and number only please"
 				},
+				phone: {
+					required: "Please fill in your phone no",
+					number: "Invalid phone no."
+				},
 				mobile: {
-					required: "Please fill in your mobile",
+					required: "Please fill in your mobile no",
 					number: "Invalid mobile no."
 				}
 			}
@@ -1328,7 +1354,16 @@ jQuery( function( $ ) {
 			$allProductContainer.find('.product').children('div').children('div:last-child').toggleClass('price-wrapper');
 			$allProductContainer.find('.product').next('div').toggleClass();
 			$allProductContainer.find('.product').next('div:last-child').toggleClass('space30');
-			$allProductContainer.find('.product').children('div').find('.desc').css('min-height', '105px');
+			$allProductContainer.find('.product').children('div').find('.desc').toggleClass('grid-desc').prev('a').children('h2').toggleClass('grid-title');
+			$allProductContainer.find('.product').children('div').find('.selectors').children('.select-type').toggleClass('grid-select-type').parent('div').toggleClass('grid-selectors');
+			$allProductContainer.find('.product').children('div').find('.selectors').find('.dropdown label').toggleClass('grid');
+			$allProductContainer.find('.product').children('div').find('.desc').children('em').toggleClass('grid-desc');
+			
+			if($allProductContainer.find('.select-type').length != 0) {
+				$allProductContainer.find('.product').toggleClass('grid-height');
+			}else {
+				$allProductContainer.find('.product').toggleClass('grid-height-2');
+			}
 		}
 
 		var view = $.cookie("view");

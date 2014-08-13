@@ -147,7 +147,7 @@ get_header();
 
 				<div class="col-md-6 col-md-offset-1">
 					<h2>GET IN TOUCH</h2>
-					For enquiries about your orders or if you want more information about our products.
+					For enquiries about your orders, feedback or if you want more information about our products.
 					<div class="space20"></div>
 					<?php 
 					if(isset($_POST['subject'])) {

@@ -33,14 +33,13 @@ $template_container = "
 	box-shadow:0 0 0 3px rgba(0,0,0,0.025) !important;
 	-webkit-border-radius:6px !important;
 	border-radius:6px !important;
-	background: url(http://103.25.202.72/wp-content/themes/leeweebro/images/content/top-bg.jpg) repeat-x left 0px, url(http://103.25.202.72/wp-content/themes/leeweebro/images/content/middle-bg.jpg) repeat left 0px;
-	/*background-color: " . esc_attr( $body ) . ";*/
-	/*border: 1px solid $bg_darker_10;*/
+	background-color: " . esc_attr( $body ) . ";
+	border: 1px solid $bg_darker_10;
 	-webkit-border-radius:6px !important;
 	border-radius:6px !important;
 ";
 $template_header = "
-	/*background-color: " . esc_attr( $base ) .";*/
+	background-color: " . esc_attr( $base ) .";
 	color: $base_text;
 	-webkit-border-top-left-radius:6px !important;
 	-webkit-border-top-right-radius:6px !important;
@@ -53,7 +52,7 @@ $template_header = "
 	vertical-align:middle;
 ";
 $body_content = "
-	/*background-color: " . esc_attr( $body ) . ";*/
+	background-color: " . esc_attr( $body ) . ";
 	-webkit-border-radius:6px !important;
 	border-radius:6px !important;
 ";
@@ -88,24 +87,20 @@ $header_content_h1 = "
         	<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%">
             	<tr>
                 	<td align="center" valign="top">
+                		<?php
+                			if ( $img = get_option( 'woocommerce_email_header_image' ) ) {
+                				echo '<p style="margin-top:0;"><img src="' . esc_url( $img ) . '" alt="' . get_bloginfo( 'name' ) . '" /></p>';
+                			}
+                		?>
                     	<table border="0" cellpadding="0" cellspacing="0" width="600" id="template_container" style="<?php echo $template_container; ?>">
-                        	<tr>
-                        		<td align="center" valign="top">
-                        			<hr style="margin-left: 24px;margin-right: 24px;border: none;height: 1px;background:#da0009;">
-                        			<?php
-			                			if ( $img = get_option( 'woocommerce_email_header_image' ) ) {
-			                				echo '<p style="margin-top:47px;"><img src="' . esc_url( $img ) . '" alt="' . get_bloginfo( 'name' ) . '" /></p>';
-			                			}
-			                		?>
-                        		</td>
-                        	</tr>
                         	<tr>
                             	<td align="center" valign="top">
                                     <!-- Header -->
-                                	<table border="0" cellpadding="0" cellspacing="0" width="600" id="template_header" style="<?php echo $template_header; ?>">
+                                	<table border="0" cellpadding="0" cellspacing="0" width="600" id="template_header" style="<?php echo $template_header; ?>" bgcolor="<?php echo $base; ?>">
                                         <tr>
                                             <td>
                                             	<h1 style="<?php echo $header_content_h1; ?>"><?php echo $email_heading; ?></h1>
+
                                             </td>
                                         </tr>
                                     </table>

@@ -17,8 +17,8 @@ global $woocommerce;
 	<div id="special-deal" class="container">
 		<div class="row">
 			<div class="col-md-12" id="header-text">
-				<h3>SPECIAL DEAL FOR YOU</h3>
-				<h1>DEAL OF THE DAY</h1>
+				<h3>SOME POPULAR PRODUCTS FOR YOU</h3>
+				<h1>BEST SELLERS</h1>
 			</div>
 		</div>
 		<div class="space20"></div>

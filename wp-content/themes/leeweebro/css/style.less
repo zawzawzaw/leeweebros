@@ -1820,10 +1820,17 @@ header#main-header {
             .open-sans;
             color: @dark-brown;
             font-size: 12px;
+            span.red {
+              color: @red;
+            }
           }
         }
       }
     }
+  }
+
+  span.red {
+    color: @red;
   }
 }
 
@@ -1871,6 +1878,12 @@ header#main-header {
     font-size: 21px;
     text-transform: none;
   }
+
+  h2.grid-title {
+    width: 220px;
+    /*height: 48px;*/
+  }
+
   p.price-info {
     .open-sans-italic;
     padding-top: 25px;
@@ -1903,6 +1916,20 @@ header#main-header {
       left: 0px;
       width: 275px;
     }
+    em.grid-desc {
+      width: 220px!important;
+    }
+
+    em.grid-desc-2 {
+      width: 224px;
+    }
+  }
+
+  p.grid-desc {
+    /*min-height: 90px;*/
+    max-height: 100px;
+    margin-top: 10px;
+    width: 220px;
   }
 
   p, label {
@@ -1981,19 +2008,35 @@ header#main-header {
 
     }
   }
+  .grid-selectors {
+    min-height: 62px;
+  }
+
   .selectors {
     
     label {
       font-size: 12px;
       padding-right: 6px;
     }
+    label.grid {
+      width: 56px;
+    }
+
     .select-type {
       display: inline-block;
       margin-right: 10px;
       select {
         min-width: 150px;
+        &.grid {
+          margin-bottom: 10px;
+          margin-left: 8px;
+        }
       }
     }
+    .grid-select-type {
+      margin-bottom: 10px;
+    }
+
     .select-qty {
       display: inline-block;
       select {
@@ -2014,6 +2057,7 @@ header#main-header {
       .round(0px);
     }
   }
+
   ul.paginator, ul.page-numbers {
     li {
       display: inline-block;
@@ -2147,7 +2191,6 @@ header#main-header {
   div.grid {
     float: left;
     width: 33%;
-    height: 470px;
 
     div.price-wrapper {
       position: relative;
@@ -2155,6 +2198,14 @@ header#main-header {
       left: 170px;
       width: 65px;
     }
+  }
+
+  div.grid-height {
+    height: 465px;
+  }
+
+  div.grid-height-2 {
+    max-height: 440px;
   }
 }
 
@@ -2256,6 +2307,12 @@ header#main-header {
         .promo-price-2 {
           .open-sans-italic;
           font-size: 12px;
+        }
+        a {
+          img {
+            width: 290px;
+            height: 225px;
+          }
         }
       }
     }

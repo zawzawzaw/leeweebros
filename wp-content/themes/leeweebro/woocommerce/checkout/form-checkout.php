@@ -140,7 +140,7 @@ $receiving_mode = json_decode(stripslashes($_POST['receiving_mode']), true);
 <div class="corporate-payment delivery-container" style="display:none;">
 	<div class="row">
 		<div class="col-md-12">
-			<h2>CORPORATE PAYMENT METHODS:</h2>
+			<h2>PREFERRED CORPORATE PAYMENT METHODS:</h2>
 			<ul class="payment-method">
 				<?php if(empty($receiving_mode['collection_area'])): ?>
 				<li>
@@ -148,6 +148,14 @@ $receiving_mode = json_decode(stripslashes($_POST['receiving_mode']), true);
 					<label for="atm" class="radio-label"><span class="radiobtn"></span>Cash on delivery</label>
 				</li>
 				<?php endif; ?>
+				<li>
+					<input type="radio" name="corporate_payment_method" value="Advance Payment by internet fund transfer/ATM" >
+					<label for="atm" class="radio-label"><span class="radiobtn"></span>Advance Payment by internet fund transfer/ATM</label>
+				</li>
+				<li>
+					<input type="radio" name="corporate_payment_method" value="Advance Payment by cash at outlets" >
+					<label for="atm" class="radio-label"><span class="radiobtn"></span>Advance Payment by cash at outlets</label>
+				</li>
 				<li>
 					<input type="radio" name="corporate_payment_method" value="Corporate cheque" >
 					<label for="atm" class="radio-label"><span class="radiobtn"></span>Corporate cheque</label>
@@ -161,13 +169,13 @@ $receiving_mode = json_decode(stripslashes($_POST['receiving_mode']), true);
 					<label for="atm" class="radio-label"><span class="radiobtn"></span>GeBiz</label>
 				</li>
 				<li>
-					<input type="radio" name="corporate_payment_method" value="AGD E-Invoice. Input blank field for: event name/code">
-					<label for="online" class="radio-label"><span class="radiobtn"></span>AGD E-Invoice. Input blank field for: event name/code</label>
+					<input type="radio" name="corporate_payment_method" value="event name or code">
+					<label for="online" class="radio-label"><span class="radiobtn"></span>Please indicate event name/code:</label>
 					<input type="text" name="einvoice">
 				</li>
 				<li>
-					<input type="radio" name="corporate_payment_method" value="Interbank Giro">
-					<label for="online" class="radio-label"><span class="radiobtn"></span>Interbank Giro:</label>
+					<input type="radio" name="corporate_payment_method" value="purchase order no">
+					<label for="online" class="radio-label"><span class="radiobtn"></span>Please indicate purchase order no:</label>
 					<input type="text" name="interbankgiro">
 				</li>
 			</ul>

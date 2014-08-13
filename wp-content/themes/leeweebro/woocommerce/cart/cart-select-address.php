@@ -201,13 +201,13 @@ global $woocommerce;
 						<label for="atm" class="radio-label"><span class="radiobtn"></span>Chalet</label>
 					</li>
 					<li>
-						<input type="radio" name="delivery_location" value="Public Attractions" >
-						<label for="atm" class="radio-label"><span class="radiobtn"></span>Public Attractions <span class="regular">(Sentosa, Gardens By the Bay, etc.)</span></label>
+						<input type="radio" name="delivery_location" value="Public attractions or spaces" >
+						<label for="atm" class="radio-label"><span class="radiobtn"></span>Public attractions/spaces <span class="regular">(Sentosa, Gardens By the Bay, etc.)</span></label>
 					</li>
-					<li>
+					<!-- <li>
 						<input type="radio" name="delivery_location" value="Public Spaces" >
 						<label for="atm" class="radio-label"><span class="radiobtn"></span>Public Spaces <span class="regular">(Beaches, Parks, etc.)</span></label>
-					</li>
+					</li> -->
 				</ul>
 
 				<div class="space20"></div>
@@ -304,13 +304,13 @@ global $woocommerce;
 						<label for="atm" class="radio-label"><span class="radiobtn"></span>Chalet</label>
 					</li>
 					<li>
-						<input type="radio" name="billing_location" value="Public Attractions" >
-						<label for="atm" class="radio-label"><span class="radiobtn"></span>Public Attractions <span class="regular">(Sentosa, Gardens By the Bay, etc.)</span></label>
+						<input type="radio" name="billing_location" value="Public attractions/spaces" >
+						<label for="atm" class="radio-label"><span class="radiobtn"></span>Public attractions/spaces <span class="regular">(Sentosa, Gardens By the Bay, etc.)</span></label>
 					</li>
-					<li>
+					<!-- <li>
 						<input type="radio" name="billing_location" value="Public Spaces" >
 						<label for="atm" class="radio-label"><span class="radiobtn"></span>Public Spaces <span class="regular">(Beaches, Parks, etc.)</span></label>
-					</li>
+					</li> -->
 				</ul>
 
 				<div class="space20"></div>
