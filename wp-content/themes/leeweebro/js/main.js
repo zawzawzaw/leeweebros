@@ -1250,14 +1250,39 @@ jQuery( function( $ ) {
 		   return !isNaN(value) && parseInt(Number(value)) == value;
 		}
 
-		// min order validation
+		var makeRequest = function(Data, URL, Method) {
+
+	    	var request = $.ajax({
+			    url: URL,
+			    type: Method,
+			    data: Data,
+			    success: function(response) {
+			        // if success remove current item
+			        // console.log(response);
+			    },
+	            error: function( error ){
+	                // Log any error.
+	                // console.log( "ERROR:", error );
+	            }
+			});
+
+			return request;
+		};
+
+		// min order validation // add to cart btn // just that they wanted it ajax way :S
 
 		$('.single_add_to_cart_button, .add_to_cart_button').on('click', function(e){
 
 			e.preventDefault();
 
-			var minOrder = parseInt($(this).parent('form').find('#min-order').html());
-			var currentQty = $(this).parent('form').find('#qty').val();
+			var minOrder = parseInt($(this).parent('form').find('#min-order').html()),
+				currentQty = $(this).parent('form').find('#qty').val(),
+				$self = $(this),
+				$addToCartForm = $(this).closest('form'),
+				data = $addToCartForm.serialize(),
+				current_url = $(location).attr('href'),
+				postRequest,
+				result;
 
 			if (isInt(currentQty)) {
 
@@ -1266,7 +1291,47 @@ jQuery( function( $ ) {
 					$(this).parent('form').children('.error-msg').html('Min Order of '+minOrder+' is required.');
 
 				}else {
-					$(this).parent('form').submit();
+
+					if(postRequest) {
+						request.abort();
+					}
+
+					postRequest = makeRequest(data, current_url, 'POST');				
+
+					postRequest.done(function(data, textStatus, jqXHR){
+			        	
+			        	if(jqXHR.status==200) {
+			        		$self.next('span').text('Added To Cart!').delay(5000).fadeOut();
+
+			        		// item count
+			        		var label = $('.cart-items-count-label').text(),
+			        			labelArr = label.split('ITEMS -'),
+			        			cartItemCount = $.trim(labelArr[0]),
+			        			newCartItemCount = parseInt(cartItemCount) + parseInt(currentQty);
+
+			        		$('.cart-items-count-label').text(newCartItemCount + ' ITEMS -');
+
+			        		// total amount
+			        		var currentAmount = $('.cart-price .amount').text();
+			        			currentAmountArr = currentAmount.split('$'),
+			        			intCurrentAmount = $.trim(currentAmountArr[1]),
+			        			itemPrice = $self.closest('form').parent().next('div').find('.amount').text(),
+			        			itemPriceArr = itemPrice.split('$'),
+			        			ItemPriceNumber = $.trim(itemPriceArr[1]),
+			        			unitPrice = parseFloat(ItemPriceNumber) * parseFloat(currentQty),
+			        			newAmount = parseFloat(intCurrentAmount) + parseFloat(unitPrice);
+
+			        		$('.cart-price .amount').text('$' + newAmount.toFixed(2));
+
+			        	}
+			        });
+
+			        postRequest.fail(function(jqXHR, textStatus, errorThrown){
+
+			        	console.log(errorThrown);
+			        });
+
+					return false;					
 				}
 			}else {
 				$(this).parent('form').children('.error-msg').html('Quantity is not a valid number!');

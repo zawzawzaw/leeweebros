@@ -921,7 +921,7 @@ header#main-header {
           margin: 0px; /*margin: 20px 0 20px 32px;*/
           padding: 0;
           height: 54px;
-          width: 118px;
+          width: 116px;
           text-align: center;
           a {
             position: absolute;
@@ -940,17 +940,25 @@ header#main-header {
             }
           }
           &.food {
+            width: 112px;
             left: -11px;
             ul.sub-menu {
               min-height: 215px;
               width: 200px;
+            }
+            a {
+              left: 17px;
             }
           }
           &.catering {
             > a {
               cursor: default;
             }
+            width: 108px;
             left: -18px;
+            a {
+              left: 15px;
+            }
             ul.sub-menu {
               min-height: 81px;
               width: 200px;
@@ -960,18 +968,28 @@ header#main-header {
             > a {
               cursor: default;
             }
-            width: 112px;
-            left: -24px;
+            width: 102px;
+            left: -25px;
+            a {
+              left: 14px;
+            }
             ul.sub-menu {
               min-height: 81px;
               width: 200px;
             }
           }
           &.outlets {
-            width: 96px;
-            left: -22px;
+            width: 93px;
+            left: -30px;
             a {
-              left: 14px;
+              left: 13px;
+            }
+          }
+          &.recipes {
+            width: 90px;
+            left: -34px;
+            a {
+              left: 13px;
             }
           }
           &.order {
@@ -989,29 +1007,32 @@ header#main-header {
             }
           }
           &.promo {
-            width: 136px;
-            left: -16px;
+            width: 133px;
+            left: -40px;
             a {
-              left: 17px;
+              left: 16px;
             }
           }
           &.career {
-            width: 112px;
-            left: -18px;
+            width: 94px;
+            left: -40px;
             a {
-              left: 21px;
+              left: 13px;
             }
           }
           &.contact {
-            width: 112px;
-            left: -28px;
+            width: 100px;
+            left: -47px;
             a {
-              left: 21px;
+              left: 14px;
             }
           }
           &.faqs {
-            left: -32px;
-            width: 82px;
+            left: -52px;
+            width: 76px;
+            a {
+              left: 18px;
+            }
           }
 
           &:hover {
@@ -1923,6 +1944,9 @@ header#main-header {
     em.grid-desc-2 {
       width: 224px;
     }
+    em.min-order-long {
+      height: 37px;
+    }
   }
 
   p.grid-desc {
@@ -2205,7 +2229,7 @@ header#main-header {
   }
 
   div.grid-height-2 {
-    max-height: 440px;
+    max-height: 420px;
   }
 }
 
@@ -2313,6 +2337,10 @@ header#main-header {
             width: 290px;
             height: 225px;
           }
+        }
+        p.no-promo {
+          width: 400px;
+          text-align: left;
         }
       }
     }

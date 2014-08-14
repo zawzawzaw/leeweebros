@@ -3,7 +3,7 @@
 		$args = array( 
 			'post_type' 	 => 'product', 
 			'posts_per_page' => -1, 
-			'product_tag' 	 => 'Special Deal' 
+			'product_tag' 	 => 'Best Sellers' 
 		);
 
 		// Create the new query

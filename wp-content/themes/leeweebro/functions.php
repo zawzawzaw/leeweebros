@@ -176,13 +176,13 @@ function custom_woocommerce_catalog_orderby_name_asc( $sortby ) {
 	return $sortby;
 }
 
-add_filter( 'woocommerce_default_catalog_orderby_options', 'custom_woocommerce_catalog_orderby_name_desc' );
-add_filter( 'woocommerce_catalog_orderby', 'custom_woocommerce_catalog_orderby_name_desc' );
+// add_filter( 'woocommerce_default_catalog_orderby_options', 'custom_woocommerce_catalog_orderby_name_desc' );
+// add_filter( 'woocommerce_catalog_orderby', 'custom_woocommerce_catalog_orderby_name_desc' );
  
-function custom_woocommerce_catalog_orderby_name_desc( $sortby ) {
-	$sortby['name_desc'] = 'Name (Z - A)';
-	return $sortby;
-}
+// function custom_woocommerce_catalog_orderby_name_desc( $sortby ) {
+// 	$sortby['name_desc'] = 'Name (Z - A)';
+// 	return $sortby;
+// }
 
 add_filter( 'woocommerce_default_catalog_orderby_options', 'custom_woocommerce_catalog_orderby_in_stock_asc' );
 add_filter( 'woocommerce_catalog_orderby', 'custom_woocommerce_catalog_orderby_in_stock_asc' );

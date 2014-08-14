@@ -124,7 +124,10 @@ get_header();
 								</li>
 							<?php        
 							    endwhile;
-							      
+							else: 
+							?>
+								<li><p class="no-promo">There are currently no promotions, please check back later!</p></li>
+							<?php
 							endif;
 							  
 							wp_reset_query(); // Remember to reset  
@@ -152,11 +155,11 @@ get_header();
 					<?php 
 					if(isset($_POST['subject'])) {
 						$subject = htmlspecialchars($_POST['subject'], ENT_QUOTES, 'UTF-8');
-						$email = htmlspecialchars($_POST['email'], ENT_QUOTES, 'UTF-8');
+						$user_email = htmlspecialchars($_POST['email'], ENT_QUOTES, 'UTF-8');
 						$message = htmlspecialchars($_POST['message'], ENT_QUOTES, 'UTF-8');
-						$to = get_option( 'admin_email' ); 
+						$admin_email = get_option( 'admin_email' ); 
 
-						$headers[] = 'From: '.$email.' <'.$email.'>';
+						$headers[] = 'From: '.$user_email.' <'.$user_email.'>';
 						$attachments = '';
 					}
 					?>
@@ -166,9 +169,14 @@ get_header();
 							<div class="col-md-12">
 								<p class="msg">
 									<?php
-									if( wp_mail( $to, $subject, $message, $headers, $attachments ) ) {
+									if( wp_mail( $admin_email, $subject, $message, $headers, $attachments ) ) {
 									    // the message was sent...
 									    echo 'Your message was sent successfully!';
+									    $new_subject = "We have received your message from Lee Wee Brothers web site.";
+									    $new_message = "Hi there,<br><br> thanks for your comment regarding ".$subject.". We will reply to you as soon as possible. <br><br>Regards,<br>Lee Wee Brothers";
+									    $new_headers[] = 'From: '.$admin_email.' <'.$admin_email.'>';
+									    wp_mail( $user_email, $new_subject, $new_message, $new_headers, $attachments);
+
 									} else {
 									    // the message was not sent...
 									    echo 'Sorry, your message was not sent! Please try again later.';

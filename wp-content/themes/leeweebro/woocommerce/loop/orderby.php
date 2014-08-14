@@ -47,6 +47,8 @@ if ( 1 == $wp_query->found_posts || ! woocommerce_products_will_display() )
 				'price-desc' => __( 'Price (Highest)', 'woocommerce' )
 			) );
 
+			print_r($catalog_orderby);
+
 			if ( get_option( 'woocommerce_enable_review_rating' ) === 'no' )
 				unset( $catalog_orderby['rating'] );
 
