@@ -118,7 +118,9 @@ get_header( 'shop' ); ?>
 								<?php endwhile; // end of the loop. ?>
 
 							<?php //woocommerce_product_loop_end(); ?>
+						<div class="space30"></div>
 						<hr>
+
 						<div class="row">
 							<div class="col-md-8">
 							<?php

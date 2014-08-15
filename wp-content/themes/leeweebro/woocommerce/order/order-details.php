@@ -95,8 +95,28 @@ $order = new WC_Order( $order_id );
 <div class="more-order-details">
 	<div class="row">
 		<div class="col-md-12">
+			<?php 
+				switch ($order->payment_method_title) {
+					case 'Advance payment by cash at outlets':
+						$extra_detail = (!empty($order->pay_by_cash_outlet)) ? $order->pay_by_cash_outlet : '';
+						break;
+
+					case 'AGD E-Invoice':
+						$extra_detail = (!empty($order->agd_event_code_name)) ? $order->agd_event_code_name : '';
+						break;
+
+					case 'Interbank Giro':
+						$extra_detail = (!empty($order->interbank_giro_order_no)) ? $order->interbank_giro_order_no : '';
+						break;
+					
+					default:
+						$extra_detail = '';
+						break;
+				}
+			?>
+
 			<ul>
-				<li><span class="paymentby-lbl">Payment By:</span> <?php echo $order->payment_method_title; ?> <?php echo (!empty($order->pay_by_cash_outlet)) ? $order->pay_by_cash_outlet : '' ; ?></li>
+				<li><span class="paymentby-lbl">Payment By:</span> <?php echo $order->payment_method_title; ?> ( <?php echo (!empty($extra_detail)) ? $extra_detail : '' ; ?> )</li>
 				<li><span class="receivingmode-lbl">Receiving Mode:</span> <?php echo (isset($order->delivery)) ? 'Delivery' : 'Self Collection'; ?></li>
 				<?php if(isset($order->collection_area)): ?>
 				<li><span class="collectionplace-lbl">Collection Place:</span> <?php echo $order->collection_area; ?></li>

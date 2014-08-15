@@ -149,12 +149,20 @@ $receiving_mode = json_decode(stripslashes($_POST['receiving_mode']), true);
 				</li>
 				<?php endif; ?>
 				<li>
-					<input type="radio" name="corporate_payment_method" value="Advance Payment by internet fund transfer/ATM" >
-					<label for="atm" class="radio-label"><span class="radiobtn"></span>Advance Payment by internet fund transfer/ATM</label>
+					<input type="radio" name="corporate_payment_method" value="Advance payment by internet fund transfer/ATM" >
+					<label for="advance" class="radio-label"><span class="radiobtn"></span>Advance payment by internet fund transfer/ATM</label>
 				</li>
 				<li>
-					<input type="radio" name="corporate_payment_method" value="Advance Payment by cash at outlets" >
-					<label for="atm" class="radio-label"><span class="radiobtn"></span>Advance Payment by cash at outlets</label>
+					<input type="radio" name="corporate_payment_method" value="Advance payment by cash at outlets" >
+					<label for="advance" class="radio-label"><span class="radiobtn"></span>Advance payment by cash at outlets</label>
+					<div class="dropdown">
+						<select name="outlets">
+							<option value="Central Kitchen" selected>Central Kitchen</option>
+							<option value="Raffles City Shopping Centre">Raffles City Shopping Centre</option>
+							<option value="Tampines Mall">Tampines Mall</option>
+							<option value="NEX Serangoon">NEX Serangoon</option>
+						</select>
+					</div>
 				</li>
 				<li>
 					<input type="radio" name="corporate_payment_method" value="Corporate cheque" >
@@ -169,13 +177,13 @@ $receiving_mode = json_decode(stripslashes($_POST['receiving_mode']), true);
 					<label for="atm" class="radio-label"><span class="radiobtn"></span>GeBiz</label>
 				</li>
 				<li>
-					<input type="radio" name="corporate_payment_method" value="event name or code">
-					<label for="online" class="radio-label"><span class="radiobtn"></span>Please indicate event name/code:</label>
+					<input type="radio" name="corporate_payment_method" value="AGD E-Invoice">
+					<label for="online" class="radio-label"><span class="radiobtn"></span>AGD E-Invoice - Please indicate event name/code:</label>
 					<input type="text" name="einvoice">
 				</li>
 				<li>
-					<input type="radio" name="corporate_payment_method" value="purchase order no">
-					<label for="online" class="radio-label"><span class="radiobtn"></span>Please indicate purchase order no:</label>
+					<input type="radio" name="corporate_payment_method" value="Interbank Giro">
+					<label for="online" class="radio-label"><span class="radiobtn"></span>Interbank Giro - Please indicate purchase order no:</label>
 					<input type="text" name="interbankgiro">
 				</li>
 			</ul>

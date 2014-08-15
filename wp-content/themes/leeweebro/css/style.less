@@ -690,6 +690,12 @@ span.error-msg, div.error-msg {
   margin-left: 10px;
 }
 
+span.grid-msg {
+  position: relative;
+  top: 29px;
+  left: -91px;
+}
+
 label.error {
   color: @red!important;
   margin-bottom: 0px!important;
@@ -2229,7 +2235,7 @@ header#main-header {
   }
 
   div.grid-height-2 {
-    max-height: 420px;
+    height: 420px;
   }
 }
 
@@ -2822,7 +2828,7 @@ header#main-header {
     }
   }
 
-  .personal-payment {
+  .personal-payment,.corporate-payment {
     div.dropdown {
       display: inline-block;
       position: relative;
@@ -2845,7 +2851,11 @@ header#main-header {
         .round(0px);
       }
 
-    } 
+    }
+    input[type="text"] {
+      height: 26px;
+      margin-left: 10px;
+    }
   }
 
   //  ADDRESS

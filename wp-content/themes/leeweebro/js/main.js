@@ -1151,6 +1151,12 @@ jQuery( function( $ ) {
 			$backToSelectAddressForm.submit();
 		});
 
+		function clearPaymentInputs() {
+			$('input#pay_by_cash_outlet').attr('value', '');
+			$('input#interbank_giro_order_no').attr('value', '');
+			$('input#agd_event_code_name').attr('value', '');
+		}
+
 		$personalPaymentBtn.on('click', function(e){
 			e.preventDefault();
 
@@ -1161,16 +1167,18 @@ jQuery( function( $ ) {
 
 			if(choosedPersonalPaymentMethod=='Advance payment by internet funds transfer/ATM') {
 				$('#payment_method_advance_payment_by_internet_banking_atm').trigger('click');
-				$('input#pay_by_cash_outlet').attr('value', '');
+				clearPaymentInputs();
 			}
 			else if(choosedPersonalPaymentMethod=='Advance payment by cash at outlets') {
 				$('#payment_method_advance_payment_by_cash_at_outlets').trigger('click');
-				var chosenOutlet = $('select[name="outlets"]').val();
+				var chosenOutlet = $('.personal-payment').find('select[name="outlets"]').val();
 				$('input#pay_by_cash_outlet').attr('value', chosenOutlet);
+				$('input#interbank_giro_order_no').attr('value', '');
+				$('input#agd_event_code_name').attr('value', '');
 			}
 			else {
 				$('#payment_method_cod').trigger('click');
-				$('input#pay_by_cash_outlet').attr('value', '');
+				clearPaymentInputs();
 			}
 				
 			$orderDetailContainer.show();
@@ -1191,18 +1199,46 @@ jQuery( function( $ ) {
 			$corporatePaymentModeContainer.hide();
 			$orderSummaryContainer.show();
 
-			var choosedPersonalPaymentMethod = $corporatePaymentModeContainer.find('input[name="corporate_payment_method"]:checked').val();
+			var choosedCorporatePaymentMethod = $corporatePaymentModeContainer.find('input[name="corporate_payment_method"]:checked').val();
+			console.log(choosedCorporatePaymentMethod)
 
-			if(choosedPersonalPaymentMethod=="Corporate cheque") {
+			if(choosedCorporatePaymentMethod=="Advance payment by internet funds transfer/ATM") {
+				$('#payment_method_advance_payment_by_internet_banking_atm').trigger('click');
+				clearPaymentInputs();
+			}
+			else if(choosedCorporatePaymentMethod=="Advance payment by cash at outlets") {
+				$('#payment_method_advance_payment_by_cash_at_outlets').trigger('click');
+				var chosenOutlet = $('.corporate-payment').find('select[name="outlets"]').val();
+				$('input#pay_by_cash_outlet').attr('value', chosenOutlet);
+			}
+			else if(choosedCorporatePaymentMethod=="Corporate cheque") {
 				$('#payment_method_cheque').trigger('click');
+				clearPaymentInputs();
+			}else if(choosedCorporatePaymentMethod=="Credit Terms") {
+				$('#payment_method_credit_terms').trigger('click');
+				clearPaymentInputs();
+			}else if(choosedCorporatePaymentMethod=="GeBiz") {
+				$('#payment_method_gebiz').trigger('click');
+				clearPaymentInputs();
+			}else if(choosedCorporatePaymentMethod=="AGD E-Invoice") {
+				$('#payment_method_agd_e_invoice').trigger('click');
+				var invoiceCode = $('.corporate-payment').find('input[name="einvoice"]').val();
+				$('input#agd_event_code_name').attr('value', invoiceCode);
 				$('input#pay_by_cash_outlet').attr('value', '');
+				$('input#interbank_giro_order_no').attr('value', '');
+			}else if(choosedCorporatePaymentMethod=="Interbank Giro") {
+				$('#payment_method_interbank_giro').trigger('click');
+				var giroCode = $('.corporate-payment').find('input[name="interbankgiro"]').val();
+				$('input#interbank_giro_order_no').attr('value', giroCode);
+				$('input#pay_by_cash_outlet').attr('value', '');
+				$('input#agd_event_code_name').attr('value', '');
 			}else {
 				$('#payment_method_cod').trigger('click');
-				$('input#pay_by_cash_outlet').attr('value', '');
+				clearPaymentInputs();
 			}
 
 			$orderDetailContainer.show();
-			$orderDetailContainer.find('.paymentby-value').html(choosedPersonalPaymentMethod);
+			$orderDetailContainer.find('.paymentby-value').html(choosedCorporatePaymentMethod);
 
 			$progressIndicator.find('.sixth').children('.circle-holder').children('.circle-text').addClass('active');
 			$progressIndicator.find('.sixth').children('.circle-holder').children('.circle').addClass('done');
@@ -1423,6 +1459,7 @@ jQuery( function( $ ) {
 			$allProductContainer.find('.product').children('div').find('.selectors').children('.select-type').toggleClass('grid-select-type').parent('div').toggleClass('grid-selectors');
 			$allProductContainer.find('.product').children('div').find('.selectors').find('.dropdown label').toggleClass('grid');
 			$allProductContainer.find('.product').children('div').find('.desc').children('em').toggleClass('grid-desc');
+			$allProductContainer.find('.product').children('div').find('.error-msg').toggleClass('grid-msg');
 			
 			if($allProductContainer.find('.select-type').length != 0) {
 				$allProductContainer.find('.product').toggleClass('grid-height');

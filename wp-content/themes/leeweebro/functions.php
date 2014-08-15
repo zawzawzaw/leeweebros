@@ -418,6 +418,20 @@ function custom_override_checkout_fields( $fields ) {
         'placeholder'   => __('Pay By Cash Outlet')
         ), '');
 
+    woocommerce_form_field( 'agd_event_code_name', array(
+        'type'          => 'text',
+        'class'         => array('my-field-class form-row-wide'),
+        'label'         => __('agd_event_code_name'),
+        'placeholder'   => __('AGD Event Code/Name')
+        ), '');
+
+    woocommerce_form_field( 'interbank_giro_order_no', array(
+        'type'          => 'text',
+        'class'         => array('my-field-class form-row-wide'),
+        'label'         => __('interbank_giro_order_no'),
+        'placeholder'   => __('Interbank Giro Order No')
+        ), '');
+
     return $fields;
 }
 
