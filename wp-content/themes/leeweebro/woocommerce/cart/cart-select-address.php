@@ -1,5 +1,23 @@
 <?php 
 global $woocommerce;
+
+// if ( !$woocommerce->cart->add_discount( 'UNIQUECODE' ) ) {
+// 	echo 'not applied';
+// 	$woocommerce->show_messages();
+// }
+    
+// else {
+// 	echo 'applied';
+//  	$woocommerce->clear_messages();
+//     $woocommerce->add_message('Independence day sale coupon (10%) automatically applied');
+//     $woocommerce->show_messages();
+// }
+
+// $woocommerce->cart->calculate_totals();
+// echo $woocommerce->cart->get_total();
+// echo $woocommerce->cart->get_cart_discount_total();
+
+// wc_print_notices();
 ?>
 <div class="progress-indicator-container">
 	<div class="row">

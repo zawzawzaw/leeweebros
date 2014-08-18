@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 global $woocommerce;
 
-wc_print_notices();
+// wc_print_notices();
 $receiving_mode = json_decode(stripslashes($_POST['receiving_mode']), true);
 ?>
 
@@ -199,8 +199,6 @@ $receiving_mode = json_decode(stripslashes($_POST['receiving_mode']), true);
 <div class="cart-container summary-container" style="display:none;">
 	<?php
 
-	do_action( 'woocommerce_before_checkout_form', $checkout );
-
 	// If checkout registration is disabled and not logged in, the user cannot checkout
 	if ( ! $checkout->enable_signup && ! $checkout->enable_guest_checkout && ! is_user_logged_in() ) {
 		echo apply_filters( 'woocommerce_checkout_must_be_logged_in_message', __( 'You must be logged in to checkout.', 'woocommerce' ) );
@@ -242,7 +240,11 @@ $receiving_mode = json_decode(stripslashes($_POST['receiving_mode']), true);
 
 	</form>
 
+	<?php do_action( 'woocommerce_before_checkout_form', $checkout ); ?>
+
 	<?php do_action( 'woocommerce_after_checkout_form', $checkout ); ?>
+
+	<div class="space20"></div>
 </div>
 
 <div class="order-details-container" style="display:none;">

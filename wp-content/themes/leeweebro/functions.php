@@ -55,6 +55,16 @@ add_taxonomy('place', 'slider', array(
 
 # end slider #
 
+# coupon post #
+
+add_post_type('coupon', array(
+    'supports' => array('title','aside')
+));
+
+add_my_meta_box('Coupon', 'coupon'); #title , post_type
+
+# end coupon #
+
 /********************************************************************************************************/
 /* ADD WIDGETS SUPPORT */
 /********************************************************************************************************/

@@ -1348,14 +1348,17 @@ jQuery( function( $ ) {
 			        		$('.cart-items-count-label').text(newCartItemCount + ' ITEMS -');
 
 			        		// total amount
-			        		var currentAmount = $('.cart-price .amount').text();
+			        		var currentAmount = $('.cart-price .amount').text(),
 			        			currentAmountArr = currentAmount.split('$'),
 			        			intCurrentAmount = $.trim(currentAmountArr[1]),
-			        			itemPrice = $self.closest('form').parent().next('div').find('.amount').text(),
+			        			itemPrice = $self.closest('form').parent().parent().find('.amount').text(),
 			        			itemPriceArr = itemPrice.split('$'),
 			        			ItemPriceNumber = $.trim(itemPriceArr[1]),
 			        			unitPrice = parseFloat(ItemPriceNumber) * parseFloat(currentQty),
 			        			newAmount = parseFloat(intCurrentAmount) + parseFloat(unitPrice);
+
+			        			console.log(intCurrentAmount);
+			        			console.log(itemPrice);
 
 			        		$('.cart-price .amount').text('$' + newAmount.toFixed(2));
 

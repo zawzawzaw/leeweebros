@@ -36,7 +36,9 @@ if($product->product_type=='variable') {
 					$data = $vp->variation_data[$data_key];
 				?>
 				<span class="price variable-price <?php echo $data; ?>" <?php if($vk!==0): ?>style="display:none;"<?php endif; ?>>
-					<?php echo (!empty($vp->sale_price)) ? '$'.number_format((float)$vp->sale_price, 2, '.', '') : '$'.number_format((float)$vp->regular_price, 2, '.', ''); ?>
+					<span class="amount">
+						<?php echo (!empty($vp->sale_price)) ? '$'.number_format((float)$vp->sale_price, 2, '.', '') : '$'.number_format((float)$vp->regular_price, 2, '.', ''); ?>
+					</span>
 				</span>
 		<?php
 			endforeach;

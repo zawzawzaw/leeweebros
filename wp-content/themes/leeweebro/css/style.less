@@ -681,7 +681,7 @@ ul.woocommerce-error {
 }
 
 .woocommerce-message {
-  display: none;
+  /*display: none;*/
 }
 
 span.error-msg, div.error-msg {
@@ -2659,6 +2659,30 @@ header#main-header {
           top: -2px;
           pointer-events: none;
         }
+      }
+    }
+    
+    .woocommerce-info {
+      .open-sans;
+      font-size: 13px;
+      a.showcoupon {
+        .open-sans-italic;
+        color: @red;
+        &:hover {
+          color: @dark-brown-text;
+        }
+      }
+    }
+    form.checkout_coupon {
+      input[name="coupon_code"] {
+        margin-top: 10px;
+        height: 28px;
+        padding-left: 8px;
+      }
+      input[name="apply_coupon"] {
+        margin-top: 10px;
+        padding: 5px 10px;
+        width: auto;
       }
     }
   }
