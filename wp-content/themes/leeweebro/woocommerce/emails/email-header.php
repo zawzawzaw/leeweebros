@@ -20,6 +20,9 @@ $bg_darker_10 = wc_hex_darker( $bg, 10 );
 $base_lighter_20 = wc_hex_lighter( $base, 20 );
 $text_lighter_20 = wc_hex_lighter( $text, 20 );
 
+
+$asset_url = get_stylesheet_directory_uri();
+
 // For gmail compatibility, including CSS styles in head/body are stripped out therefore styles need to be inline. These variables contain rules which are added to the template inline. !important; is a gmail hack to prevent styles being stripped if it doesn't like something.
 $wrapper = "
 	background-color: " . esc_attr( $bg ) . ";
@@ -33,7 +36,7 @@ $template_container = "
 	box-shadow:0 0 0 3px rgba(0,0,0,0.025) !important;
 	-webkit-border-radius:6px !important;
 	border-radius:6px !important;
-	background: url(http://103.25.202.72/wp-content/themes/leeweebro/images/content/top-bg.jpg) repeat-x left 0px, url(http://103.25.202.72/wp-content/themes/leeweebro/images/content/middle-bg.jpg) repeat left 0px;
+	background: url(".$asset_url."/images/content/top-bg.jpg) repeat-x left 0px, url(".$asset_url."/images/content/middle-bg.jpg) repeat left 0px;
 	/*background-color: " . esc_attr( $body ) . ";*/
 	/*border: 1px solid $bg_darker_10;*/
 	-webkit-border-radius:6px !important;
@@ -93,18 +96,18 @@ $header_content_h1 = "
         <style>
 			@font-face {
 			  font-family: 'SolanoGothicMVBStd-Bd';
-			  src: url('http://103.25.202.72/wp-content/themes/leeweebro/fonts/SolanoGothicMVBStd-Bd.eot?') format('eot'), 
-			       url('http://103.25.202.72/wp-content/themes/leeweebro/fonts/SolanoGothicMVBStd-Bd.otf')  format('opentype'),
-			       url('http://103.25.202.72/wp-content/themes/leeweebro/fonts/SolanoGothicMVBStd-Bd.woff') format('woff'), 
-			       url('http://103.25.202.72/wp-content/themes/leeweebro/fonts/SolanoGothicMVBStd-Bd.ttf')  format('truetype'),
-			       url('http://103.25.202.72/wp-content/themes/leeweebro/fonts/SolanoGothicMVBStd-Bd.svg#SolanoGothicMVBStd-Bd') format('svg');
+			  src: url('<?php echo $asset_url; ?>/fonts/SolanoGothicMVBStd-Bd.eot?') format('eot'), 
+			       url('<?php echo $asset_url; ?>/fonts/SolanoGothicMVBStd-Bd.otf')  format('opentype'),
+			       url('<?php echo $asset_url; ?>/fonts/SolanoGothicMVBStd-Bd.woff') format('woff'), 
+			       url('<?php echo $asset_url; ?>/fonts/SolanoGothicMVBStd-Bd.ttf')  format('truetype'),
+			       url('<?php echo $asset_url; ?>/fonts/SolanoGothicMVBStd-Bd.svg#SolanoGothicMVBStd-Bd') format('svg');
 			}
 			@font-face {
 			  font-family: 'Auto1-Bold';
-			  src: url('http://103.25.202.72/wp-content/themes/leeweebro/fonts/Auto1-Bold.eot?') format('eot'), 
-			       url('http://103.25.202.72/wp-content/themes/leeweebro/fonts/Auto1-Bold.woff') format('woff'), 
-			       url('http://103.25.202.72/wp-content/themes/leeweebro/fonts/Auto1-Bold.ttf')  format('truetype'),
-			       url('http://103.25.202.72/wp-content/themes/leeweebro/fonts/Auto1-Bold.svg#Auto1-Bold') format('svg');
+			  src: url('<?php echo $asset_url; ?>/fonts/Auto1-Bold.eot?') format('eot'), 
+			       url('<?php echo $asset_url; ?>/fonts/Auto1-Bold.woff') format('woff'), 
+			       url('<?php echo $asset_url; ?>/fonts/Auto1-Bold.ttf')  format('truetype'),
+			       url('<?php echo $asset_url; ?>/fonts/Auto1-Bold.svg#Auto1-Bold') format('svg');
 			}
         </style>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700' rel='stylesheet' type='text/css'>

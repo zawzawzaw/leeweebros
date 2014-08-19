@@ -204,8 +204,26 @@ class WC_Meta_Box_Order_Data {
 
 								$payment_method = ! empty( $order->payment_method ) ? $order->payment_method : '';
 
+								switch ($order->payment_method_title) {
+									case 'Advance payment by cash at outlets':
+										$extra_detail = (!empty($order->pay_by_cash_outlet)) ? $order->pay_by_cash_outlet : '';
+										break;
+
+									case 'AGD E-Invoice':
+										$extra_detail = (!empty($order->agd_event_code_name)) ? $order->agd_event_code_name : '';
+										break;
+
+									case 'Interbank Giro':
+										$extra_detail = (!empty($order->interbank_giro_order_no)) ? $order->interbank_giro_order_no : '';
+										break;
+									
+									default:
+										$extra_detail = '';
+										break;
+								}
+
 								if ( $payment_method )
-									echo '<p><strong>' . __( 'Payment Method', 'woocommerce' ) . ':</strong> ' . ( isset( $payment_gateways[ $payment_method ] ) ? esc_html( $payment_gateways[ $payment_method ]->get_title() ) : esc_html( $payment_method ) ) . '</p>';
+									echo '<p><strong>' . __( 'Payment Method', 'woocommerce' ) . ':</strong> ' . ( isset( $payment_gateways[ $payment_method ] ) ? esc_html( $payment_gateways[ $payment_method ]->get_title() ) . ' (' . $extra_detail . ') ' : esc_html( $payment_method . ' (' . $extra_detail . ') ' ) ) . '</p>';
 
 							echo '</div>';
 
@@ -280,6 +298,15 @@ class WC_Meta_Box_Order_Data {
 
 								if ( apply_filters( 'woocommerce_enable_order_notes_field', get_option( 'woocommerce_enable_order_comments', 'yes' ) == 'yes' ) && $post->post_excerpt )
 									echo '<p><strong>' . __( 'Customer Note', 'woocommerce' ) . ':</strong> ' . nl2br( esc_html( $post->post_excerpt ) ) . '</p>';
+
+								if(isset($order->delivery))
+									$receiving_mode = 'Delivery';
+									$receiving_mode = 'Self Collection';
+
+								echo '<p><strong>' . __( 'Receiving Mode', 'woocommerce' ) . ':</strong> ' . esc_html($receiving_mode) . '</p>';
+								echo '<p><strong>' . __( 'Collection Place', 'woocommerce' ) . ':</strong> ' . esc_html($order->collection_area) . '</p>';
+								echo '<p><strong>' . __( 'Collection Time', 'woocommerce' ) . ':</strong> ' . esc_html($order->collection_date_day . '/' . $order->collection_date_month . '/'. $order->collection_date_year) . '</p>';
+								echo '<p><strong>' . __( 'Consumption Time', 'woocommerce' ) . ':</strong> ' . esc_html($order->collection_time) . '</p>';
 
 							echo '</div>';
 

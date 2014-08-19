@@ -116,7 +116,7 @@ $order = new WC_Order( $order_id );
 			?>
 
 			<ul>
-				<li><span class="paymentby-lbl">Payment By:</span> <?php echo $order->payment_method_title; ?> ( <?php echo (!empty($extra_detail)) ? $extra_detail : '' ; ?> )</li>
+				<li><span class="paymentby-lbl">Payment By:</span> <?php echo $order->payment_method_title; ?> <?php echo (!empty($extra_detail)) ? '( '.$extra_detail.' )' : '' ; ?></li>
 				<li><span class="receivingmode-lbl">Receiving Mode:</span> <?php echo (isset($order->delivery)) ? 'Delivery' : 'Self Collection'; ?></li>
 				<?php if(isset($order->collection_area)): ?>
 				<li><span class="collectionplace-lbl">Collection Place:</span> <?php echo $order->collection_area; ?></li>

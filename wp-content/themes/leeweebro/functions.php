@@ -57,11 +57,11 @@ add_taxonomy('place', 'slider', array(
 
 # coupon post #
 
-add_post_type('coupon', array(
-    'supports' => array('title','aside')
-));
+// add_post_type('coupons', array(
+//     'supports' => array('title','aside')
+// ));
 
-add_my_meta_box('Coupon', 'coupon'); #title , post_type
+// add_my_meta_box('Coupons', 'coupons'); #title , post_type
 
 # end coupon #
 

@@ -114,54 +114,69 @@
 		return $meta_values;
 	}
 
+	function saveCouponPost($values) {
+		$new_coupon_id = wp_insert_post( $values );
+
+		echo $new_coupon_id;
+
+		// update_post_meta( $new_coupon_id, 'discount_type', $discount_type );
+		// update_post_meta( $new_coupon_id, 'coupon_amount', $amount );
+		// update_post_meta( $new_coupon_id, 'individual_use', 'yes' );
+		// update_post_meta( $new_coupon_id, 'product_ids', '' );
+		// update_post_meta( $new_coupon_id, 'exclude_product_ids', '' );
+		// update_post_meta( $new_coupon_id, 'usage_limit', '1' );
+		// update_post_meta( $new_coupon_id, 'expiry_date', '' );
+		// update_post_meta( $new_coupon_id, 'apply_before_tax', 'yes' );
+		// update_post_meta( $new_coupon_id, 'free_shipping', 'no' );
+
+	}
+
+	add_action('publish_post', function(){
+
+		echo 'hi';
+
+	});
+
+	add_action('edit_post', function(){
+
+		$testcoupon = array(
+		    'post_title' => 'abc',
+		    'post_content' => '',
+		    'post_status' => 'publish',
+		    'post_author' => 1,
+		    'post_type'     => 'shop_coupon'
+		); 
+
+		$new_coupon_id = wp_insert_post( $testcoupon );
+	});
+
 	add_action('save_post', function(){
-		global $post;
+	    global $post;
 
-		if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+	    if(isset($_POST) && !empty($_POST))
+	      $post_type = $_POST['post_type'];
 
-		if(!empty($_POST) && wp_verify_nonce($_POST['jw_nonce'], __FILE__)) {
+	    if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
 
-			/**
-			 * create coupon code
-			 */
+	    if(!empty($_POST) && wp_verify_nonce($_POST['jw_nonce'], __FILE__)) {
 
-			// print_r($_POST); exit();
+	      if($post_type=='coupons') {
 
-			$coupon_code = $_POST['post_title'];
-			$amount = $_POST['amount']; // Amount
-			$discount_type = $_POST['discount_type']; // Type: fixed_cart, percent, fixed_product, percent_product
-			$usage_limit = $_POST['usage_limit'];
-			$expiry_date = $_POST['expiry_date'];
+	        $coupon_code = sanitize_text_field($_POST['post_title']);
+	        $amount = sanitize_text_field($_POST['amount']); // Amount
+	        $discount_type = sanitize_text_field($_POST['discount_type']); // Type: fixed_cart, percent, fixed_product, percent_product
+	        $usage_limit = sanitize_text_field($_POST['usage_limit']);
+	        $expiry_date = sanitize_text_field($_POST['expiry_date']);
 
-			$coupon = array(
-			    'post_title' => 'test',
-			    'post_content' => '',
-			    'post_status' => 'publish',
-			    'post_author' => 1,
-			    'post_type'     => 'shop_coupon'
-			);
+	        update_post_meta($post->ID, 'coupon_code', $coupon_code);
+	        update_post_meta($post->ID, 'amount', $amount);
+	        update_post_meta($post->ID, 'discount_type', $discount_type);
+	        update_post_meta($post->ID, 'usage_limit', $usage_limit);
+	        update_post_meta($post->ID, 'expiry_date', $expiry_date);
 
-			// print_r($coupon);
-			// print_r($amount);
-			// print_r($discount_type);
-			// print_r($usage_limit);
-			// print_r($expiry_date); exit();
+	      }
 
-			$new_coupon_id = wp_insert_post( $coupon, $wp_error );
-
-			print_r($wp_error);
-			print_r($new_coupon_id); exit();
-
-			// update_post_meta( $new_coupon_id, 'discount_type', $discount_type );
-			// update_post_meta( $new_coupon_id, 'coupon_amount', $amount );
-			// update_post_meta( $new_coupon_id, 'individual_use', 'yes' );
-			// update_post_meta( $new_coupon_id, 'product_ids', '' );
-			// update_post_meta( $new_coupon_id, 'exclude_product_ids', '' );
-			// update_post_meta( $new_coupon_id, 'usage_limit', '1' );
-			// update_post_meta( $new_coupon_id, 'expiry_date', '' );
-			// update_post_meta( $new_coupon_id, 'apply_before_tax', 'yes' );
-			// update_post_meta( $new_coupon_id, 'free_shipping', 'no' );
-		}
+	    }
 
 	});
 ?>
