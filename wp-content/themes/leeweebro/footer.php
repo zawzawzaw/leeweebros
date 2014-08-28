@@ -69,7 +69,7 @@
               <ul>
                 <li>
                   <p>Delivery Hotline:</p>
-                  <p><a href="tel:65356535">6535 6535</a></p>
+                  <p>6535 6535</p>
                   <?php $outlets_page = get_page_by_title( 'Our Outlets' ); ?>
                   <a href="<?php echo get_permalink($outlets_page->ID); ?>">Outlets</a>
                 </li>

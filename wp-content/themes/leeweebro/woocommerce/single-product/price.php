@@ -24,7 +24,7 @@ if($product->product_type=='variable') {
 ?>
 
 <h2><?php the_title(); ?></h2>
-<div class="space10"></div>
+<div class="space30"></div>
 <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
 
 	<p class="price price-info">

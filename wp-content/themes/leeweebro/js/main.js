@@ -1337,7 +1337,7 @@ jQuery( function( $ ) {
 					postRequest.done(function(data, textStatus, jqXHR){
 			        	
 			        	if(jqXHR.status==200) {
-			        		$self.next('span').text('Added To Cart!').delay(5000).fadeOut();
+			        		$self.next('span').html('Added To Cart! <img src="http://clients.manic.com.sg/leeweebro/wp-content/themes/leeweebro/images/icons/cart-img.png">').delay(5000).fadeOut();
 
 			        		// item count
 			        		var label = $('.cart-items-count-label').text(),
@@ -1474,11 +1474,13 @@ jQuery( function( $ ) {
 		var view = $.cookie("view");
 		console.log(view)
 
-		if(view=='gridview') {
+		if(view=='listview') {
+			$('#viewby li#listview').trigger('click');
+		}
+		else {
 			$('#viewby li#gridview').trigger('click');
 			toggleView();
 		}
-		else $('#viewby li#listview').trigger('click');
 
 		$('#viewby li').on('click', function(e){
 			e.preventDefault();
@@ -1493,6 +1495,10 @@ jQuery( function( $ ) {
 				$.cookie("view", selectedId, { expires : 10 });
 				toggleView();
 			}
+		});
+
+		$('a[rel*="prettyPhoto"]').attr('title','').find('img').bind('contextmenu', function(e) {
+		    return false;
 		});
 
 	});	
@@ -1530,6 +1536,15 @@ jQuery( function( $ ) {
 		    }
 		];
 
+		// ,
+		//     {
+		//         "featureType": "poi.business",
+		//         "elementType": "labels",
+		//         "stylers": [
+		// 	      { visibility: "off" }
+		// 	    ] 
+		//     }
+
 		var myLatlng = new google.maps.LatLng(1.367607,103.890236);
 		var mapOptions = {
 			mapTypeControlOptions: {  
@@ -1544,7 +1559,6 @@ jQuery( function( $ ) {
 		  mapOptions);
 		var styledMapType = new google.maps.StyledMapType(styles, { name: 'Styled' });  
 		map.mapTypes.set('Styled', styledMapType);
-
 
 		var marker = new google.maps.Marker({
 			position: myLatlng,

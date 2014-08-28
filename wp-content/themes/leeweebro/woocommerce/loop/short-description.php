@@ -29,8 +29,11 @@ if(!empty($filtered_min_order)) {
 
 $min_order_count = strlen($filtered_min_order);
 
-if($min_order_count>50)	$formatted_min_order = '<br><br><br><em class="min-order-long">'.$filtered_min_order.'</em>';	
-else $formatted_min_order = '<br><br><br><em>'.$filtered_min_order.'</em>';
+if($min_order_count>50)	$formatted_min_order = '<em class="min-order-long">'.$filtered_min_order.'</em>';	
+else $formatted_min_order = '<em>'.$filtered_min_order.'</em>';
 ?>
-<p class="desc"><?php echo (!empty($shorten_desc)) ? $shorten_desc . '...' : $normal_desc; ?>﻿<?php echo (!empty($filtered_min_order)) ? $formatted_min_order : ''; ?>﻿</p>
+<?php //if(isset($desc_array[0])): ?>
+<p class="desc"><?php echo (!empty($shorten_desc)) ? $shorten_desc . '...' : $normal_desc; ?>﻿</p>
+<p class="desc-2"><?php echo (!empty($filtered_min_order)) ? strip_tags($formatted_min_order, '<br>') : ''; ?>﻿</p>
+<?php //endif; ?>
 <div class="space20"></div>

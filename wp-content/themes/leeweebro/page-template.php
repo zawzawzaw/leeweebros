@@ -13,7 +13,7 @@ get_header();
 <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 <div id="content-wrapper" class="<?php echo ($post->post_name=='terms-conditions' || $post->post_name=='our-outlets' || $post->post_name=='promotions' || $post->post_name=='careers' || $post->post_name=='contact') ? 'align-left' : ''; ?>">
 	<div id="breadcrumb" class="container">
-		<?php if($post->post_name!=='terms-conditions' && $post->post_name!=='our-outlets' && $post->post_name!=='promotions' && $post->post_name!=='careers' && $post->post_name!=='contact'): ?>
+		<?php if($post->post_name!=='terms-conditions' && $post->post_name!=='our-outlets' && $post->post_name!=='promotions' && $post->post_name!=='careers' && $post->post_name!=='contact' && $post->post_name!=='faqs'): ?>
 		<div class="align-left-2">
 		<?php endif; ?>
 			<div class="row">
@@ -21,7 +21,7 @@ get_header();
 					<?php get_template_part( 'content', 'breadcrumb' ); ?>
 				</div>
 			</div>
-		<?php if($post->post_name!=='terms-conditions' && $post->post_name!=='our-outlets' && $post->post_name!=='promotions' && $post->post_name!=='careers' && $post->post_name!=='contact'): ?>
+		<?php if($post->post_name!=='terms-conditions' && $post->post_name!=='our-outlets' && $post->post_name!=='promotions' && $post->post_name!=='careers' && $post->post_name!=='contact' && $post->post_name!=='faqs'): ?>
 		</div>
 		<?php endif; ?>
 	</div>
@@ -37,8 +37,8 @@ get_header();
 	}
 	?>
 
-	<div id="<?php echo ($post->post_name=='terms-conditions') ? $post->post_name : $name; ?>" class="container">
-		<?php if($post->post_name!=='terms-conditions' && $post->post_name!=='our-outlets' && $post->post_name!=='promotions' && $post->post_name!=='careers' && $post->post_name!=='contact'): ?>
+	<div id="<?php echo ($post->post_name=='terms-conditions' || $post->post_name=='faqs') ? 'terms-conditions' : $name; ?>" class="container">
+		<?php if($post->post_name!=='terms-conditions' && $post->post_name!=='our-outlets' && $post->post_name!=='promotions' && $post->post_name!=='careers' && $post->post_name!=='contact' && $post->post_name!=='faqs'): ?>
 		<div class="align-left-2">
 		<?php endif; ?>
 			<div class="space30"></div>
@@ -51,7 +51,7 @@ get_header();
 					<h1><?php the_title(); ?></h1>
 				</div>
 			</div>
-		<?php if($post->post_name!=='terms-conditions' && $post->post_name!=='our-outlets' && $post->post_name!=='promotions' && $post->post_name!=='careers' && $post->post_name!=='contact'): ?>			
+		<?php if($post->post_name!=='terms-conditions' && $post->post_name!=='our-outlets' && $post->post_name!=='promotions' && $post->post_name!=='careers' && $post->post_name!=='contact' && $post->post_name!=='faqs'): ?>			
 		</div>
 		<div class="space40"></div>
 		<div class="row">

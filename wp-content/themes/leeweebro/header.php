@@ -19,6 +19,9 @@
 	<!-- Force IE to render best possible view -->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="<?php echo IMAGES ?>/icons/favicon.ico" />
+
 	<!-- FONT -->
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700' rel='stylesheet' type='text/css'>
 

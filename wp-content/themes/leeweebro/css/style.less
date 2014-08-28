@@ -563,7 +563,7 @@ body{
 }
 body, html{
   /*background: #ffffff;*/
-  background: url(../images/content/top-bg.jpg) repeat-x left 46px,
+  background: url(../images/content/top-bg.jpg) repeat-x left 14px,
               url(../images/content/middle-bg.jpg) repeat left 0px;
   height: 100%
 }
@@ -571,6 +571,7 @@ body, html{
 #page-wrapper{
     min-height: 100%;
     position:relative;
+    top: 40px;
 }
 
 #content-wrapper{
@@ -706,6 +707,11 @@ div.ppt {
   opacity: 0!important;
 }
 
+.pp_hoverContainer {
+  width: auto!important;
+  height: auto!important;
+}
+
 //   _        _ __   _____  _   _ _____ 
 //  | |      / \\ \ / / _ \| | | |_   _|
 //  | |     / _ \\ V / | | | | | | | |  
@@ -834,6 +840,11 @@ input[type="submit"],button[type="submit"] {
 div#header-wrapper {
   background: @red;
   height: 46px;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  z-index: 999;
 }
 
 header#main-header {
@@ -865,16 +876,9 @@ header#main-header {
       margin-right: 10px;
       a {
         color: @white;
-        &.sign-in {
-          &:hover {
-            color: @dark-brown;
-          }
-        }
 
-        &.join {
-          &:hover {
-            color: @dark-brown;
-          }
+        &:hover {
+          color: @dark-brown;
         }
       }
     }
@@ -927,7 +931,7 @@ header#main-header {
           margin: 0px; /*margin: 20px 0 20px 32px;*/
           padding: 0;
           height: 54px;
-          width: 116px;
+          width: 150px;
           text-align: center;
           a {
             position: absolute;
@@ -938,29 +942,33 @@ header#main-header {
             color: @dark-brown;
           }
           &.about {
+            width: 128px;
             > a {
               cursor: default;
+            }
+            a {
+              left: 25px;
             }
             ul.sub-menu {
               min-height: 115px;
             }
           }
           &.food {
-            width: 112px;
-            left: -11px;
+            width: 126px;
+            left: 2px;
             ul.sub-menu {
               min-height: 215px;
               width: 200px;
             }
             a {
-              left: 17px;
+              left: 25px;
             }
           }
           &.catering {
             > a {
               cursor: default;
             }
-            width: 108px;
+            /*width: 108px;*/
             left: -18px;
             a {
               left: 15px;
@@ -971,13 +979,13 @@ header#main-header {
             }
           }
           &.delivery {
+            width: 126px;
+            left: 14px;
             > a {
               cursor: default;
-            }
-            width: 102px;
-            left: -25px;
+            }            
             a {
-              left: 14px;
+              left: 26px;
             }
             ul.sub-menu {
               min-height: 81px;
@@ -985,22 +993,23 @@ header#main-header {
             }
           }
           &.outlets {
-            width: 93px;
-            left: -30px;
+            /*width: 93px;*/
+            /*left: -30px;*/
+            left: 12px;
             a {
               left: 13px;
             }
           }
           &.recipes {
-            width: 90px;
-            left: -34px;
+            /*width: 140px;*/
+            left: 12px;
             a {
-              left: 13px;
+              left: 40px;
             }
           }
           &.order {
-            width: 144px;
-            left: -59px;
+            /*width: 144px;*/
+            /*left: -59px;*/
             a {
               left: 13px;  
             }
@@ -1013,31 +1022,38 @@ header#main-header {
             }
           }
           &.promo {
-            width: 133px;
-            left: -40px;
+            width: 180px;
+            /*left: -40px;*/
             a {
-              left: 16px;
+              left: 38px;
             }
           }
           &.career {
-            width: 94px;
-            left: -40px;
+            /*width: 94px;*/
+            /*left: -40px;*/
             a {
               left: 13px;
             }
           }
           &.contact {
-            width: 100px;
-            left: -47px;
+            /*width: 100px;*/
+            /*left: -47px;*/
             a {
               left: 14px;
             }
           }
           &.faqs {
-            left: -52px;
-            width: 76px;
+            left: -4px;
+            width: 142px;
             a {
-              left: 18px;
+              left: 46px;
+            }
+          }
+          &.findus {
+            width: 120px;
+            /*left: 187px;*/
+            a {
+              left: 25px;
             }
           }
 
@@ -1055,7 +1071,7 @@ header#main-header {
             display: none;
             background: @red;
             width: 223px;
-            min-height: 147px;
+            /*min-height: 147px;*/
             padding-bottom: 10px;
             position: absolute;
             top: 54px;
@@ -1076,7 +1092,7 @@ header#main-header {
               width: 170px;
               height: 24px;
               text-align: left;
-              padding-left: 20px;
+              padding-left: 25px;
               margin-top: 8px;
               &:first-child {
                 margin-top: 13px;
@@ -1908,6 +1924,7 @@ header#main-header {
 
   h2.grid-title {
     width: 220px;
+    min-height: 48px;
     /*height: 48px;*/
   }
 
@@ -1960,6 +1977,11 @@ header#main-header {
     max-height: 100px;
     margin-top: 10px;
     width: 220px;
+    min-height: 85px;
+  }
+
+  p.desc-2 {
+    min-height: 53px;
   }
 
   p, label {
@@ -2043,6 +2065,7 @@ header#main-header {
   }
 
   .selectors {
+    min-height: 62px;
     
     label {
       font-size: 12px;
@@ -2163,7 +2186,7 @@ header#main-header {
 
       &#view-by {
         width: 83px;
-        background-position-x: 65px;
+        background-position: 65px 11px;
       }
 
       &#order-by {
@@ -2221,21 +2244,21 @@ header#main-header {
   div.grid {
     float: left;
     width: 33%;
+    position: relative;
 
     div.price-wrapper {
-      position: relative;
-      top: -76px;
-      left: 170px;
-      width: 65px;
-    }
+      position: absolute;
+      bottom: 10px;
+      right: 17px;
+    }      
   }
 
   div.grid-height {
-    height: 465px;
+    /*height: 465px;*/
   }
 
   div.grid-height-2 {
-    height: 420px;
+    /*height: 420px;*/
   }
 }
 
