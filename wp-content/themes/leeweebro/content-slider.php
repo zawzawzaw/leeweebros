@@ -28,7 +28,8 @@
 	if ( $query1->have_posts() ) while ( $query1->have_posts() ) : $query1->the_post(); ?>
 			<?php if(has_post_thumbnail()) : ?>
 				<div class="<?php echo ($i==0) ? 'active' : ''; ?> item">
-					<?php the_post_thumbnail(); ?>
+					<?php $url = wp_get_attachment_url( get_post_thumbnail_id($post->ID) ); ?>
+					<img class="slider-lazy" src="<?php echo $url; ?>" alt="slider">
 					<div class="carousel-caption">
 						<?php the_content(); ?>
 					</div>

@@ -58,7 +58,7 @@ get_header( 'shop' ); ?>
 										</ul>
 									</div>
 								</li>
-								<li>
+								<!-- <li>
 									<a class="parent-side-menu-item" href="javascript:void(0);" data-toggle="collapse" data-target="#catering">CATERING</a>
 									<div id="catering" class="collapse">
 										<ul class="side-sub-menu">
@@ -67,7 +67,7 @@ get_header( 'shop' ); ?>
 											<?php } ?>
 										</ul>
 									</div>
-								</li>
+								</li> -->
 							</ul>
 						</div>
 					</div>

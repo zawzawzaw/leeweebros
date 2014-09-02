@@ -98,7 +98,6 @@ $min_order = $product->get_attribute( 'min order' );
 		<button type="submit" class="single_add_to_cart_button button alt"><?php echo $product->single_add_to_cart_text(); ?></button>
 		<span class="error-msg"></span>
 		<?php do_action( 'woocommerce_after_single_variation' ); ?>
-		<div class="space10"></div>
 		<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
 
 	<?php else : ?>

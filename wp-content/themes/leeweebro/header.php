@@ -31,6 +31,9 @@
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
 
 	<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>" />
+	<script type="text/javascript">
+	var templateUrl = '<?= home_url(); ?>';
+	</script>
 	<?php
 		wp_head();
 	?>
@@ -87,7 +90,7 @@
 	    <div class="container">
 	      <div class="row">
 	        <div class="col-md-4 col-md-offset-4 logo-container">
-	          <a href="<?php echo home_url(); ?>"><img src="<?php echo IMAGES ?>/logo/main-logo.png" alt="Lee Wee Brothers Logo" class="main-logo"></a>
+	          <a href="<?php echo home_url(); ?>"><img data-original="<?php echo IMAGES ?>/logo/main-logo.png" alt="Lee Wee Brothers Logo" class="main-logo lazy"></a>
 	        </div>
 	      </div>
 	      <div class="space20"></div>

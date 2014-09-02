@@ -33,10 +33,10 @@
                   <?php $ourfood_page = get_page_by_title( 'Our Food' ); ?>
                   <a href="<?php echo get_permalink($ourfood_page->ID); ?>">Our Food</a>
                 </li>
-                <li>
+                <!-- <li>
                   <?php $catering_page = get_page_by_title( 'Catering' ); ?>
                   <a href="<?php echo get_permalink($catering_page->ID); ?>">Catering</a>
-                </li>
+                </li> -->
                 <!-- <li>
                   <?php $delivery_page = get_page_by_title( 'Delivery' ); ?>
                   <a href="<?php echo get_permalink($delivery_page->ID); ?>">Delivery</a>
@@ -79,9 +79,9 @@
               <h3>SHARE WITH US</h3>
               <ul>
                 <li>
-                  <a class="facebook" href="https://www.facebook.com/leeweebrothers"></a>
+                  <a class="facebook" href="https://www.facebook.com/leeweebrothers" target="_blank"></a>
                   <!-- <a class="twitter" href="#"></a> -->
-                  <a class="instagram" href="#"></a>
+                  <a class="instagram" href="https://instagram.com/leeweebrothers" target="_blank"></a>
                 </li>
                 <li><p class="copy-right">&copy; LEE WEE & BROTHERS' FOODSTUFF PTE LTD.</p></li>
               </ul>

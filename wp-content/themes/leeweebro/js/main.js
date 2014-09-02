@@ -1337,7 +1337,7 @@ jQuery( function( $ ) {
 					postRequest.done(function(data, textStatus, jqXHR){
 			        	
 			        	if(jqXHR.status==200) {
-			        		$self.next('span').html('Added To Cart! <img src="http://clients.manic.com.sg/leeweebro/wp-content/themes/leeweebro/images/icons/cart-img.png">').delay(5000).fadeOut();
+			        		$self.next('span').html('Added To Cart! <a href="'+templateUrl+'/cart">View Cart</a>').delay(5000).fadeOut();
 
 			        		// item count
 			        		var label = $('.cart-items-count-label').text(),
@@ -1463,6 +1463,10 @@ jQuery( function( $ ) {
 			$allProductContainer.find('.product').children('div').find('.selectors').find('.dropdown label').toggleClass('grid');
 			$allProductContainer.find('.product').children('div').find('.desc').children('em').toggleClass('grid-desc');
 			$allProductContainer.find('.product').children('div').find('.error-msg').toggleClass('grid-msg');
+
+			console.log($('.desc').height())
+			console.log($('.desc-2').height())
+			console.log($('.desc-2').height())
 			
 			if($allProductContainer.find('.select-type').length != 0) {
 				$allProductContainer.find('.product').toggleClass('grid-height');
@@ -1500,6 +1504,34 @@ jQuery( function( $ ) {
 		$('a[rel*="prettyPhoto"]').attr('title','').find('img').bind('contextmenu', function(e) {
 		    return false;
 		});
+
+		// $('.slider-lazy').lazyload({
+	 //    	event : "sporty",
+	 //    	effect : "fadeIn"
+	 //    });
+
+	 //    $mainSlider.on('slid.bs.carousel', function () {
+		//   	$("img.slider-lazy").trigger("sporty");
+		// });
+
+	    $('.sub-slider-lazy').lazyload({
+	    	event : "subsporty",
+	    	effect : "fadeIn"
+	    });
+
+	    $secondSlider.children('.jcarousel').on('jcarousel:scroll', function(event, carousel, target, animate) {
+		    // "this" refers to the root element
+		    // "carousel" is the jCarousel instance
+		    // "target" is the target argument passed to the `scroll` method
+		    // "animate" is the animate argument passed to the `scroll` method
+		    //      indicating whether jCarousel was requested to do an animation
+
+		    $("img.sub-slider-lazy").trigger("subsporty");
+		});    
+
+	 	$('.lazy').lazyload({
+	    	effect : "fadeIn"
+	    });
 
 	});	
 
@@ -1570,5 +1602,9 @@ jQuery( function( $ ) {
 	//Add onload to body
 	$(window).load(function(){
 	    initialize();
+
+	    // $("img.slider-lazy").trigger("sporty");
+	    $("img.sub-slider-lazy").trigger("subsporty");
+	    
 	});
 });

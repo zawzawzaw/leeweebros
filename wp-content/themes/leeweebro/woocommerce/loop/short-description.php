@@ -32,8 +32,6 @@ $min_order_count = strlen($filtered_min_order);
 if($min_order_count>50)	$formatted_min_order = '<em class="min-order-long">'.$filtered_min_order.'</em>';	
 else $formatted_min_order = '<em>'.$filtered_min_order.'</em>';
 ?>
-<?php //if(isset($desc_array[0])): ?>
-<p class="desc"><?php echo (!empty($shorten_desc)) ? $shorten_desc . '...' : $normal_desc; ?>﻿</p>
+<p class="desc"><?php echo $filtered_desc; ?></p>
 <p class="desc-2"><?php echo (!empty($filtered_min_order)) ? strip_tags($formatted_min_order, '<br>') : ''; ?>﻿</p>
-<?php //endif; ?>
-<div class="space20"></div>
+<!-- <div class="space20"></div> -->

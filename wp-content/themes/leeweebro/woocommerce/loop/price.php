@@ -25,7 +25,6 @@ if($product->product_type=='variable') {
 ?>
 
 <?php if ( $price_html = $product->get_price_html() ) : ?>
-	<!-- <div class="space40"></div> -->
 	<p class="price-info">
 		<?php 
 		if($product->product_type=='variable'):
@@ -53,5 +52,4 @@ if($product->product_type=='variable') {
 		
 		<span class="per-item"><?php echo $per_attribute; ?></span>
 	</p>
-	<div class="space10"></div>
 <?php endif; ?>

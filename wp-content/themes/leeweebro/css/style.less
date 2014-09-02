@@ -691,12 +691,6 @@ span.error-msg, div.error-msg {
   margin-left: 10px;
 }
 
-span.grid-msg {
-  position: relative;
-  top: 29px;
-  left: -91px;
-}
-
 label.error {
   color: @red!important;
   margin-bottom: 0px!important;
@@ -1974,14 +1968,18 @@ header#main-header {
 
   p.grid-desc {
     /*min-height: 90px;*/
-    max-height: 100px;
-    margin-top: 10px;
+    /*max-height: 100px;*/
+    /*position: absolute;
+    top: 65px;*/
     width: 220px;
-    min-height: 85px;
+    /*min-height: 110px;*/
   }
 
   p.desc-2 {
-    min-height: 53px;
+    /*min-height: 53px;*/
+    width: 220px;
+    margin-top: 15px;
+    margin-bottom: 15px;
   }
 
   p, label {
@@ -2065,7 +2063,7 @@ header#main-header {
   }
 
   .selectors {
-    min-height: 62px;
+    /*min-height: 62px;*/
     
     label {
       font-size: 12px;
@@ -2244,13 +2242,73 @@ header#main-header {
   div.grid {
     float: left;
     width: 33%;
+    max-height: 565px;
     position: relative;
+
+    div#product-content {
+      position: relative;
+      /*min-height: 395px;*/
+      min-height: 340px;
+      margin-bottom: 35px;
+
+      p.desc-2 {
+        position: absolute;
+        top: 160px;
+      }
+
+      form.cart {
+        position: absolute;
+        bottom: 0px;
+      }
+
+      span.grid-msg {
+        position: absolute;
+        bottom: -24px;
+        left: -10px;
+        width: 200px;
+
+        a {
+          color: @red;
+          &:hover {
+            color: @dark-brown-text;
+          }
+        }
+      }
+    }
+
+    div#product-content-2 {
+      position: relative;
+      min-height: 250px;
+      margin-bottom: 35px;
+
+      form.cart {
+        position: absolute;
+        bottom: 0px;
+      }
+
+      span.grid-msg {
+        position: absolute;
+        bottom: -27px;
+        left: -10px;
+        width: 200px;
+
+        a {
+          color: @red;
+          &:hover {
+            color: @dark-brown-text;
+          }
+        }
+      }
+
+    }
 
     div.price-wrapper {
       position: absolute;
-      bottom: 10px;
+      bottom: 27px;
       right: 17px;
-    }      
+    }
+
+
   }
 
   div.grid-height {
@@ -2400,6 +2458,9 @@ header#main-header {
       padding-top: 7px;
       list-style-type: decimal;
       margin-bottom: 5px;
+      b {
+        .open-sans-bold;
+      }
     }
   }  
   ul {

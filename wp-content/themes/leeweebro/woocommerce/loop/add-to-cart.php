@@ -37,7 +37,6 @@ $min_order = $product->get_attribute( 'min order' );
 	 	<!-- <button type="submit" class="<?php echo ($product->is_purchasable() && $product->is_in_stock()) ? 'add_to_cart_btn' : '' ?> <?php echo 'product_type_'.esc_attr( $product->product_type ); ?> button alt"><?php echo $product->add_to_cart_text(); ?></button> -->
 	 	<span class="error-msg"></span>
 		<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
-		<div class="space10"></div>
 	</form>
 
 	<?php do_action( 'woocommerce_after_add_to_cart_form' ); ?>

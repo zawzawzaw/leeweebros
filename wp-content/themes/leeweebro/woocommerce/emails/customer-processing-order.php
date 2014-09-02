@@ -104,13 +104,40 @@ $header_content_h3 = "
 
 <h2 style="<?php echo $header_content_h2_2; ?>"><?php _e( 'Order details:', 'woocommerce' ); ?></h2>
 
-<p style="margin:0;"><strong><?php _e( 'Payment By:', 'woocommerce' ); ?></strong> <?php echo $order->payment_method_title; ?></p>
+<?php 
+switch ($order->payment_method_title) {
+	case 'Advance payment by cash at outlets':
+		$extra_detail = (!empty($order->pay_by_cash_outlet)) ? $order->pay_by_cash_outlet : '';
+		break;
+
+	case 'AGD E-Invoice':
+		$extra_detail = (!empty($order->agd_event_code_name)) ? $order->agd_event_code_name : '';
+		break;
+
+	case 'Interbank Giro':
+		$extra_detail = (!empty($order->interbank_giro_order_no)) ? $order->interbank_giro_order_no : '';
+		break;
+	
+	default:
+		$extra_detail = '';
+		break;
+}
+?>
+<p style="margin:0;"><strong><?php _e( 'Payment By:', 'woocommerce' ); ?></strong> <?php echo $order->payment_method_title; ?> <?php echo (!empty($extra_detail)) ? '( '.$extra_detail.' )' : '' ; ?></p>
 <p style="margin-bottom: 20px; margin-top: 0;"><strong><?php _e( 'Receiving By:', 'woocommerce' ); ?></strong> <?php echo (isset($order->delivery)) ? 'Delivery' : 'Self Collection'; ?></p>
+<?php if(isset($order->collection_area)): ?>
+<p><span class="collectionplace-lbl">Collection Place:</span> <?php echo $order->collection_area; ?></p>
+<p><span class="collectiondate-lbl">Collection Date:</span> <?php echo $order->collection_date_day . '/' . $order->collection_date_month . '/'. $order->collection_date_year; ?></p>
+<p><span class="collectiontime-lbl">Collection Time:</span> <?php echo $order->collection_time; ?></p>
+<?php endif; ?>
+<?php if(isset($order->delivery)): ?>
+<p><span class="deliveryplace-lbl">Delivery Location:</span> <?php echo ($order->delivery=='allotherarea') ? 'All areas excluding Jurong Island & Sentosa' : 'Jurong Island and Sentosa'; ?></p>
+<p><span class="deliverydate-lbl">Delivery Date:</span> <?php echo $order->delivery_date_day . '/' . $order->delivery_date_month . '/'. $order->delivery_date_year; ?></p>
+<p><span class="deliverytime-lbl">Delivery Time:</span> <?php echo $order->delivery_time; ?></p>
+<?php endif; ?>
 
 <?php wc_get_template( 'emails/email-addresses.php', array( 'order' => $order ) ); ?>
 
-<p><?php _e( "You can review your order and download your invoice from the <strong>\"Order history\"</strong> section of your customer account by clicking <strong>\"My account\"</strong> on our shop.", 'woocommerce' ); ?></p>
-
-<p><?php _e( "If you have a guest account, you can follow your order via the \"Guest Tracking\" section on our shop." ) ?></p>
+<p><?php _e( "You can review your order and download your invoice from the <strong>\"Order history\"</strong> section of your customer account by clicking <strong>\"My account\"</strong> on our website.", 'woocommerce' ); ?></p>
 
 <?php do_action( 'woocommerce_email_footer' ); ?>

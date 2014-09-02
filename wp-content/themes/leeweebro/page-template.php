@@ -59,7 +59,10 @@ get_header();
 				<!-- <img src="images/content/banner-2.jpg" alt="banner"> -->
 				<?php 
 				if ( has_post_thumbnail() ) {
-				  the_post_thumbnail();
+				  //the_post_thumbnail();
+				$url = wp_get_attachment_url( get_post_thumbnail_id($post->ID) ); ?>
+					<img class="lazy" data-original="<?php echo $url; ?>" alt="feature image">
+				<?php
 				} 
 				?>
 			</div>
