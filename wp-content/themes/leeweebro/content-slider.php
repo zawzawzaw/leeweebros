@@ -29,7 +29,7 @@
 			<?php if(has_post_thumbnail()) : ?>
 				<div class="<?php echo ($i==0) ? 'active' : ''; ?> item">
 					<?php $url = wp_get_attachment_url( get_post_thumbnail_id($post->ID) ); ?>
-					<img class="slider-lazy" src="<?php echo $url; ?>" alt="slider">
+					<img class="slider-lazy" data-original="<?php echo $url; ?>" alt="slider">
 					<div class="carousel-caption">
 						<?php the_content(); ?>
 					</div>

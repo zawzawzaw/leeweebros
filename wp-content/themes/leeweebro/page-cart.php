@@ -1,4 +1,7 @@
-<?php if ( !is_user_logged_in() ) {  wp_redirect( home_url().'/my-account/' );  } ?> 
+<?php 
+if(!empty($_POST)):
+	if ( !is_user_logged_in() ) {  wp_redirect( home_url().'/my-account?cart' );  }
+endif; ?> 
 <?php get_header(); ?>
 	<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 		<div id="content-wrapper" class="align-left">

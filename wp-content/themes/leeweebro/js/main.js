@@ -1320,6 +1320,18 @@ jQuery( function( $ ) {
 				postRequest,
 				result;
 
+			// if there is different min order for each variation
+			var minOrderRaw = $(this).parent('form').find('#min-order').html();
+			var exploded;
+
+			if (minOrderRaw.indexOf("|") >= 0) {
+				exploded = minOrderRaw.split(' | ');
+
+				var SelectedIndex = $(this).parent('form').find('.dropdown').children('select')[0].selectedIndex;
+
+				minOrder = exploded[SelectedIndex];
+			}
+
 			if (isInt(currentQty)) {
 
 				if($.isNumeric(minOrder) && minOrder > currentQty ) {
@@ -1464,9 +1476,9 @@ jQuery( function( $ ) {
 			$allProductContainer.find('.product').children('div').find('.desc').children('em').toggleClass('grid-desc');
 			$allProductContainer.find('.product').children('div').find('.error-msg').toggleClass('grid-msg');
 
-			console.log($('.desc').height())
-			console.log($('.desc-2').height())
-			console.log($('.desc-2').height())
+			// console.log($('.desc').height())
+			// console.log($('.desc-2').height())
+			// console.log($('.desc-2').height())
 			
 			if($allProductContainer.find('.select-type').length != 0) {
 				$allProductContainer.find('.product').toggleClass('grid-height');
@@ -1476,7 +1488,7 @@ jQuery( function( $ ) {
 		}
 
 		var view = $.cookie("view");
-		console.log(view)
+		// console.log(view)
 
 		if(view=='listview') {
 			$('#viewby li#listview').trigger('click');
@@ -1505,14 +1517,15 @@ jQuery( function( $ ) {
 		    return false;
 		});
 
-		// $('.slider-lazy').lazyload({
-	 //    	event : "sporty",
-	 //    	effect : "fadeIn"
-	 //    });
+		/* two sliders's image lazy loading */
+		$('.slider-lazy').lazyload({
+	    	event : "sporty",
+	    	effect : "fadeIn"
+	    });
 
-	 //    $mainSlider.on('slid.bs.carousel', function () {
-		//   	$("img.slider-lazy").trigger("sporty");
-		// });
+	    $mainSlider.on('slid.bs.carousel', function () {
+		  	$("img.slider-lazy").trigger("sporty");
+		});
 
 	    $('.sub-slider-lazy').lazyload({
 	    	event : "subsporty",
@@ -1520,18 +1533,41 @@ jQuery( function( $ ) {
 	    });
 
 	    $secondSlider.children('.jcarousel').on('jcarousel:scroll', function(event, carousel, target, animate) {
-		    // "this" refers to the root element
-		    // "carousel" is the jCarousel instance
-		    // "target" is the target argument passed to the `scroll` method
-		    // "animate" is the animate argument passed to the `scroll` method
-		    //      indicating whether jCarousel was requested to do an animation
-
 		    $("img.sub-slider-lazy").trigger("subsporty");
 		});    
 
 	 	$('.lazy').lazyload({
 	    	effect : "fadeIn"
 	    });
+
+	 	var a = 0;
+	 	var commonHeight = 0;
+	    $('.grid').each(function(i, obj) {
+	    	var titleHeight = 55;
+		    var descHeight = $(this).children().children('div#product-content').children('.desc').height();
+		    var descHeight2 = $(this).children().children('div#product-content').children('.desc-2').height();
+		    var cartHeight = $(this).children().children('div#product-content').children('.cart').height();
+		    var extra = 40;
+		    if(!descHeight2) descHeight2 = 0;
+
+		    var currentHeight = descHeight + cartHeight + titleHeight + descHeight2 + extra;
+
+		    if(i%3==0) { 
+		    	var row = a; 
+		    	a++; 
+		    	console.log(row); 
+		    	$(this).children().children('div#product-content').addClass('rubbish'); 
+		    	commonHeight = 0;  
+		    }
+
+		    if(currentHeight > commonHeight) {
+		    	commonHeight = currentHeight;
+		    }
+
+		    console.log(commonHeight)
+
+		    $(this).children().children('div#product-content').css('min-height', commonHeight);
+		});
 
 	});	
 
@@ -1601,10 +1637,10 @@ jQuery( function( $ ) {
 
 	//Add onload to body
 	$(window).load(function(){
-	    initialize();
-
-	    // $("img.slider-lazy").trigger("sporty");
+	    $("img.slider-lazy").trigger("sporty");
 	    $("img.sub-slider-lazy").trigger("subsporty");
+
+	    initialize();
 	    
 	});
 });

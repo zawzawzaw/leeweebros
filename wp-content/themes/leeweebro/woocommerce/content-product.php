@@ -65,7 +65,7 @@ if(!empty($_SESSION['custom_id'])) {
 				<?php do_action( 'woocommerce_before_shop_loop_item_title_custom' ); ?>
 			</a>
 		</div>
-		<div id="<?php echo $custom_id; ?>" class="col-md-6">
+		<div id="product-content" class="product-content col-md-6">
 			<a href="<?php the_permalink(); ?>"><h2><?php echo get_the_title(); ?></h2></a>
 			<?php do_action('woocommerce_shop_loop_item_desc_custom'); ?>
 			<?php do_action( 'woocommerce_after_shop_loop_item_custom' ); ?>

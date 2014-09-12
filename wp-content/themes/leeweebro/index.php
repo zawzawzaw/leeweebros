@@ -30,7 +30,6 @@ global $woocommerce;
 					</div>
 					<a href="#" class="jcarousel-control-prev" data-jcarouselcontrol="true"></a>
 					<a href="#" class="jcarousel-control-next" data-jcarouselcontrol="true"></a>
-					<hr class="separator">
 				</div>
 			</div>			
 		</div>

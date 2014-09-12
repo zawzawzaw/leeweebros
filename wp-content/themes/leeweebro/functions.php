@@ -227,6 +227,7 @@ wp_dequeue_script('woocommerce');
 wp_enqueue_script( 'woocommerce', get_bloginfo( 'stylesheet_directory' ). '/js/woocommerce.js', array( 'jquery', 'jquery-blockui' ), false, true );
 wp_enqueue_script( 'jqueryui', '//code.jquery.com/ui/1.11.0/jquery-ui.js', array( 'jquery' ), false, true );
 wp_enqueue_script( 'lazyload', get_bloginfo( 'stylesheet_directory' ). '/js/jquery.lazyload.min.js', array( 'jquery' ), false, true );
+wp_enqueue_script( 'lazy', get_bloginfo( 'stylesheet_directory' ). '/js/jquery.lazy.min.js', array( 'jquery' ), false, true );
 wp_enqueue_script( 'bootstrap', get_bloginfo( 'stylesheet_directory' ). '/lib/bootstrap/dist/js/bootstrap.min.js', array( 'jquery' ), false, true );
 wp_enqueue_script( 'jcarousel', get_bloginfo( 'stylesheet_directory' ). '/lib/jquery.jcarousel.min.js', array( 'jquery' ), false, true );
 wp_enqueue_script( 'validator', get_bloginfo( 'stylesheet_directory' ). '/lib/jquery.validate.min.js', array( 'jquery' ), false, true );
