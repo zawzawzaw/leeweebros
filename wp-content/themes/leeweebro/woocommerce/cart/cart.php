@@ -20,7 +20,7 @@ else:
 
 	// do_action( 'woocommerce_before_cart' ); ?>
 
-	<div class="progress-indicator-container">
+	<div class="progress-indicator-container hidden-xs hidden-sm">
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
 				<div class="row">
@@ -74,7 +74,7 @@ else:
 			</div>
 		</div>
 	</div>
-	<div class="space50"></div>
+	<div class="space50 hidden-xs hidden-sm"></div>
 	<div class="cart-container">
 		<div class="row">
 			<div class="col-md-12">
@@ -84,7 +84,7 @@ else:
 
 					<?php do_action( 'woocommerce_before_cart_table' ); ?>
 
-					<div class="row cart-heading">
+					<div class="row cart-heading visible-md visible-lg hidden-xs hidden-sm">
 						<div class="col-md-1"></div>
 						<div class="col-md-2"><h5 class="product"><?php _e( 'PRODUCT', 'woocommerce' ); ?></h5></div>
 						<div class="col-md-3"><h5 class="desc"><?php _e( 'DESCRIPTION', 'woocommerce' ); ?></h5></div>
@@ -109,7 +109,7 @@ else:
 									<div class="row">
 
 										<!-- delete btn -->
-										<div class="col-md-1">
+										<div class="col-xs-12 col-sm-12 col-md-1">
 											<div class="remove-button">
 											<?php
 												echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf( '<a href="%s" class="remove" title="%s"></a>', esc_url( WC()->cart->get_remove_url( $cart_item_key ) ), __( 'Remove this item', 'woocommerce' ) ), $cart_item_key );
@@ -118,7 +118,7 @@ else:
 										</div>
 
 										<!-- thumbnail image -->
-										<div class="col-md-2">
+										<div class="col-xs-12 col-sm-12 col-xs-12 col-md-2">
 											<?php
 												$thumbnail = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
 
@@ -130,7 +130,7 @@ else:
 										</div>
 
 										<!-- description -->
-										<div class="col-md-3">
+										<div class="col-xs-7 col-sm-7 col-md-3">
 											<?php
 												if ( ! $_product->is_visible() )
 													echo apply_filters( 
@@ -160,7 +160,7 @@ else:
 										</div>
 
 										<!-- quantity -->
-										<div class="col-md-2">
+										<div class="col-xs-5 col-sm-5 col-md-2">
 											<?php
 												if ( $_product->is_sold_individually() ) {
 													$product_quantity = sprintf( '1 <input type="hidden" name="cart[%s][qty]" value="1" />', $cart_item_key );
@@ -183,7 +183,7 @@ else:
 										</div>
 
 										<!-- indiviudal price -->
-										<div class="col-md-2">
+										<div class="col-xs-12 col-sm-12 col-md-2 hidden-xs hidden-sm visible-md visible-lg">
 											<p class="price">
 												<?php
 													echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
@@ -192,7 +192,7 @@ else:
 										</div>
 
 										<!-- sub total price -->
-										<div class="col-md-2">
+										<div class="col-xs-12 col-sm-12 col-md-2">
 											<p class="price">
 												<?php
 													echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key );
@@ -281,12 +281,12 @@ else:
 						<div class="space30"></div>
 						<div class="row">
 							
-							<div class="col-md-4">
+							<div class="col-xs-7 col-sm-7 col-md-4">
 								<a class="button continue wc-backward" href="<?php echo get_permalink( wc_get_page_id( 'shop' ) ); ?>"><?php _e( 'CONTINUE SHOPPING', 'woocommerce' ) ?></a>
 							</div>
-							<div class="col-md-2 col-md-offset-6">
+							<div class="col-xs-4 col-sm-4 col-md-2 col-md-offset-6">
 								<!-- <input type="submit" class="checkout-button button alt wc-forward" name="proceed" value="<?php _e( 'NEXT', 'woocommerce' ); ?>" /> -->
-								<input type="submit" class="button" value="NEXT">
+								<input type="submit" class="button" value="CHECKOUT">
 							</div>
 
 							<?php do_action( 'woocommerce_proceed_to_checkout' ); ?>

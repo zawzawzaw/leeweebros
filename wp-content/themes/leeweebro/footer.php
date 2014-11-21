@@ -1,7 +1,7 @@
     <div id="footer-wrapper" class="container-fluid">
       <footer id="main-footer" class="container">
           <div class="row">
-            <div class="col-md-2 col-md-offset-1">
+            <div class="footer-col col-xs-6 col-xs-offset-0 col-sm-6 col-sm-offset-0 col-md-2 col-md-offset-1">
               <h3>INFORMATION</h3>
               <ul>
                 <li>
@@ -26,7 +26,7 @@
                 </li>
               </ul>
             </div>
-            <div class="col-md-2">
+            <div class="footer-col col-xs-6 col-xs-offset-0 col-sm-6 col-sm-offset-0 col-md-2">
               <h3>SERVICES</h3>
               <ul>
                 <li>
@@ -47,7 +47,7 @@
                 </li> -->
               </ul>
             </div>
-            <div class="col-md-2">
+            <div class="footer-col col-xs-6 col-xs-offset-0 col-sm-6 col-sm-offset-0 col-md-2">
               <h3>EXTRAS</h3>
               <ul>
                 <li>
@@ -64,7 +64,7 @@
                 </li>
               </ul>
             </div>
-            <div class="col-md-2">
+            <div class="footer-col col-xs-6 col-xs-offset-0 col-sm-6 col-sm-offset-0 col-md-2">
               <h3>CONTACT</h3>
               <ul>
                 <li>
@@ -75,7 +75,7 @@
                 </li>
               </ul>
             </div>
-            <div class="col-md-3">
+            <div class="footer-col col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3">
               <h3>SHARE WITH US</h3>
               <ul>
                 <li>
@@ -90,6 +90,9 @@
       </footer>
     </div>
   </div>
+  <script>
+  var templateUrl = '<?php echo esc_url( home_url( '/' ) ); ?>';
+  </script>
 <?php wp_footer(); ?>
 </body>
 </html>

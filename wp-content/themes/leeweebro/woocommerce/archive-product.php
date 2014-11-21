@@ -35,7 +35,7 @@ get_header( 'shop' ); ?>
 							<div class="col-md-12"><div class="space26"></div></div>
 						</div>
 						<div class="row">
-							<ul class="side-menu">
+							<ul class="side-menu visible-md visible-lg hidden-xs hidden-sm">
 								<li class="active">
 									<a class="parent-side-menu-item" href="javascript:void(0);" data-toggle="collapse" data-target="#ourfood">OUR FOOD</a>
 									<?php 

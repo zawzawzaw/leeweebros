@@ -21,7 +21,8 @@ global $post, $woocommerce, $product;
 			$image_title = esc_attr( get_the_title() );
 			$image_link  = wp_get_attachment_url( get_post_thumbnail_id() );
 			$thumbnail_url = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );
-			$image = '<img class="lazy" data-original="'.$thumbnail_url.'" alt="product image">';
+			$timthumb_url = get_home_url()."/timthumb.php?src=".$thumbnail_url.'&h=249&w=320&zc=0';
+			$image = '<img class="lazy img-responsive" data-original="'.$timthumb_url.'" alt="product image">';
 			// $image       = get_the_post_thumbnail( $post->ID, apply_filters( 'single_product_large_thumbnail_size', 'shop_single' ), array(
 			// 	'title' => $image_title
 			// 	) );

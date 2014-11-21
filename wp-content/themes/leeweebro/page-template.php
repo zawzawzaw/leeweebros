@@ -55,13 +55,13 @@ get_header();
 		</div>
 		<div class="space40"></div>
 		<div class="row">
-			<div class="col-md-12" id="banner-img">
+			<div class="col-md-12 somehting" id="banner-img">
 				<!-- <img src="images/content/banner-2.jpg" alt="banner"> -->
 				<?php 
 				if ( has_post_thumbnail() ) {
 				  //the_post_thumbnail();
 				$url = wp_get_attachment_url( get_post_thumbnail_id($post->ID) ); ?>
-					<img class="lazy" data-original="<?php echo $url; ?>" alt="feature image">
+					<img class="lazy img-responsive" data-original="<?php echo $url; ?>" alt="feature image">
 				<?php
 				} 
 				?>
@@ -143,12 +143,11 @@ get_header();
 			<div class="space20"></div>
 			<div class="row">
 				<div class="col-md-12">
-					<div id="google-map-canvas"></div>
+					<div id="google-map-canvas" class="img-responsive"></div>
 				</div>
 			</div>
 			<div class="space50"></div>
 			<div class="row">
-
 				<?php the_content(); ?>
 
 				<div class="col-md-6 col-md-offset-1">

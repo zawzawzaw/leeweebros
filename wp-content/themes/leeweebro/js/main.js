@@ -52,7 +52,30 @@ jQuery( function( $ ) {
 			$confirmOrderBtn = $('#confirm-order'),
 			$cartContainer = $('.cart-container'),
 			$contactContainer = $('#contact'),
-			$allProductContainer = $('#content-wrapper #all');
+			$allProductContainer = $('#content-wrapper #all'),
+			$mobileMenu = $('.mobile-menu'),
+			$mobileMenuBtn = $('.mobile-menu-btn');
+
+		// $mobileMenu.hide();
+
+		$mainSlider.swiperight(function() {  
+	      $mainSlider.carousel('prev');
+	    });  
+	    $mainSlider.swipeleft(function() {  
+	      $mainSlider.carousel('next');
+	    });
+
+		$mobileMenuBtn.on('click', function(e){
+			$mobileMenu.slideToggle( "slow" );
+		});
+
+		$('.mobile-menu li > a').on('click', function(e){
+			if($(this).html()=="Our Food") {
+				e.preventDefault();
+			}			
+
+			$(this).parent().find('.sub-menu').slideToggle("slow");
+		});
 
 		$.validator.addMethod("alphanumeric", function(value, element) {
 	        return this.optional(element) || /^[a-z0-9\-\s]+$/i.test(value);
@@ -1472,30 +1495,36 @@ jQuery( function( $ ) {
 			$allProductContainer.find('.product').next('div:last-child').toggleClass('space30');
 			$allProductContainer.find('.product').children('div').find('.desc').toggleClass('grid-desc').prev('a').children('h2').toggleClass('grid-title');
 			$allProductContainer.find('.product').children('div').find('.selectors').children('.select-type').toggleClass('grid-select-type').parent('div').toggleClass('grid-selectors');
-			$allProductContainer.find('.product').children('div').find('.selectors').find('.dropdown label').toggleClass('grid');
+			$allProductContainer.find('.product').children('div').find('.selectors').find('.dropdown label').toggleClass('grid-label');
 			$allProductContainer.find('.product').children('div').find('.desc').children('em').toggleClass('grid-desc');
 			$allProductContainer.find('.product').children('div').find('.error-msg').toggleClass('grid-msg');
 
 			// console.log($('.desc').height())
 			// console.log($('.desc-2').height())
 			// console.log($('.desc-2').height())
+
+			$('.product-content').css('min-height', '0');
 			
-			if($allProductContainer.find('.select-type').length != 0) {
-				$allProductContainer.find('.product').toggleClass('grid-height');
-			}else {
-				$allProductContainer.find('.product').toggleClass('grid-height-2');
-			}
+			// if($allProductContainer.find('.select-type').length != 0) {
+			// 	$allProductContainer.find('.product').toggleClass('grid-height');
+			// }else {
+			// 	$allProductContainer.find('.product').toggleClass('grid-height-2');
+			// }
+
+			gridHeightSetting();
 		}
 
 		var view = $.cookie("view");
 		// console.log(view)
 
-		if(view=='listview') {
-			$('#viewby li#listview').trigger('click');
-		}
-		else {
-			$('#viewby li#gridview').trigger('click');
-			toggleView();
+		if( !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+		 	if(view=='listview') {
+				$('#viewby li#listview').trigger('click');
+			}
+			else {
+				$('#viewby li#gridview').trigger('click');
+				toggleView();
+			}
 		}
 
 		$('#viewby li').on('click', function(e){
@@ -1540,34 +1569,70 @@ jQuery( function( $ ) {
 	    	effect : "fadeIn"
 	    });
 
-	 	var a = 0;
-	 	var commonHeight = 0;
-	    $('.grid').each(function(i, obj) {
-	    	var titleHeight = 55;
-		    var descHeight = $(this).children().children('div#product-content').children('.desc').height();
-		    var descHeight2 = $(this).children().children('div#product-content').children('.desc-2').height();
-		    var cartHeight = $(this).children().children('div#product-content').children('.cart').height();
-		    var extra = 40;
-		    if(!descHeight2) descHeight2 = 0;
+	   	/* solving spacing issue for product grid */
 
-		    var currentHeight = descHeight + cartHeight + titleHeight + descHeight2 + extra;
+	   	function gridHeightSetting() {
+	   		var a = 3,
+	 		row = 1,
+	 		rowsHighestHeight = 0,
+	 		rowHighestHeightArr = [];
+		    $('.grid').each(function(i, obj) {
+		    	var titleHeight = 55;
+			    var descHeight = $(this).children().children('div#product-content').children('.desc').height();
+			    var descHeight2 = $(this).children().children('div#product-content').children('.desc-2').height();
+			    var cartHeight = $(this).children().children('div#product-content').children('.cart').height();
+			    var extra = 40;
+			    if(!descHeight2) descHeight2 = 0;
 
-		    if(i%3==0) { 
-		    	var row = a; 
-		    	a++; 
-		    	console.log(row); 
-		    	$(this).children().children('div#product-content').addClass('rubbish'); 
-		    	commonHeight = 0;  
-		    }
+			    // calculate height
+			   	var currentHeight = descHeight + cartHeight + titleHeight + descHeight2 + extra;
 
-		    if(currentHeight > commonHeight) {
-		    	commonHeight = currentHeight;
-		    }
+				// reset height row by row	    
+			   	if(i+1>a) {
+			   		a += 3;
+			   		row += 1;
+			   		rowsHighestHeight = 0;
+			   	}
 
-		    console.log(commonHeight)
+			   	// $(this).children().children('div#product-content').addClass('row-'+row);
+			   	$(this).addClass('row-'+row);
 
-		    $(this).children().children('div#product-content').css('min-height', commonHeight);
-		});
+			   	// get common height in each row
+			   	if(i+1<=a) {
+			   		if(currentHeight > rowsHighestHeight) {
+				    	rowsHighestHeight = currentHeight;
+				    }
+
+				    rowHighestHeightArr[row-1] = rowsHighestHeight;
+
+				    console.log((i+1)+'`s'+rowsHighestHeight+' row '+row);	    
+
+				    // kept as back up, setting height of its own
+				    // $(this).children().children('div#product-content').css('min-height', rowsHighestHeight);
+			   	}
+			    
+			});
+
+
+			function setRowHeight(row, height) {
+				// console.log('row '+ row + ' setting height of ' +height);
+
+	   			$('.row-'+row).children().children('div#product-content').css('min-height', height);
+		   	}
+
+		   	for(i=0;i<row;i++) {
+		   		// debug
+		   		// console.log(i+1 + ':' + rowHighestHeightArr[i])
+		   		setRowHeight(i+1, rowHighestHeightArr[i]);
+
+		   	}
+
+		   	// debug
+			// console.log(rowHighestHeightArr);
+			// console.log(row)
+	   	}
+
+	   	gridHeightSetting();
 
 	});	
 

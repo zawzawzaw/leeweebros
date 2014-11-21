@@ -22,8 +22,8 @@
 				<div class="row">
 					<div class="col-md-12" id="page-title"><h1><?php the_title(); ?></h1></div>
 				</div>
-				<div class="space50"></div>
-				<div class="space20"></div>
+				<div class="space50 hidden-xs hidden-sm"></div>
+				<div class="space20 hidden-xs hidden-sm"></div>
 				<?php the_content(); ?>
 			</div>
 		</div>

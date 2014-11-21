@@ -1,3 +1,15 @@
+<?php 
+if (!session_id())
+    session_start();
+
+if(isset($_SESSION['cart_redirection'])) {
+    $value = $_SESSION['cart_redirection'];
+} else {
+    $value = '';
+}
+
+if ( is_user_logged_in() ) { if($value=="cart") wp_redirect( home_url().'/cart' ); }
+?>
 <?php get_header(); ?>
 	<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 		<div id="content-wrapper" class="align-left">

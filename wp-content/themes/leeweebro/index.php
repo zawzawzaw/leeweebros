@@ -17,8 +17,8 @@ global $woocommerce;
 	<div id="special-deal" class="container">
 		<div class="row">
 			<div class="col-md-12" id="header-text">
-				<h3>SOME SPECIAL PRODUCTS FOR YOU</h3>
-				<h1>FEATURED PRODUCTS</h1>
+				<h3>SOME POPULAR PRODUCTS FOR YOU</h3>
+				<h1>BEST SELLERS</h1>
 			</div>
 		</div>
 		<div class="space20"></div>
@@ -30,6 +30,7 @@ global $woocommerce;
 					</div>
 					<a href="#" class="jcarousel-control-prev" data-jcarouselcontrol="true"></a>
 					<a href="#" class="jcarousel-control-next" data-jcarouselcontrol="true"></a>
+					<hr class="separator">
 				</div>
 			</div>			
 		</div>
@@ -38,7 +39,7 @@ global $woocommerce;
 	<div class="space50"></div>
 	<div class="space20"></div>
 
-	<!-- <div id="feature-product" class="container">
+	<div id="feature-product" class="container">
 		<div class="row">
 			<div class="col-md-12" id="header-text">
 				<h3>SOME SPECIAL PRODUCTS FOR YOU</h3>
@@ -96,9 +97,7 @@ global $woocommerce;
 						?>
 								<li>
 									<a href="<?php echo get_permalink(get_the_ID()); ?>">
-										<?php //the_post_thumbnail(); ?>
-										<?php $url = wp_get_attachment_url( get_post_thumbnail_id($post->ID) ); ?>
-										<img class="lazy" data-original="<?php echo $url; ?>" alt="feature image">
+										<?php the_post_thumbnail(); ?>
 									
 										<div class="feature-product-description">
 											<h3><?php the_title(); ?></h3>
@@ -139,7 +138,7 @@ global $woocommerce;
 				</div>
 			</div>
 		</div>
-	</div> -->
+	</div>
 </div>
 <div class="space50"></div>
 

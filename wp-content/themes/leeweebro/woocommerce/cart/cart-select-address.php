@@ -194,8 +194,8 @@ global $woocommerce;
 		<form id="backtoreceivingmode" action="<?php echo esc_url( $woocommerce->cart->get_cart_url() ); ?>" method="post">
 			<input type="hidden" name="receiving">
 		</form>
-		<div class="col-md-2"><button type="submit" class="button select-address-prev-btn">PREVIOUS</button></div>
-		<div class="col-md-2 col-md-offset-8"><button type="submit" class="button submit-to-checkout">NEXT</button></div>
+		<div class="col-xs-4 col-sm-4 col-md-2"><button type="submit" class="button select-address-prev-btn">PREVIOUS</button></div>
+		<div class="col-xs-4 col-sm-4 col-md-2 col-md-offset-8"><button type="submit" class="button submit-to-checkout">NEXT</button></div>
 	</div>
 </div>
 <div class="address-container" style="display:none;">
@@ -400,8 +400,8 @@ global $woocommerce;
 		</div>
 		<div class="space50"></div>
 		<div class="row">
-			<div class="col-md-2"><button type="submit" class="button save_billing_address">SAVE ADDRESS</button></div>
-			<div class="col-md-2"><button type="submit" class="button cancel_billing_address">CANCEL</button></div>
+			<div class="col-xs-4 col-sm-4 col-md-2"><button type="submit" class="button save_billing_address">SAVE ADDRESS</button></div>
+			<div class="col-xs-4 col-sm-4 col-md-2"><button type="submit" class="button cancel_billing_address">CANCEL</button></div>
 		</div>		
 	</form>	
 </div>

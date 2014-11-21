@@ -90,8 +90,8 @@ $total_amount = $woocommerce->cart->total;
 		<?php
 		global $woocommerce;
 		$cart_url = $woocommerce->cart->get_cart_url(); ?>
-		<div class="col-md-2"><a href="<?php echo $cart_url; ?>" class="button back-to-cart">PREVIOUS</a></div>
-		<div class="col-md-2 col-md-offset-8"><button class="button receiving-mode-next">NEXT</button></div>
+		<div class="col-xs-4 col-sm-2 col-md-2"><a href="<?php echo $cart_url; ?>" class="button back-to-cart">PREVIOUS</a></div>
+		<div class="col-xs-6 col-sm-2 col-md-2 col-md-offset-8"><button class="button receiving-mode-next">NEXT</button></div>
 	</div>
 </div>
 
@@ -249,8 +249,8 @@ $total_amount = $woocommerce->cart->total;
 	</div>
 	<div class="space50"></div>
 	<div class="row">
-		<div class="col-md-2"><button class="button receiving-mode-prev">PREVIOUS</button></div>
-		<div class="col-md-2 col-md-offset-8">
+		<div class="col-xs-4 col-sm-4 col-md-2"><button class="button receiving-mode-prev">PREVIOUS</button></div>
+		<div class="col-xs-4 col-sm-4 col-md-2 col-md-offset-8">
 			<!-- <input type="submit" class="checkout-button button alt wc-forward" name="proceed" value="<?php _e( 'NEXT', 'woocommerce' ); ?>" /> -->
 			<input type="submit" id="receiving-mode-collection-submit" class="button" value="NEXT">
 		</div>
@@ -270,7 +270,7 @@ $total_amount = $woocommerce->cart->total;
 				<ul class="payment-method">
 					<input type="hidden" name="cart-amount" class="cart-amount" value="<?php echo $total_amount; ?>">
 					<li>
-						<input type="radio" name="delivery" value="allotherarea" checked>
+						<input type="radio" name="delivery" class="left-align" value="allotherarea" checked>
 						<label for="online" class="radio-label"><span class="radiobtn"></span>All areas excluding Jurong Island & Sentosa</label>
 						<div class="error-msg error-deliver-otherarea"></div>
 					</li>
@@ -380,8 +380,8 @@ $total_amount = $woocommerce->cart->total;
 		</div>
 		<div class="space50"></div>
 		<div class="row">
-			<div class="col-md-2"><button class="button receiving-mode-prev">PREVIOUS</button></div>
-			<div class="col-md-2 col-md-offset-8"><input type="submit" id="receiving-mode-delivery-submit" class="button" value="NEXT"></div>
+			<div class="col-xs-4 col-sm-4 col-md-2"><button class="button receiving-mode-prev">PREVIOUS</button></div>
+			<div class="col-xs-4 col-sm-4 col-md-2 col-md-offset-8"><input type="submit" id="receiving-mode-delivery-submit" class="button" value="NEXT"></div>
 
 			<?php //do_action( 'woocommerce_proceed_to_checkout' ); ?>
 

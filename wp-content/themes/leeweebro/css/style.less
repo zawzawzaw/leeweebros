@@ -363,6 +363,14 @@ strong {
 }
 
 @font-face {
+  font-family: 'Auto1-BoldLF';
+  src: url('../fonts/Auto1-BoldLF.eot?') format('eot'), 
+       url('../fonts/Auto1-BoldLF.woff') format('woff'), 
+       url('../fonts/Auto1-BoldLF.ttf')  format('truetype'),
+       url('../fonts/Auto1-BoldLF.svg#Auto1-BoldLF') format('svg');
+}
+
+@font-face {
   font-family: 'Auto1-LightSmCp';
   src: url('../fonts/Auto1-LightSmCp.eot?') format('eot'), 
        url('../fonts/Auto1-LightSmCp.woff') format('woff'), 
@@ -460,6 +468,12 @@ strong {
 
 .auto-1-bold {
   font-family: 'Auto1-Bold', Verdana, sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.auto-1-bold-lf {
+  font-family: 'Auto1-BoldLF', Verdana, sans-serif;
   font-weight: 300;
   font-style: normal;
 }
@@ -565,6 +579,10 @@ body, html{
   /*background: #ffffff;*/
   background: url(../images/content/top-bg.jpg) repeat-x left 14px,
               url(../images/content/middle-bg.jpg) repeat left 0px;
+  @media all and (max-width: 900px) {
+      background: url(../images/content/top-bg.jpg) repeat-x left 0px,
+              url(../images/content/middle-bg.jpg) repeat left 0px;
+  }            
   height: 100%
 }
 
@@ -576,10 +594,16 @@ body, html{
 
 #content-wrapper{
     padding-bottom: 172px;    /* height of footer */
+    @media all and (max-width: 900px) {
+      padding-bottom: 460px!important;
+    }
 }
 
 #footer-wrapper {
     height: 172px; 
+    @media all and (max-width: 900px) {
+      height: auto!important;
+    }
     width:100%;
     position: absolute;
     left: 0;
@@ -706,6 +730,12 @@ div.ppt {
   height: auto!important;
 }
 
+#banner-img {
+  img {
+    width: 100%;
+  }
+} 
+
 //   _        _ __   _____  _   _ _____ 
 //  | |      / \\ \ / / _ \| | | |_   _|
 //  | |     / _ \\ V / | | | | | | | |  
@@ -757,6 +787,9 @@ div.ppt {
 
 .align-left {
   margin-left: 45px;
+  @media all and (max-width: 900px) {
+    margin-left: 0px;
+  }
 }
 
 .align-left-2 {
@@ -764,7 +797,10 @@ div.ppt {
 }
 
 .align-left-3 {
-  margin-left: 13px;
+  @media all and (max-width: 900px) {
+    margin-left: 0px;
+    /*margin-left: 13px;*/
+  }
 }
 
 //   ___ _   _ ____  _   _ _____ 
@@ -841,10 +877,38 @@ div#header-wrapper {
   z-index: 999;
 }
 
+.mobile-menu-container {
+  position: fixed;
+  top: 40px;
+  left: 0;
+  width: 100%; 
+  z-index: 9999;
+}
+ul.mobile-menu {
+  display: none;
+  background-color: #DA0009;
+  border-top: 1px solid #FFF;
+  margin-top: 6px;
+  li {
+    padding: 10px 0 10px 30px;
+    a {
+      color: #fff;  
+    }
+    .sub-menu {
+      display: none;
+    }
+  }
+}
+
 header#main-header {
   padding-top: 12px;
   color: @white;
   .open-sans;
+
+  .icon-font {
+    font-size: 14px;
+    line-height: 24px;
+  }
 
   input#search {
     background: url(../images/icons/vline-search.png) no-repeat #fff scroll 1px 3px;
@@ -852,7 +916,13 @@ header#main-header {
     color: @brown;
     height: 23px;
     padding-left: 10px;
+    .round(0);
     .placeholder(@brown, normal);
+    @media only screen 
+    and (min-device-width : 320px) 
+    and (max-device-width : 480px) {
+      width: 100px;
+    }
   }
 
   button.search-btn {
@@ -868,6 +938,12 @@ header#main-header {
     #header-links {
       display: inline-block;
       margin-right: 10px;
+      @media only screen 
+      and (min-device-width : 320px) 
+      and (max-device-width : 480px) {
+        left: 0px;
+        position: absolute;
+      }
       a {
         color: @white;
 
@@ -878,6 +954,13 @@ header#main-header {
     }
 
     #header-cart-info {
+      @media only screen
+      and (min-device-width : 320px) 
+      and (max-device-width : 480px) {
+        position: absolute;
+        right: 15px;
+        top: 4px;
+      }
       a {
         color: @white;
       }
@@ -886,6 +969,9 @@ header#main-header {
         display: inline-block;
         border-right: 1px solid #fff;
         padding-right: 11px;
+        @media all and (max-width: 900px) {
+          border: none;
+        }
       }  
 
       #cart-item-price {
@@ -901,9 +987,13 @@ header#main-header {
   .logo-container {
     padding-top: 37px;
     a {
+      display: block;
+      text-align: center;
+      margin: 0 auto;
       img {
         width: 100%
         height: 100%;
+        margin: 0 auto;
       }
     }
   }
@@ -999,6 +1089,11 @@ header#main-header {
             left: 12px;
             a {
               left: 40px;
+            }
+            ul.sub-menu {
+              li {
+                left: 16px;
+              }
             }
           }
           &.order {
@@ -1126,6 +1221,10 @@ header#main-header {
 #main-slider {
   .carousel {
     .carousel-indicators {
+      @media all and (max-width: 900px) {
+        top: auto!important;
+        bottom: -25px!important;
+      }
       top: 515px;
       li {
         width: 10px;
@@ -1144,17 +1243,32 @@ header#main-header {
       padding-bottom: 30px;
       width: 289px;
       text-align: left;
+      @media all and (max-width: 900px) {
+        left: 8%;
+        padding-bottom: 0px;
+        width: auto;
+        text-align: left;
+      }
       h1 {
         .knockout-htf29;
         font-size: 40px;
         padding-bottom: 15px;
         color: @white;
+        @media all and (max-width: 900px) {
+          font-size: 16px;
+          padding-bottom: 0px;
+        }
       }
       p {
         .open-sans-light;
         font-size: 13px;
         color: @white;
         width: 250px;
+        text-shadow: 1px 9px 42px #000;
+        @media all and (max-width: 900px) {
+          font-size: 11px;
+          width: auto;
+        }
       }
     }
   }
@@ -1169,11 +1283,26 @@ header#main-header {
 
 #header-text {
   margin-left: 33px;
+  @media only screen
+      and (min-device-width : 320px) 
+      and (max-device-width : 480px) {
+    margin-left: 0px;
+  }
   h3 {
+    @media only screen
+      and (min-device-width : 320px) 
+      and (max-device-width : 480px) {
+      font-size: 11px;
+    }
     padding-left: 2px;
     color: @dark-brown;
   }
   h1 {
+    @media only screen
+      and (min-device-width : 320px) 
+      and (max-device-width : 480px) {
+      font-size: 32px;
+    }
     color: @red;
   }
 }
@@ -1182,10 +1311,17 @@ header#main-header {
   .jcarousel-wrapper {
     position: relative;
     margin-left: 37px;
+    @media all and (max-width: 900px) {
+      margin-left: 0px!important;
+    }
     .jcarousel {
       position: relative;
       overflow: hidden;
       width: 900px;
+      @media all and (max-width: 900px) {
+        width: 299px;
+        margin: 0 auto;
+      }
       ul {
         width: 20000em;
         position: relative;
@@ -1229,6 +1365,9 @@ header#main-header {
     .jcarousel-control-prev {
       background: url(../images/icons/left-arrow.png);    
       left: -25px;
+      @media all and (max-width: 900px) {
+        left: 15px;
+      }
       top: 35%;
     }
     .jcarousel-control-next {
@@ -1632,6 +1771,11 @@ header#main-header {
     position: absolute;
     left: 28px;
     top: -5px;
+    @media all and (max-width: 900px) {
+      border: 0px!important;
+      height: 30px!important;
+      position: static;
+    }
   }
 
   a.password-reminder {
@@ -1878,6 +2022,9 @@ header#main-header {
 
 #food-philosophy, #our-food, #about-us {
   #page-title {
+    @media all and (max-width: 900px) {
+      margin-top: 17px;
+    }
     h2 {
       color: @dark-brown;
     }
@@ -1906,6 +2053,11 @@ header#main-header {
 //  Individual // All
 
 #individual, #all {
+  #page-title {
+    @media all and (max-width: 900px) {
+      margin: 10px 0;
+    }
+  }
   hr {
     border: none;
     border-bottom: 1px solid @brown;
@@ -1927,8 +2079,12 @@ header#main-header {
 
   p.price-info {
     .open-sans-italic;
-    padding-top: 25px;
-
+    padding-top: 25px; 
+    @media all and (max-width: 900px) {
+      padding-top: 0px;  
+      padding-left: 16px;
+    }
+    
     .price {
       .open-sans-semibold;
       font-size: 18px;      
@@ -2009,6 +2165,9 @@ header#main-header {
     }
 
   ul.side-menu {
+    @media all and (max-width: 900px) {
+      display: none;
+    }
     border-top: 1px solid @brown;
     margin-left: 15px;
     margin-top: 62px;
@@ -2074,6 +2233,12 @@ header#main-header {
     }
     label.grid {
       width: 56px;
+    }
+
+    .variations {
+      @media all and (max-width: 900px) {
+        margin-bottom: 10px;
+      }
     }
 
     .select-type {
@@ -2143,6 +2308,9 @@ header#main-header {
   }
   #sort-controls {
     right: -5px;
+    @media all and (max-width: 900px) {
+      right: 15px;
+    }
     top: 14px;
     position: absolute;
 
@@ -2151,6 +2319,9 @@ header#main-header {
     }
 
     a {
+      @media all and (max-width: 900px) {
+        display: none;
+      }
       width: 68px;
       height: 28px;
       display: inline-block;
@@ -2188,6 +2359,9 @@ header#main-header {
       &#view-by {
         width: 83px;
         background-position: 65px 11px;
+        @media all and (max-width: 900px) {
+          display: none;
+        }
       }
 
       &#order-by {
@@ -2202,6 +2376,10 @@ header#main-header {
         div {
           width: 96px;
           height: 100px;
+        }
+
+        @media all and (max-width: 900px) {
+          display: none;
         }
       }
       &:hover {
@@ -2238,6 +2416,16 @@ header#main-header {
       img {
         width: 220px;
         height: 171px;
+        @media all and (max-width: 900px) {
+          width: auto!important;
+          height: auto!important;
+        }
+      }
+    }
+
+    #product-content {
+      @media all and (max-width: 900px) {
+        padding-top: 15px;
       }
     }
   }
@@ -2257,7 +2445,8 @@ header#main-header {
 
       p.desc-2 {
         /*position: absolute;
-        top: 150px;*/
+        top: 123px;*/
+        /*bottom: 105px;*/
       }
 
       form.cart {
@@ -2328,12 +2517,26 @@ header#main-header {
 // SINGLE product
 
 #individual {
+  .summary {
+    h2 {
+      @media all and (max-width: 900px) {
+        padding: 20px 0;
+      }
+    }
+  }
   div.product {
     div.images {
       img {
         width: 320px;
         height: 249px;
+        @media all and (max-width: 900px) {
+          width: auto!important;
+          height: auto!important;
+        }
       }
+    }
+    .price-info {
+      padding-left: 0px;
     }
   }
 }
@@ -2555,6 +2758,11 @@ header#main-header {
 //  CART
 
 #cart {
+  .progress-indicator-container {
+    @media all and (max-width: 900px) {
+      display: none;
+    }
+  }
   ul.progress-indicator {
     border-bottom: 2px solid @red;
     position: relative;
@@ -2657,6 +2865,12 @@ header#main-header {
     display: none;
   }
 
+  .summary-container {
+    .woocommerce-message {
+      display: block;
+    }
+  }
+
   .cart-container {
     width: 96%;
     .cart-heading {
@@ -2686,6 +2900,11 @@ header#main-header {
         display: inline-block;
         position: relative;
         top: 37px;
+        @media all and (max-width: 900px) {
+          position: absolute;
+          right: 26px;
+          top: 20px;
+        }
       }
       a.remove {
         background: url(../images/icons/cross-icon.png) no-repeat;
@@ -2695,6 +2914,13 @@ header#main-header {
         position: absolute;
         top: -24px;
         left: 2px;
+      }
+      img {
+        @media all and (max-width: 900px) {
+          display: block;
+          margin: 30px auto;
+
+        }
       }
       h5 {
         font-size: 13px;
@@ -2708,6 +2934,10 @@ header#main-header {
         .open-sans-semibold;
         font-size: 13px;
         color: @dark-brown;
+        @media all and (max-width: 900px) {
+          text-align: center;
+          margin: 20px 0px;
+        }
       }
       .border {
         border-bottom: 1px solid @brown;
@@ -2854,6 +3084,9 @@ header#main-header {
     .delivery_date_container,.delivery_time_container,.collection_time_container,.consumption_time_container {
       label {
         padding: 0px;
+        @media all and (max-width: 900px) {
+          display: block;
+        }
       }
       div.dropdown {
         display: inline-block;
@@ -3188,6 +3421,10 @@ header#main-header {
         border: none;
         padding: 5px 14px;
         margin-right: 20px;
+        @media all and (max-width: 900px) {
+          margin-bottom: 20px;  
+        }
+        
 
         &:hover {
           background-color: @dark-brown-text;
@@ -3243,6 +3480,9 @@ header#main-header {
     textarea {
       padding-left: 12px;
       padding-top: 5px;
+      @media all and (max-width: 900px) {
+        width: 300px;
+      }
     }
   }
 
@@ -3367,6 +3607,11 @@ header#main-header {
   z-index: 99;
   padding: 31px 0 34px;
 
+  @media all and (max-width: 900px) {
+    padding-top: 30px;
+    padding-bottom: 34px;
+  }
+
   h3 {
     .open-sans-bold;
     font-size: 13px;
@@ -3376,6 +3621,7 @@ header#main-header {
   ul {
     position: relative;
     top: 6px;
+    margin-bottom: 20px;
     li {
       a {
         font-size: 11px;
@@ -3447,6 +3693,10 @@ header#main-header {
   }
 
   .align-left-3 {
+    @media all and (max-width: 900px) {
+      margin-left: 0px!important;
+      margin-bottom: 20px;
+    }
     margin-left: 45px;
   }
 
@@ -3589,6 +3839,20 @@ header#main-header {
   }
 }
 
+// Recipes
+
+#recipes {
+  h3 {
+    .auto-1-bold-lf;
+  }
+  ul {
+    li {
+      list-style-type: decimal;
+      margin-left: 17px;
+    }
+  }
+}
+
 
 
 //      _   _    ___ ____  _   _ ____    _____ ____ ___ _____ 
@@ -3610,7 +3874,7 @@ header#main-header {
 
 .breadcrumb-wrapper{
   //width: 183px;
-  width: 200px;
+  width: 230px;
 }
 
 // remove pretty photo / lightbox stuff.

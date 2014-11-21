@@ -613,7 +613,7 @@ if ( ! function_exists( 'woocommerce_get_product_thumbnail' ) ) {
 
 		if ( has_post_thumbnail() ) {
 			$url = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );
-			return '<img class="lazy" data-original="'.$url.'" alt="slider">';
+			return '<img class="lazy img-responsive" data-original="'.$url.'" alt="slider">';
 			// return get_the_post_thumbnail( $post->ID, $size );
 		}
 		elseif ( wc_placeholder_img_src() )

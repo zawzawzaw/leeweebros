@@ -1,7 +1,15 @@
-<?php 
+<?php
+if (!session_id()) session_start();
+
 if(!empty($_POST)):
-	if ( !is_user_logged_in() ) {  wp_redirect( home_url().'/my-account?cart' );  }
-endif; ?> 
+	if ( !is_user_logged_in() ):
+		$_SESSION['cart_redirection'] = "cart";
+		wp_redirect( home_url().'/my-account' );
+	endif;
+endif;
+
+if ( is_user_logged_in() ) $_SESSION['cart_redirection'] = "";
+?> 
 <?php get_header(); ?>
 	<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 		<div id="content-wrapper" class="align-left">
@@ -29,8 +37,8 @@ endif; ?>
 				<?php 
 				global $woocommerce;
 				if ( sizeof( $woocommerce->cart->cart_contents ) > 0 ): ?>
-				<div class="space50"></div>
-				<div class="space20"></div>
+				<div class="space50 hidden-xs hidden-sm"></div>
+				<div class="space20 hidden-xs hidden-sm"></div>
 				<?php endif; ?>
 				<?php the_content(); ?>
 			</div>

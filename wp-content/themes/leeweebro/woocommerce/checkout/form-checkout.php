@@ -95,8 +95,8 @@ $receiving_mode = json_decode(stripslashes($_POST['receiving_mode']), true);
 			<?php } ?>
 
 		</form>
-		<div class="col-md-2"><button class="button payment-mode-prev-btn">PREVIOUS</button></div>
-		<div class="col-md-2 col-md-offset-8"><button class="button payment-mode-next">NEXT</button></div>
+		<div class="col-xs-4 col-sm-4 col-md-2"><button class="button payment-mode-prev-btn">PREVIOUS</button></div>
+		<div class="col-xs-4 col-sm-4 col-md-2 col-md-offset-8"><button class="button payment-mode-next">NEXT</button></div>
 	</div>			
 </div>
 
@@ -132,8 +132,8 @@ $receiving_mode = json_decode(stripslashes($_POST['receiving_mode']), true);
 	</div>
 	<div class="space50"></div>
 	<div class="row">
-		<div class="col-md-1"><button class="button personal-payment-save">SAVE</button></div>
-		<div class="col-md-1"><button class="button personal-payment-cancel">CANCEL</button></div>
+		<div class="col-xs-4 col-sm-4 col-md-1"><button class="button personal-payment-save">SAVE</button></div>
+		<div class="col-xs-4 col-sm-4 col-md-1"><button class="button personal-payment-cancel">CANCEL</button></div>
 	</div>	
 </div>
 
@@ -191,8 +191,8 @@ $receiving_mode = json_decode(stripslashes($_POST['receiving_mode']), true);
 	</div>
 	<div class="space50"></div>
 	<div class="row">
-		<div class="col-md-1"><button class="button corporate-payment-save">SAVE</button></div>
-		<div class="col-md-1"><button class="button corporate-payment-cancel">CANCEL</button></div>
+		<div class="col-xs-4 col-sm-4 col-md-1"><button class="button corporate-payment-save">SAVE</button></div>
+		<div class="col-xs-4 col-sm-4 col-md-1"><button class="button corporate-payment-cancel">CANCEL</button></div>
 	</div>	
 </div>
 
