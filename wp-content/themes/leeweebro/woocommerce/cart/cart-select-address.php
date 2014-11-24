@@ -220,7 +220,7 @@ global $woocommerce;
 					</li>
 					<li>
 						<input type="radio" name="delivery_location" value="Public attractions or spaces" >
-						<label for="atm" class="radio-label"><span class="radiobtn"></span>Public attractions/spaces <span class="regular">(Sentosa, Gardens By the Bay, etc.)</span></label>
+						<label for="atm" class="radio-label"><span class="radiobtn"></span><span class="text">Public attractions/spaces <span class="regular">(Sentosa, Gardens By the Bay, etc.)</span></span></label>
 					</li>
 					<!-- <li>
 						<input type="radio" name="delivery_location" value="Public Spaces" >
@@ -298,8 +298,8 @@ global $woocommerce;
 		</div>
 		<div class="space50"></div>
 		<div class="row">
-			<div class="col-md-2"><button type="submit" class="button save_delivery_address">SAVE ADDRESS</button></div>
-			<div class="col-md-2"><button type="submit" class="button cancel_delivery_address">CANCEL</button></div>
+			<div class="col-xs-6 col-sm-6 col-md-2"><button type="submit" class="button save_delivery_address">SAVE ADDRESS</button></div>
+			<div class="col-xs-6 col-sm-6 col-md-2"><button type="submit" class="button cancel_delivery_address">CANCEL</button></div>
 		</div>		
 	</form>
 	<form name="login" id="billingaddress-form" method="post" action="" style="display:none;">
@@ -323,7 +323,7 @@ global $woocommerce;
 					</li>
 					<li>
 						<input type="radio" name="billing_location" value="Public attractions/spaces" >
-						<label for="atm" class="radio-label"><span class="radiobtn"></span>Public attractions/spaces <span class="regular">(Sentosa, Gardens By the Bay, etc.)</span></label>
+						<label for="atm" class="radio-label"><span class="radiobtn"></span><span class="text">Public attractions/spaces <span class="regular">(Sentosa, Gardens By the Bay, etc.)</span></span></label>
 					</li>
 					<!-- <li>
 						<input type="radio" name="billing_location" value="Public Spaces" >
@@ -400,8 +400,8 @@ global $woocommerce;
 		</div>
 		<div class="space50"></div>
 		<div class="row">
-			<div class="col-xs-4 col-sm-4 col-md-2"><button type="submit" class="button save_billing_address">SAVE ADDRESS</button></div>
-			<div class="col-xs-4 col-sm-4 col-md-2"><button type="submit" class="button cancel_billing_address">CANCEL</button></div>
+			<div class="col-xs-6 col-sm-6 col-md-2"><button type="submit" class="button save_billing_address">SAVE ADDRESS</button></div>
+			<div class="col-xs-6 col-sm-6 col-md-2"><button type="submit" class="button cancel_billing_address">CANCEL</button></div>
 		</div>		
 	</form>	
 </div>

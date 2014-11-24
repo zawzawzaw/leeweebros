@@ -54,11 +54,11 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 				do_action( 'woocommerce_review_order_after_cart_contents' );
 			?>
 			<div class="row">
-				<div class="col-md-2 col-md-offset-7">
+				<div class="col-xs-7 col-sm-7 col-md-2 col-md-offset-7">
 					<p class="sub-total-lbl"><?php _e( 'Total Products:', 'woocommerce' ); ?></p>
 					<p class="delivery-charge-lbl"><?php _e( 'Delivery Surcharge:', 'woocommerce' ); ?></p>
 				</div>
-				<div class="col-md-2 col-md-offset-1">
+				<div class="col-xs-5 col-sm-5 col-md-2 col-md-offset-1">
 					<p class="sub-total"><?php wc_cart_totals_subtotal_html(); ?></p>			
 					<?php foreach ( WC()->cart->get_fees() as $fee ) : ?>
 						<p class="delivery-charge"><?php wc_cart_totals_fee_html( $fee ); ?></p>
@@ -70,10 +70,10 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 			</div>
 			<div class="row">
 				<?php do_action( 'woocommerce_review_order_before_order_total' ); ?>
-				<div class="col-md-2 col-md-offset-7">
+				<div class="col-xs-7 col-sm-7 col-md-2 col-md-offset-7">
 					<p class="payable-total-lbl"><?php _e( 'Payable', 'woocommerce' ); ?></p>
 				</div>
-				<div class="col-md-2 col-md-offset-1">
+				<div class="col-xs-5 col-sm-5 col-md-2 col-md-offset-1">
 					<p class="payable-total"><?php wc_cart_totals_order_total_html(); ?></p>
 				</div>
 				<?php do_action( 'woocommerce_review_order_after_order_total' ); ?>

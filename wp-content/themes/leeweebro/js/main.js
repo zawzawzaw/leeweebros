@@ -679,13 +679,13 @@ jQuery( function( $ ) {
 			if(parseFloat(cartAmount) <= 100 && location == 'allotherarea') {
 
 				$('.error-deliver-sentosa').html('');
-				$('.error-deliver-otherarea').html('Minimum purchase of S$100 required for free delivery to this area.');
+				$('.error-deliver-otherarea').html('Minimum purchase of S$100 required for delivery to this area.');
 				error = true;
 
 			}else if(parseFloat(cartAmount) <= 120 && location == 'jurongsentoaarea') {
 
 				$('.error-deliver-otherarea').html('');
-				$('.error-deliver-sentosa').html('Minimum purchase of S$120 required for free delivery to this area.');
+				$('.error-deliver-sentosa').html('Minimum purchase of S$120 required for delivery to this area.');
 				error = true;
 
 			}else {
@@ -723,11 +723,11 @@ jQuery( function( $ ) {
 		});
 
 		function appendDeliveryTime(key) {
-			var delivery_time = ['<option value="06:00 am - 07:30 am">06:00 am - 07:30 am *</option><option value="06:30 am - 08:00 am">06:30 am - 08:00 am ^</option><option value="07:00 am - 08:30 am">07:00 am - 08:30 am ^</option><option value="07:30 am - 09:00 am">07:30 am - 09:00 am ^</option><option value="08:00 am - 09:30 am">08:00 am - 09:30 am</option><option value="08:30 am - 10:00 am">08:30 am - 10:00 am</option><option value="09:00 am - 10:30 am">09:00 am - 10:30 am</option><option value="09:30 am - 11:00 am">09:30 am - 11:00 am</option><option value="10:00 am - 11:30 am">10:00 am - 11:30 am</option><option value="10:30 am - 12:00 am">10:30 am - 12:00 am</option><option value="11:00 am - 12:30 am">11:00 am - 12:30 am</option><option value="11:30 am - 01:00 pm">11:30 am - 01:00 pm</option><option value="12:00 pm - 01:30 pm">12:00 pm - 01:30 pm</option><option value="12:30 pm - 02:00 pm">12:30 pm - 02:00 pm</option><option value="01:00 pm - 02:30 pm">01:00 pm - 02:30 pm</option><option value="01:30 pm - 03:00 pm">01:30 pm - 03:00 pm</option><option value="02:00 pm - 03:30 pm">02:00 pm - 03:30 pm</option><option value="02:30 pm - 04:00 pm">02:30 pm - 04:00 pm</option><option value="03:00 pm - 04:30 pm">03:00 pm - 04:30 pm</option><option value="03:30 pm - 05:00 pm">03:30 pm - 05:00 pm</option>', 
-			'<option value="06:00 am - 07:30 am">06:00 am - 07:30 am *</option><option value="06:30 am - 08:00 am">06:30 am - 08:00 am ^</option><option value="07:00 am - 08:30 am">07:00 am - 08:30 am ^</option><option value="07:30 am - 09:00 am">07:30 am - 09:00 am ^</option><option value="08:00 am - 09:30 am">08:00 am - 09:30 am</option><option value="08:30 am - 10:00 am">08:30 am - 10:00 am</option><option value="09:00 am - 10:30 am">09:00 am - 10:30 am</option><option value="09:30 am - 11:00 am">09:30 am - 11:00 am</option><option value="10:00 am - 11:30 am">10:00 am - 11:30 am</option><option value="10:30 am - 12:00 pm">10:30 am - 12:00 pm</option><option value="11:00 am - 12:30 pm">11:00 am - 12:30 pm</option><option value="11:30 am - 01:00 pm">11:30 am - 01:00 pm</option><option value="12:00 pm - 01:30 pm">12:00 pm - 01:30 pm</option><option value="12:30 pm - 02:00 pm">12:30 pm - 02:00 pm</option><option value="01:00 pm - 02:30 pm">01:00 pm - 02:30 pm</option><option value="01:30 pm - 03:00 pm">01:30 pm - 03:00 pm</option><option value="02:00 pm - 03:30 pm">02:00 pm - 03:30 pm</option><option value="02:30 pm - 04:00 pm">02:30 pm - 04:00 pm</option><option value="03:00 pm - 04:30 pm">03:00 pm - 04:30 pm</option><option value="03:30 pm - 05:00 pm">03:30 pm - 05:00 pm</option><option value="04:00 pm - 05:30 pm (Sat/PH only)">04:00 pm - 05:30 pm (Sat/PH only)</option><option value="04:30 pm - 06:00 pm (Sat/PH only)">04:30 pm - 06:00 pm (Sat/PH only)</option>'];
+			var delivery_time = ['<option value="06:00 am - 07:30 am">06:00 am - 07:30 am *</option><option value="06:30 am - 08:00 am">06:30 am - 08:00 am *</option><option value="08:00 am - 09:30 am">08:00 am - 09:30 am</option><option value="08:30 am - 10:00 am">08:30 am - 10:00 am</option><option value="09:00 am - 10:30 am">09:00 am - 10:30 am</option><option value="09:30 am - 11:00 am">09:30 am - 11:00 am</option><option value="10:00 am - 11:30 am">10:00 am - 11:30 am</option><option value="10:30 am - 12:00 am">10:30 am - 12:00 am</option><option value="11:00 am - 12:30 am">11:00 am - 12:30 am</option><option value="11:30 am - 01:00 pm">11:30 am - 01:00 pm</option><option value="12:00 pm - 01:30 pm">12:00 pm - 01:30 pm</option><option value="12:30 pm - 02:00 pm">12:30 pm - 02:00 pm</option><option value="01:00 pm - 02:30 pm">01:00 pm - 02:30 pm</option><option value="01:30 pm - 03:00 pm">01:30 pm - 03:00 pm</option><option value="02:00 pm - 03:30 pm">02:00 pm - 03:30 pm</option><option value="02:30 pm - 04:00 pm">02:30 pm - 04:00 pm</option><option value="03:00 pm - 04:30 pm">03:00 pm - 04:30 pm</option><option value="03:30 pm - 05:00 pm">03:30 pm - 05:00 pm</option>', 
+			'<option value="06:00 am - 07:30 am">06:00 am - 07:30 am *</option><option value="06:30 am - 08:00 am">06:30 am - 08:00 am *</option><option value="08:00 am - 09:30 am">08:00 am - 09:30 am</option><option value="08:30 am - 10:00 am">08:30 am - 10:00 am</option><option value="09:00 am - 10:30 am">09:00 am - 10:30 am</option><option value="09:30 am - 11:00 am">09:30 am - 11:00 am</option><option value="10:00 am - 11:30 am">10:00 am - 11:30 am</option><option value="10:30 am - 12:00 pm">10:30 am - 12:00 pm</option><option value="11:00 am - 12:30 pm">11:00 am - 12:30 pm</option><option value="11:30 am - 01:00 pm">11:30 am - 01:00 pm</option><option value="12:00 pm - 01:30 pm">12:00 pm - 01:30 pm</option><option value="12:30 pm - 02:00 pm">12:30 pm - 02:00 pm</option><option value="01:00 pm - 02:30 pm">01:00 pm - 02:30 pm</option><option value="01:30 pm - 03:00 pm">01:30 pm - 03:00 pm</option><option value="02:00 pm - 03:30 pm">02:00 pm - 03:30 pm</option><option value="02:30 pm - 04:00 pm">02:30 pm - 04:00 pm</option><option value="03:00 pm - 04:30 pm">03:00 pm - 04:30 pm</option><option value="03:30 pm - 05:00 pm">03:30 pm - 05:00 pm</option>'];
 
-			var certain_delivery_time_additional_30 = ['06:00 am - 07:30 am'];
-			var certain_delivery_time_additional_22 = ['06:30 am - 08:00 am','07:00 am - 08:30 am','07:30 am - 09:00 am','04:00 pm - 05:30 pm','04:30 pm to 06:00 pm'];
+			var certain_delivery_time_additional_30 = ['06:00 am - 07:30 am','06:30 am - 08:00 am'];
+			var certain_delivery_time_additional_22 = [];
 
 			$receivingModeDelivery.find('select[name="delivery_time"]').html('').append(delivery_time[key]).off('change').on('change', function(e){
 				
@@ -758,16 +758,51 @@ jQuery( function( $ ) {
 
 			if($(this).val()=="allotherarea") {
 				appendDeliveryTime(0);
+				$('.error-deliver-sentosa').html('');
 			}else {
 				appendDeliveryTime(1);
+				$('.error-deliver-sentosa').html('Delivery surcharge of $8 will be applied for this area.');
 			}
 
+		});
+
+		$('#delivery_date_month').on('change', function(e){
+			var month = $(this).val();
+			var day = $("#delivery_date_day").val();
+
+			if((day == 25 && month == 12) || (day == 24 && month == 12) || (day == 01 && month == 01) || (day == 31 && month == 12)) {
+
+				$('.error-delivery-date').html('Delivery surcharge of $20.00 will be applied for this date.');
+
+			}else {
+				$('.error-delivery-date').html('');				
+			}
+		});
+
+		$('#delivery_date_day').on('change', function(e){
+			var month = $("#delivery_date_month").val();
+			var day = $(this).val();
+
+			if((day == 25 && month == 12) || (day == 24 && month == 12) || (day == 01 && month == 01) || (day == 31 && month == 12)) {
+
+				$('.error-delivery-date').html('Delivery surcharge of $20.00 will be applied for this date.');
+
+			}else {
+				$('.error-delivery-date').html('');				
+			}
 		});
 
 		$('#delivery_date').datepicker({
 			minDate: 2,
 			onSelect: function(dateText) {
 				var pieces = dateText.split("/");
+
+				if((pieces[1] == 25 && pieces[0] == 12) || (pieces[1] == 24 && pieces[0] == 12) || (pieces[1] == 01 && pieces[0] == 01) || (pieces[1] == 31 && pieces[0] == 12)) {
+					$('.error-delivery-date').html('Delivery surcharge of $20.00 will be applied for this date.');
+				}else {
+					$('.error-delivery-date').html('');				
+				}
+
 		        $("#delivery_date_month").val(pieces[0]);
 		        $("#delivery_date_day").val(pieces[1]);
 		        $("#delivery_date_year").val(pieces[2]);
@@ -1518,13 +1553,13 @@ jQuery( function( $ ) {
 		// console.log(view)
 
 		if( !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-		 	if(view=='listview') {
+		 // 	if(view=='listview') {
+			// 	$('#viewby li#listview').trigger('click');
+			// }
+			// else {
 				$('#viewby li#listview').trigger('click');
-			}
-			else {
-				$('#viewby li#gridview').trigger('click');
 				toggleView();
-			}
+			// }
 		}
 
 		$('#viewby li').on('click', function(e){

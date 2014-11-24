@@ -125,16 +125,16 @@ add_action( 'woocommerce_after_shop_loop_custom', 'woocommerce_result_count', 20
 
 if ( ! function_exists( 'woocommerce_template_loop_short_description' ) ) {
 
-	/**
-	 * Get the product price for the loop.
-	 *
-	 * @access public
-	 * @subpackage	Loop
-	 * @return void
-	 */
-	function woocommerce_template_loop_short_description() {
-		wc_get_template( 'loop/short-description.php' );
-	}
+  /**
+   * Get the product price for the loop.
+   *
+   * @access public
+   * @subpackage  Loop
+   * @return void
+   */
+  function woocommerce_template_loop_short_description() {
+    wc_get_template( 'loop/short-description.php' );
+  }
 }
 
 // for category page variable
@@ -159,47 +159,47 @@ add_filter( 'woocommerce_get_catalog_ordering_args', 'custom_woocommerce_get_cat
 function custom_woocommerce_get_catalog_ordering_args( $args ) {
   $orderby_value = isset( $_GET['orderby'] ) ? woocommerce_clean( $_GET['orderby'] ) : apply_filters( 'woocommerce_default_catalog_orderby', get_option( 'woocommerce_default_catalog_orderby' ) );
  
-	if ( 'name_asc' == $orderby_value ) {
-		$args['orderby'] = 'title';
-		$args['order'] = 'ASC';
-		$args['meta_key'] = '';
-	}else if( 'name_desc' == $orderby_value ) {
-		$args['orderby'] = 'title';
-		$args['order'] = 'DESC';
-		$args['meta_key'] = '';
-	}else if( 'in_stock_first' == $orderby_value ) {
-		$args['orderby'] = '_stock_status';
-		$args['order'] = 'ASC';
-		$args['meta_key'] = '_stock_status';
-		$args['meta_value'] = 'instock';
-		
-	}
+  if ( 'name_asc' == $orderby_value ) {
+    $args['orderby'] = 'title';
+    $args['order'] = 'ASC';
+    $args['meta_key'] = '';
+  }else if( 'name_desc' == $orderby_value ) {
+    $args['orderby'] = 'title';
+    $args['order'] = 'DESC';
+    $args['meta_key'] = '';
+  }else if( 'in_stock_first' == $orderby_value ) {
+    $args['orderby'] = '_stock_status';
+    $args['order'] = 'ASC';
+    $args['meta_key'] = '_stock_status';
+    $args['meta_value'] = 'instock';
+    
+  }
  
-	return $args;
+  return $args;
 }
  
 add_filter( 'woocommerce_default_catalog_orderby_options', 'custom_woocommerce_catalog_orderby_name_asc' );
 add_filter( 'woocommerce_catalog_orderby', 'custom_woocommerce_catalog_orderby_name_asc' );
  
 function custom_woocommerce_catalog_orderby_name_asc( $sortby ) {
-	$sortby['name_asc'] = 'Name (A - Z)';
-	return $sortby;
+  $sortby['name_asc'] = 'Name (A - Z)';
+  return $sortby;
 }
 
 // add_filter( 'woocommerce_default_catalog_orderby_options', 'custom_woocommerce_catalog_orderby_name_desc' );
 // add_filter( 'woocommerce_catalog_orderby', 'custom_woocommerce_catalog_orderby_name_desc' );
  
 // function custom_woocommerce_catalog_orderby_name_desc( $sortby ) {
-// 	$sortby['name_desc'] = 'Name (Z - A)';
-// 	return $sortby;
+//  $sortby['name_desc'] = 'Name (Z - A)';
+//  return $sortby;
 // }
 
 add_filter( 'woocommerce_default_catalog_orderby_options', 'custom_woocommerce_catalog_orderby_in_stock_asc' );
 add_filter( 'woocommerce_catalog_orderby', 'custom_woocommerce_catalog_orderby_in_stock_asc' );
  
 function custom_woocommerce_catalog_orderby_in_stock_asc( $sortby ) {
-	$sortby['in_stock_first'] = 'In-stock first';
-	return $sortby;
+  $sortby['in_stock_first'] = 'In-stock first';
+  return $sortby;
 }
 
 // now we set our cookie if we need to
@@ -246,19 +246,19 @@ wp_enqueue_script( 'main', get_bloginfo( 'stylesheet_directory' ). '/js/main.js'
 // Add the code below to your theme's functions.php file to add a confirm password field on the register form under My Accounts.
 add_filter('woocommerce_registration_errors', 'registration_errors_validation', 10, 3);
 function registration_errors_validation($reg_errors, $sanitized_user_login, $user_email) {
-	global $woocommerce;
-	$error = new WP_Error();
-	extract( $_POST );
+  global $woocommerce;
+  $error = new WP_Error();
+  extract( $_POST );
  
-	if ( empty($first_name) ) {
-		// $error->add('registration-error', __( 'Please enter your first name.', 'woocommerce' ));
-		return new WP_Error( 'registration-error', __( 'Please enter your first name.', 'woocommerce' ) );
-	}
-	if( empty($last_name) ) {
-		return new WP_Error( 'registration-error', __( 'Please enter your last name.', 'woocommerce' ) );	
-	}
+  if ( empty($first_name) ) {
+    // $error->add('registration-error', __( 'Please enter your first name.', 'woocommerce' ));
+    return new WP_Error( 'registration-error', __( 'Please enter your first name.', 'woocommerce' ) );
+  }
+  if( empty($last_name) ) {
+    return new WP_Error( 'registration-error', __( 'Please enter your last name.', 'woocommerce' ) ); 
+  }
 
-	return $reg_errors;
+  return $reg_errors;
 }
 
 add_action( 'user_register', 'myplugin_registration_save', 10, 1 );
@@ -270,7 +270,7 @@ function myplugin_registration_save( $user_id ) {
       update_user_meta($user_id, 'address_book_1_first_name', $_POST['first_name']);
     }
     if( isset( $_POST['last_name'] ) ) {
-    	update_user_meta($user_id, 'last_name', $_POST['last_name']);
+      update_user_meta($user_id, 'last_name', $_POST['last_name']);
       update_user_meta($user_id, 'address_book_1_last_name', $_POST['last_name']);
     }
 
@@ -470,21 +470,91 @@ function woocommerce_custom_surcharge() {
   // if ( is_admin() && ! defined( 'DOING_AJAX' ) )
   //   return;
 
-  if( isset($_POST['surcharge']) && !empty($_POST['surcharge']) ) $surcharge = $_POST['surcharge'];
+  // print_r($_POST);
+  $certain_delivery_time_additional_30 = array('06:00 am - 07:30 am','06:30 am - 08:00 am');
+  $certain_delivery_date_day_additional_20 = array(24, 25, 31, 01); //xmas, newyear and their eves
+  $certain_delivery_post_codes_8 = array(01, 02, 03, 04, 05, 06, 07, 08, 17, 18, 19, 22, 23, 24, 25, 26, 27); //xmas, newyear and their eves
+  $surcharge = 0;
+
+  if( isset($_POST['surcharge']) || $_POST['delivery']=='jurongsentoaarea' || $_POST['delivery_date_month'] == 12 ) {
+    // $surcharge = $_POST['surcharge'];
+    $delivery_time = $_POST['delivery_time'];
+    $delivery_date_day = $_POST['delivery_date_day'];
+    $delivery_date_month = $_POST['delivery_date_month'];
+    $delivery_area = $_POST['delivery'];
+
+    if (in_array($delivery_time, $certain_delivery_time_additional_30)) {
+      $surcharge += 30;
+    }
+
+    if (($delivery_date_month==12 || $delivery_date_month==01) && in_array($delivery_date_day, $certain_delivery_date_day_additional_20)) {
+      $surcharge += 20;
+    }
+
+    if ($delivery_area == 'jurongsentoaarea') {
+      $surcharge += 8;
+    }
+
+  }
   else if(isset($_POST['receiving_mode'])) {
     
     $receiving_mode = json_decode(stripslashes($_POST['receiving_mode']), true);
-    $surcharge = $receiving_mode['surcharge'];
+    $shipping_address = json_decode(stripslashes($_POST['shipping_address']), true);
+
+    // print_r($_POST);
+
+    $delivery_time = $receiving_mode['delivery_time'];
+    $delivery_date_day = $receiving_mode['delivery_date_day'];
+    $delivery_date_month = $receiving_mode['delivery_date_month'];
+    $delivery_post_code = substr($shipping_address['postcode'],0,2);
+    // echo '<br>' . $delivery_post_code . '<br>';
+
+    $delivery_area = $receiving_mode['delivery'];
+
+    if (in_array($delivery_time, $certain_delivery_time_additional_30)) {
+      $surcharge += 30;
+    }
+
+    if (($delivery_date_month==12 || $delivery_date_month==01) && in_array($delivery_date_day, $certain_delivery_date_day_additional_20)) {
+      $surcharge += 20;
+    }
+
+    if ($delivery_area == 'jurongsentoaarea' || in_array($delivery_post_code, $certain_delivery_post_codes_8)) {
+      $surcharge += 8;
+    }
 
   }else if(isset($_POST['post_data'])) {
     
     $post_data = urldecode($_POST['post_data']);
 
     parse_str($post_data, $post_data_variables);
-    $surcharge = $post_data_variables['surcharge'];
-  } 
+    // $surcharge = $post_data_variables['surcharge'];
 
-  $woocommerce->cart->add_fee( 'Surcharge', $surcharge, true, 'standard' );
+    // print_r($post_data_variables);
+
+    $delivery_time = $post_data_variables['delivery_time'];
+    $delivery_date_day = $post_data_variables['delivery_date_day'];
+    $delivery_date_month = $post_data_variables['delivery_date_month'];
+    $delivery_post_code = substr($post_data_variables['shipping_postcode'],0,2);
+    $delivery_area = $post_data_variables['delivery'];
+
+    if (in_array($delivery_time, $certain_delivery_time_additional_30)) {
+      $surcharge += 30;
+    }
+
+    if (($delivery_date_month==12 || $delivery_date_month==01) && in_array($delivery_date_day, $certain_delivery_date_day_additional_20)) {
+      $surcharge += 20;
+    }
+
+    if ($delivery_area == 'jurongsentoaarea' || in_array($delivery_post_code, $certain_delivery_post_codes_8)) {
+      $surcharge += 8;
+    }    
+
+  }
+
+  // echo '<br>'. $surcharge . 'here';
+
+  $woocommerce->cart->add_fee( 'Surcharge', $surcharge, false, 'standard' );
 
 }
 

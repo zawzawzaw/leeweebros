@@ -113,7 +113,7 @@ $receiving_mode = json_decode(stripslashes($_POST['receiving_mode']), true);
 				<?php endif; ?>
 				<li>
 					<input type="radio" name="personal_payment_method" value="Advance payment by internet funds transfer/ATM">
-					<label for="online" class="radio-label"><span class="radiobtn"></span>Advance payment by internet funds transfer/ATM</label>
+					<label for="online" class="radio-label"><span class="radiobtn"></span><span class="text">Advance payment by internet funds transfer/ATM</span></label>
 				</li>
 				<li>
 					<input type="radio" name="personal_payment_method" value="Advance payment by cash at outlets">
@@ -150,7 +150,7 @@ $receiving_mode = json_decode(stripslashes($_POST['receiving_mode']), true);
 				<?php endif; ?>
 				<li>
 					<input type="radio" name="corporate_payment_method" value="Advance payment by internet fund transfer/ATM" >
-					<label for="advance" class="radio-label"><span class="radiobtn"></span>Advance payment by internet fund transfer/ATM</label>
+					<label for="advance" class="radio-label"><span class="radiobtn"></span><span class="text">Advance payment by internet fund transfer/ATM</span></label>
 				</li>
 				<li>
 					<input type="radio" name="corporate_payment_method" value="Advance payment by cash at outlets" >
@@ -178,12 +178,12 @@ $receiving_mode = json_decode(stripslashes($_POST['receiving_mode']), true);
 				</li>
 				<li>
 					<input type="radio" name="corporate_payment_method" value="AGD E-Invoice">
-					<label for="online" class="radio-label"><span class="radiobtn"></span>AGD E-Invoice - Please indicate event name/code:</label>
+					<label for="online" class="radio-label"><span class="radiobtn"></span><span class="text">AGD E-Invoice - Please indicate event name/code:</span></label>
 					<input type="text" name="einvoice">
 				</li>
 				<li>
 					<input type="radio" name="corporate_payment_method" value="Interbank Giro">
-					<label for="online" class="radio-label"><span class="radiobtn"></span>Interbank Giro - Please indicate purchase order no:</label>
+					<label for="online" class="radio-label"><span class="radiobtn"></span><span class="text">Interbank Giro - Please indicate purchase order no:</span></label>
 					<input type="text" name="interbankgiro">
 				</li>
 			</ul>
@@ -295,15 +295,15 @@ $receiving_mode = json_decode(stripslashes($_POST['receiving_mode']), true);
 	<div class="space30"></div>
 	<div class="row terms-container">
 		<div class="col-md-6">
-			<input type="checkbox" name="tnc"><label class="checkbox-label"><span></span>I agree to the terms of service and adhere to them unconditionally.</label><br><a href="#" class="tnc">(Download T&C)</a>
+			<input type="checkbox" name="tnc"><label class="checkbox-label"><span></span><p>I agree to the terms of service and adhere to them unconditionally.</p></label><br><a href="#" class="tnc">(Download T&C)</a>
 		</div>
 	</div>
 	<div class="space30"></div>
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-xs-4 col-sm-4 col-md-4">
 			<button class="button submission-prev-btn">PREVIOUS</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6">
+		<div class="col-xs-4 col-sm-4 col-md-2 col-md-offset-6">
 			<button id="confirm-order" class="button continue">CONFIRM ORDER</button>
 		</div>
 	</div>

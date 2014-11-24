@@ -271,7 +271,7 @@ $total_amount = $woocommerce->cart->total;
 					<input type="hidden" name="cart-amount" class="cart-amount" value="<?php echo $total_amount; ?>">
 					<li>
 						<input type="radio" name="delivery" class="left-align" value="allotherarea" checked>
-						<label for="online" class="radio-label"><span class="radiobtn"></span>All areas excluding Jurong Island & Sentosa</label>
+						<label for="online" class="radio-label"><span class="radiobtn"></span><span class="text">All areas excluding Jurong Island & Sentosa</span></label>
 						<div class="error-msg error-deliver-otherarea"></div>
 					</li>
 					<li>
@@ -374,7 +374,7 @@ $total_amount = $woocommerce->cart->total;
 				<p class="charges-info">Note: Surcharge is applicable for delivery at selected time range.</p>
 				<ul class="charges-info">
 					<li><p>* Additional S$30 surcharge applies.</p></li>
-					<li><p>^ Additional S$22 surcharge applies.</p></li>
+					<!-- <li><p>^ Additional S$22 surcharge applies.</p></li> -->
 				</ul>
 			</div>
 		</div>
