@@ -11,7 +11,8 @@
 				'public' => true,
 				'label' => "$upper",
 				'labels' => array('add_new_item' => "Add New $upper"), #learn more at codex
-				'supports' => array('title','editor','comments'), #learn more about thumbnail
+				'hierarchical' => false,
+				'supports' => array('title','editor','comments', 'page-attributes'), #learn more about thumbnail
 				'taxonomies' => $category
 			), $args);
 
@@ -72,7 +73,9 @@
 		# validation field #
 		wp_nonce_field(__FILE__,'jw_nonce');
 	?>
-		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+		<label for="sort">Sort:</label>
+		<input type="text" name="sort" id="sort" class="widefat" value="<?php echo $data['sort']; ?>" />
+		<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
 		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 		<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
 		<script>
@@ -95,7 +98,7 @@
 		<br>
 		<label for="expiry_date">Expiry Date:</label>
 		<input type="text" name="expiry_date" id="expiry_date" class="datepicker widefat" value="<?php echo $data['expiry_date']; ?>" />
-		<br>
+		<br> -->
 	<?php
 	}
 
@@ -174,6 +177,9 @@
 	        update_post_meta($post->ID, 'usage_limit', $usage_limit);
 	        update_post_meta($post->ID, 'expiry_date', $expiry_date);
 
+	      }else if($post_type=='slider') {
+	      	$sort = sanitize_text_field($_POST['sort']);
+			update_post_meta($post->ID, 'sort', $sort);
 	      }
 
 	    }

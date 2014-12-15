@@ -54,14 +54,24 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 				do_action( 'woocommerce_review_order_after_cart_contents' );
 			?>
 			<div class="row">
-				<div class="col-xs-7 col-sm-7 col-md-2 col-md-offset-7">
+				<div class="col-xs-7 col-sm-7 col-md-4 col-md-offset-5">
 					<p class="sub-total-lbl"><?php _e( 'Total Products:', 'woocommerce' ); ?></p>
+					<?php foreach ( WC()->cart->get_fees() as $fee ) : ?>
 					<p class="delivery-charge-lbl"><?php _e( 'Delivery Surcharge:', 'woocommerce' ); ?></p>
+					<?php endforeach; ?>
+					<?php foreach ( WC()->cart->get_coupons( 'order' ) as $code => $coupon ) : ?>
+						<?php if(!empty($code)): ?>
+							<p class="delivery-charge-lbl"><?php _e( 'Coupon Discount ('.$code.'):', 'woocommerce' ); ?></p>
+						<?php endif; ?>
+					<?php endforeach; ?>
 				</div>
 				<div class="col-xs-5 col-sm-5 col-md-2 col-md-offset-1">
 					<p class="sub-total"><?php wc_cart_totals_subtotal_html(); ?></p>			
 					<?php foreach ( WC()->cart->get_fees() as $fee ) : ?>
 						<p class="delivery-charge"><?php wc_cart_totals_fee_html( $fee ); ?></p>
+					<?php endforeach; ?>
+					<?php foreach ( WC()->cart->get_coupons( 'order' ) as $code => $coupon ) : ?>
+						<p style="margin-left: -4px;"><?php wc_cart_totals_coupon_html( $coupon ); ?></p>
 					<?php endforeach; ?>
 				</div>
 			</div>

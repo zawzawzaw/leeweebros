@@ -1,4 +1,6 @@
-<?php 
+<?php
+ini_set('display_errors','off');
+
 /********************************************************************************************************/
 /* CONSTANTS */
 /********************************************************************************************************/
@@ -7,6 +9,7 @@ define("THEMEROOT", get_stylesheet_directory_uri());
 define("IMAGES", THEMEROOT."/images");
 define("JS", THEMEROOT."/js");
 define("LIB", THEMEROOT."/lib");
+define("CSS", THEMEROOT."/css");
 
 /********************************************************************************************************/
 /* MENUS */
@@ -48,6 +51,7 @@ require 'my-custom-posts.php';
 add_post_type('slider', array(
     'supports' => array('title','aside','thumbnail','editor')
 ));
+add_my_meta_box('Slider', 'slider');
 
 add_taxonomy('place', 'slider', array(
     'labels' => array('add_new_item' => 'Add New Page')
@@ -231,6 +235,8 @@ wp_enqueue_script( 'lazy', get_bloginfo( 'stylesheet_directory' ). '/js/jquery.l
 wp_enqueue_script( 'bootstrap', get_bloginfo( 'stylesheet_directory' ). '/lib/bootstrap/dist/js/bootstrap.min.js', array( 'jquery' ), false, true );
 wp_enqueue_script( 'jcarousel', get_bloginfo( 'stylesheet_directory' ). '/lib/jquery.jcarousel.min.js', array( 'jquery' ), false, true );
 wp_enqueue_script( 'validator', get_bloginfo( 'stylesheet_directory' ). '/lib/jquery.validate.min.js', array( 'jquery' ), false, true );
+wp_enqueue_script( 'mousewheel', get_bloginfo( 'stylesheet_directory' ). '/lib/jquery.mousewheel.js', array( 'jquery' ), false, true );
+wp_enqueue_script( 'jscrollpane', get_bloginfo( 'stylesheet_directory' ). '/lib/jquery.jscrollpane.min.js', array( 'jquery' ), false, true );
 wp_enqueue_script( 'jquerymobile', get_bloginfo( 'stylesheet_directory' ). '/js/jquery.mobile.custom.min.js', array( 'jquery' ), false, true );
 wp_enqueue_script( 'googlemap', '//maps.googleapis.com/maps/api/js?v=3.exp', array( 'jquery' ), false, true );
 // wp_enqueue_script( 'additionalvalidator', get_bloginfo( 'stylesheet_directory' ). '/lib/additional-methods.min.js', array( 'jquery' ), false, true );
@@ -455,6 +461,8 @@ add_action( 'woocommerce_checkout_update_order_meta', 'my_custom_checkout_field_
  
 function my_custom_checkout_field_update_order_meta( $order_id ) {
     if(isset($_POST)) {
+      print_r($_POST);
+      // exit();
        foreach ($_POST as $key => $value) {
         $post_key = '_'.$key;
 
@@ -484,7 +492,7 @@ function woocommerce_custom_surcharge() {
     $delivery_area = $_POST['delivery'];
 
     if (in_array($delivery_time, $certain_delivery_time_additional_30)) {
-      $surcharge += 30;
+      $surcharge += 30;      
     }
 
     if (($delivery_date_month==12 || $delivery_date_month==01) && in_array($delivery_date_day, $certain_delivery_date_day_additional_20)) {
@@ -493,7 +501,10 @@ function woocommerce_custom_surcharge() {
 
     if ($delivery_area == 'jurongsentoaarea') {
       $surcharge += 8;
+      // echo 'adding 8 first';
     }
+
+    // echo $surcharge . ' first';
 
   }
   else if(isset($_POST['receiving_mode'])) {
@@ -501,27 +512,30 @@ function woocommerce_custom_surcharge() {
     $receiving_mode = json_decode(stripslashes($_POST['receiving_mode']), true);
     $shipping_address = json_decode(stripslashes($_POST['shipping_address']), true);
 
-    // print_r($_POST);
+    if(empty($receiving_mode['collection_area'])) {
+       $delivery_time = $receiving_mode['delivery_time'];
+      $delivery_date_day = $receiving_mode['delivery_date_day'];
+      $delivery_date_month = $receiving_mode['delivery_date_month'];
+      $delivery_post_code = substr($shipping_address['postcode'],0,2);
+      // echo '<br>' . $delivery_post_code . '<br>';
 
-    $delivery_time = $receiving_mode['delivery_time'];
-    $delivery_date_day = $receiving_mode['delivery_date_day'];
-    $delivery_date_month = $receiving_mode['delivery_date_month'];
-    $delivery_post_code = substr($shipping_address['postcode'],0,2);
-    // echo '<br>' . $delivery_post_code . '<br>';
+      $delivery_area = $receiving_mode['delivery'];
 
-    $delivery_area = $receiving_mode['delivery'];
+      if (in_array($delivery_time, $certain_delivery_time_additional_30)) {
+        $surcharge += 30;
+      }
 
-    if (in_array($delivery_time, $certain_delivery_time_additional_30)) {
-      $surcharge += 30;
+      if (($delivery_date_month==12 || $delivery_date_month==01) && in_array($delivery_date_day, $certain_delivery_date_day_additional_20)) {
+        $surcharge += 20;
+      }
+
+      if ($delivery_area == 'jurongsentoaarea' || in_array($delivery_post_code, $certain_delivery_post_codes_8)) {
+        $surcharge += 8;
+        // echo 'adding 8 second';
+      }
     }
 
-    if (($delivery_date_month==12 || $delivery_date_month==01) && in_array($delivery_date_day, $certain_delivery_date_day_additional_20)) {
-      $surcharge += 20;
-    }
-
-    if ($delivery_area == 'jurongsentoaarea' || in_array($delivery_post_code, $certain_delivery_post_codes_8)) {
-      $surcharge += 8;
-    }
+    // echo $surcharge . ' second';
 
   }else if(isset($_POST['post_data'])) {
     
@@ -532,30 +546,36 @@ function woocommerce_custom_surcharge() {
 
     // print_r($post_data_variables);
 
-    $delivery_time = $post_data_variables['delivery_time'];
-    $delivery_date_day = $post_data_variables['delivery_date_day'];
-    $delivery_date_month = $post_data_variables['delivery_date_month'];
-    $delivery_post_code = substr($post_data_variables['shipping_postcode'],0,2);
-    $delivery_area = $post_data_variables['delivery'];
+    if(empty($post_data_variables['collection_area'])) {
 
-    if (in_array($delivery_time, $certain_delivery_time_additional_30)) {
-      $surcharge += 30;
+      $delivery_time = $post_data_variables['delivery_time'];
+      $delivery_date_day = $post_data_variables['delivery_date_day'];
+      $delivery_date_month = $post_data_variables['delivery_date_month'];
+      $delivery_post_code = substr($post_data_variables['shipping_postcode'],0,2);
+      $delivery_area = $post_data_variables['delivery'];
+
+      if (in_array($delivery_time, $certain_delivery_time_additional_30)) {
+        $surcharge += 30;
+      }
+
+      if (($delivery_date_month==12 || $delivery_date_month==01) && in_array($delivery_date_day, $certain_delivery_date_day_additional_20)) {
+        $surcharge += 20;
+      }
+
+      if ($delivery_area == 'jurongsentoaarea' || in_array($delivery_post_code, $certain_delivery_post_codes_8)) {
+        $surcharge += 8;
+        // echo 'adding 8 third';
+      }
     }
 
-    if (($delivery_date_month==12 || $delivery_date_month==01) && in_array($delivery_date_day, $certain_delivery_date_day_additional_20)) {
-      $surcharge += 20;
-    }
-
-    if ($delivery_area == 'jurongsentoaarea' || in_array($delivery_post_code, $certain_delivery_post_codes_8)) {
-      $surcharge += 8;
-    }    
-
+    // echo $surcharge . ' third';
   }
-
-  // echo '<br>'. $surcharge . 'here';
 
   $woocommerce->cart->add_fee( 'Surcharge', $surcharge, false, 'standard' );
 
+  // $woocommerce->cart->calculate_fees();
+  // print_r($woocommerce->cart->get_fees());
+  // echo $surcharge;
 }
 
 // alter the subscriptions error

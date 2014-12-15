@@ -1873,6 +1873,7 @@ class WC_Cart {
 		 */
 		public function get_fees() {
 			return array_filter( (array) $this->fees );
+			// return $this->fees;
 		}
 
 		/**

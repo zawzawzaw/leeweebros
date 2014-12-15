@@ -146,7 +146,7 @@ global $woocommerce;
 				<div class="space20"></div>
 
 				<div class="row">
-					<div class="col-md-2">
+					<div class="col-md-4">
 						<h4></h4>
 						<p class="billing-address">
 							<span class="name"></span><br>
@@ -158,7 +158,7 @@ global $woocommerce;
 						</p>
 						<a href="#" class="update"></a>
 					</div>
-					<div class="col-md-2 align-left-3">
+					<div class="col-md-4 align-left-3">
 						<h4></h4>
 						<p class="shipping-address">
 							<span class="name"></span><br>
@@ -177,9 +177,13 @@ global $woocommerce;
 				<div class="space20"></div>
 				
 				<form id="submitcheckout" action="<?php echo esc_url( $woocommerce->cart->get_checkout_url() ); ?>" method="post">
+					<?php 
+						$formdata = $_POST;
+						// unset($formdata['surcharge']);
+					?>
 					<input type="hidden" name="billing_address" id="billing_address_hidden" class="required" />
 					<input type="hidden" name="shipping_address" id="shipping_address_hidden" class="required" />
-					<input type="hidden" name="receiving_mode" value="<?php echo htmlspecialchars(json_encode($_POST)); ?>" class="required" />
+					<input type="hidden" name="receiving_mode" value="<?php echo htmlspecialchars(json_encode($formdata)); ?>" class="required" />
 					<textarea name="special_instruction" id="special_instruction" cols="80" rows="10" placeholder="Special Delivery Instruction"></textarea>
 
 					<?php do_action( 'woocommerce_proceed_to_checkout' ); ?>
@@ -284,7 +288,7 @@ global $woocommerce;
 
 				<div class="space10"></div>
 
-				<label for="telephone" class="">
+				<label for="telephone" class="asterisk">
 					<input type="text" name="phone" class="small-input" placeholder="Telephone">
 				</label>
 				<label for="mobile" class="asterisk">
@@ -387,7 +391,7 @@ global $woocommerce;
 
 				<div class="space10"></div>
 
-				<label for="telephone" class="">
+				<label for="telephone" class="asterisk">
 					<input type="text" name="phone" class="small-input" placeholder="Telephone">
 				</label>
 				<label for="mobile" class="asterisk">

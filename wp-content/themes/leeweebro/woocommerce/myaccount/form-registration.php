@@ -89,7 +89,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<div class="dropdown">
 					<select name="year">
 						<option value="" selected>YYYY</option>
-						<?php for($i=1920; $i<=2000; $i++): ?>
+						<?php for($i=1920; $i<=2014; $i++): ?>
 							<option value="<?php echo $i; ?>" <?php echo ($i==1950) ? 'checked' : ''; ?>><?php echo $i; ?></option>
 						<?php endfor; ?>
 					</select>

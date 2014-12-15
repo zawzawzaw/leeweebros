@@ -764,6 +764,14 @@ class WC_Form_Handler {
 						$redirect = esc_url( get_permalink( wc_get_page_id( 'myaccount' ) ) );
 					}
 
+					$user_registered = strtotime($user->data->user_registered);
+
+					if($user_registered < new DateTime) {
+						$redirect .= '?update=yes';
+					}else {
+						$redirect .= '?update=yes';
+					}
+
 					// Feedback
 					wc_add_notice( sprintf( __( 'You are now logged in as <strong>%s</strong>', 'woocommerce' ), $user->display_name ) );
 

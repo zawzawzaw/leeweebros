@@ -83,17 +83,39 @@ $header_content_h3 = "
 		<?php echo $order->email_order_items_table( $order->is_download_permitted(), true, ( $order->status=='processing' ) ? true : false ); ?>
 	</tbody>
 	<tfoot>
+		<?php foreach ( WC()->cart->get_fees() as $fee ) : ?>
+			<p><?php wc_cart_totals_fee_html( $fee ); ?></p>
+		<?php endforeach; ?>
 		<?php
+			global $woocommerce;
+			print_r($woocommerce->cart->get_fees());
 			if ( $totals = $order->get_order_item_totals() ) {
 				$i = 0;
-				foreach ( $totals as $total ) {
+				foreach ( $totals as $key => $total ) {
 					$i++;
-					?><tr>
-						<th scope="row" colspan="2" style="text-align:left; border: none; <?php if ( $i == 1 ) echo 'border-top-width: 4px;'; ?>"><?php echo $total['label']; ?></th>
-						<td style="text-align:left; border: none; <?php if ( $i == 1 ) echo 'border-top-width: 4px;'; ?>"><?php echo $total['value']; ?></td>
-					</tr><?php
+					$new_totals[$key] = $total;
+					if(strpos($key,'fee') !== false) {
+						if($total['value']!='$0.00') {
+							unset($new_totals['shipping']);	
+						}
+					}
+				}
+				
+				$a = 0;
+				foreach ($new_totals as $key => $new_total) {
+					$a++;
+				?>
+					<tr>
+						<th scope="row" colspan="2" style="text-align:left; border: none; <?php if ( $i == 1 ) echo 'border-top-width: 4px;'; ?>"><?php echo ($new_total['label']=='Surcharge') ? 'Shipping (Surcharge):' : $new_total['label']; ?></th>
+						<td style="text-align:left; border: none; <?php if ( $i == 1 ) echo 'border-top-width: 4px;'; ?>">
+							<?php echo $new_total['value']; ?>
+						</td>
+					</tr>
+					<?php
+					
 				}
 			}
+			exit();
 		?>
 	</tfoot>
 </table>

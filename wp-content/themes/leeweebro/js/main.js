@@ -56,7 +56,7 @@ jQuery( function( $ ) {
 			$mobileMenu = $('.mobile-menu'),
 			$mobileMenuBtn = $('.mobile-menu-btn');
 
-		// $mobileMenu.hide();
+		// $mobileMenu.jScrollPane();
 
 		$mainSlider.swiperight(function() {  
 	      $mainSlider.carousel('prev');
@@ -72,9 +72,10 @@ jQuery( function( $ ) {
 		$('.mobile-menu li > a').on('click', function(e){
 			if($(this).html()=="Our Food") {
 				e.preventDefault();
-			}			
+			}
 
-			$(this).parent().find('.sub-menu').slideToggle("slow");
+			$('.open').slideToggle("slow").removeClass('open');
+			$(this).parent().find('.sub-menu').slideToggle("slow").addClass('open');
 		});
 
 		$.validator.addMethod("alphanumeric", function(value, element) {
@@ -606,9 +607,57 @@ jQuery( function( $ ) {
 			var min = $(this).parent('div').parent('div').parent('form').find('select[name="consumption_time_mm"]').val();
 			var ampm = $(this).parent('div').parent('div').parent('form').find('select[name="consumption_time_am_pm"]').val();			
 
+			var selected_collection_times = $('select[name="collection_time"]').val();
+			var selected_collection_time_str = selected_collection_times.split('-');
+
+			var selected_collection_time = $.trim(selected_collection_time_str[1])
+
+			//
+			var selected_collection_time_arr = selected_collection_time.split(' ');
+
+			var collection_time_hrmin = selected_collection_time_arr[0];
+			var collection_time_ampm = selected_collection_time_arr[1];
+
+			collection_time_arr = collection_time_hrmin.split(':');
+			var collection_time_hr = collection_time_arr[0];
+			var collection_time_min = collection_time_arr[1];
+
+			var hours = Number(collection_time_hr);
+			var minutes = Number(collection_time_min);
+			var AMPM = collection_time_ampm;
+			if(AMPM == "pm" && hours<12) hours = hours+12;
+			if(AMPM == "am" && hours==12) hours = hours-12;
+			var sHours = hours.toString();
+			var sMinutes = minutes.toString();
+			if(hours<10) sHours = "0" + sHours;
+			if(minutes<10) sMinutes = "0" + sMinutes;
+
+			var formattedConsumptionTime = new Date(year, month, day, sHours, sMinutes, 00);
+
+			console.log(formattedConsumptionTime);
+
+			Date.prototype.addHours= function(h){
+			    this.setHours(this.getHours()+h);
+			    return this;
+			}
+
+			Date.prototype.minusHours= function(h){
+			    this.setHours(this.getHours()-h);
+			    return this;
+			}
+
+			Date.prototype.minusMins= function(h){
+			    this.setMinutes(this.getMinutes()-h);
+			    return this;
+			}
+
 			// set required time
-			var validTimes = ['06:00:00', '23:59:00'];
-			var validTimes2 = ['06:00:00', '22:00:00'];
+			// var validTimes = ['06:00:00', '23:59:00'];
+			// var validTimes2 = ['06:00:00', '22:00:00'];
+
+			// var validTime2 = formattedConsumptionTime.minusHours(5);
+			// var validTime2 = validTime2.minusMins(30);
+			var validTime = formattedConsumptionTime.addHours(4);
 			var formattedTime = convertAMPM(hr, min, ampm);
 
 			// set required date
@@ -616,6 +665,16 @@ jQuery( function( $ ) {
 			var formattedDate = new Date(collection_date);
 
 			var twoDayInAdvance = addDays(new Date(), 1);
+
+			var validTime_arr = validTime.toString().split(' ');
+			var formattedValidTime = $.trim(validTime_arr[4]);
+
+			// var validTime_arr2 = validTime2.toString().split(' ');
+			// var formattedValidTime2 = $.trim(validTime_arr2[4]);
+
+			console.log(formattedTime);
+			// console.log(formattedValidTime);
+			// console.log(validTime2);
 
 			var error = false;
 
@@ -638,7 +697,7 @@ jQuery( function( $ ) {
 				$('.error-consumption-time').html('Please select consumption time.');
 				error = true;
 
-			}else if(validTimes[0] > formattedTime || formattedTime > validTimes[1]) {
+			}else if(formattedTime > formattedValidTime) {
 
 				$('.error-consumption-time').html('We recommend to consume the food within 4 hrs after collection.');
 				error = true;
@@ -662,9 +721,45 @@ jQuery( function( $ ) {
 			var min = $(this).parent('div').parent('div').parent('form').find('select[name="consumption_time_mm"]').val();
 			var ampm = $(this).parent('div').parent('div').parent('form').find('select[name="consumption_time_am_pm"]').val();
 
+			var selected_delivery_times = $('select[name="delivery_time"]').val();
+			var selected_delivery_time_str = selected_delivery_times.split('-');
+
+			var selected_delivery_time = $.trim(selected_delivery_time_str[1])
+
+			//
+			var selected_delivery_time_arr = selected_delivery_time.split(' ');
+
+			var delivery_time_hrmin = selected_delivery_time_arr[0];
+			var delivery_time_ampm = selected_delivery_time_arr[1];
+
+			delivery_time_arr = delivery_time_hrmin.split(':');
+			var delivery_time_hr = delivery_time_arr[0];
+			var delivery_time_min = delivery_time_arr[1];
+
+			var hours = Number(delivery_time_hr);
+			var minutes = Number(delivery_time_min);
+			var AMPM = delivery_time_ampm;
+			if(AMPM == "pm" && hours<12) hours = hours+12;
+			if(AMPM == "am" && hours==12) hours = hours-12;
+			var sHours = hours.toString();
+			var sMinutes = minutes.toString();
+			if(hours<10) sHours = "0" + sHours;
+			if(minutes<10) sMinutes = "0" + sMinutes;
+
+			var formattedConsumptionTime = new Date(year, month, day, sHours, sMinutes, 00);
+
+			console.log(formattedConsumptionTime);
+
+			Date.prototype.addHours= function(h){
+			    this.setHours(this.getHours()+h);
+			    return this;
+			}
+
 			// set required time
-			var validTimes = ['06:00:00', '18:00:00'];
-			var validTimes2 = ['06:00:00', '22:00:00'];
+			// var validTimes = ['06:00:00', '18:00:00'];
+			// var validTimes2 = ['06:00:00', '22:00:00'];
+			var validTime = formattedConsumptionTime.addHours(4);
+
 			var formattedTime = convertAMPM(hr, min, ampm);
 
 			// set required date
@@ -672,6 +767,12 @@ jQuery( function( $ ) {
 			var formattedDate = new Date(delivery_date);
 
 			var twoDayInAdvance = addDays(new Date(), 1);
+
+			var validTime_arr = validTime.toString().split(' ');
+			var formattedValidTime = $.trim(validTime_arr[4]);
+
+			console.log(formattedTime);
+			console.log(formattedValidTime);
 
 			var error = false;
 
@@ -712,7 +813,7 @@ jQuery( function( $ ) {
 
 				$('.error-consumption-time').html('Please select consumption time.');
 				error = true;
-			}else if(validTimes[0] > formattedTime || formattedTime > validTimes[1]) {
+			}else if(formattedTime > formattedValidTime) {
 
 				$('.error-consumption-time').html('We recommend to consume the food within 4 hrs after collection.');
 				error = true;
@@ -723,7 +824,7 @@ jQuery( function( $ ) {
 		});
 
 		function appendDeliveryTime(key) {
-			var delivery_time = ['<option value="06:00 am - 07:30 am">06:00 am - 07:30 am *</option><option value="06:30 am - 08:00 am">06:30 am - 08:00 am *</option><option value="08:00 am - 09:30 am">08:00 am - 09:30 am</option><option value="08:30 am - 10:00 am">08:30 am - 10:00 am</option><option value="09:00 am - 10:30 am">09:00 am - 10:30 am</option><option value="09:30 am - 11:00 am">09:30 am - 11:00 am</option><option value="10:00 am - 11:30 am">10:00 am - 11:30 am</option><option value="10:30 am - 12:00 am">10:30 am - 12:00 am</option><option value="11:00 am - 12:30 am">11:00 am - 12:30 am</option><option value="11:30 am - 01:00 pm">11:30 am - 01:00 pm</option><option value="12:00 pm - 01:30 pm">12:00 pm - 01:30 pm</option><option value="12:30 pm - 02:00 pm">12:30 pm - 02:00 pm</option><option value="01:00 pm - 02:30 pm">01:00 pm - 02:30 pm</option><option value="01:30 pm - 03:00 pm">01:30 pm - 03:00 pm</option><option value="02:00 pm - 03:30 pm">02:00 pm - 03:30 pm</option><option value="02:30 pm - 04:00 pm">02:30 pm - 04:00 pm</option><option value="03:00 pm - 04:30 pm">03:00 pm - 04:30 pm</option><option value="03:30 pm - 05:00 pm">03:30 pm - 05:00 pm</option>', 
+			var delivery_time = ['<option value="06:00 am - 07:30 am">06:00 am - 07:30 am *</option><option value="06:30 am - 08:00 am">06:30 am - 08:00 am *</option><option value="08:00 am - 09:30 am">08:00 am - 09:30 am</option><option value="08:30 am - 10:00 am">08:30 am - 10:00 am</option><option value="09:00 am - 10:30 am">09:00 am - 10:30 am</option><option value="09:30 am - 11:00 am">09:30 am - 11:00 am</option><option value="10:00 am - 11:30 am">10:00 am - 11:30 am</option><option value="10:30 am - 12:00 pm">10:30 am - 12:00 pm</option><option value="11:00 am - 12:30 pm">11:00 am - 12:30 pm</option><option value="11:30 am - 01:00 pm">11:30 am - 01:00 pm</option><option value="12:00 pm - 01:30 pm">12:00 pm - 01:30 pm</option><option value="12:30 pm - 02:00 pm">12:30 pm - 02:00 pm</option><option value="01:00 pm - 02:30 pm">01:00 pm - 02:30 pm</option><option value="01:30 pm - 03:00 pm">01:30 pm - 03:00 pm</option><option value="02:00 pm - 03:30 pm">02:00 pm - 03:30 pm</option><option value="02:30 pm - 04:00 pm">02:30 pm - 04:00 pm</option><option value="03:00 pm - 04:30 pm">03:00 pm - 04:30 pm</option><option value="03:30 pm - 05:00 pm">03:30 pm - 05:00 pm</option>', 
 			'<option value="06:00 am - 07:30 am">06:00 am - 07:30 am *</option><option value="06:30 am - 08:00 am">06:30 am - 08:00 am *</option><option value="08:00 am - 09:30 am">08:00 am - 09:30 am</option><option value="08:30 am - 10:00 am">08:30 am - 10:00 am</option><option value="09:00 am - 10:30 am">09:00 am - 10:30 am</option><option value="09:30 am - 11:00 am">09:30 am - 11:00 am</option><option value="10:00 am - 11:30 am">10:00 am - 11:30 am</option><option value="10:30 am - 12:00 pm">10:30 am - 12:00 pm</option><option value="11:00 am - 12:30 pm">11:00 am - 12:30 pm</option><option value="11:30 am - 01:00 pm">11:30 am - 01:00 pm</option><option value="12:00 pm - 01:30 pm">12:00 pm - 01:30 pm</option><option value="12:30 pm - 02:00 pm">12:30 pm - 02:00 pm</option><option value="01:00 pm - 02:30 pm">01:00 pm - 02:30 pm</option><option value="01:30 pm - 03:00 pm">01:30 pm - 03:00 pm</option><option value="02:00 pm - 03:30 pm">02:00 pm - 03:30 pm</option><option value="02:30 pm - 04:00 pm">02:30 pm - 04:00 pm</option><option value="03:00 pm - 04:30 pm">03:00 pm - 04:30 pm</option><option value="03:30 pm - 05:00 pm">03:30 pm - 05:00 pm</option>'];
 
 			var certain_delivery_time_additional_30 = ['06:00 am - 07:30 am','06:30 am - 08:00 am'];

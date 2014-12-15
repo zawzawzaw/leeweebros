@@ -106,8 +106,8 @@ else:
 
 				<div class="row">
 					<div class="col-md-12">
-					<?php wp_nonce_field( 'woocommerce-login' ); ?>
-					<input type="submit" class="button" name="login" value="<?php _e( 'Login', 'woocommerce' ); ?>" /> 
+						<?php wp_nonce_field( 'woocommerce-login' ); ?>
+						<input type="submit" class="button" name="login" value="<?php _e( 'Login', 'woocommerce' ); ?>" /> 
 					</div>
 				</div>
 

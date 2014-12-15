@@ -74,7 +74,7 @@ $receiving_mode = json_decode(stripslashes($_POST['receiving_mode']), true);
 	<div class="row">
 		<div class="col-md-12">
 			<h2>PAYMENT MODE:</h2>
-			<p>Please kindly select the choice of payment mode below.</p>
+			<p>Kindly select the choice of payment mode below.</p>
 			<ul class="payment-method">
 				<li>
 					<input type="radio" name="paymentmethod" id="paymentmode" value="Personal Payment" >
@@ -132,8 +132,8 @@ $receiving_mode = json_decode(stripslashes($_POST['receiving_mode']), true);
 	</div>
 	<div class="space50"></div>
 	<div class="row">
-		<div class="col-xs-4 col-sm-4 col-md-1"><button class="button personal-payment-save">SAVE</button></div>
-		<div class="col-xs-4 col-sm-4 col-md-1"><button class="button personal-payment-cancel">CANCEL</button></div>
+		<div class="col-xs-4 col-sm-4 col-md-1"><button class="button personal-payment-cancel">PREVIOUS</button></div>
+		<div class="col-xs-4 col-sm-4 col-md-1"><button class="button personal-payment-save">NEXT</button></div>
 	</div>	
 </div>
 
@@ -287,14 +287,13 @@ $receiving_mode = json_decode(stripslashes($_POST['receiving_mode']), true);
 	</div>
 	<div class="space40"></div>
 	<div class="row">
-		<div class="col-md-7">
+		<div class="col-md-12">
 			<p class="note">You can review your order and download your invoice from the <span class="quote">"Order history"</span> section of your customer account by clicking <span class="quote">"My account"</span> on our shop.</p>
-			<p class="note">If you have a guest account, you can follow your order via the <span class="quote">"Guest Tracking"</span> section on our shop.</p>
 		</div>
 	</div>
 	<div class="space30"></div>
 	<div class="row terms-container">
-		<div class="col-md-6">
+		<div class="col-md-12">
 			<input type="checkbox" name="tnc"><label class="checkbox-label"><span></span><p>I agree to the terms of service and adhere to them unconditionally.</p></label><br><a href="#" class="tnc">(Download T&C)</a>
 		</div>
 	</div>

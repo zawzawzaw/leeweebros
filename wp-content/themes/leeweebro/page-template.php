@@ -159,7 +159,16 @@ get_header();
 						$subject = htmlspecialchars($_POST['subject'], ENT_QUOTES, 'UTF-8');
 						$user_email = htmlspecialchars($_POST['email'], ENT_QUOTES, 'UTF-8');
 						$message = htmlspecialchars($_POST['message'], ENT_QUOTES, 'UTF-8');
-						$admin_email = get_option( 'admin_email' ); 
+
+						if($subject=='enquiries') {
+							$admin_email = 'info@leeweebrothers.com';
+						}else if($subject=='feedback') {
+							$admin_email = 'anne.ng@leeweebrothers.com';
+						}else if($subject=='technical') {
+							$admin_email = 'info@leeweebrothers.com';
+						}else {
+							$admin_email = get_option( 'admin_email' );
+						}
 
 						$headers[] = 'From: '.$user_email.' <'.$user_email.'>';
 						$attachments = '';

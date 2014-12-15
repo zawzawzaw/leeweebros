@@ -286,7 +286,7 @@ else:
 							</div>
 							<div class="col-xs-4 col-sm-4 col-md-2 col-md-offset-6">
 								<!-- <input type="submit" class="checkout-button button alt wc-forward" name="proceed" value="<?php _e( 'NEXT', 'woocommerce' ); ?>" /> -->
-								<input type="submit" class="button" value="CHECKOUT">
+								<input type="submit" class="button checkout" value="CHECKOUT">
 							</div>
 
 							<?php do_action( 'woocommerce_proceed_to_checkout' ); ?>

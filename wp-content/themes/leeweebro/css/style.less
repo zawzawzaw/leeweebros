@@ -794,6 +794,9 @@ div.ppt {
 
 .align-left-2 {
   margin-left: 20px;
+  @media all and (max-width: 900px) {
+    margin-left: 0px;
+  }
 }
 
 .align-left-3 {
@@ -834,6 +837,9 @@ input[type="submit"], .button {
   display: inline-block;
   text-align: center;
   padding-top: 4px; 
+  @media all and (max-width: 900px) {
+    .round(0);
+  }
 }
 
 input[type="submit"],button[type="submit"] {
@@ -893,7 +899,13 @@ ul.mobile-menu {
   border-top: 1px solid #FFF;
   margin-top: 6px;
   li {
-    padding: 10px 0 10px 30px;
+    &:first-child {
+      padding-top: 10px!important;
+    }
+    &:last-child {
+      padding-bottom: 10px!important;
+    }
+    padding: 3px 0 3px 30px;
     a {
       color: #fff;  
     }
@@ -975,11 +987,21 @@ header#main-header {
         @media all and (max-width: 900px) {
           border: none;
         }
-      }  
+      }
+      #checkout-btn {
+        display: inline-block;
+        padding-left: 11px;
+      }
 
       #cart-item-price {
         display: inline-block;
         padding-left: 7px;
+        a {
+          color: @white;
+          &:hover {
+            color: @dark-brown;
+          }
+        }
       }
     }
   }
@@ -994,9 +1016,10 @@ header#main-header {
       text-align: center;
       margin: 0 auto;
       img {
-        width: 100%
-        height: 100%;
         margin: 0 auto;
+        @media all and (max-width: 900px) {
+          width: 200px;
+        }
       }
     }
   }
@@ -1247,10 +1270,10 @@ header#main-header {
       width: 289px;
       text-align: left;
       @media all and (max-width: 900px) {
-        left: 8%;
+        left: -5%;
         padding-bottom: 0px;
-        width: auto;
-        text-align: left;
+        width: 100%;
+        text-align: right;
       }
       h1 {
         .knockout-htf29;
@@ -1258,8 +1281,9 @@ header#main-header {
         padding-bottom: 15px;
         color: @white;
         @media all and (max-width: 900px) {
-          font-size: 16px;
+          font-size: 23px;
           padding-bottom: 0px;
+          text-align: right;
         }
       }
       p {
@@ -2056,6 +2080,9 @@ header#main-header {
 
   p.one-line {
     width: 560px;
+    @media all and (max-width: 900px) {
+      width: 100%;
+    }
   }
 }
 
@@ -2149,6 +2176,7 @@ header#main-header {
     width: 220px;
     margin-top: 15px;
     margin-bottom: 15px;
+    font-style: italic;
   }
 
   p, label {
@@ -2551,6 +2579,10 @@ header#main-header {
     .price-info {
       padding-left: 0px;
     }
+
+    p.desc {
+      min-height: 140px;
+    }
   }
 }
 
@@ -2647,6 +2679,9 @@ header#main-header {
           }
         }
         p.no-promo {
+          @media all and (max-width: 900px) {
+            width: 100%;
+          }
           width: 400px;
           text-align: left;
         }
@@ -3053,6 +3088,9 @@ header#main-header {
     }
     button.continue, a.continue {
       width: 162px;
+    }
+    button.checkout {
+      border-radius: 0!important;
     }
     label {      
       .open-sans-bold;
@@ -3601,6 +3639,7 @@ header#main-header {
       span.quote {
         .open-sans-bold;
         font-size: 13px;
+        text-transform: uppercase;
       }
     }
     .terms-container {
@@ -3639,7 +3678,7 @@ header#main-header {
 
       p {
         display: inline-block;
-        width: 250px;
+        /*width: 250px;*/
         vertical-align: top;
       }
       

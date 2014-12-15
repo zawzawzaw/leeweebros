@@ -27,6 +27,7 @@
 	<link rel="stylesheet" href="<?php echo LIB ?>/bootstrap/dist/css/bootstrap-theme.min.css" />
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css">
+	<link rel="stylesheet" href="<?php echo CSS ?>/jquery.jscrollpane.css">
 
 	<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>" />
 	<?php
@@ -56,7 +57,7 @@
 				</div>
 	        </div>
 	        
-	        <div class="col-xs-3 col-xs-offset-0 col-sm-3 col-sm-offset-0 col-md-4 col-md-offset-5">
+	        <div class="col-xs-3 col-xs-offset-0 col-sm-3 col-sm-offset-0 col-md-5 col-md-offset-4">
 	          <div class="header-content">
 	            <div id="header-links" class="hidden-xs hidden-sm visible-md-inline visible-lg-inline">
 	            	<?php $my_account_page = get_page_by_title( 'My Account' ); ?>
@@ -82,8 +83,10 @@
 						 	<?php echo $woocommerce->cart->get_cart_total(); ?>
 					 	</span>
 						</a>
-	                </div> 
-	              </a>
+	                </div>
+	               </a>
+	                <div id="checkout-btn" class="hidden-xs hidden-sm visible-md-inline visible-lg-inline"><a href="<?php echo get_permalink( $cart_page->ID ); ?>">CHECK OUT</a></div>
+	              
 	            </div>
 	          </div>
 	        </div>
