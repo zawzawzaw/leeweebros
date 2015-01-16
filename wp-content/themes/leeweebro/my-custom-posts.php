@@ -73,6 +73,8 @@
 		# validation field #
 		wp_nonce_field(__FILE__,'jw_nonce');
 	?>
+
+	<?php if($post_type=='slider'): ?>
 		<label for="sort">Sort:</label>
 		<input type="text" name="sort" id="sort" class="widefat" value="<?php echo $data['sort']; ?>" />
 		<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
@@ -99,6 +101,43 @@
 		<label for="expiry_date">Expiry Date:</label>
 		<input type="text" name="expiry_date" id="expiry_date" class="datepicker widefat" value="<?php echo $data['expiry_date']; ?>" />
 		<br> -->
+	<?php elseif($post_type=='s_delivery_date'): ?>
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		<script>
+		  $(function() {
+		  	
+		  	
+		  	
+			$('.add_more').on('click', function(e){
+				e.preventDefault();
+
+				var id = $('.specific_delivery_date').length + 1;
+
+				var $this = $('.specific_delivery_date').last().clone().appendTo('.all_delivery_date');
+				$this.attr('id', '');
+				$this.find('label').attr('for', 'specific_delivery_date_'+id).text('Specific Delivery Date '+id);
+				$this.find('input').attr('name', 'specific_delivery_date_'+id).attr('id', 'specific_delivery_date_'+id).val('').datepicker();
+
+				$( ".datepicker" ).datepicker();
+			});
+
+			$( ".datepicker" ).datepicker();
+
+		  });
+		</script>
+		
+		<div class="all_delivery_date">
+			<div id="first" class="specific_delivery_date">
+				<label for="specific_delivery_date">Specific Delivery Date</label>
+				<input type="text" name="specific_delivery_date" id="specific_delivery_date" class="datepicker widefat" value="<?php echo $data['specific_delivery_date']; ?>" />
+			</div>
+		</div>
+
+		<button class="add_more">Add More Dates+</button>
+	<?php endif; ?>
+
 	<?php
 	}
 
@@ -140,18 +179,18 @@
 
 	});
 
-	add_action('edit_post', function(){
+	// add_action('edit_post', function(){
 
-		$testcoupon = array(
-		    'post_title' => 'abc',
-		    'post_content' => '',
-		    'post_status' => 'publish',
-		    'post_author' => 1,
-		    'post_type'     => 'shop_coupon'
-		); 
+	// 	$testcoupon = array(
+	// 	    'post_title' => 'abc',
+	// 	    'post_content' => '',
+	// 	    'post_status' => 'publish',
+	// 	    'post_author' => 1,
+	// 	    'post_type'     => 'shop_coupon'
+	// 	); 
 
-		$new_coupon_id = wp_insert_post( $testcoupon );
-	});
+	// 	$new_coupon_id = wp_insert_post( $testcoupon );
+	// });
 
 	add_action('save_post', function(){
 	    global $post;
@@ -180,6 +219,13 @@
 	      }else if($post_type=='slider') {
 	      	$sort = sanitize_text_field($_POST['sort']);
 			update_post_meta($post->ID, 'sort', $sort);
+
+	      }else if($post_type=='s_delivery_date') {
+	      	$specific_delivery_date = sanitize_text_field($_POST['specific_delivery_date']);
+	      	$s_surcharge = sanitize_text_field($_POST['sda_surcharge']);
+
+			update_post_meta($post->ID, 'specific_delivery_date', $specific_delivery_date);
+			update_post_meta($post->ID, 'sda_surcharge', $sda_surcharge);
 	      }
 
 	    }

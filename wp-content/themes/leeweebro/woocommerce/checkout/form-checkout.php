@@ -294,7 +294,7 @@ $receiving_mode = json_decode(stripslashes($_POST['receiving_mode']), true);
 	<div class="space30"></div>
 	<div class="row terms-container">
 		<div class="col-md-12">
-			<input type="checkbox" name="tnc"><label class="checkbox-label"><span></span><p>I agree to the terms of service and adhere to them unconditionally.</p></label><br><a href="#" class="tnc">(Download T&C)</a>
+			<input type="checkbox" name="tnc"><label class="checkbox-label"><span></span><p>I agree to the terms of service and adhere to them unconditionally.</p></label><br><a href="http://leeweebrothers.com/wp-content/uploads/2015/01/LWB-TC.pdf" target="_blank" class="tnc">(Download T&C)</a>
 		</div>
 	</div>
 	<div class="space30"></div>

@@ -1849,11 +1849,11 @@ class WC_Cart {
 			$new_fee_id = sanitize_title( $name );
 
 			// Only add each fee once
-			foreach ( $this->fees as $fee ) {
-				if ( $fee->id == $new_fee_id ) {
-					return;
-				}
-			}
+			// foreach ( $this->fees as $fee ) {
+			// 	if ( $fee->id == $new_fee_id ) {
+			// 		return;
+			// 	}
+			// }
 
 			$new_fee 			= new stdClass();
 			$new_fee->id 		= $new_fee_id;
@@ -1872,8 +1872,8 @@ class WC_Cart {
 		 * @return array
 		 */
 		public function get_fees() {
-			return array_filter( (array) $this->fees );
-			// return $this->fees;
+			// return array_filter( (array) $this->fees );
+			return $this->fees;
 		}
 
 		/**

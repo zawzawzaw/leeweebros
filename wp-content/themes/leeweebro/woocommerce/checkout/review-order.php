@@ -32,12 +32,11 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 					if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_checkout_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
 						$terms = get_the_terms( $_product->post->ID, 'product_cat' );
-
 						?>
 						<div class="row <?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
 							<div class="col-md-1"><?php echo $i; ?></div>
 							<div class="col-md-2"><p><?php echo (isset($terms[0]->name)) ? $terms[0]->name : ''; ?></p></div>
-							<div class="col-md-3"><h5><?php echo apply_filters( 'woocommerce_cart_item_name', $_product->get_title(), $cart_item, $cart_item_key ); ?></h5><p class="status">Cooked or Raw: Cooked</p></div>
+							<div class="col-md-3"><h5><?php echo apply_filters( 'woocommerce_cart_item_name', $_product->get_title(), $cart_item, $cart_item_key ); ?></h5><p class="status"><?php echo ($_product->variation_data['attribute_cooked']) ? "Cooked or Uncooked: " . ucfirst($_product->variation_data['attribute_cooked']) : ''; ?></p></div>
 							<div class="col-md-1">
 								<p class="qty"><?php echo apply_filters( 'woocommerce_checkout_cart_item_quantity', ' <strong class="product-quantity">' . sprintf( '%s', $cart_item['quantity'] ) . '</strong>', $cart_item, $cart_item_key ); ?></p>
 							</div>

@@ -548,10 +548,11 @@ jQuery( function( $ ) {
 			
 			var mode = $receivingModeContainer.find('input[name="receivingmethod"]:checked').val();
 			var cartAmount = $('.cart-amount').val();
+			cartAmount = parseFloat(cartAmount);
 
 			if(cartAmount<100 && mode=='delivery') {
 				$('.error-deliver').html('Minimum purchase of S$100 required for free delivery.');
-			}else if(cartAmount>100 && mode=='delivery') {
+			}else if(cartAmount>=100 && mode=='delivery') {
 				$allReceivingModeContainer.hide();
 				$receivingModeDelivery.show();
 			}else if(mode=='self') {
@@ -777,13 +778,13 @@ jQuery( function( $ ) {
 			var error = false;
 
 			// delivery area
-			if(parseFloat(cartAmount) <= 100 && location == 'allotherarea') {
+			if(parseFloat(cartAmount) < 100 && location == 'allotherarea') {
 
 				$('.error-deliver-sentosa').html('');
 				$('.error-deliver-otherarea').html('Minimum purchase of S$100 required for delivery to this area.');
 				error = true;
 
-			}else if(parseFloat(cartAmount) <= 120 && location == 'jurongsentoaarea') {
+			}else if(parseFloat(cartAmount) < 120 && location == 'jurongsentoaarea') {
 
 				$('.error-deliver-otherarea').html('');
 				$('.error-deliver-sentosa').html('Minimum purchase of S$120 required for delivery to this area.');
@@ -824,8 +825,8 @@ jQuery( function( $ ) {
 		});
 
 		function appendDeliveryTime(key) {
-			var delivery_time = ['<option value="06:00 am - 07:30 am">06:00 am - 07:30 am *</option><option value="06:30 am - 08:00 am">06:30 am - 08:00 am *</option><option value="08:00 am - 09:30 am">08:00 am - 09:30 am</option><option value="08:30 am - 10:00 am">08:30 am - 10:00 am</option><option value="09:00 am - 10:30 am">09:00 am - 10:30 am</option><option value="09:30 am - 11:00 am">09:30 am - 11:00 am</option><option value="10:00 am - 11:30 am">10:00 am - 11:30 am</option><option value="10:30 am - 12:00 pm">10:30 am - 12:00 pm</option><option value="11:00 am - 12:30 pm">11:00 am - 12:30 pm</option><option value="11:30 am - 01:00 pm">11:30 am - 01:00 pm</option><option value="12:00 pm - 01:30 pm">12:00 pm - 01:30 pm</option><option value="12:30 pm - 02:00 pm">12:30 pm - 02:00 pm</option><option value="01:00 pm - 02:30 pm">01:00 pm - 02:30 pm</option><option value="01:30 pm - 03:00 pm">01:30 pm - 03:00 pm</option><option value="02:00 pm - 03:30 pm">02:00 pm - 03:30 pm</option><option value="02:30 pm - 04:00 pm">02:30 pm - 04:00 pm</option><option value="03:00 pm - 04:30 pm">03:00 pm - 04:30 pm</option><option value="03:30 pm - 05:00 pm">03:30 pm - 05:00 pm</option>', 
-			'<option value="06:00 am - 07:30 am">06:00 am - 07:30 am *</option><option value="06:30 am - 08:00 am">06:30 am - 08:00 am *</option><option value="08:00 am - 09:30 am">08:00 am - 09:30 am</option><option value="08:30 am - 10:00 am">08:30 am - 10:00 am</option><option value="09:00 am - 10:30 am">09:00 am - 10:30 am</option><option value="09:30 am - 11:00 am">09:30 am - 11:00 am</option><option value="10:00 am - 11:30 am">10:00 am - 11:30 am</option><option value="10:30 am - 12:00 pm">10:30 am - 12:00 pm</option><option value="11:00 am - 12:30 pm">11:00 am - 12:30 pm</option><option value="11:30 am - 01:00 pm">11:30 am - 01:00 pm</option><option value="12:00 pm - 01:30 pm">12:00 pm - 01:30 pm</option><option value="12:30 pm - 02:00 pm">12:30 pm - 02:00 pm</option><option value="01:00 pm - 02:30 pm">01:00 pm - 02:30 pm</option><option value="01:30 pm - 03:00 pm">01:30 pm - 03:00 pm</option><option value="02:00 pm - 03:30 pm">02:00 pm - 03:30 pm</option><option value="02:30 pm - 04:00 pm">02:30 pm - 04:00 pm</option><option value="03:00 pm - 04:30 pm">03:00 pm - 04:30 pm</option><option value="03:30 pm - 05:00 pm">03:30 pm - 05:00 pm</option>'];
+			var delivery_time = ['<option value="06:00 am - 07:30 am">06:00 am - 07:30 am *</option><option value="06:30 am - 08:00 am">06:30 am - 08:00 am *</option><option value="08:00 am - 09:30 am">08:00 am - 09:30 am ^</option><option value="08:30 am - 10:00 am">08:30 am - 10:00 am ^</option><option value="09:00 am - 10:30 am">09:00 am - 10:30 am</option><option value="09:30 am - 11:00 am">09:30 am - 11:00 am</option><option value="10:00 am - 11:30 am">10:00 am - 11:30 am</option><option value="10:30 am - 12:00 pm">10:30 am - 12:00 pm</option><option value="11:00 am - 12:30 pm">11:00 am - 12:30 pm</option><option value="11:30 am - 01:00 pm">11:30 am - 01:00 pm</option><option value="12:00 pm - 01:30 pm">12:00 pm - 01:30 pm</option><option value="12:30 pm - 02:00 pm">12:30 pm - 02:00 pm</option><option value="01:00 pm - 02:30 pm">01:00 pm - 02:30 pm</option><option value="01:30 pm - 03:00 pm">01:30 pm - 03:00 pm</option><option value="02:00 pm - 03:30 pm">02:00 pm - 03:30 pm</option><option value="02:30 pm - 04:00 pm">02:30 pm - 04:00 pm</option><option value="03:00 pm - 04:30 pm">03:00 pm - 04:30 pm</option><option value="03:30 pm - 05:00 pm">03:30 pm - 05:00 pm</option>', 
+			'<option value="06:00 am - 07:30 am">06:00 am - 07:30 am *</option><option value="06:30 am - 08:00 am">06:30 am - 08:00 am *</option><option value="08:00 am - 09:30 am">08:00 am - 09:30 am ^</option><option value="08:30 am - 10:00 am">08:30 am - 10:00 am ^</option><option value="09:00 am - 10:30 am">09:00 am - 10:30 am</option><option value="09:30 am - 11:00 am">09:30 am - 11:00 am</option><option value="10:00 am - 11:30 am">10:00 am - 11:30 am</option><option value="10:30 am - 12:00 pm">10:30 am - 12:00 pm</option><option value="11:00 am - 12:30 pm">11:00 am - 12:30 pm</option><option value="11:30 am - 01:00 pm">11:30 am - 01:00 pm</option><option value="12:00 pm - 01:30 pm">12:00 pm - 01:30 pm</option><option value="12:30 pm - 02:00 pm">12:30 pm - 02:00 pm</option><option value="01:00 pm - 02:30 pm">01:00 pm - 02:30 pm</option><option value="01:30 pm - 03:00 pm">01:30 pm - 03:00 pm</option><option value="02:00 pm - 03:30 pm">02:00 pm - 03:30 pm</option><option value="02:30 pm - 04:00 pm">02:30 pm - 04:00 pm</option><option value="03:00 pm - 04:30 pm">03:00 pm - 04:30 pm</option><option value="03:30 pm - 05:00 pm">03:30 pm - 05:00 pm</option>'];
 
 			var certain_delivery_time_additional_30 = ['06:00 am - 07:30 am','06:30 am - 08:00 am'];
 			var certain_delivery_time_additional_22 = [];
@@ -1416,10 +1417,12 @@ jQuery( function( $ ) {
 			$orderDetailContainer.hide();
 		});
 		
-		$confirmOrderBtn.on('click', function(e){
+		$confirmOrderBtn.one('click', function(e){
 			e.preventDefault();
 
 			$('#place_order').trigger('click');
+
+			$(this).attr("disabled", true);
 		});
 
 		$checkOutTermContainer.find('input[name="tnc"]').on('click', function(){
@@ -1491,58 +1494,92 @@ jQuery( function( $ ) {
 				minOrder = exploded[SelectedIndex];
 			}
 
+
+			var product_id = $(this).parent('form').find('input[name="add-to-cart"]').val();
+			var variation_id = $(this).parent('form').find('input[name="variation_id"]').val();
+			var multipleof;
+
+			if((product_id==99 && variation_id==273) || (product_id==83 && variation_id==276) || (product_id==277 && variation_id==278)) {
+				if (currentQty % 50 == 0) {
+					valid_qty = true;
+				}else {
+					valid_qty = false;
+					multipleof = 50;
+				}
+			}else if((product_id==422) || (product_id==425) || (product_id==427) || (product_id==429) || (product_id==880)) {
+				if (currentQty % 10 == 0) {
+					valid_qty = true;
+				}else {
+					valid_qty = false;
+					multipleof = 10;
+				}
+			}else {
+				valid_qty = true;
+			}
+
+			console.log(valid_qty)
+
 			if (isInt(currentQty)) {
 
-				if($.isNumeric(minOrder) && minOrder > currentQty ) {
-					console.log($(this).parent('form').find('#qty').val());
-					$(this).parent('form').children('.error-msg').html('Min Order of '+minOrder+' is required.');
+					var minOrder = parseInt(minOrder)
+					var currentQty = parseInt(currentQty)
 
-				}else {
+					if($.isNumeric(minOrder) && minOrder > currentQty ) {
+						console.log($(this).parent('form').find('#qty').val());
+						$(this).parent('form').children('.error-msg').html('Min order of '+minOrder+' is required.');
+					}else {
 
-					if(postRequest) {
-						request.abort();
+						if(valid_qty) {
+
+							if(postRequest) {
+								request.abort();
+							}
+
+							postRequest = makeRequest(data, current_url, 'POST');				
+
+							postRequest.done(function(data, textStatus, jqXHR){
+					        	
+					        	if(jqXHR.status==200) {
+					        		$self.next('span').html('Added To Cart! <a href="'+templateUrl+'/cart">View Cart</a>').show().delay(5000).fadeOut();
+
+					        		// item count
+					        		var label = $('.cart-items-count-label').text(),
+					        			labelArr = label.split('ITEMS -'),
+					        			cartItemCount = $.trim(labelArr[0]),
+					        			newCartItemCount = parseInt(cartItemCount) + parseInt(currentQty);
+
+					        		$('.cart-items-count-label').text(newCartItemCount + ' ITEMS -');
+
+					        		// total amount
+					        		var currentAmount = $('.cart-price .amount').text(),
+					        			currentAmountArr = currentAmount.split('$'),
+					        			intCurrentAmount = $.trim(currentAmountArr[1]),
+					        			itemPrice = $self.closest('form').parent().parent().find('.amount').text(),
+					        			itemPriceArr = itemPrice.split('$'),
+					        			ItemPriceNumber = $.trim(itemPriceArr[1]),
+					        			unitPrice = parseFloat(ItemPriceNumber) * parseFloat(currentQty),
+					        			newAmount = parseFloat(intCurrentAmount) + parseFloat(unitPrice);
+
+					        			console.log(intCurrentAmount);
+					        			console.log(itemPrice);
+
+					        		$('.cart-price .amount').text('$' + newAmount.toFixed(2));
+
+					        	}
+					        });
+
+					        postRequest.fail(function(jqXHR, textStatus, errorThrown){
+
+					        	console.log(errorThrown);
+					        });
+
+							return false;
+
+						}else {
+							$(this).parent('form').children('.error-msg').html('Quantity must be multiple of '+multipleof+'!');
+						}			
 					}
 
-					postRequest = makeRequest(data, current_url, 'POST');				
-
-					postRequest.done(function(data, textStatus, jqXHR){
-			        	
-			        	if(jqXHR.status==200) {
-			        		$self.next('span').html('Added To Cart! <a href="'+templateUrl+'/cart">View Cart</a>').delay(5000).fadeOut();
-
-			        		// item count
-			        		var label = $('.cart-items-count-label').text(),
-			        			labelArr = label.split('ITEMS -'),
-			        			cartItemCount = $.trim(labelArr[0]),
-			        			newCartItemCount = parseInt(cartItemCount) + parseInt(currentQty);
-
-			        		$('.cart-items-count-label').text(newCartItemCount + ' ITEMS -');
-
-			        		// total amount
-			        		var currentAmount = $('.cart-price .amount').text(),
-			        			currentAmountArr = currentAmount.split('$'),
-			        			intCurrentAmount = $.trim(currentAmountArr[1]),
-			        			itemPrice = $self.closest('form').parent().parent().find('.amount').text(),
-			        			itemPriceArr = itemPrice.split('$'),
-			        			ItemPriceNumber = $.trim(itemPriceArr[1]),
-			        			unitPrice = parseFloat(ItemPriceNumber) * parseFloat(currentQty),
-			        			newAmount = parseFloat(intCurrentAmount) + parseFloat(unitPrice);
-
-			        			console.log(intCurrentAmount);
-			        			console.log(itemPrice);
-
-			        		$('.cart-price .amount').text('$' + newAmount.toFixed(2));
-
-			        	}
-			        });
-
-			        postRequest.fail(function(jqXHR, textStatus, errorThrown){
-
-			        	console.log(errorThrown);
-			        });
-
-					return false;					
-				}
 			}else {
 				$(this).parent('form').children('.error-msg').html('Quantity is not a valid number!');
 			}

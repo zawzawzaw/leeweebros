@@ -77,6 +77,7 @@
             </div>
             <div class="footer-col col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3">
               <h3>SHARE WITH US</h3>
+              <img src="<?php echo IMAGES ?>/logo/halal.png" alt="" class="halal">
               <ul>
                 <li>
                   <a class="facebook" href="https://www.facebook.com/leeweebrothers" target="_blank"></a>

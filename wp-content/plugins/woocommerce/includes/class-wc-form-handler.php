@@ -743,8 +743,9 @@ class WC_Form_Handler {
 						throw new Exception( '<strong>' . __( 'Error', 'woocommerce' ) . ':</strong> ' . __( 'A user could not be found with this email address.', 'woocommerce' ) );
 					}
 
-				} else {
-					$creds['user_login'] 	= $_POST['username'];
+				}else {
+					// $creds['user_login'] 	= $_POST['username'];
+					throw new Exception( '<strong>' . __( 'Error', 'woocommerce' ) . ':</strong> ' . __( 'Invalid email address.', 'woocommerce' ) );
 				}
 
 				$creds['user_password'] = $_POST['password'];

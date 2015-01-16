@@ -74,14 +74,14 @@ $header_content_h1 = "
 	color: " . esc_attr( $base_text ) . ";
 	margin:0;
 	/*padding: 28px 24px;*/
-	padding: 32px 24px 0px 20px;
+	padding: 9px 24px 0px 20px;
 	text-shadow: 0 1px 0 $base_lighter_20;
 	display:block;
 	font-family: 'SolanoGothicMVBStd-Bd', Verdana, sans-serif;
 	font-weight: 300;
 	font-style: normal;
-	font-size: 42px;
-	line-height: 36px;
+	font-size: 21px;
+	line-height: 15px;
 	text-transform: uppercase;
 	display: block;
 	color: #da0009;
@@ -122,7 +122,7 @@ $header_content_h1 = "
                         		<td align="center" valign="top">
                         			<?php
 			                			if ( $img = get_option( 'woocommerce_email_header_image' ) ) {
-			                				echo '<p style="margin-top:47px;"><img src="' . esc_url( $img ) . '" alt="' . get_bloginfo( 'name' ) . '" /></p>';
+			                				echo '<p style="margin-top:20px;"><img src="' . esc_url( $img ) . '" alt="' . get_bloginfo( 'name' ) . '" style="width:30%;" /></p>';
 			                			}
 			                		?>
                         		</td>
@@ -150,5 +150,5 @@ $header_content_h1 = "
                                                 <!-- Content -->
                                                 <table border="0" cellpadding="20" cellspacing="0" width="100%">
                                                     <tr>
-                                                        <td valign="top">
+                                                        <td valign="top" style="padding-top:0px;">
                                                             <div style="<?php echo $body_content_inner; ?>">

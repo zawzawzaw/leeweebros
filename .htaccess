@@ -1,6 +1,12 @@
 # BEGIN REMOVE SLUG CUSTOM POST TYPE RULES
-RewriteRule ^slider/(.+)/$ /$1 [R=301,L]
+RewriteRule ^product/(.+)/$ /$1 [R=301,L]
+RewriteRule ^product_variation/(.+)/$ /$1 [R=301,L]
+RewriteRule ^/(.+)/$ /$1 [R=301,L]
+RewriteRule ^/(.+)/$ /$1 [R=301,L]
 # END REMOVE SLUG CUSTOM POST TYPE RULES
+
+
+
 
 
 # BEGIN WordPress

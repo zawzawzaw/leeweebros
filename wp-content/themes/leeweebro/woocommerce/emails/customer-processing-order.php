@@ -83,14 +83,25 @@ $header_content_h3 = "
 		<?php echo $order->email_order_items_table( $order->is_download_permitted(), true, ( $order->status=='processing' ) ? true : false ); ?>
 	</tbody>
 	<tfoot>
-		<?php foreach ( WC()->cart->get_fees() as $fee ) : ?>
-			<p><?php wc_cart_totals_fee_html( $fee ); ?></p>
-		<?php endforeach; ?>
-		<?php
-			global $woocommerce;
-			print_r($woocommerce->cart->get_fees());
+		<?php 
+			$shipping_address = $order->get_shipping_address();
+			// $address = explode(",", $shipping_address);
+			$new_order_total = 0;
+
+			$post_code = trim($order->shipping_postcode);
+			$post_code = substr($post_code,0,2);
+
+			$certain_delivery_post_codes_8 = array(01, 02, 03, 04, 05, 06, 07, 08, 17, 18, 19, 22, 23, 24, 25, 26, 27);
+
+			if(isset($order->delivery) && $order->delivery!="jurongsentoaarea" && in_array($post_code, $certain_delivery_post_codes_8)) {
+				$order_total = $order->get_total();
+				$surcharge = 8;
+				$new_order_total = $order_total + $surcharge;
+			}
+		
 			if ( $totals = $order->get_order_item_totals() ) {
 				$i = 0;
+				// print_r($totals);
 				foreach ( $totals as $key => $total ) {
 					$i++;
 					$new_totals[$key] = $total;
@@ -98,6 +109,11 @@ $header_content_h3 = "
 						if($total['value']!='$0.00') {
 							unset($new_totals['shipping']);	
 						}
+					}else if($new_order_total > 0) {
+						unset($new_totals['shipping']);
+						$new_totals['order_total']['value'] = '$'.number_format((float)$new_order_total, 2, '.', '');
+						$new_totals['cbd_fee']['label'] = 'CBD Area Surcharge:';
+						$new_totals['cbd_fee']['value'] = '$'.number_format((float)$surcharge, 2, '.', '');
 					}
 				}
 				
@@ -115,7 +131,7 @@ $header_content_h3 = "
 					
 				}
 			}
-			exit();
+			// exit();
 		?>
 	</tfoot>
 </table>
@@ -156,6 +172,9 @@ switch ($order->payment_method_title) {
 <p><span class="deliveryplace-lbl">Delivery Location:</span> <?php echo ($order->delivery=='allotherarea') ? 'All areas excluding Jurong Island & Sentosa' : 'Jurong Island and Sentosa'; ?></p>
 <p><span class="deliverydate-lbl">Delivery Date:</span> <?php echo $order->delivery_date_day . '/' . $order->delivery_date_month . '/'. $order->delivery_date_year; ?></p>
 <p><span class="deliverytime-lbl">Delivery Time:</span> <?php echo $order->delivery_time; ?></p>
+<?php endif; ?>
+<?php if ( $order->order_comments ) : ?>
+	<p style="margin:0;"></strong><span class="specialdelivery-lbl">Special Delivery Instructions:</span> <?php echo $order->order_comments; ?></strong></p>
 <?php endif; ?>
 
 <?php wc_get_template( 'emails/email-addresses.php', array( 'order' => $order ) ); ?>

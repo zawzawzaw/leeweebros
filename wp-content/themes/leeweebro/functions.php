@@ -58,6 +58,17 @@ add_taxonomy('place', 'slider', array(
 ));
 
 # end slider #
+$args = array(
+  'public' => true,
+  'label' => "Delivery Date",
+  'labels' => array('add_new_item' => "Add New Delivery Date"), #learn more at codex
+  'hierarchical' => false,
+  'supports' => array('title','aside','thumbnail') #learn more about thumbnail
+);
+
+register_post_type('s_delivery_date', $args);
+
+add_my_meta_box('Delivery Date', 's_delivery_date');
 
 # coupon post #
 
@@ -479,8 +490,10 @@ function woocommerce_custom_surcharge() {
   //   return;
 
   // print_r($_POST);
+  $certain_delivery_weekend_time_additional_30 = array('06:00 am - 07:30 am','06:30 am - 08:00 am','08:00 am - 09:30 am','08:30 am - 10:00 am');
   $certain_delivery_time_additional_30 = array('06:00 am - 07:30 am','06:30 am - 08:00 am');
-  $certain_delivery_date_day_additional_20 = array(24, 25, 31, 01); //xmas, newyear and their eves
+  $certain_delivery_date_day_additional_20 = array(24, 25, 31); //xmas, newyear and their eves
+  $certain_delivery_holiday_additional_30 = array('2015-02-19','2015-02-20','2015-04-03','2015-05-01','2015-06-01','2015-07-17','2015-08-10','2015-09-24','2015-11-10','2015-12-25');
   $certain_delivery_post_codes_8 = array(01, 02, 03, 04, 05, 06, 07, 08, 17, 18, 19, 22, 23, 24, 25, 26, 27); //xmas, newyear and their eves
   $surcharge = 0;
 
@@ -489,13 +502,27 @@ function woocommerce_custom_surcharge() {
     $delivery_time = $_POST['delivery_time'];
     $delivery_date_day = $_POST['delivery_date_day'];
     $delivery_date_month = $_POST['delivery_date_month'];
+    $delivery_date_year = $_POST['delivery_date_year'];
     $delivery_area = $_POST['delivery'];
 
-    if (in_array($delivery_time, $certain_delivery_time_additional_30)) {
-      $surcharge += 30;      
+    $tempDate = $delivery_date_year.'-'.$delivery_date_month.'-'.$delivery_date_day;
+    $day = date('D', strtotime( $tempDate));
+
+    if($day=='Sat' || $day=='Sun' || in_array($tempDate, $certain_delivery_holiday_additional_30)) {
+      if (in_array($delivery_time, $certain_delivery_weekend_time_additional_30)) {
+        $surcharge += 30;
+      }
+    }else {
+      if (in_array($delivery_time, $certain_delivery_time_additional_30)) {
+        $surcharge += 30;      
+      }
     }
 
-    if (($delivery_date_month==12 || $delivery_date_month==01) && in_array($delivery_date_day, $certain_delivery_date_day_additional_20)) {
+    if (($delivery_date_month==12) && in_array($delivery_date_day, $certain_delivery_date_day_additional_20)) {
+      $surcharge += 20;
+    }
+
+    if (($delivery_date_month==01) && $delivery_date_day==01) {
       $surcharge += 20;
     }
 
@@ -516,16 +543,30 @@ function woocommerce_custom_surcharge() {
        $delivery_time = $receiving_mode['delivery_time'];
       $delivery_date_day = $receiving_mode['delivery_date_day'];
       $delivery_date_month = $receiving_mode['delivery_date_month'];
+      $delivery_date_year = $receiving_mode['delivery_date_year'];
       $delivery_post_code = substr($shipping_address['postcode'],0,2);
       // echo '<br>' . $delivery_post_code . '<br>';
 
       $delivery_area = $receiving_mode['delivery'];
 
-      if (in_array($delivery_time, $certain_delivery_time_additional_30)) {
-        $surcharge += 30;
+      $tempDate = $delivery_date_year.'-'.$delivery_date_month.'-'.$delivery_date_day;
+      $day = date('D', strtotime( $tempDate));
+
+      if($day=='Sat' || $day=='Sun' || in_array($tempDate, $certain_delivery_holiday_additional_30)) {
+        if (in_array($delivery_time, $certain_delivery_weekend_time_additional_30)) {
+          $surcharge += 30;      
+        }
+      }else {
+        if (in_array($delivery_time, $certain_delivery_time_additional_30)) {
+          $surcharge += 30;      
+        }
+      }      
+
+      if (($delivery_date_month==12) && in_array($delivery_date_day, $certain_delivery_date_day_additional_20)) {
+        $surcharge += 20;
       }
 
-      if (($delivery_date_month==12 || $delivery_date_month==01) && in_array($delivery_date_day, $certain_delivery_date_day_additional_20)) {
+      if (($delivery_date_month==01) && $delivery_date_day==01) {
         $surcharge += 20;
       }
 
@@ -551,14 +592,28 @@ function woocommerce_custom_surcharge() {
       $delivery_time = $post_data_variables['delivery_time'];
       $delivery_date_day = $post_data_variables['delivery_date_day'];
       $delivery_date_month = $post_data_variables['delivery_date_month'];
+      $delivery_date_year = $post_data_variables['delivery_date_year'];
       $delivery_post_code = substr($post_data_variables['shipping_postcode'],0,2);
       $delivery_area = $post_data_variables['delivery'];
 
-      if (in_array($delivery_time, $certain_delivery_time_additional_30)) {
-        $surcharge += 30;
+      $tempDate = $delivery_date_year.'-'.$delivery_date_month.'-'.$delivery_date_day;
+      $day = date('D', strtotime( $tempDate));
+
+      if($day=='Sat' || $day=='Sun' || in_array($tempDate, $certain_delivery_holiday_additional_30)) {
+        if (in_array($delivery_time, $certain_delivery_weekend_time_additional_30)) {
+          $surcharge += 30;      
+        }
+      }else {
+        if (in_array($delivery_time, $certain_delivery_time_additional_30)) {
+          $surcharge += 30;      
+        }
       }
 
-      if (($delivery_date_month==12 || $delivery_date_month==01) && in_array($delivery_date_day, $certain_delivery_date_day_additional_20)) {
+      if (($delivery_date_month==12) && in_array($delivery_date_day, $certain_delivery_date_day_additional_20)) {
+        $surcharge += 20;
+      }
+
+      if (($delivery_date_month==01) && $delivery_date_day==01) {
         $surcharge += 20;
       }
 
@@ -654,3 +709,45 @@ function the_excerpt_max_charlength($charlength) {
     echo $excerpt;
   }
 }
+
+function ni_search_by_title_only( $search, &$wp_query )
+{
+    global $wpdb;
+    if ( empty( $search ) )
+        return $search; // skip processing - no search term in query
+    $q = $wp_query->query_vars;
+    print_r($q);
+    $n = ! empty( $q['exact'] ) ? '' : '%';
+    $search =
+    $searchand = '';
+    foreach ( (array) $q['search_terms'] as $term ) {
+        $term = esc_sql( like_escape( $term ) );
+        $search .= "{$searchand}($wpdb->posts.post_title LIKE '{$n}{$term}{$n}')";
+        $searchand = ' AND ';
+    }
+    if ( ! empty( $search ) ) {
+        $search = " AND ({$search}) ";
+        if ( ! is_user_logged_in() )
+            $search .= " AND ($wpdb->posts.post_password = '') ";
+    }
+
+    // print_r($search); exit();
+
+    return $search;
+}
+add_filter( 'posts_search', 'ni_search_by_title_only', 500, 2 );
+
+add_post_type('specific_delivery_date', array(
+    'public' => true
+));
+
+// works but can't add metabox
+// add_action('admin_menu', 'register_my_custom_submenu_page');
+
+// function register_my_custom_submenu_page() {
+//     add_submenu_page( 'woocommerce', 'Specific Delivery Date', 'Specific Delivery Date', 'edit_posts', 'specific-delivery-date-menu', 'specific_delivery_date_callback' ); 
+// }
+
+// function specific_delivery_date_callback() {
+//     echo '<h3>My Custom Submenu Page</h3>';  
+// }

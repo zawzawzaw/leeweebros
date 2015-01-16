@@ -18,12 +18,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<?php if( 'lost_password' == $args['form'] ) : ?>
 
-        <p><?php echo apply_filters( 'woocommerce_lost_password_message', __( 'Lost your password? Please enter your username or email address. You will receive a link to create a new password via email.', 'woocommerce' ) ); ?></p>
+        <p><?php echo apply_filters( 'woocommerce_lost_password_message', __( 'Lost your password? Please enter your email address. You will receive a link to create a new password via email.', 'woocommerce' ) ); ?></p>
         <div class="space10"></div>
         <div class="row">
             <div class="col-md-12">
                 <label for="user_login" class="asterisk">
-                    <input type="text" name="user_login" id="user_login" class="input-text medium-input required" placeholder="Username or email" />
+                    <input type="text" name="user_login" id="user_login" class="input-text medium-input required" placeholder="Email Address" />
                 </label>
             </div>
         </div>

@@ -18,7 +18,7 @@ foreach ( $items as $item ) :
 	$item_meta    = new WC_Order_Item_Meta( $item['item_meta'], $_product );
 	?>
 	<tr>
-		<td style="text-align:left; vertical-align:middle; border: none; word-wrap:break-word; padding: 12px 6px 0px 6px;"><?php
+		<td style="text-align:left; vertical-align:middle; border: none; word-wrap:break-word; padding: 0px 6px 0px 6px;"><?php
 
 			// Show title/image etc
 			if ( $show_image ) {
@@ -58,8 +58,8 @@ foreach ( $items as $item ) :
 			}
 
 		?></td>
-		<td style="text-align:left; vertical-align:middle; border: none; padding: 12px 6px 0px 6px;"><?php echo $item['qty'] ;?></td>
-		<td style="text-align:left; vertical-align:middle; border: none; padding: 12px 6px 0px 6px;"><?php echo $order->get_formatted_line_subtotal( $item ); ?></td>
+		<td style="text-align:left; vertical-align:middle; border: none; padding: 0px 6px 0px 6px;"><?php echo $item['qty'] ;?></td>
+		<td style="text-align:left; vertical-align:middle; border: none; padding: 0px 6px 0px 6px;"><?php echo $order->get_formatted_line_subtotal( $item ); ?></td>
 	</tr>
 
 	<?php if ( $show_purchase_note && is_object( $_product ) && $purchase_note = get_post_meta( $_product->id, '_purchase_note', true ) ) : ?>
@@ -69,7 +69,7 @@ foreach ( $items as $item ) :
 	<?php endif; ?>
 
 	<tr>
-		<td colspan="3" style="text-align:left; vertical-align:middle; border: none;"><hr style="border: none;height: 1px;background:#cea77c;"></td>
+		<td colspan="3" style="text-align:left; vertical-align:middle; border: none;padding-top: 0; padding-bottom: 0;"><hr style="margin:0;padding:0;border: none;height: 1px;background:#cea77c;"></td>
 	</tr>
 
 <?php endforeach; ?>

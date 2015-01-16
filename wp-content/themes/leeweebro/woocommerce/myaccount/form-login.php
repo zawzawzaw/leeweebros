@@ -86,7 +86,7 @@ else:
 				<div class="row">
 					<div class="col-md-12 less-height">
 						<label for="username">
-							<input type="text" name="username" id="username" class="medium-input input-text required" value="<?php if ( ! empty( $_POST['username'] ) ) echo esc_attr( $_POST['username'] ); ?>" placeholder="<?php _e( 'User Name or Email Address', 'woocommerce' ); ?>">
+							<input type="text" name="username" id="username" class="medium-input input-text required" value="<?php if ( ! empty( $_POST['username'] ) ) echo esc_attr( $_POST['username'] ); ?>" placeholder="<?php _e( 'Email Address', 'woocommerce' ); ?>">
 						</label>
 						<label for="password">
 							<input type="password" name="password" id="password" class="medium-input input-text required" placeholder="<?php _e( 'Password', 'woocommerce' ); ?>">

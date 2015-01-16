@@ -173,7 +173,10 @@ class WC_Emails {
 	 * @return void
 	 */
 	function email_header( $email_heading ) {
-		wc_get_template( 'emails/email-header.php', array( 'email_heading' => $email_heading ) );
+		if($email_heading=="New customer order")
+			wc_get_template( 'emails/admin-email-header.php', array( 'email_heading' => $email_heading ) );
+		else
+			wc_get_template( 'emails/email-header.php', array( 'email_heading' => $email_heading ) );
 	}
 
 	/**

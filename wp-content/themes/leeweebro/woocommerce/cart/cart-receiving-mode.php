@@ -374,7 +374,7 @@ $total_amount = $woocommerce->cart->total;
 				<p class="charges-info">Note: Surcharge is applicable for delivery at selected time range.</p>
 				<ul class="charges-info">
 					<li><p>* Additional S$30 surcharge applies.</p></li>
-					<!-- <li><p>^ Additional S$22 surcharge applies.</p></li> -->
+					<li><p>^ Additional S$30 surcharge applies if delivery date falls on weekend or public holiday.</p></li>
 				</ul>
 			</div>
 		</div>
