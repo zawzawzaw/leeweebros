@@ -15,9 +15,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 <?php wc_print_notices(); ?>
+<?php if($status->name=='processing') {
+	$order_status = 'pending confirmation';
+}else {
+	$order_status = $status->name;
+} ?>
 <div class="row">
 	<div class="col-md-12">
-		<p class="order-info"><?php printf( __( 'Order <mark class="order-number">%s</mark> was placed on <mark class="order-date">%s</mark> and is currently <mark class="order-status">%s</mark>.', 'woocommerce' ), $order->get_order_number(), date_i18n( get_option( 'date_format' ), strtotime( $order->order_date ) ), __( $status->name, 'woocommerce' ) ); ?></p>
+		<p class="order-info"><?php printf( __( 'Order <mark class="order-number">%s</mark> was placed on <mark class="order-date">%s</mark> and is currently <mark class="order-status">%s</mark>.', 'woocommerce' ), $order->get_order_number(), date_i18n( get_option( 'date_format' ), strtotime( $order->order_date ) ), __( $order_status, 'woocommerce' ) ); ?></p>
 	</div>
 </div>
 <div class="space10"></div>

@@ -56,6 +56,8 @@
 		
 		$post_type = $post->post_type;
 		$meta_values = get_existing_meta($post_type);
+		$delivery_date_count = 0;
+		$blackout_date_count = 0;
 
 		if(isset($meta_values)) {
 			foreach ($meta_values as $values) {
@@ -67,6 +69,14 @@
 
 			foreach ($keys as $key){
 				$data[$key] = get_post_meta($post->ID, $key, true);
+
+				if(strpos($key, 'specific_delivery_date') !== false) {
+					$delivery_date_count++;
+				}
+
+				if(strpos($key, 'specific_blackout_date') !== false) {
+					$blackout_date_count++;
+				}
 			}
 		}
 
@@ -106,34 +116,105 @@
 		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 		<script>
-		  $(function() {
-		  	
-		  	
+	  	$(document).ready(function(){
+
+	  		$( ".datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
 		  	
 			$('.add_more').on('click', function(e){
 				e.preventDefault();
 
-				var id = $('.specific_delivery_date').length + 1;
+				var specificDeliveryCount = $('.specific_delivery_date').length;
+				var id = specificDeliveryCount + 1;
 
 				var $this = $('.specific_delivery_date').last().clone().appendTo('.all_delivery_date');
-				$this.attr('id', '');
-				$this.find('label').attr('for', 'specific_delivery_date_'+id).text('Specific Delivery Date '+id);
-				$this.find('input').attr('name', 'specific_delivery_date_'+id).attr('id', 'specific_delivery_date_'+id).val('').datepicker();
 
-				$( ".datepicker" ).datepicker();
+				$this.find('input').removeClass('hasDatepicker');
+
+				$('.datepicker').not('.hasDatepicker').datepicker({ dateFormat: 'yy-mm-dd' });
+
+				$this.attr('id', '');
+				$this.find('label').attr('for', 'specific_delivery_date_'+id).text('Holiday Date '+id);
+				$this.find('input').attr('name', 'specific_delivery_date_'+id).attr('id', 'specific_delivery_date_'+id).val('');
+				// $('#specific_delivery_date_'+id).datepicker({ dateFormat: 'yy-mm-dd' });
+
+				$('#specific_delivery_count').val(id);
 			});
 
-			$( ".datepicker" ).datepicker();
+			
 
-		  });
+	  	});
 		</script>
-		
 		<div class="all_delivery_date">
-			<div id="first" class="specific_delivery_date">
-				<label for="specific_delivery_date">Specific Delivery Date</label>
-				<input type="text" name="specific_delivery_date" id="specific_delivery_date" class="datepicker widefat" value="<?php echo $data['specific_delivery_date']; ?>" />
-			</div>
+			<?php 
+			if($delivery_date_count==0) $delivery_date_count = 1;
+			for($i=1;$i<=$delivery_date_count;$i++): ?>
+				<?php if($i==1): ?>
+				 	<div id="first" class="specific_delivery_date">
+						<label for="specific_delivery_date">Holiday Date</label>
+						<input type="text" name="specific_delivery_date" id="specific_delivery_date" class="datepicker widefat" value="<?php echo $data['specific_delivery_date']; ?>" />
+					</div>
+				<?php else: ?>
+					<div class="specific_delivery_date">
+						<label for="specific_delivery_date_<?php echo $i; ?>">Holiday Date <?php echo $i; ?></label>
+						<input type="text" name="specific_delivery_date_<?php echo $i; ?>" id="specific_delivery_date_<?php echo $i; ?>" class="datepicker widefat" value="<?php echo $data['specific_delivery_date_'.$i]; ?>" />
+					</div>
+				<?php endif; ?>
+			<?php endfor; ?>
+			<input type="hidden" name="specific_delivery_count" id="specific_delivery_count" value="<?php echo $delivery_date_count; ?>">
 		</div>
+		
+
+		<button class="add_more">Add More Dates+</button>
+	<?php elseif($post_type=='s_blackout_date'): ?>
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		<script>
+	  	$(document).ready(function(){
+
+	  		$( ".datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
+		  	
+			$('.add_more').on('click', function(e){
+				e.preventDefault();
+
+				var specificBlackoutCount = $('.specific_blackout_date').length;
+				console.log(specificBlackoutCount)
+
+				var id = specificBlackoutCount + 1;
+
+				var $this = $('.specific_blackout_date').last().clone().appendTo('.all_blackout_date');
+
+				$this.find('input').removeClass('hasDatepicker');
+
+				$('.datepicker').not('.hasDatepicker').datepicker({ dateFormat: 'yy-mm-dd' });
+
+				$this.attr('id', '');
+				$this.find('label').attr('for', 'specific_blackout_date_'+id).text('Blackout Date '+id);
+				$this.find('input').attr('name', 'specific_blackout_date_'+id).attr('id', 'specific_blackout_date_'+id).val('');
+
+				$('#specific_blackout_count').val(id);
+			});
+	  	});
+		</script>
+		<div class="all_blackout_date">
+			<?php 
+			if($blackout_date_count==0) $blackout_date_count = 1;
+			for($i=1;$i<=$blackout_date_count;$i++): ?>
+				<?php if($i==1): ?>
+				 	<div id="first" class="specific_blackout_date">
+						<label for="specific_blackout_date">Blackout Date</label>
+						<input type="text" name="specific_blackout_date" id="specific_blackout_date" class="datepicker widefat" value="<?php echo $data['specific_blackout_date']; ?>" />
+					</div>
+				<?php else: ?>
+					<div class="specific_blackout_date">
+						<label for="specific_blackout_date_<?php echo $i; ?>">Blackout Date <?php echo $i; ?></label>
+						<input type="text" name="specific_blackout_date_<?php echo $i; ?>" id="specific_blackout_date_<?php echo $i; ?>" class="datepicker widefat" value="<?php echo $data['specific_blackout_date_'.$i]; ?>" />
+					</div>
+				<?php endif; ?>
+			<?php endfor; ?>
+			<input type="hidden" name="specific_blackout_count" id="specific_blackout_count" value="<?php echo $blackout_date_count; ?>">
+		</div>
+		
 
 		<button class="add_more">Add More Dates+</button>
 	<?php endif; ?>
@@ -221,11 +302,51 @@
 			update_post_meta($post->ID, 'sort', $sort);
 
 	      }else if($post_type=='s_delivery_date') {
-	      	$specific_delivery_date = sanitize_text_field($_POST['specific_delivery_date']);
-	      	$s_surcharge = sanitize_text_field($_POST['sda_surcharge']);
+	      	$specific_delivery_count = sanitize_text_field($_POST['specific_delivery_count']);
 
-			update_post_meta($post->ID, 'specific_delivery_date', $specific_delivery_date);
-			update_post_meta($post->ID, 'sda_surcharge', $sda_surcharge);
+	      	for($i=1;$i<=$specific_delivery_count;$i++) {
+	      		if($i==1) {
+	      			$specific_delivery_date = sanitize_text_field($_POST['specific_delivery_date']);
+      				$s_surcharge = sanitize_text_field($_POST['sda_surcharge']);
+
+      				update_post_meta($post->ID, 'specific_delivery_date', $specific_delivery_date);
+					update_post_meta($post->ID, 'sda_surcharge', $sda_surcharge);
+	      		}else {
+	      			${'specific_delivery_date'.$i} = sanitize_text_field($_POST['specific_delivery_date_'.$i]);
+      				${'s_surcharge'.$i} = sanitize_text_field($_POST['sda_surcharge_'.$i]);
+
+      				if(!empty(${'specific_delivery_date'.$i})) {
+      					update_post_meta($post->ID, 'specific_delivery_date_'.$i, ${'specific_delivery_date'.$i});
+						update_post_meta($post->ID, 'sda_surcharge_'.$i, ${'s_surcharge'.$i});	
+      				}
+      				
+	      		}
+	      	}
+
+			
+	      }else if($post_type=='s_blackout_date') {
+	      	$specific_blackout_count = sanitize_text_field($_POST['specific_blackout_count']);
+
+	      	for($i=1;$i<=$specific_blackout_count;$i++) {
+	      		if($i==1) {
+	      			$specific_blackout_date = sanitize_text_field($_POST['specific_blackout_date']);
+      				$s_surcharge = sanitize_text_field($_POST['sda_surcharge']);
+
+      				update_post_meta($post->ID, 'specific_blackout_date', $specific_blackout_date);
+					update_post_meta($post->ID, 'sda_surcharge', $sda_surcharge);
+	      		}else {
+	      			${'specific_blackout_date'.$i} = sanitize_text_field($_POST['specific_blackout_date_'.$i]);
+      				${'s_surcharge'.$i} = sanitize_text_field($_POST['sda_surcharge_'.$i]);
+
+      				if(!empty(${'specific_blackout_date'.$i})) {
+      					update_post_meta($post->ID, 'specific_blackout_date_'.$i, ${'specific_blackout_date'.$i});
+						update_post_meta($post->ID, 'sda_surcharge_'.$i, ${'s_surcharge'.$i});	
+      				}
+      				
+	      		}
+
+	      	}
+
 	      }
 
 	    }

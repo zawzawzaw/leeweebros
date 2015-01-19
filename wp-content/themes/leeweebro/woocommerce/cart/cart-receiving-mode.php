@@ -315,6 +315,43 @@ $total_amount = $woocommerce->cart->total;
 					</div>
 					<a href="#" id="delivery_datepicker" class="calendar"></a>
 					<input type="text" id="delivery_date" style="display:none;" />
+
+					<?php 
+					$args = array( 'post_type' => 's_blackout_date', 'posts_per_page' => 1 );
+				  	$loop = new WP_Query( $args );
+					  while ( $loop->have_posts() ) : $loop->the_post();
+
+					    global $post;  
+					    // if ( is_admin() && ! defined( 'DOING_AJAX' ) )
+					    //   return;
+
+					    $meta_values = get_existing_meta('s_blackout_date');
+					    $blackout_date_count = 0;
+
+					    if(isset($meta_values)) {
+					      foreach ($meta_values as $values) {
+					        unset($values['_edit_last']);
+					        unset($values['_edit_lock']);
+
+					        $keys = array_keys($values);
+					      }
+
+					      foreach ($keys as $key){
+					        $data[$key] = get_post_meta($post->ID, $key, true);
+
+					        if(strpos($key, 'specific_blackout_date') !== false) {
+					          $blackout_date_count++;
+					        }
+					      }
+					    }
+
+				  	endwhile;
+				  	for($i=1;$i<=$blackout_date_count;$i++) {
+					    if($i==1) $certain_blackout_dates[] = $data['specific_blackout_date'];
+					    else $certain_blackout_dates[] = $data['specific_blackout_date_'.$i];
+					}
+					?>
+					<input type="hidden" name="delivery_blackout_date" id="delivery_blackout_date" value="<?php echo implode(',', $certain_blackout_dates); ?>" />
 					<div class="error-msg error-delivery-date"></div>
 					<div class="space10"></div>
 					<p class="note">* Please note that orders must be made at least 2 days in advance. Subject to availability</p>

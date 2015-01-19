@@ -60,15 +60,27 @@ add_taxonomy('place', 'slider', array(
 # end slider #
 $args = array(
   'public' => true,
-  'label' => "Delivery Date",
-  'labels' => array('add_new_item' => "Add New Delivery Date"), #learn more at codex
+  'label' => "Holiday Date",
+  'labels' => array('add_new_item' => "Add New Holiday Date"), #learn more at codex
   'hierarchical' => false,
   'supports' => array('title','aside','thumbnail') #learn more about thumbnail
 );
 
 register_post_type('s_delivery_date', $args);
 
-add_my_meta_box('Delivery Date', 's_delivery_date');
+add_my_meta_box('Holiday Date', 's_delivery_date');
+
+$args = array(
+  'public' => true,
+  'label' => "Blackout Date",
+  'labels' => array('add_new_item' => "Add New Blackout Date"), #learn more at codex
+  'hierarchical' => false,
+  'supports' => array('title','aside','thumbnail') #learn more about thumbnail
+);
+
+register_post_type('s_blackout_date', $args);
+
+add_my_meta_box('Blackout Date', 's_blackout_date');
 
 # coupon post #
 
@@ -485,15 +497,51 @@ function my_custom_checkout_field_update_order_meta( $order_id ) {
 add_action( 'woocommerce_cart_calculate_fees','woocommerce_custom_surcharge' );
 function woocommerce_custom_surcharge() {
   global $woocommerce;
- 
-  // if ( is_admin() && ! defined( 'DOING_AJAX' ) )
-  //   return;
+
+  $args = array( 'post_type' => 's_delivery_date', 'posts_per_page' => 1 );
+
+  $loop = new WP_Query( $args );
+  while ( $loop->have_posts() ) : $loop->the_post();
+
+    global $post;  
+    // if ( is_admin() && ! defined( 'DOING_AJAX' ) )
+    //   return;
+
+    $meta_values = get_existing_meta('s_delivery_date');
+    $delivery_date_count = 0;
+
+    if(isset($meta_values)) {
+      foreach ($meta_values as $values) {
+        unset($values['_edit_last']);
+        unset($values['_edit_lock']);
+
+        $keys = array_keys($values);
+      }
+
+      foreach ($keys as $key){
+        $data[$key] = get_post_meta($post->ID, $key, true);
+
+        if(strpos($key, 'specific_delivery_date') !== false) {
+          $delivery_date_count++;
+        }
+      }
+    }
+
+  endwhile;
 
   // print_r($_POST);
   $certain_delivery_weekend_time_additional_30 = array('06:00 am - 07:30 am','06:30 am - 08:00 am','08:00 am - 09:30 am','08:30 am - 10:00 am');
   $certain_delivery_time_additional_30 = array('06:00 am - 07:30 am','06:30 am - 08:00 am');
   $certain_delivery_date_day_additional_20 = array(24, 25, 31); //xmas, newyear and their eves
-  $certain_delivery_holiday_additional_30 = array('2015-02-19','2015-02-20','2015-04-03','2015-05-01','2015-06-01','2015-07-17','2015-08-10','2015-09-24','2015-11-10','2015-12-25');
+
+  for($i=1;$i<=$delivery_date_count;$i++) {
+    if($i==1) $certain_delivery_holiday_additional_30[] = $data['specific_delivery_date'];
+    else $certain_delivery_holiday_additional_30[] = $data['specific_delivery_date_'.$i];
+  }
+
+  // print_r($certain_delivery_holiday_additional_30); exit();
+
+  // $certain_delivery_holiday_additional_30 = array('2015-02-19','2015-02-20','2015-04-03','2015-05-01','2015-06-01','2015-07-17','2015-08-10','2015-09-24','2015-11-10','2015-12-25');
   $certain_delivery_post_codes_8 = array(01, 02, 03, 04, 05, 06, 07, 08, 17, 18, 19, 22, 23, 24, 25, 26, 27); //xmas, newyear and their eves
   $surcharge = 0;
 
@@ -737,9 +785,9 @@ function ni_search_by_title_only( $search, &$wp_query )
 }
 add_filter( 'posts_search', 'ni_search_by_title_only', 500, 2 );
 
-add_post_type('specific_delivery_date', array(
-    'public' => true
-));
+// add_post_type('specific_delivery_date', array(
+//     'public' => true
+// ));
 
 // works but can't add metabox
 // add_action('admin_menu', 'register_my_custom_submenu_page');

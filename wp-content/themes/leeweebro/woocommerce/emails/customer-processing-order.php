@@ -67,7 +67,7 @@ $header_content_h3 = "
 
 <p><strong><?php _e( "Thank you for shopping with Lee Wee & Brothers' Foodstuff Pte Ltd!", 'woocommerce' ); ?></strong></p>
 
-<p><?php _e( "Your order has been received and is now being processed. Your order details are shown below for your reference:", 'woocommerce' ); ?></p>
+<p><?php _e( "Your order has been submitted. Your order will only be processed upon our tele-confirmation within the next 24 hours. Your order details are shown below for your reference:", 'woocommerce' ); ?></p>
 
 <?php //do_action( 'woocommerce_email_before_order_table', $order, $sent_to_admin, $plain_text ); ?>
 

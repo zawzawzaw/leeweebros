@@ -795,6 +795,12 @@ jQuery( function( $ ) {
 				$('.error-deliver-sentosa').html('');
 			}
 
+			var chosen_date = year + '-' + month + '-' + day;
+			var blackout_dates = $('#delivery_blackout_date').val().split(',');
+
+			console.log(chosen_date)
+			console.log(blackout_dates)
+			
 			// delivery date
 			if(day == "" || month == "" || year == "") {
 
@@ -805,6 +811,12 @@ jQuery( function( $ ) {
 
 				$('.error-delivery-date').html('Orders must be made at least 2 days in advance.');
 				error = true;
+
+			}else if(jQuery.inArray(chosen_date,blackout_dates) > -1){
+
+				$('.error-delivery-date').html('Delivery service is not available for selected date.');
+				error = true;
+				console.log('hi');
 
 			}else $('.error-delivery-date').html('');
 
@@ -884,6 +896,7 @@ jQuery( function( $ ) {
 		$('#delivery_date_day').on('change', function(e){
 			var month = $("#delivery_date_month").val();
 			var day = $(this).val();
+			var year = $("#delivery_date_year").val();
 
 			if((day == 25 && month == 12) || (day == 24 && month == 12) || (day == 01 && month == 01) || (day == 31 && month == 12)) {
 
