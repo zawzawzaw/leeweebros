@@ -727,7 +727,7 @@ class WC_Form_Handler {
 				}
 
 				if ( empty( $_POST['username'] ) ) {
-					throw new Exception( '<strong>' . __( 'Error', 'woocommerce' ) . ':</strong> ' . __( 'Username is required.', 'woocommerce' ) );
+					throw new Exception( '<strong>' . __( 'Error', 'woocommerce' ) . ':</strong> ' . __( 'Email is required.', 'woocommerce' ) );
 				}
 
 				if ( empty( $_POST['password'] ) ) {

@@ -82,6 +82,12 @@ switch ($order->payment_method_title) {
 		$extra_detail = '';
 		break;
 }
+$user_ID = get_current_user_id();
+$key = 'title'; 
+$single = true; 
+$user_title = get_user_meta($user_ID, $key, $single);
+
+$tempDate = $order->delivery_date_year.'-'.$order->delivery_date_month.'-'.$order->delivery_date_day;
 ?>
 <p style="margin:0;"><strong><?php _e( 'Payment By:', 'woocommerce' ); ?></strong> <?php echo $order->payment_method_title; ?> <?php echo (!empty($extra_detail)) ? '( '.$extra_detail.' )' : '' ; ?></p>
 <p style="margin-bottom: 5px; margin-top: 0;"><strong><?php _e( 'Receiving By:', 'woocommerce' ); ?></strong> <?php echo (isset($order->delivery)) ? 'Delivery' : 'Self Collection'; ?></p>
@@ -92,9 +98,11 @@ switch ($order->payment_method_title) {
 <?php endif; ?>
 <?php if(isset($order->delivery)): ?>
 <p style="margin:0;"><span class="deliveryplace-lbl">Delivery Location:</span> <?php echo ($order->delivery=='allotherarea') ? 'All areas excluding Jurong Island & Sentosa' : 'Jurong Island and Sentosa'; ?></p>
-<p style="margin:0;"><strong><span class="deliverydate-lbl">Delivery Date:</span> <?php echo $order->delivery_date_day . '/' . $order->delivery_date_month . '/'. $order->delivery_date_year; ?></strong></p>
+<p style="margin:0;"><strong><span class="deliverydate-lbl">Delivery Date:</span> <?php echo date('l', strtotime( $tempDate)); ?>, <?php echo $order->delivery_date_day . '/' . $order->delivery_date_month . '/'. $order->delivery_date_year; ?></strong></p>
 <p style="margin:0;"></strong><span class="deliverytime-lbl">Delivery Time:</span> <?php echo $order->delivery_time; ?></strong></p>
 <?php endif; ?>
+<p style="margin:0;"></strong><span class="deliverytime-lbl">Consumption Time:</span> <?php echo $order->consumption_time_hr . ':' . $order->consumption_time_mm . ' ' . $order->consumption_time_am_pm; ?></strong></p>
+
 <?php if ( $order->order_comments ) : ?>
 	<p style="margin:0;"></strong><span class="specialdelivery-lbl">Special Delivery Instructions:</span> <?php echo $order->order_comments; ?></strong></p>
 <?php endif; ?>
@@ -102,7 +110,7 @@ switch ($order->payment_method_title) {
 <h2 style="<?php echo $header_content_h2_2; ?>"><?php _e( 'Customer details:', 'woocommerce' ); ?></h2>
 
 <?php if ( $order->billing_first_name ) : ?>
-	<p style="margin:0;"><strong><?php _e( 'Name:', 'woocommerce' ); ?></strong> <?php echo $order->billing_first_name . ' ' . $order->billing_last_name; ?></p>
+	<p style="margin:0;"><strong><?php _e( 'Name:', 'woocommerce' ); ?></strong> <?php echo $user_title . ' ' . $order->billing_first_name . ' ' . $order->billing_last_name; ?></p>
 <?php endif; ?>
 <?php if ( $order->billing_email ) : ?>
 	<p style="margin:0;"><strong><?php _e( 'Email:', 'woocommerce' ); ?></strong> <?php echo $order->billing_email; ?></p>
@@ -147,7 +155,8 @@ switch ($order->payment_method_title) {
 			$post_code = trim($order->shipping_postcode);
 			$post_code = substr($post_code,0,2);
 
-			$certain_delivery_post_codes_8 = array(01, 02, 03, 04, 05, 06, 07, 08, 17, 18, 19, 22, 23, 24, 25, 26, 27);
+			// $certain_delivery_post_codes_8 = array(01, 02, 03, 04, 05, 06, 07, 08, 17, 18, 19, 22, 23, 24, 25, 26, 27);
+			$certain_delivery_post_codes_8 = array('01', '02', '03', '04', '05', '06', '07', '08', '17', '18', '19', '22', '23');//, '24', '25', '26', '27'
 
 			if(isset($order->delivery) && $order->delivery!="jurongsentoaarea" && in_array($post_code, $certain_delivery_post_codes_8)) {
 				$order_total = $order->get_total();

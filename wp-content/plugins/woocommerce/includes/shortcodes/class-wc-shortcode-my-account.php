@@ -217,7 +217,7 @@ class WC_Shortcode_My_Account {
 
 		if ( empty( $_POST['user_login'] ) ) {
 
-			wc_add_notice( __( 'Enter a username or e-mail address.', 'woocommerce' ), 'error' );
+			wc_add_notice( __( 'Enter an e-mail address.', 'woocommerce' ), 'error' );
 
 		} elseif ( strpos( $_POST['user_login'], '@' ) && apply_filters( 'woocommerce_get_username_from_email', true ) ) {
 
@@ -230,7 +230,7 @@ class WC_Shortcode_My_Account {
 
 			$login = trim( $_POST['user_login'] );
 
-			$user_data = get_user_by( 'login', $login );
+			// $user_data = get_user_by( 'login', $login );
 		}
 
 		do_action('lostpassword_post');
@@ -239,7 +239,7 @@ class WC_Shortcode_My_Account {
 			return false;
 
 		if ( ! $user_data ) {
-			wc_add_notice( __( 'Invalid username or e-mail.', 'woocommerce' ), 'error' );
+			wc_add_notice( __( 'Invalid e-mail.', 'woocommerce' ), 'error' );
 			return false;
 		}
 

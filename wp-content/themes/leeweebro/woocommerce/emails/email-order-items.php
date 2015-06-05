@@ -16,6 +16,9 @@ global $woocommerce;
 foreach ( $items as $item ) :
 	$_product     = apply_filters( 'woocommerce_order_item_product', $order->get_product_from_item( $item ), $item );
 	$item_meta    = new WC_Order_Item_Meta( $item['item_meta'], $_product );
+	$terms = get_the_terms( $_product->id, 'product_cat' );
+
+	$category = (isset($terms[0]->name)) ? $terms[0]->name : '';
 	?>
 	<tr>
 		<td style="text-align:left; vertical-align:middle; border: none; word-wrap:break-word; padding: 0px 6px 0px 6px;"><?php
@@ -26,7 +29,7 @@ foreach ( $items as $item ) :
 			}
 
 			// Product name
-			echo apply_filters( 'woocommerce_order_item_name', $item['name'], $item );
+			echo $category . ' - ' . apply_filters( 'woocommerce_order_item_name', $item['name'], $item );
 
 			// SKU
 			if ( $show_sku && is_object( $_product ) && $_product->get_sku() ) {

@@ -168,10 +168,10 @@ $receiving_mode = json_decode(stripslashes($_POST['receiving_mode']), true);
 					<input type="radio" name="corporate_payment_method" value="Corporate cheque" >
 					<label for="atm" class="radio-label"><span class="radiobtn"></span>Corporate cheque</label>
 				</li>
-				<li>
+				<!-- <li>
 					<input type="radio" name="corporate_payment_method" value="Credit Terms" >
 					<label for="atm" class="radio-label"><span class="radiobtn"></span>Credit Terms</label>
-				</li>
+				</li> -->
 				<li>
 					<input type="radio" name="corporate_payment_method" value="GeBiz" >
 					<label for="atm" class="radio-label"><span class="radiobtn"></span>GeBiz</label>
@@ -181,11 +181,11 @@ $receiving_mode = json_decode(stripslashes($_POST['receiving_mode']), true);
 					<label for="online" class="radio-label"><span class="radiobtn"></span><span class="text">AGD E-Invoice - Please indicate event name/code:</span></label>
 					<input type="text" name="einvoice">
 				</li>
-				<li>
+				<!-- <li>
 					<input type="radio" name="corporate_payment_method" value="Interbank Giro">
 					<label for="online" class="radio-label"><span class="radiobtn"></span><span class="text">Interbank Giro - Please indicate purchase order no:</span></label>
 					<input type="text" name="interbankgiro">
-				</li>
+				</li> -->
 			</ul>
 		</div>
 	</div>

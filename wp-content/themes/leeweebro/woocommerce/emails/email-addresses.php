@@ -61,6 +61,7 @@ $table_content_p = "
 					<?php echo $billadd . '<br>'; ?>
 				<?php endif; ?>
 			<?php } ?>
+			<?php echo isset($_POST['billing_addition_info']) ? $_POST['billing_addition_info'] : ''; ?>
 			</p>
 
 		</td>
@@ -81,6 +82,7 @@ $table_content_p = "
 					<?php echo $shipadd . '<br>'; ?>
 				<?php endif; ?>
 			<?php } ?>
+			<?php echo isset($_POST['shipping_addition_info']) ? $_POST['shipping_addition_info'] : ''; ?>
 			</p>
 
 		</td>

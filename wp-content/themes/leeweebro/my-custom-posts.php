@@ -126,15 +126,18 @@
 				var specificDeliveryCount = $('.specific_delivery_date').length;
 				var id = specificDeliveryCount + 1;
 
-				var $this = $('.specific_delivery_date').last().clone().appendTo('.all_delivery_date');
+				var newdeliverydate = $('.specific_delivery_date_to_clone').children().clone();
 
-				$this.find('input').removeClass('hasDatepicker');
+				newdeliverydate.show().addClass('specific_delivery_date');
+				newdeliverydate.find('input').attr('disabled', false);
 
-				$('.datepicker').not('.hasDatepicker').datepicker({ dateFormat: 'yy-mm-dd' });
+				$('.all_delivery_date').append(newdeliverydate);
 
-				$this.attr('id', '');
-				$this.find('label').attr('for', 'specific_delivery_date_'+id).text('Holiday Date '+id);
-				$this.find('input').attr('name', 'specific_delivery_date_'+id).attr('id', 'specific_delivery_date_'+id).val('');
+				// $('.datepicker').not('.hasDatepicker').datepicker({ dateFormat: 'yy-mm-dd' });
+
+				newdeliverydate.attr('id', '');
+				newdeliverydate.find('label').attr('for', 'specific_delivery_date_'+id).text('Holiday Date '+id);
+				newdeliverydate.find('input').attr('name', 'specific_delivery_date_'+id).attr('id', 'specific_delivery_date_'+id).val('');
 				// $('#specific_delivery_date_'+id).datepicker({ dateFormat: 'yy-mm-dd' });
 
 				$('#specific_delivery_count').val(id);
@@ -145,6 +148,12 @@
 	  	});
 		</script>
 		<div class="all_delivery_date">
+			<div class="specific_delivery_date_to_clone">
+				<div style="display:none">
+					<label for="specific_delivery_date">Holiday Date</label>
+					<input type="text" name="specific_delivery_date" id="specific_delivery_date" class="datepicker widefat" value="" placeholder="yyyy-mm-dd" />
+				</div>
+			</div>
 			<?php 
 			if($delivery_date_count==0) $delivery_date_count = 1;
 			for($i=1;$i<=$delivery_date_count;$i++): ?>
@@ -165,6 +174,10 @@
 		
 
 		<button class="add_more">Add More Dates+</button>
+		<div class="delivery_surcharge">
+			<label for="specific_delivery_surcharge">Delivery Surcharge</label>
+			<input type="text" name="specific_delivery_surcharge" id="specific_delivery_surcharge" class="widefat" value="<?php echo $data['specific_delivery_surcharge']; ?>">
+		</div>
 	<?php elseif($post_type=='s_blackout_date'): ?>
 		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
@@ -172,7 +185,7 @@
 		<script>
 	  	$(document).ready(function(){
 
-	  		$( ".datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
+	  		$( ".datepicker" ).datepicker({ dateFormat: 'yy-mm-dd', minDate: 0 });
 		  	
 			$('.add_more').on('click', function(e){
 				e.preventDefault();
@@ -182,41 +195,106 @@
 
 				var id = specificBlackoutCount + 1;
 
-				var $this = $('.specific_blackout_date').last().clone().appendTo('.all_blackout_date');
+				var newblackoutdate = $('.specific_blackout_date_to_clone').children().clone();
 
-				$this.find('input').removeClass('hasDatepicker');
+				newblackoutdate.show().addClass('specific_blackout_date');
+				newblackoutdate.find('input').attr('disabled', false);
 
-				$('.datepicker').not('.hasDatepicker').datepicker({ dateFormat: 'yy-mm-dd' });
+				$('.all_blackout_date').append(newblackoutdate);
 
-				$this.attr('id', '');
-				$this.find('label').attr('for', 'specific_blackout_date_'+id).text('Blackout Date '+id);
-				$this.find('input').attr('name', 'specific_blackout_date_'+id).attr('id', 'specific_blackout_date_'+id).val('');
+				// newblackoutdate.find('input[type="text"]').mask("9999-99-99",{placeholder:"yyyy-mm-dd"});
+
+				newblackoutdate.attr('id', '');
+				newblackoutdate.find('label').first().attr('for', 'specific_blackout_date_'+id).text('Blackout Date '+id);
+				newblackoutdate.find('input[type="text"]').attr('name', 'specific_blackout_date_'+id).attr('id', 'specific_blackout_date_'+id).val('');
+				newblackoutdate.find('.blackout_receiving_mode').children('div').children('input[type="radio"]').attr('name', 'blackout_receiving_mode_'+id);
+				newblackoutdate.find('.blackout_timeframe').children('div').children('input[type="radio"]').attr('name', 'blackout_timeframe_'+id);
 
 				$('#specific_blackout_count').val(id);
 			});
 	  	});
 		</script>
 		<div class="all_blackout_date">
+			<div class="specific_blackout_date_to_clone">
+				<div style="display:none">
+					<label class="lbl_specific_blackout_date" for="specific_blackout_date">Blackout Date</label>
+					<input type="text" disabled name="specific_blackout_date" id="specific_blackout_date" class="widefat" value="" placeholder="yyyy-mm-dd" />
+
+					<div class="blackout_receiving_mode">
+						<label class="lbl_blackout_receiving_mode" for="blackout_receiving_mode">Apply this date on receiving modes:</label>
+						<div>
+							<input type="radio" disabled name="blackout_receiving_mode" value="delivery"><span>Delivery Only</span>&nbsp;&nbsp;&nbsp;
+							<input type="radio" disabled name="blackout_receiving_mode" value="collection"><span>Self Collection Only</span>&nbsp;&nbsp;
+							<input type="radio" disabled name="blackout_receiving_mode" value="both"><span>Both Delivery & Self Collection</span>
+						</div>
+					</div>
+					<div class="blackout_timeframe">
+						<label class="lbl_blackout_timeframe" for="blackout_timeframe">Choose blackout timeframe:</label>
+						<div>
+							<input type="radio" name="blackout_timeframe" value="morning"><span>Half Day Morning (6am to 1pm)</span>&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="blackout_timeframe" value="evening"><span>Half Day Evening (1pm to 5pm)</span>&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="blackout_timeframe" value="full"><span>Full Day</span>&nbsp;&nbsp;&nbsp;
+						</div>
+					</div>
+					<br>
+				</div>
+			</div>
 			<?php 
+			$all_time_slots = ['06:00 am - 07:30 am',"06:30 am - 08:00 am","08:00 am - 09:30 am","08:30 am - 10:00 am","09:00 am - 10:30 am","09:30 am - 11:00 am","10:00 am - 11:30 am","10:30 am - 12:00 pm","11:00 am - 12:30 pm","11:30 am - 01:00 pm","12:00 pm - 01:30 pm","12:30 pm - 02:00 pm","01:00 pm - 02:30 pm","01:30 pm - 03:00 pm","02:00 pm - 03:30 pm","02:30 pm - 04:00 pm","03:00 pm - 04:30 pm","03:30 pm - 05:00 pm"];
 			if($blackout_date_count==0) $blackout_date_count = 1;
 			for($i=1;$i<=$blackout_date_count;$i++): ?>
 				<?php if($i==1): ?>
 				 	<div id="first" class="specific_blackout_date">
-						<label for="specific_blackout_date">Blackout Date</label>
+						<label class="lbl_specific_blackout_date" for="specific_blackout_date">Blackout Date</label>
 						<input type="text" name="specific_blackout_date" id="specific_blackout_date" class="datepicker widefat" value="<?php echo $data['specific_blackout_date']; ?>" />
+
+						<div class="blackout_receiving_mode">
+							<label class="lbl_blackout_receiving_mode" for="blackout_receiving_mode">Apply this date on receiving modes:</label>
+							<div>
+								<input type="radio" name="blackout_receiving_mode" value="delivery" <?php echo ($data['blackout_receiving_mode']=='delivery') ? 'checked' : ''; ?>><span>Delivery Only</span>&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="blackout_receiving_mode" value="collection" <?php echo ($data['blackout_receiving_mode']=='collection') ? 'checked' : ''; ?>><span>Self Collection Only</span>&nbsp;&nbsp;
+								<input type="radio" name="blackout_receiving_mode" value="both" <?php echo ($data['blackout_receiving_mode']=='both') ? 'checked' : ''; ?>><span>Both Delivery & Self Collection</span>
+							</div>
+						</div>
+						<div class="blackout_timeframe">
+							<label class="lbl_blackout_timeframe" for="blackout_timeframe">Choose blackout timeframe: </label>
+							<div>
+								<input type="radio" name="blackout_timeframe" value="morning" <?php echo ($data['blackout_timeframe']=='morning') ? 'checked' : ''; ?>><span>Half Day Morning (6am to 1pm)</span>&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="blackout_timeframe" value="evening" <?php echo ($data['blackout_timeframe']=='evening') ? 'checked' : ''; ?>><span>Half Day Evening (1pm to 5pm)</span>&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="blackout_timeframe" value="full" <?php echo ($data['blackout_timeframe']=='full') ? 'checked' : ''; ?>><span>Full Day</span>&nbsp;&nbsp;&nbsp;
+							</div>
+						</div>
+						<br>
 					</div>
 				<?php else: ?>
 					<div class="specific_blackout_date">
-						<label for="specific_blackout_date_<?php echo $i; ?>">Blackout Date <?php echo $i; ?></label>
+						<label class="lbl_specific_blackout_date_<?php echo $i; ?>" for="specific_blackout_date_<?php echo $i; ?>">Blackout Date <?php echo $i; ?></label>
 						<input type="text" name="specific_blackout_date_<?php echo $i; ?>" id="specific_blackout_date_<?php echo $i; ?>" class="datepicker widefat" value="<?php echo $data['specific_blackout_date_'.$i]; ?>" />
+
+						<div class="blackout_receiving_mode">
+							<label class="lbl_blackout_receiving_mode_<?php echo $i; ?>" for="blackout_receiving_mode_<?php echo $i; ?>">Apply this date on receiving modes:</label>
+							<div>
+								<input type="radio" name="blackout_receiving_mode_<?php echo $i; ?>" value="delivery" <?php echo ($data['blackout_receiving_mode_'.$i]=='delivery') ? 'checked' : ''; ?>><span>Delivery Only</span>&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="blackout_receiving_mode_<?php echo $i; ?>" value="collection" <?php echo ($data['blackout_receiving_mode_'.$i]=='collection') ? 'checked' : ''; ?>><span>Self Collection Only</span>&nbsp;&nbsp;
+								<input type="radio" name="blackout_receiving_mode_<?php echo $i; ?>" value="both" <?php echo ($data['blackout_receiving_mode_'.$i]=='both') ? 'checked' : ''; ?>><span>Both Delivery & Self Collection</span>
+							</div>
+						</div>
+						<div class="blackout_timeframe">
+							<label class="lbl_blackout_timeframe_<?php echo $i; ?>" for="blackout_timeframe_<?php echo $i; ?>">Choose blackout timeframe:</label>
+							<div>
+								<input type="radio" name="blackout_timeframe_<?php echo $i; ?>" value="morning" <?php echo ($data['blackout_timeframe_'.$i]=='morning') ? 'checked' : ''; ?>><span>Half Day Morning (6am to 1pm)</span>&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="blackout_timeframe_<?php echo $i; ?>" value="evening" <?php echo ($data['blackout_timeframe_'.$i]=='evening') ? 'checked' : ''; ?>><span>Half Day Evening (1pm to 5pm)</span>&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="blackout_timeframe_<?php echo $i; ?>" value="full" <?php echo ($data['blackout_timeframe_'.$i]=='full') ? 'checked' : ''; ?>><span>Full Day</span>&nbsp;&nbsp;&nbsp;
+							</div>
+						</div>
+						<br>
 					</div>
 				<?php endif; ?>
 			<?php endfor; ?>
 			<input type="hidden" name="specific_blackout_count" id="specific_blackout_count" value="<?php echo $blackout_date_count; ?>">
 		</div>
 		
-
-		<button class="add_more">Add More Dates+</button>
+		<button class="add_more">Add More Dates+</button><br>
 	<?php endif; ?>
 
 	<?php
@@ -307,45 +385,48 @@
 	      	for($i=1;$i<=$specific_delivery_count;$i++) {
 	      		if($i==1) {
 	      			$specific_delivery_date = sanitize_text_field($_POST['specific_delivery_date']);
-      				$s_surcharge = sanitize_text_field($_POST['sda_surcharge']);
-
       				update_post_meta($post->ID, 'specific_delivery_date', $specific_delivery_date);
-					update_post_meta($post->ID, 'sda_surcharge', $sda_surcharge);
 	      		}else {
 	      			${'specific_delivery_date'.$i} = sanitize_text_field($_POST['specific_delivery_date_'.$i]);
-      				${'s_surcharge'.$i} = sanitize_text_field($_POST['sda_surcharge_'.$i]);
 
       				if(!empty(${'specific_delivery_date'.$i})) {
       					update_post_meta($post->ID, 'specific_delivery_date_'.$i, ${'specific_delivery_date'.$i});
-						update_post_meta($post->ID, 'sda_surcharge_'.$i, ${'s_surcharge'.$i});	
       				}
-      				
 	      		}
 	      	}
 
-			
+	      	$specific_delivery_surcharge = sanitize_text_field($_POST['specific_delivery_surcharge']);
+	      	update_post_meta($post->ID, 'specific_delivery_surcharge', $specific_delivery_surcharge);
+
 	      }else if($post_type=='s_blackout_date') {
 	      	$specific_blackout_count = sanitize_text_field($_POST['specific_blackout_count']);
 
 	      	for($i=1;$i<=$specific_blackout_count;$i++) {
 	      		if($i==1) {
 	      			$specific_blackout_date = sanitize_text_field($_POST['specific_blackout_date']);
-      				$s_surcharge = sanitize_text_field($_POST['sda_surcharge']);
-
       				update_post_meta($post->ID, 'specific_blackout_date', $specific_blackout_date);
-					update_post_meta($post->ID, 'sda_surcharge', $sda_surcharge);
+
+      				$blackoutreceiving_mode = sanitize_text_field($_POST['blackout_receiving_mode']);
+	      			update_post_meta($post->ID, 'blackout_receiving_mode', $blackoutreceiving_mode);
+
+	      			$blackout_timeframe = sanitize_text_field($_POST['blackout_timeframe']);
+	      			update_post_meta($post->ID, 'blackout_timeframe', $blackout_timeframe);
 	      		}else {
 	      			${'specific_blackout_date'.$i} = sanitize_text_field($_POST['specific_blackout_date_'.$i]);
-      				${'s_surcharge'.$i} = sanitize_text_field($_POST['sda_surcharge_'.$i]);
+	      			${'blackout_receiving_mode'.$i} = sanitize_text_field($_POST['blackout_receiving_mode_'.$i]);
+	      			${'blackout_timeframe'.$i} = sanitize_text_field($_POST['blackout_timeframe_'.$i]);
 
       				if(!empty(${'specific_blackout_date'.$i})) {
       					update_post_meta($post->ID, 'specific_blackout_date_'.$i, ${'specific_blackout_date'.$i});
-						update_post_meta($post->ID, 'sda_surcharge_'.$i, ${'s_surcharge'.$i});	
+      					update_post_meta($post->ID, 'blackout_receiving_mode_'.$i, ${'blackout_receiving_mode'.$i});
+      					update_post_meta($post->ID, 'blackout_timeframe_'.$i, ${'blackout_timeframe'.$i});
       				}
       				
 	      		}
 
 	      	}
+
+	      	
 
 	      }
 

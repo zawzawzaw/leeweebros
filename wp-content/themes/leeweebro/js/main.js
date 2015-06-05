@@ -1,3 +1,26 @@
+// Avoid `console` errors in browsers that lack a console.
+(function() {
+    var method;
+    var noop = function () {};
+    var methods = [
+        'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
+        'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
+        'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd',
+        'timeStamp', 'trace', 'warn'
+    ];
+    var length = methods.length;
+    var console = (window.console = window.console || {});
+
+    while (length--) {
+        method = methods[length];
+
+        // Only stub undefined methods.
+        if (!console[method]) {
+            console[method] = noop;
+        }
+    }
+}());
+
 jQuery( function( $ ) {
 
 	$(document).ready(function(){
@@ -101,7 +124,7 @@ jQuery( function( $ ) {
 			},
 			messages: {
 				username: {
-					required: "Please fill in your user name"
+					required: "Please fill in your email address"
 				},
 				password: {
 				  required: "Please fill in your password"
@@ -131,6 +154,7 @@ jQuery( function( $ ) {
 					alphanumeric: true
 				},
 				address_book_1_address_1: "required",
+				address_book_1_address_2: "required",
 				address_book_1_postcode: {
 					required : true,
 					number: true
@@ -170,6 +194,7 @@ jQuery( function( $ ) {
 					alphanumeric: "Letter and number only please"
 				},
 				address_book_1_address_1: "Please fill in your address",
+				address_book_1_address_2: "Please fill in your address",
 				address_book_1_postcode: {
 					required : "Please fill in your post code",
 					number: "Invalid postal code"
@@ -197,7 +222,7 @@ jQuery( function( $ ) {
 			},
 			messages: {
 				user_login: {
-					required: "Please fill in your login name or email"
+					required: "Please fill in your email address"
 				}
 			}
 		});
@@ -244,6 +269,7 @@ jQuery( function( $ ) {
 					alphanumeric: true
 				},
 				address_1: "required",
+				address_2: "required",
 				postcode: {
 					required : true,
 					number: true
@@ -271,6 +297,7 @@ jQuery( function( $ ) {
 					alphanumeric: "Letter and number only please"
 				},
 				address_1: "Please fill in your address",
+				address_2: "Please fill in your address",
 				postcode: {
 					required : "Please fill in your post code",
 					number: "Invalid postal code"
@@ -301,6 +328,7 @@ jQuery( function( $ ) {
 					alphanumeric: true
 				},
 				address_1: "required",
+				address_2: "required",
 				postcode: {
 					required : true,
 					number: true
@@ -328,6 +356,7 @@ jQuery( function( $ ) {
 					alphanumeric: "Letter and number only please"
 				},
 				address_1: "Please fill in your address",
+				address_2: "Please fill in your address",
 				postcode: {
 					required : "Please fill in your post code",
 					number: "Invalid postal code"
@@ -407,6 +436,7 @@ jQuery( function( $ ) {
 					alphanumeric: true
 				},
 				address_1: "required",
+				address_2: "required",
 				postcode: {
 					required : true,
 					number: true
@@ -434,6 +464,7 @@ jQuery( function( $ ) {
 					alphanumeric: "Letter and number only please"
 				},
 				address_1: "Please fill in your address",
+				address_2: "Please fill in your address",
 				postcode: {
 					required : "Please fill in your post code",
 					number: "Invalid postal code"
@@ -611,7 +642,7 @@ jQuery( function( $ ) {
 			var selected_collection_times = $('select[name="collection_time"]').val();
 			var selected_collection_time_str = selected_collection_times.split('-');
 
-			var selected_collection_time = $.trim(selected_collection_time_str[1])
+			var selected_collection_time = $.trim(selected_collection_time_str[0])
 
 			//
 			var selected_collection_time_arr = selected_collection_time.split(' ');
@@ -662,10 +693,13 @@ jQuery( function( $ ) {
 			var formattedTime = convertAMPM(hr, min, ampm);
 
 			// set required date
-			var collection_date = month + ' ' + day + ' ' + year;
-			var formattedDate = new Date(collection_date);
+			// var collection_date = month + ' ' + day + ' ' + year;
+			var collection_date = year + '-' + month + '-' + day + 'T00:00:00Z';
+			// var formattedDate = new Date(collection_date);
+			var formattedDate = new Date(year, month-1, day, sHours, sMinutes, 00);
+			console.log(formattedDate);
 
-			var twoDayInAdvance = addDays(new Date(), 1);
+			var twoDayInAdvance = addDays(new Date(), 2);
 
 			var validTime_arr = validTime.toString().split(' ');
 			var formattedValidTime = $.trim(validTime_arr[4]);
@@ -679,18 +713,106 @@ jQuery( function( $ ) {
 
 			var error = false;
 
-			// collection date
-			if(day == "" || month == "" || year == "") {
+			var chosen_date = year + '-' + month + '-' + day;
+			var chosen_timeslot = $('#collection_time')[0].selectedIndex;
+			var blackout_dates = $('#collection_blackout_date').val().split(',');
+			var blackout_receiving_modes = $('#collection_blackout_receiving_mode').val().split(',');
+			var blackout_timeframes = $('#collection_blackout_timeframe').val().split(',');
+			var blackout_date_index = blackout_dates.indexOf(chosen_date);
 
-				$('.error-collection-date').html('Please select collection date.');
-				error = true;
+			var i = -1,
+			    indizes = [];
 
-			}else if(twoDayInAdvance > formattedDate) {
+			while((i = blackout_dates.indexOf(chosen_date, i + 1)) !== -1) {
+			    indizes.push(i);
+			}
 
-				$('.error-collection-date').html('Orders must be made at least 2 days in advance.');
-				error = true;
+			if(indizes.length>1) {
+				for(var j=0;j<indizes.length;j++) {
+					var blackout_date_index = indizes[j];
 
-			}else $('.error-collection-date').html('');
+					var blackout_receiving_mode = blackout_receiving_modes[blackout_date_index];
+					var blackout_timeframe = blackout_timeframes[blackout_date_index];
+
+					console.log(chosen_date)
+					console.log(blackout_dates)
+					console.log(blackout_date_index)
+					console.log(blackout_receiving_mode)
+					console.log(blackout_timeframe)
+
+					if(blackout_timeframe=='full') {
+						var allowtimeslots = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
+					}else if(blackout_timeframe=='morning') {
+						var allowtimeslots = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+					}else if(blackout_timeframe=='evening') {
+						var allowtimeslots = [10, 11, 12, 13, 14, 15, 16, 17];
+					}else {
+						var allowtimeslots = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
+					}
+
+					console.log(allowtimeslots)
+
+					// collection date
+					if(day == "" || month == "" || year == "") {
+
+						$('.error-collection-date').html('Please select collection date.');
+						error = true;
+
+					}else if(twoDayInAdvance > formattedDate) {
+
+						$('.error-collection-date').html('Orders must be made at least 2 days in advance.');
+						error = true;
+
+					}else if((blackout_receiving_mode=='collection' || blackout_receiving_mode=='both') && jQuery.inArray(chosen_date,blackout_dates) > -1 && jQuery.inArray(chosen_timeslot, allowtimeslots) > -1){
+
+						$('.error-collection-date').html('Self collection service is not available for selected date and time.');
+						error = true;
+
+					}
+				}
+			}else {
+				var blackout_receiving_mode = blackout_receiving_modes[blackout_date_index];
+				var blackout_timeframe = blackout_timeframes[blackout_date_index];
+
+				// console.log(chosen_date)
+				// console.log(blackout_dates)
+				// console.log(blackout_date_index)
+				// console.log(blackout_receiving_mode)
+				// console.log(blackout_timeframe)
+
+				if(blackout_timeframe=='full') {
+					var allowtimeslots = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
+				}else if(blackout_timeframe=='morning') {
+					var allowtimeslots = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+				}else if(blackout_timeframe=='evening') {
+					var allowtimeslots = [10, 11, 12, 13, 14, 15, 16, 17];
+				}else {
+					var allowtimeslots = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
+				}
+
+				// console.log(allowtimeslots)
+
+				// collection date
+				if(day == "" || month == "" || year == "") {
+
+					$('.error-collection-date').html('Please select collection date.');
+					error = true;
+
+				}else if(twoDayInAdvance > formattedDate) {
+
+					$('.error-collection-date').html('Orders must be made at least 2 days in advance.');
+					error = true;
+
+				}else if((blackout_receiving_mode=='collection' || blackout_receiving_mode=='both') && jQuery.inArray(chosen_date,blackout_dates) > -1 && jQuery.inArray(chosen_timeslot, allowtimeslots) > -1){
+
+					$('.error-collection-date').html('Self collection service is not available for selected date and time.');
+					error = true;
+
+				}
+			}
+			
+
+			if(error==false) $('.error-collection-date').html('');
 
 			// consumption time
 			if(hr == "" || min == "" || ampm == "") {
@@ -725,7 +847,7 @@ jQuery( function( $ ) {
 			var selected_delivery_times = $('select[name="delivery_time"]').val();
 			var selected_delivery_time_str = selected_delivery_times.split('-');
 
-			var selected_delivery_time = $.trim(selected_delivery_time_str[1])
+			var selected_delivery_time = $.trim(selected_delivery_time_str[0]);
 
 			//
 			var selected_delivery_time_arr = selected_delivery_time.split(' ');
@@ -749,7 +871,7 @@ jQuery( function( $ ) {
 
 			var formattedConsumptionTime = new Date(year, month, day, sHours, sMinutes, 00);
 
-			console.log(formattedConsumptionTime);
+			// console.log(formattedConsumptionTime);
 
 			Date.prototype.addHours= function(h){
 			    this.setHours(this.getHours()+h);
@@ -764,16 +886,20 @@ jQuery( function( $ ) {
 			var formattedTime = convertAMPM(hr, min, ampm);
 
 			// set required date
-			var delivery_date = month + ' ' + day + ' ' + year;
-			var formattedDate = new Date(delivery_date);
-
-			var twoDayInAdvance = addDays(new Date(), 1);
+			// console.log(hours + '-' + minutes);			
+			// console.log(sHours + '-' + sMinutes);			
+			// var delivery_date = year + '-' + month + '-' + day + '-' + ;
+			var delivery_date = year + '-' + month + '-' + day + 'T'+sHours+':'+sMinutes+':00Z';
+			console.log(delivery_date);
+			var formattedDate = new Date(year, month-1, day, sHours, sMinutes, 00);
+			console.log(formattedDate);
+			var twoDayInAdvance = addDays(new Date(), 2);
 
 			var validTime_arr = validTime.toString().split(' ');
 			var formattedValidTime = $.trim(validTime_arr[4]);
 
-			console.log(formattedTime);
-			console.log(formattedValidTime);
+			// console.log(formattedTime);
+			// console.log(formattedValidTime);
 
 			var error = false;
 
@@ -796,30 +922,117 @@ jQuery( function( $ ) {
 			}
 
 			var chosen_date = year + '-' + month + '-' + day;
+			var chosen_timeslot = $('#delivery_time')[0].selectedIndex;
 			var blackout_dates = $('#delivery_blackout_date').val().split(',');
+			var blackout_receiving_modes = $('#delivery_blackout_receiving_mode').val().split(',');
+			var blackout_timeframes = $('#delivery_blackout_timeframe').val().split(',');
+			var blackout_date_index = blackout_dates.indexOf(chosen_date);
 
-			console.log(chosen_date)
-			console.log(blackout_dates)
-			
-			// delivery date
-			if(day == "" || month == "" || year == "") {
+			var i = -1,
+			    indizes = [];
 
-				$('.error-delivery-date').html('Please select delivery date.');
-				error = true;
+		    // if there are same multiple blackout date but different time and collection type!
+			while((i = blackout_dates.indexOf(chosen_date, i + 1)) !== -1) {
+			    indizes.push(i);
+			}
 
-			}else if(twoDayInAdvance > formattedDate) {
+			// console.log(indizes);
 
-				$('.error-delivery-date').html('Orders must be made at least 2 days in advance.');
-				error = true;
+			if(indizes.length>1) {
+				for(var j=0;j<indizes.length;j++) {
+					var blackout_date_index = indizes[j];
 
-			}else if(jQuery.inArray(chosen_date,blackout_dates) > -1){
+					var blackout_receiving_mode = blackout_receiving_modes[blackout_date_index];
+					var blackout_timeframe = blackout_timeframes[blackout_date_index];
 
-				$('.error-delivery-date').html('Delivery service is not available for selected date.');
-				error = true;
-				console.log('hi');
+					// console.log(chosen_date)
+					// console.log(chosen_timeslot)
+					// console.log(blackout_dates)
+					// console.log(blackout_receiving_modes)
+					// console.log(blackout_date_index)
+					// console.log(blackout_receiving_mode)
+					// console.log(blackout_timeframe)
 
-			}else $('.error-delivery-date').html('');
+					if(blackout_timeframe=='full') {
+						var allowtimeslots = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
+					}else if(blackout_timeframe=='morning') {
+						var allowtimeslots = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+					}else if(blackout_timeframe=='evening') {
+						var allowtimeslots = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
+					}else {
+						var allowtimeslots = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
+					}
 
+					// console.log(allowtimeslots)
+
+					console.log(twoDayInAdvance);
+					console.log(formattedDate);
+					
+					// delivery date
+					if(day == "" || month == "" || year == "") {
+
+						$('.error-delivery-date').html('Please select delivery date.');
+						error = true;
+
+					}else if(twoDayInAdvance > formattedDate) {
+
+						$('.error-delivery-date').html('Orders must be made at least 2 days in advance.');
+						error = true;
+
+					}else if((blackout_receiving_mode=='delivery' || blackout_receiving_mode=='both') && jQuery.inArray(chosen_date,blackout_dates) > -1 && jQuery.inArray(chosen_timeslot, allowtimeslots) > -1){
+
+						$('.error-delivery-date').html('Delivery service is not available for selected date and time.');
+						error = true;
+
+					}
+				}
+			}else {
+				var blackout_receiving_mode = blackout_receiving_modes[blackout_date_index];
+				var blackout_timeframe = blackout_timeframes[blackout_date_index];
+
+				// console.log(chosen_date)
+				// console.log(chosen_timeslot)
+				// console.log(blackout_dates)
+				// console.log(blackout_receiving_modes)
+				// // console.log(blackout_date_index)
+				// console.log(blackout_receiving_mode)
+				// console.log(blackout_timeframes)
+				// console.log(blackout_timeframe)
+
+				if(blackout_timeframe=='full') {
+					var allowtimeslots = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
+				}else if(blackout_timeframe=='morning') {
+					var allowtimeslots = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+				}else if(blackout_timeframe=='evening') {
+					var allowtimeslots = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
+				}else {
+					var allowtimeslots = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
+				}
+
+				// console.log(allowtimeslots)
+				console.log('twoDayInAdvance: '+twoDayInAdvance)
+				console.log('formattedDate: '+formattedDate)
+				
+				// delivery date
+				if(day == "" || month == "" || year == "") {
+
+					$('.error-delivery-date').html('Please select delivery date.');
+					error = true;
+
+				}else if(twoDayInAdvance > formattedDate) {
+
+					$('.error-delivery-date').html('Orders must be made at least 2 days in advance.');
+					error = true;
+
+				}else if((blackout_receiving_mode=='delivery' || blackout_receiving_mode=='both') && jQuery.inArray(chosen_date,blackout_dates) > -1 && jQuery.inArray(chosen_timeslot, allowtimeslots) > -1){
+
+					$('.error-delivery-date').html('Delivery service is not available for selected date and time.');
+					error = true;
+
+				}
+			}
+
+			if(error==false) $('.error-delivery-date').html('');
 
 			// consumption time
 			if(hr == "" || min == "" || ampm == "") {
@@ -838,7 +1051,7 @@ jQuery( function( $ ) {
 
 		function appendDeliveryTime(key) {
 			var delivery_time = ['<option value="06:00 am - 07:30 am">06:00 am - 07:30 am *</option><option value="06:30 am - 08:00 am">06:30 am - 08:00 am *</option><option value="08:00 am - 09:30 am">08:00 am - 09:30 am ^</option><option value="08:30 am - 10:00 am">08:30 am - 10:00 am ^</option><option value="09:00 am - 10:30 am">09:00 am - 10:30 am</option><option value="09:30 am - 11:00 am">09:30 am - 11:00 am</option><option value="10:00 am - 11:30 am">10:00 am - 11:30 am</option><option value="10:30 am - 12:00 pm">10:30 am - 12:00 pm</option><option value="11:00 am - 12:30 pm">11:00 am - 12:30 pm</option><option value="11:30 am - 01:00 pm">11:30 am - 01:00 pm</option><option value="12:00 pm - 01:30 pm">12:00 pm - 01:30 pm</option><option value="12:30 pm - 02:00 pm">12:30 pm - 02:00 pm</option><option value="01:00 pm - 02:30 pm">01:00 pm - 02:30 pm</option><option value="01:30 pm - 03:00 pm">01:30 pm - 03:00 pm</option><option value="02:00 pm - 03:30 pm">02:00 pm - 03:30 pm</option><option value="02:30 pm - 04:00 pm">02:30 pm - 04:00 pm</option><option value="03:00 pm - 04:30 pm">03:00 pm - 04:30 pm</option><option value="03:30 pm - 05:00 pm">03:30 pm - 05:00 pm</option>', 
-			'<option value="06:00 am - 07:30 am">06:00 am - 07:30 am *</option><option value="06:30 am - 08:00 am">06:30 am - 08:00 am *</option><option value="08:00 am - 09:30 am">08:00 am - 09:30 am ^</option><option value="08:30 am - 10:00 am">08:30 am - 10:00 am ^</option><option value="09:00 am - 10:30 am">09:00 am - 10:30 am</option><option value="09:30 am - 11:00 am">09:30 am - 11:00 am</option><option value="10:00 am - 11:30 am">10:00 am - 11:30 am</option><option value="10:30 am - 12:00 pm">10:30 am - 12:00 pm</option><option value="11:00 am - 12:30 pm">11:00 am - 12:30 pm</option><option value="11:30 am - 01:00 pm">11:30 am - 01:00 pm</option><option value="12:00 pm - 01:30 pm">12:00 pm - 01:30 pm</option><option value="12:30 pm - 02:00 pm">12:30 pm - 02:00 pm</option><option value="01:00 pm - 02:30 pm">01:00 pm - 02:30 pm</option><option value="01:30 pm - 03:00 pm">01:30 pm - 03:00 pm</option><option value="02:00 pm - 03:30 pm">02:00 pm - 03:30 pm</option><option value="02:30 pm - 04:00 pm">02:30 pm - 04:00 pm</option><option value="03:00 pm - 04:30 pm">03:00 pm - 04:30 pm</option><option value="03:30 pm - 05:00 pm">03:30 pm - 05:00 pm</option>'];
+			'<option value="06:00 am - 07:30 am">06:00 am - 07:30 am *</option><option value="06:30 am - 08:00 am">06:30 am - 08:00 am *</option><option value="08:00 am - 09:30 am">08:00 am - 09:30 am ^</option><option value="08:30 am - 10:00 am">08:30 am - 10:00 am ^</option><option value="09:00 am - 10:30 am">09:00 am - 10:30 am</option><option value="09:30 am - 11:00 am">09:30 am - 11:00 am</option><option value="10:00 am - 11:30 am">10:00 am - 11:30 am</option><option value="10:30 am - 12:00 pm">10:30 am - 12:00 pm</option><option value="11:00 am - 12:30 pm">11:00 am - 12:30 pm</option><option value="11:30 am - 01:00 pm">11:30 am - 01:00 pm</option><option value="12:00 pm - 01:30 pm">12:00 pm - 01:30 pm</option><option value="12:30 pm - 02:00 pm">12:30 pm - 02:00 pm</option><option value="01:00 pm - 02:30 pm">01:00 pm - 02:30 pm</option><option value="01:30 pm - 03:00 pm">01:30 pm - 03:00 pm</option><option value="02:00 pm - 03:30 pm">02:00 pm - 03:30 pm</option><option value="02:30 pm - 04:00 pm">02:30 pm - 04:00 pm</option><option value="03:00 pm - 04:30 pm">03:00 pm - 04:30 pm</option><option value="03:30 pm - 05:00 pm">03:30 pm - 05:00 pm</option><option value="04:00 pm - 05:30 pm (Sat/PH only)">04:00 pm - 05:30 pm (Sat/PH only)</option><option value="04:30 pm - 06:00 pm (Sat/PH only)">04:30 pm - 06:00 pm (Sat/PH only)</option>'];
 
 			var certain_delivery_time_additional_30 = ['06:00 am - 07:30 am','06:30 am - 08:00 am'];
 			var certain_delivery_time_additional_22 = [];
@@ -863,8 +1076,36 @@ jQuery( function( $ ) {
 			}).trigger('change');
 		}
 
+		function appendCollectionTime(key) {
+			var collection_time = ['<option value="06:00 am - 07:30 am">06:00 am - 07:30 am</option><option value="06:30 am - 08:00 am">06:30 am - 08:00 am</option><option value="08:00 am - 09:30 am">08:00 am - 09:30 am</option><option value="08:30 am - 10:00 am">08:30 am - 10:00 am</option><option value="09:00 am - 10:30 am">09:00 am - 10:30 am</option><option value="09:30 am - 11:00 am">09:30 am - 11:00 am</option><option value="10:00 am - 11:30 am">10:00 am - 11:30 am</option><option value="10:30 am - 12:00 pm">10:30 am - 12:00 pm</option><option value="11:00 am - 12:30 pm">11:00 am - 12:30 pm</option><option value="11:30 am - 01:00 pm">11:30 am - 01:00 pm</option><option value="12:00 pm - 01:30 pm">12:00 pm - 01:30 pm</option><option value="12:30 pm - 02:00 pm">12:30 pm - 02:00 pm</option><option value="01:00 pm - 02:30 pm">01:00 pm - 02:30 pm</option><option value="01:30 pm - 03:00 pm">01:30 pm - 03:00 pm</option><option value="02:00 pm - 03:30 pm">02:00 pm - 03:30 pm</option><option value="02:30 pm - 04:00 pm">02:30 pm - 04:00 pm</option><option value="03:00 pm - 04:30 pm">03:00 pm - 04:30 pm</option><option value="03:30 pm - 05:00 pm">03:30 pm - 05:00 pm</option>', 
+			'<option value="06:00 am - 07:30 am">06:00 am - 07:30 am</option><option value="06:30 am - 08:00 am">06:30 am - 08:00 am</option><option value="08:00 am - 09:30 am">08:00 am - 09:30 am</option><option value="08:30 am - 10:00 am">08:30 am - 10:00 am</option><option value="09:00 am - 10:30 am">09:00 am - 10:30 am</option><option value="09:30 am - 11:00 am">09:30 am - 11:00 am</option><option value="10:00 am - 11:30 am">10:00 am - 11:30 am</option><option value="10:30 am - 12:00 pm">10:30 am - 12:00 pm</option><option value="11:00 am - 12:30 pm">11:00 am - 12:30 pm</option><option value="11:30 am - 01:00 pm">11:30 am - 01:00 pm</option><option value="12:00 pm - 01:30 pm">12:00 pm - 01:30 pm</option><option value="12:30 pm - 02:00 pm">12:30 pm - 02:00 pm</option><option value="01:00 pm - 02:30 pm">01:00 pm - 02:30 pm</option><option value="01:30 pm - 03:00 pm">01:30 pm - 03:00 pm</option><option value="02:00 pm - 03:30 pm">02:00 pm - 03:30 pm</option><option value="02:30 pm - 04:00 pm">02:30 pm - 04:00 pm</option><option value="03:00 pm - 04:30 pm">03:00 pm - 04:30 pm</option><option value="03:30 pm - 05:00 pm">03:30 pm - 05:00 pm</option><option value="04:00 pm - 05:30 pm (Sat/PH only)">04:00 pm - 05:30 pm (Sat/PH only)</option><option value="04:30 pm - 06:00 pm (Sat/PH only)">04:30 pm - 06:00 pm (Sat/PH only)</option>'];
+
+			var certain_collection_time_additional_30 = ['06:00 am - 07:30 am','06:30 am - 08:00 am'];
+			var certain_collection_time_additional_22 = [];
+
+			$receivingModeCollection.find('select[name="collection_time"]').html('').append(collection_time[key]).off('change').on('change', function(e){
+				
+				var selectedDeliveryTime = $(this).val();
+				if($.inArray(selectedDeliveryTime, certain_collection_time_additional_30) != -1){
+
+					$receivingModeCollection.find('input[name="surcharge"]').val(30);
+
+				}else if($.inArray(selectedDeliveryTime, certain_collection_time_additional_22) != -1) {
+
+					$receivingModeCollection.find('input[name="surcharge"]').val(22);
+
+				}else {
+
+					$receivingModeCollection.find('input[name="surcharge"]').val(0);
+
+				}
+
+			}).trigger('change');
+		}
+
 		// by default;
 		appendDeliveryTime(0);
+		appendCollectionTime(0);
 
 		$receivingModeDelivery.find('input[name="delivery"]').on('change', function(e){
 
@@ -874,15 +1115,35 @@ jQuery( function( $ ) {
 				appendDeliveryTime(0);
 				$('.error-deliver-sentosa').html('');
 			}else {
-				appendDeliveryTime(1);
+				// appendDeliveryTime(1);
+				appendDeliveryTime(0);
 				$('.error-deliver-sentosa').html('Delivery surcharge of $8 will be applied for this area.');
 			}
 
 		});
 
+		$('#delivery_date_year').on('change', function(e){
+			var month = $("#delivery_date_month").val();
+			var day = $("#delivery_date_day").val();
+			var year = $(this).val();
+
+			if(year && month && day) {
+				var selectedDate = new Date(year,month-1,day);
+				var selectedDateString = year+'-'+month+'-'+day;
+				var holiday_dates = $('#delivery_holiday_date').val().split(',');
+				
+		        if(selectedDate.getDay() === 6 || selectedDate.getDay() === 0 || $.inArray(selectedDateString, holiday_dates) != -1) {
+		        	appendDeliveryTime(1);
+		        }else {
+		        	appendDeliveryTime(0);
+		        }	
+			}
+		});
+
 		$('#delivery_date_month').on('change', function(e){
 			var month = $(this).val();
 			var day = $("#delivery_date_day").val();
+			var year = $("#delivery_date_year").val();
 
 			if((day == 25 && month == 12) || (day == 24 && month == 12) || (day == 01 && month == 01) || (day == 31 && month == 12)) {
 
@@ -890,6 +1151,18 @@ jQuery( function( $ ) {
 
 			}else {
 				$('.error-delivery-date').html('');				
+			}
+
+			if(year && month && day) {
+				var selectedDate = new Date(year,month-1,day);
+				var selectedDateString = year+'-'+month+'-'+day;
+				var holiday_dates = $('#delivery_holiday_date').val().split(',');
+
+		        if(selectedDate.getDay() === 6 || selectedDate.getDay() === 0 || $.inArray(selectedDateString, holiday_dates) != -1) {
+		        	appendDeliveryTime(1);
+		        }else {
+		        	appendDeliveryTime(0);
+		        }	
 			}
 		});
 
@@ -904,6 +1177,18 @@ jQuery( function( $ ) {
 
 			}else {
 				$('.error-delivery-date').html('');				
+			}
+
+			if(year && month && day) {
+				var selectedDate = new Date(year,month-1,day);
+				var selectedDateString = year+'-'+month+'-'+day;
+				var holiday_dates = $('#delivery_holiday_date').val().split(',');
+
+		        if(selectedDate.getDay() === 6 || selectedDate.getDay() === 0 || $.inArray(selectedDateString, holiday_dates) != -1) {
+		        	appendDeliveryTime(1);
+		        }else {
+		        	appendDeliveryTime(0);
+		        }	
 			}
 		});
 
@@ -922,11 +1207,74 @@ jQuery( function( $ ) {
 		        $("#delivery_date_day").val(pieces[1]);
 		        $("#delivery_date_year").val(pieces[2]);
 		        $('#delivery_date').val(dateText);
+
+		        // month must be 1 less super weird
+		        var selectedDate = new Date(pieces[2],pieces[0]-1,pieces[1]);
+		        var selectedDateString = pieces[2]+'-'+pieces[0]+'-'+pieces[1];
+				var holiday_dates = $('#delivery_holiday_date').val().split(',');
+		       
+		        if(selectedDate.getDay() === 6 || selectedDate.getDay() === 0 || $.inArray(selectedDateString, holiday_dates) != -1) {
+		        	appendDeliveryTime(1);
+		        }else {
+		        	appendDeliveryTime(0);
+		        }
 		    }
 		});
 		$("#delivery_datepicker").click(function(e) {
 			e.preventDefault();
 			$('#delivery_date').show().focus().hide();
+		});
+
+		$('#collection_date_year').on('change', function(e){
+			var month = $("#delivery_date_month").val();
+			var day = $("#delivery_date_day").val();
+			var year = $(this).val();
+
+			if(year && month && day) {
+				var selectedDate = new Date(year,month-1,day);
+				var selectedDateString = year+'-'+month+'-'+day;
+				var holiday_dates = $('#collection_holiday_date').val().split(',');
+
+		        if(selectedDate.getDay() === 6 || selectedDate.getDay() === 0 || $.inArray(selectedDateString, holiday_dates) != -1) {
+		        	appendCollectionTime(1);
+		        }else {
+		        	appendCollectionTime(0);
+		        }	
+			}
+		});
+		$('#collection_date_month').on('change', function(e){
+			var month = $(this).val();
+			var day = $("#delivery_date_day").val();
+			var year = $("#delivery_date_year").val();
+
+			if(year && month && day) {
+				var selectedDate = new Date(year,month-1,day);
+				var selectedDateString = year+'-'+month+'-'+day;
+				var holiday_dates = $('#collection_holiday_date').val().split(',');
+
+		        if(selectedDate.getDay() === 6 || selectedDate.getDay() === 0 || $.inArray(selectedDateString, holiday_dates) != -1) {
+		        	appendCollectionTime(1);
+		        }else {
+		        	appendCollectionTime(0);
+		        }	
+			}
+		});
+		$('#collection_date_day').on('change', function(e){
+			var month = $("#delivery_date_month").val();
+			var day = $(this).val();
+			var year = $("#delivery_date_year").val();
+
+			if(year && month && day) {
+				var selectedDate = new Date(year,month-1,day);
+				var selectedDateString = year+'-'+month+'-'+day;
+				var holiday_dates = $('#collection_holiday_date').val().split(',');
+
+		        if(selectedDate.getDay() === 6 || selectedDate.getDay() === 0 || $.inArray(selectedDateString, holiday_dates) != -1) {
+		        	appendCollectionTime(1);
+		        }else {
+		        	appendCollectionTime(0);
+		        }	
+			}
 		});
 
 		$('#collection_date').datepicker({
@@ -937,6 +1285,17 @@ jQuery( function( $ ) {
 		        $("#collection_date_day").val(pieces[1]);
 		        $("#collection_date_year").val(pieces[2]);
 		        $('#collection_date').val(dateText);
+
+		         // month must be 1 less super weird
+		        var selectedDate = new Date(pieces[2],pieces[0]-1,pieces[1]);
+		        var selectedDateString = pieces[2]+'-'+pieces[0]+'-'+pieces[1];
+				var holiday_dates = $('#collection_holiday_date').val().split(',');
+		       
+		        if(selectedDate.getDay() === 6 || selectedDate.getDay() === 0 || $.inArray(selectedDateString, holiday_dates) != -1) {
+		        	appendCollectionTime(1);
+		        }else {
+		        	appendCollectionTime(0);
+		        }
 		    }
 		});
 		$("#collection_datepicker").click(function(e) {

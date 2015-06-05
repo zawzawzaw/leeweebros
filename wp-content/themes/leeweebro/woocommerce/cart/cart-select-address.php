@@ -256,7 +256,7 @@ global $woocommerce;
 			<div class="col-md-6">
 				<div class="space20"></div>
 
-				<label for="address_2" class="no-asterisk">
+				<label for="address_2" class="asterisk">
 					<input type="text" name="address_2" class="large-input" placeholder="Address">
 					<p class="desc">Apartment, suite, unit, building, floor, etc.</p>
 				</label>
@@ -359,7 +359,7 @@ global $woocommerce;
 			<div class="col-md-6">
 				<div class="space20"></div>
 
-				<label for="address_2" class="no-asterisk">
+				<label for="address_2" class="asterisk">
 					<input type="text" name="address_2" class="large-input" placeholder="Address">
 					<p class="desc">Apartment, suite, unit, building, floor, etc.</p>
 				</label>				

@@ -140,7 +140,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 		<div class="row">
 			<div class="col-md-6">
-				<label for="address_book_1_address_2" class="no-asterisk">
+				<label for="address_book_1_address_2" class="asterisk">
 					<input type="text" name="address_book_1_address_2" class="large-input" placeholder="Address">
 					<p class="desc">Apartment, suite, unit, building, floor, etc.</p>
 				</label>

@@ -91,7 +91,8 @@ $header_content_h3 = "
 			$post_code = trim($order->shipping_postcode);
 			$post_code = substr($post_code,0,2);
 
-			$certain_delivery_post_codes_8 = array(01, 02, 03, 04, 05, 06, 07, 08, 17, 18, 19, 22, 23, 24, 25, 26, 27);
+			// $certain_delivery_post_codes_8 = array(01, 02, 03, 04, 05, 06, 07, 08, 17, 18, 19, 22, 23, 24, 25, 26, 27);
+			$certain_delivery_post_codes_8 = array('01', '02', '03', '04', '05', '06', '07', '08', '17', '18', '19', '22', '23');//, '24', '25', '26', '27'
 
 			if(isset($order->delivery) && $order->delivery!="jurongsentoaarea" && in_array($post_code, $certain_delivery_post_codes_8)) {
 				$order_total = $order->get_total();

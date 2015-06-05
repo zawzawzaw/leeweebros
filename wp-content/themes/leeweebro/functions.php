@@ -63,6 +63,11 @@ $args = array(
   'label' => "Holiday Date",
   'labels' => array('add_new_item' => "Add New Holiday Date"), #learn more at codex
   'hierarchical' => false,
+  'capability_type' => 'post',
+  'capabilities' => array(
+    'create_posts' => false, // Removes support for the "Add New" function, including Super Admin's
+  ),
+  'map_meta_cap' => true,
   'supports' => array('title','aside','thumbnail') #learn more about thumbnail
 );
 
@@ -75,6 +80,11 @@ $args = array(
   'label' => "Blackout Date",
   'labels' => array('add_new_item' => "Add New Blackout Date"), #learn more at codex
   'hierarchical' => false,
+  'capability_type' => 'post',
+  'capabilities' => array(
+    'create_posts' => false, // Removes support for the "Add New" function, including Super Admin's
+  ),
+  'map_meta_cap' => true,
   'supports' => array('title','aside','thumbnail') #learn more about thumbnail
 );
 
@@ -539,10 +549,12 @@ function woocommerce_custom_surcharge() {
     else $certain_delivery_holiday_additional_30[] = $data['specific_delivery_date_'.$i];
   }
 
+  $delivery_surcharge_amount = $data['specific_delivery_surcharge'];
+
   // print_r($certain_delivery_holiday_additional_30); exit();
 
   // $certain_delivery_holiday_additional_30 = array('2015-02-19','2015-02-20','2015-04-03','2015-05-01','2015-06-01','2015-07-17','2015-08-10','2015-09-24','2015-11-10','2015-12-25');
-  $certain_delivery_post_codes_8 = array(01, 02, 03, 04, 05, 06, 07, 08, 17, 18, 19, 22, 23, 24, 25, 26, 27); //xmas, newyear and their eves
+  $certain_delivery_post_codes_8 = array('01', '02', '03', '04', '05', '06', '07', '08', '17', '18', '19', '22', '23'); //xmas, newyear and their eves
   $surcharge = 0;
 
   if( isset($_POST['surcharge']) || $_POST['delivery']=='jurongsentoaarea' || $_POST['delivery_date_month'] == 12 ) {
@@ -558,11 +570,11 @@ function woocommerce_custom_surcharge() {
 
     if($day=='Sat' || $day=='Sun' || in_array($tempDate, $certain_delivery_holiday_additional_30)) {
       if (in_array($delivery_time, $certain_delivery_weekend_time_additional_30)) {
-        $surcharge += 30;
+        $surcharge += $delivery_surcharge_amount;
       }
     }else {
       if (in_array($delivery_time, $certain_delivery_time_additional_30)) {
-        $surcharge += 30;      
+        $surcharge += $delivery_surcharge_amount;      
       }
     }
 
@@ -602,11 +614,11 @@ function woocommerce_custom_surcharge() {
 
       if($day=='Sat' || $day=='Sun' || in_array($tempDate, $certain_delivery_holiday_additional_30)) {
         if (in_array($delivery_time, $certain_delivery_weekend_time_additional_30)) {
-          $surcharge += 30;      
+          $surcharge += $delivery_surcharge_amount;      
         }
       }else {
         if (in_array($delivery_time, $certain_delivery_time_additional_30)) {
-          $surcharge += 30;      
+          $surcharge += $delivery_surcharge_amount;      
         }
       }      
 
@@ -643,17 +655,22 @@ function woocommerce_custom_surcharge() {
       $delivery_date_year = $post_data_variables['delivery_date_year'];
       $delivery_post_code = substr($post_data_variables['shipping_postcode'],0,2);
       $delivery_area = $post_data_variables['delivery'];
+      // echo '<br>third ' . $delivery_post_code . '<br>';      
+      // // print_r($post_data_variables);
+      // print_r($post_data_variables['shipping_postcode']);
+      // print_r($certain_delivery_post_codes_8);
+      // echo in_array($delivery_post_code, $certain_delivery_post_codes_8);
 
       $tempDate = $delivery_date_year.'-'.$delivery_date_month.'-'.$delivery_date_day;
       $day = date('D', strtotime( $tempDate));
 
       if($day=='Sat' || $day=='Sun' || in_array($tempDate, $certain_delivery_holiday_additional_30)) {
         if (in_array($delivery_time, $certain_delivery_weekend_time_additional_30)) {
-          $surcharge += 30;      
+          $surcharge += $delivery_surcharge_amount;
         }
       }else {
         if (in_array($delivery_time, $certain_delivery_time_additional_30)) {
-          $surcharge += 30;      
+          $surcharge += $delivery_surcharge_amount;
         }
       }
 
@@ -764,7 +781,7 @@ function ni_search_by_title_only( $search, &$wp_query )
     if ( empty( $search ) )
         return $search; // skip processing - no search term in query
     $q = $wp_query->query_vars;
-    print_r($q);
+    // print_r($q);
     $n = ! empty( $q['exact'] ) ? '' : '%';
     $search =
     $searchand = '';

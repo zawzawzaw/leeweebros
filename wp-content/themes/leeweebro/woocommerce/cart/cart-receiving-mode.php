@@ -169,6 +169,102 @@ $total_amount = $woocommerce->cart->total;
 				</div>
 				<a href="#" id="collection_datepicker" class="calendar"></a>
 				<input type="text" id="collection_date" style="display:none;" />
+				<?php
+					// getting holiday dates for js check and add extra timeslot
+					$args = array( 'post_type' => 's_delivery_date', 'posts_per_page' => 1 );
+				  	$loop = new WP_Query( $args );
+				  	while ( $loop->have_posts() ) : $loop->the_post();
+
+					    global $post;  
+					    // if ( is_admin() && ! defined( 'DOING_AJAX' ) )
+					    //   return;
+
+					    $meta_values = get_existing_meta('s_delivery_date');
+					    $holiday_date_count = 0;
+
+					    if(isset($meta_values)) {
+					      foreach ($meta_values as $values) {
+					        unset($values['_edit_last']);
+					        unset($values['_edit_lock']);
+
+					        $keys = array_keys($values);
+					      }
+
+					      foreach ($keys as $key){
+					        $data[$key] = get_post_meta($post->ID, $key, true);
+
+					        if(strpos($key, 'specific_delivery_date') !== false) {
+					          $holiday_date_count++;
+					        }
+					      }
+					    }
+
+				  	endwhile;
+
+				  	$certain_holiday_dates = [];
+
+				  	for($i=1;$i<=$holiday_date_count;$i++) {
+					    if($i==1) {
+					    	$certain_holiday_dates[] = $data['specific_delivery_date'];
+					    } 
+					    else {
+					    	$certain_holiday_dates[] = $data['specific_delivery_date_'.$i];
+					    }
+					}
+				  	?>
+					<input type="hidden" name="collection_holiday_date" id="collection_holiday_date" value="<?php echo implode(',', $certain_holiday_dates); ?>" />
+					
+					<?php
+					$args = array( 'post_type' => 's_blackout_date', 'posts_per_page' => 1 );
+				  	$loop = new WP_Query( $args );
+					  while ( $loop->have_posts() ) : $loop->the_post();
+
+					    global $post;  
+					    // if ( is_admin() && ! defined( 'DOING_AJAX' ) )
+					    //   return;
+
+					    $meta_values = get_existing_meta('s_blackout_date');
+					    $blackout_date_count = 0;
+
+					    if(isset($meta_values)) {
+					      foreach ($meta_values as $values) {
+					        unset($values['_edit_last']);
+					        unset($values['_edit_lock']);
+
+					        $keys = array_keys($values);
+					      }
+
+					      foreach ($keys as $key){
+					        $data[$key] = get_post_meta($post->ID, $key, true);
+
+					        if(strpos($key, 'specific_blackout_date') !== false) {
+					          $blackout_date_count++;
+					        }
+					      }
+					    }
+
+				  	endwhile;
+
+				  	$certain_blackout_dates = [];
+				  	$blackout_receiving_mode = [];
+				  	$blackout_timeframe = [];
+				  	
+				  	for($i=1;$i<=$blackout_date_count;$i++) {
+					    if($i==1) {
+					    	$certain_blackout_dates[] = $data['specific_blackout_date'];
+							$blackout_receiving_mode[] = $data['blackout_receiving_mode'];
+							$blackout_timeframe[] = $data['blackout_timeframe'];
+					    }
+					    else {
+					    	$certain_blackout_dates[] = $data['specific_blackout_date_'.$i];
+					    	$blackout_receiving_mode[] = $data['blackout_receiving_mode_'.$i];
+					    	$blackout_timeframe[] = $data['blackout_timeframe_'.$i];
+					    }
+					}
+					?>
+					<input type="hidden" name="collection_blackout_date" id="collection_blackout_date" value="<?php echo implode(',', $certain_blackout_dates); ?>" />
+					<input type="hidden" name="collection_blackout_receiving_mode" id="collection_blackout_receiving_mode" value="<?php echo implode(',', $blackout_receiving_mode); ?>" />
+					<input type="hidden" name="collection_blackout_timeframe" id="collection_blackout_timeframe" value="<?php echo implode(',', $blackout_timeframe); ?>" />
 				<div class="error-msg error-collection-date"></div>
 			</div>
 			<div class="space10"></div>
@@ -183,7 +279,25 @@ $total_amount = $woocommerce->cart->total;
 				<label for="collection_time">Collection Time:</label>
 				<div class="dropdown">
 					<select name="collection_time" id="collection_time">
-						<option value="6:00 am - 7:30 am">6:00 am - 7:30 am</option>
+						<!-- <option value="6:00 am - 7:30 am">6:00 am - 7:30 am</option>
+						<option value="6:30 am - 8:00 am">6:30 am - 8:00 am</option>
+						<option value="8:00 am - 9:30 am">8:00 am - 9:30 am</option>
+						<option value="8:30 am - 10:00 am">8:30 am - 10:00 am</option>
+						<option value="9:00 am - 10:30 am">9:00 am - 10:30 am</option>
+						<option value="9:30 am - 11:00 am">9:30 am - 11:00 am</option>
+						<option value="10:00 am - 11:30 am">10:00 am - 11:30 am</option>
+						<option value="10:30 am - 12:00 pm">10:30 am - 12:00 pm</option>
+						<option value="11:00 am - 12:30 pm">11:00 am - 12:30 pm</option>
+						<option value="11:30 am - 1:00 pm">11:30 am - 1:00 pm</option>	
+						<option value="12:00 pm - 1:30 pm">12:00 pm - 1:30 pm</option>
+						<option value="12:30 pm - 2:00 pm">12:30 pm - 2:00 pm</option>
+						<option value="1:00 pm - 2:30 pm">1:00 pm - 2:30 pm</option>
+						<option value="1:30 pm - 3:00 pm">1:30 pm - 3:00 pm</option>
+						<option value="2:00 pm - 3:30 pm">2:00 pm - 3:30 pm</option>
+						<option value="2:30 pm - 4:00 pm">2:30 pm - 4:00 pm</option>
+						<option value="3:00 pm - 4:30 pm">3:00 pm - 4:30 pm</option>
+						<option value="3:30 pm - 5:00 pm">3:30 pm - 5:00 pm</option> -->
+						<!-- <option value="6:00 am - 7:30 am">6:00 am - 7:30 am</option>
 						<option value="6:30 am - 8:00 am">6:30 am - 8:00 am</option>
 						<option value="7:00 am - 8:30 am">7:00 am - 8:30 am</option>
 						<option value="7:30 am - 9:00 am">7:30 am - 9:00 am</option>
@@ -206,7 +320,7 @@ $total_amount = $woocommerce->cart->total;
 						<option value="4:00 pm - 5:30 pm">4:00 pm - 5:30 pm</option>
 						<option value="4:30 pm - 6:00 pm">4:30 pm - 6:00 pm</option>
 						<option value="4:00 pm - 5:30 pm (Sat/PH only)">4:00 pm - 5:30 pm (Sat/PH only)</option>
-						<option value="4:30 pm - 6:00 pm (Sat/PH only)">4:30 pm - 6:00 pm (Sat/PH only)</option>
+						<option value="4:30 pm - 6:00 pm (Sat/PH only)">4:30 pm - 6:00 pm (Sat/PH only)</option> -->
 					</select>
 				</div>
 			</div>
@@ -316,10 +430,56 @@ $total_amount = $woocommerce->cart->total;
 					<a href="#" id="delivery_datepicker" class="calendar"></a>
 					<input type="text" id="delivery_date" style="display:none;" />
 
-					<?php 
+					<?php
+					// getting holiday dates for js check and add extra timeslot
+					$args = array( 'post_type' => 's_delivery_date', 'posts_per_page' => 1 );
+				  	$loop = new WP_Query( $args );
+				  	while ( $loop->have_posts() ) : $loop->the_post();
+
+					    global $post;  
+					    // if ( is_admin() && ! defined( 'DOING_AJAX' ) )
+					    //   return;
+
+					    $meta_values = get_existing_meta('s_delivery_date');
+					    $holiday_date_count = 0;
+
+					    if(isset($meta_values)) {
+					      foreach ($meta_values as $values) {
+					        unset($values['_edit_last']);
+					        unset($values['_edit_lock']);
+
+					        $keys = array_keys($values);
+					      }
+
+					      foreach ($keys as $key){
+					        $data[$key] = get_post_meta($post->ID, $key, true);
+
+					        if(strpos($key, 'specific_delivery_date') !== false) {
+					          $holiday_date_count++;
+					        }
+					      }
+					    }
+
+				  	endwhile;
+
+				  	$certain_holiday_dates = [];
+
+				  	for($i=1;$i<=$holiday_date_count;$i++) {
+					    if($i==1) {
+					    	$certain_holiday_dates[] = $data['specific_delivery_date'];
+					    } 
+					    else {
+					    	$certain_holiday_dates[] = $data['specific_delivery_date_'.$i];
+					    }
+					}
+				  	?>
+					<input type="hidden" name="delivery_holiday_date" id="delivery_holiday_date" value="<?php echo implode(',', $certain_holiday_dates); ?>" />
+
+					<?php
+					// getting blackout dates for js check and add extra timeslot
 					$args = array( 'post_type' => 's_blackout_date', 'posts_per_page' => 1 );
 				  	$loop = new WP_Query( $args );
-					  while ( $loop->have_posts() ) : $loop->the_post();
+				  	while ( $loop->have_posts() ) : $loop->the_post();
 
 					    global $post;  
 					    // if ( is_admin() && ! defined( 'DOING_AJAX' ) )
@@ -346,12 +506,27 @@ $total_amount = $woocommerce->cart->total;
 					    }
 
 				  	endwhile;
+
+				  	$certain_blackout_dates = [];
+				  	$blackout_receiving_mode = [];
+				  	$blackout_timeframe = [];
+
 				  	for($i=1;$i<=$blackout_date_count;$i++) {
-					    if($i==1) $certain_blackout_dates[] = $data['specific_blackout_date'];
-					    else $certain_blackout_dates[] = $data['specific_blackout_date_'.$i];
+					    if($i==1) {
+					    	$certain_blackout_dates[] = $data['specific_blackout_date'];
+					    	$blackout_receiving_mode[] = $data['blackout_receiving_mode'];
+					    	$blackout_timeframe[] = $data['blackout_timeframe'];
+					    } 
+					    else {
+					    	$certain_blackout_dates[] = $data['specific_blackout_date_'.$i];
+					    	$blackout_receiving_mode[] = $data['blackout_receiving_mode_'.$i];
+					    	$blackout_timeframe[] = $data['blackout_timeframe_'.$i];
+					    }
 					}
 					?>
 					<input type="hidden" name="delivery_blackout_date" id="delivery_blackout_date" value="<?php echo implode(',', $certain_blackout_dates); ?>" />
+					<input type="hidden" name="delivery_blackout_receiving_mode" id="delivery_blackout_receiving_mode" value="<?php echo implode(',', $blackout_receiving_mode); ?>" />
+					<input type="hidden" name="delivery_blackout_timeframe" id="delivery_blackout_timeframe" value="<?php echo implode(',', $blackout_timeframe); ?>" />
 					<div class="error-msg error-delivery-date"></div>
 					<div class="space10"></div>
 					<p class="note">* Please note that orders must be made at least 2 days in advance. Subject to availability</p>

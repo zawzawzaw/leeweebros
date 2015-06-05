@@ -163,7 +163,7 @@ get_header();
 						if($subject=='enquiries') {
 							$admin_email = 'info@leeweebrothers.com';
 						}else if($subject=='feedback') {
-							$admin_email = 'anne.ng@leeweebrothers.com';
+							$admin_email = 'angeline@leeweebrothers.com';
 						}else if($subject=='technical') {
 							$admin_email = 'info@leeweebrothers.com';
 						}else {
