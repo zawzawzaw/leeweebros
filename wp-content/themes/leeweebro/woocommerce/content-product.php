@@ -34,27 +34,47 @@ if ( 0 == ( $woocommerce_loop['loop'] - 1 ) % $woocommerce_loop['columns'] || 1 
 	$classes[] = 'first';
 if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )
 	$classes[] = 'last';
+
+$desc = $post->post_excerpt;
+$desc_array = explode('<em>', $desc);
+
+$filtered_min_order = filter_var($desc_array[1], FILTER_SANITIZE_STRING);
+
+if($woocommerce_loop['loop']==1) $_SESSION['custom_id'] = '';
+
+if(!empty($_SESSION['custom_id'])) {
+	$custom_id = $_SESSION['custom_id'];
+}else {
+	if(empty($custom_id)) {
+		if( !empty($filtered_min_order) && strlen($filtered_min_order) > 13 ) {
+			$custom_id = 'product-content';
+		}else {
+			$custom_id = 'product-content-2';
+		}
+	}
+
+	$_SESSION['custom_id'] = $custom_id;
+}
+
+
 ?>
 <div <?php post_class( $classes ); ?>>
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-md-4 col-sm-4">
 			<a href="<?php the_permalink(); ?>">
 				<?php do_action( 'woocommerce_before_shop_loop_item_title_custom' ); ?>
-				<!-- <img src="images/content/otah-small.png" alt="otah"> -->
 			</a>
 		</div>
-		<div class="col-md-6">
-			<a href="<?php the_permalink(); ?>"><h2><?php the_title(); ?></h2></a>
+		<div id="product-content" class="product-content col-md-6 col-sm-5">
+			<a href="<?php the_permalink(); ?>"><h2><?php echo get_the_title(); ?></h2></a>
 			<?php do_action('woocommerce_shop_loop_item_desc_custom'); ?>
-			
 			<?php do_action( 'woocommerce_after_shop_loop_item_custom' ); ?>
-			<div class="space10"></div>
+			<div class="space30"></div>
 		</div>
 		<div class="col-md-2" style="padding-left:0;">
-			<div class="space40"></div>
+			<!-- <div class="space40"></div> -->
 			<?php do_action( 'woocommerce_after_shop_loop_item_title_custom' ); ?>
 			<!-- <p class="price-info"><span class="price">S$0.60</span><br><span class="per-item">per pcs</span></p> -->
-			<div class="space10"></div>
 		</div>
 	</div>
 </div>

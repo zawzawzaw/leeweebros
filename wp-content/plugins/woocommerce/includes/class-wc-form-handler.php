@@ -727,7 +727,7 @@ class WC_Form_Handler {
 				}
 
 				if ( empty( $_POST['username'] ) ) {
-					throw new Exception( '<strong>' . __( 'Error', 'woocommerce' ) . ':</strong> ' . __( 'Username is required.', 'woocommerce' ) );
+					throw new Exception( '<strong>' . __( 'Error', 'woocommerce' ) . ':</strong> ' . __( 'Email is required.', 'woocommerce' ) );
 				}
 
 				if ( empty( $_POST['password'] ) ) {
@@ -743,8 +743,9 @@ class WC_Form_Handler {
 						throw new Exception( '<strong>' . __( 'Error', 'woocommerce' ) . ':</strong> ' . __( 'A user could not be found with this email address.', 'woocommerce' ) );
 					}
 
-				} else {
-					$creds['user_login'] 	= $_POST['username'];
+				}else {
+					// $creds['user_login'] 	= $_POST['username'];
+					throw new Exception( '<strong>' . __( 'Error', 'woocommerce' ) . ':</strong> ' . __( 'Invalid email address.', 'woocommerce' ) );
 				}
 
 				$creds['user_password'] = $_POST['password'];
@@ -762,6 +763,14 @@ class WC_Form_Handler {
 						$redirect = esc_url( wp_get_referer() );
 					} else {
 						$redirect = esc_url( get_permalink( wc_get_page_id( 'myaccount' ) ) );
+					}
+
+					$user_registered = strtotime($user->data->user_registered);
+
+					if($user_registered < new DateTime) {
+						$redirect .= '?update=yes';
+					}else {
+						$redirect .= '?update=yes';
 					}
 
 					// Feedback

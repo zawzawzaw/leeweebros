@@ -89,7 +89,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<div class="dropdown">
 					<select name="year">
 						<option value="" selected>YYYY</option>
-						<?php for($i=1920; $i<=2000; $i++): ?>
+						<?php for($i=1920; $i<=2014; $i++): ?>
 							<option value="<?php echo $i; ?>" <?php echo ($i==1950) ? 'checked' : ''; ?>><?php echo $i; ?></option>
 						<?php endfor; ?>
 					</select>
@@ -104,31 +104,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<div class="space10"></div>
 		<div class="row">
-			<div class="col-md-4">
-				<label for="address_book_1_first_name" class="asterisk">
-					<input type="text" name="address_book_1_first_name" class="medium-input" placeholder="First Name">
-				</label>
-			</div>
-			<div class="col-md-4 col-md-offset-2">
+			<div class="col-md-6">
 				<label for="address_book_1_country" class="lbl asterisk-2">Country:
-				<div class="dropdown">
-					<select name="address_book_1_country" class="country">
-						<option value="Singapore" selected="selected">Singapore</option>
-					</select>
-				</div>
+					<div class="dropdown">
+						<select name="address_book_1_country" class="country">
+							<option value="Singapore" selected="selected">Singapore</option>
+						</select>
+					</div>
 				</label>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-4">
-				<label for="address_book_1_last_name" class="asterisk">
-					<input type="text" name="address_book_1_last_name" class="medium-input" placeholder="Last Name">
-				</label>
-				<label for="address_book_1_company" class="no-asterisk">
+				<label for="address_book_1_company" class="no-asterisk push-down">
 					<input type="text" name="address_book_1_company" class="large-input" placeholder="Company">
 				</label>
 			</div>
-			<div class="col-md-2 col-md-offset-2">
+			<div class="col-md-6">
 				<label for="address_book_1_addition_info">
 					<textarea name="address_book_1_addition_info" id="" cols="15" rows="5" placeholder="Additional Information:"></textarea>
 				</label>	
@@ -141,8 +129,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<p class="desc">Street address, P.O. box, company name, c/o</p>
 				</label>
 			</div>
-			<div class="col-md-6 push-down">
-				<label for="address_book_1_phone" class="">
+			<div class="col-md-6">
+				<label for="address_book_1_phone" class="asterisk">
 					<input type="text" name="address_book_1_phone" class="small-input" placeholder="Telephone">
 				</label>
 				<label for="address_book_1_mobile" class="asterisk">
@@ -150,10 +138,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 				</label>
 			</div>
 		</div>
-		<div class="space10"></div>
 		<div class="row">
 			<div class="col-md-6">
-				<label for="address_book_1_address_2" class="no-asterisk">
+				<label for="address_book_1_address_2" class="asterisk">
 					<input type="text" name="address_book_1_address_2" class="large-input" placeholder="Address">
 					<p class="desc">Apartment, suite, unit, building, floor, etc.</p>
 				</label>

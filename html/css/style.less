@@ -603,7 +603,7 @@ h1 {
 h2{
   .auto-1-bold;
   font-size: 17px;
-  line-height: 28px;
+  line-height: 24px;
   text-transform: uppercase;
   display: block;
   color: @dark-brown;
@@ -695,6 +695,11 @@ label.error {
   margin-bottom: 0px!important;
 }
 
+//pretty photo
+div.ppt {
+  opacity: 0!important;
+}
+
 //   _        _ __   _____  _   _ _____ 
 //  | |      / \\ \ / / _ \| | | |_   _|
 //  | |     / _ \\ V / | | | | | | | |  
@@ -750,6 +755,10 @@ label.error {
 
 .align-left-2 {
   margin-left: 20px;
+}
+
+.align-left-3 {
+  margin-left: 13px;
 }
 
 //   ___ _   _ ____  _   _ _____ 
@@ -887,6 +896,12 @@ header#main-header {
 #main-content {
   .logo-container {
     padding-top: 37px;
+    a {
+      img {
+        width: 100%
+        height: 100%;
+      }
+    }
   }
 
   .nav-hr {
@@ -916,23 +931,37 @@ header#main-header {
             font-size: 17px;
             color: @dark-brown;
           }
+          &.about {
+            > a {
+              cursor: default;
+            }
+            ul.sub-menu {
+              min-height: 115px;
+            }
+          }
           &.food {
-            left: -16px;
+            left: -11px;
             ul.sub-menu {
               min-height: 215px;
               width: 200px;
             }
           }
           &.catering {
-            left: -29px;
+            > a {
+              cursor: default;
+            }
+            left: -18px;
             ul.sub-menu {
               min-height: 81px;
               width: 200px;
             }
           }
           &.delivery {
+            > a {
+              cursor: default;
+            }
             width: 112px;
-            left: -42px;
+            left: -24px;
             ul.sub-menu {
               min-height: 81px;
               width: 200px;
@@ -940,7 +969,7 @@ header#main-header {
           }
           &.outlets {
             width: 96px;
-            left: -52px;
+            left: -22px;
             a {
               left: 14px;
             }
@@ -961,24 +990,28 @@ header#main-header {
           }
           &.promo {
             width: 136px;
-            left: -67px;
+            left: -16px;
             a {
               left: 17px;
             }
           }
           &.career {
             width: 112px;
-            left: -78px;
+            left: -18px;
             a {
               left: 21px;
             }
           }
           &.contact {
             width: 112px;
-            left: -94px;
+            left: -28px;
             a {
               left: 21px;
             }
+          }
+          &.faqs {
+            left: -32px;
+            width: 82px;
           }
 
           &:hover {
@@ -1127,8 +1160,10 @@ header#main-header {
           color: @dark-brown;
           img {
             display: block;
-            max-width: 100%;
-            height: auto !important;
+            /*max-width: 100%;
+            height: auto !important;*/
+            width: 290px;
+            height: 225px;
           }
           .caption {
             margin-top: 24px;
@@ -1189,10 +1224,34 @@ header#main-header {
           line-height: 20px;
           margin-top: 10px;
           margin-bottom: 10px;
+          min-height: 40px;
+        }
+        p.feature-text {
+          min-height: 10px;
         }
         p.feature-price {
-          padding-top: 13px;
           font-size: 14px;
+          .open-sans-semibold;
+        }
+        p.feature-price-2 {
+          .open-sans-italic;
+        }
+        p.feature-price, p.feature-price-2 {
+          text-align: left;
+        }
+        .cta {
+          margin-top: 10px;
+        }
+        a {
+          color: @dark-brown;
+          &.add-to-cart {
+            color: @white;
+            margin-top:3px;
+          }
+          img {
+            width: 290px;
+            height: 225px;
+          }
         }
       }
     }
@@ -1356,6 +1415,10 @@ header#main-header {
   form#login-form {
     font-size: 12px;
 
+    .less-height {
+      height: 87px;
+    }
+
     label {
       color: @dark-brown;
     }
@@ -1424,6 +1487,14 @@ header#main-header {
       margin-bottom: 20px;
     }
 
+    label[for="address_book_1_address_2"] {
+      margin-bottom: 0px;
+    }
+
+    label[for="address_book_1_address_1"] {
+      margin-bottom: 13px;
+    }
+
     label[for="user_login"],label[for="account_first_name"],label[for="account_last_name"],label[for="account_email"] {
       margin-left: 5px;
     }
@@ -1467,6 +1538,10 @@ header#main-header {
       font-style: normal;
     }
 
+    input[name="login"] {
+      margin-top: 7px;
+    }
+
     p {
       .open-sans-italic;
       font-size: 11px;      
@@ -1481,12 +1556,18 @@ header#main-header {
     p.desc {
       padding-left: 13px;
       color: #754c24;
+      span.italic {
+        font-style: italic;
+      }
+      em, i {
+        font-style: italic;
+      }
     }
 
     p.create-account-desc {
       .open-sans-semibold;
       font-size: 12px;
-      line-height: 22px;
+      line-height: 18px;
     }
 
     .push-down {
@@ -1524,6 +1605,7 @@ header#main-header {
   }
   
   .myaddress-container {
+    margin-top: 8px;
     ul {
       li {
         display: inline-block;
@@ -1657,6 +1739,9 @@ header#main-header {
 
         p.desc {
           padding-left: 8px;
+          span.italic {
+            font-style: italic;
+          }
           em, i {
             font-style: italic;
           }
@@ -1765,6 +1850,10 @@ header#main-header {
     color: @red;
     .open-sans-semibold;
   }
+
+  p.one-line {
+    width: 560px;
+  }
 }
 
 //  Individual // All
@@ -1780,9 +1869,17 @@ header#main-header {
 
   h2 {
     font-size: 21px;
+    text-transform: none;
   }
+
+  h2.grid-title {
+    width: 220px;
+    height: 48px;
+  }
+
   p.price-info {
     .open-sans-italic;
+    padding-top: 25px;
 
     .price {
       .open-sans-semibold;
@@ -1799,10 +1896,31 @@ header#main-header {
 
   p.desc {
     width: 87%;
+    position: relative;
+    /*min-height: 135px;*/
+
     span.italic {
       font-style: italic;
     }
+    em, i {
+      font-style: italic;
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+      width: 275px;
+    }
+    em.grid-desc {
+      width: 220px!important;
+    }
   }
+
+  p.grid-desc {
+    min-height: 105px;
+    margin-top: 10px;
+    width: 220px;
+  }
+
+
 
   p, label {
     font-size: 13px;
@@ -1880,6 +1998,10 @@ header#main-header {
 
     }
   }
+  .grid-selectors {
+    min-height: 62px;
+  }
+
   .selectors {
     
     label {
@@ -1891,8 +2013,16 @@ header#main-header {
       margin-right: 10px;
       select {
         min-width: 150px;
+        &.grid {
+          margin-bottom: 10px;
+          margin-left: 8px;
+        }
       }
     }
+    .grid-select-type {
+      margin-bottom: 10px;
+    }
+
     .select-qty {
       display: inline-block;
       select {
@@ -1900,9 +2030,10 @@ header#main-header {
       }
     }
     input#qty {
-      width: 26px;
+      width: 30px;
       height: 26px;
-      padding-left: 7px;
+      /*padding-left: 7px;*/
+      text-align: center;
     }
     select {
       padding-left: 7px;
@@ -1912,6 +2043,7 @@ header#main-header {
       .round(0px);
     }
   }
+
   ul.paginator, ul.page-numbers {
     li {
       display: inline-block;
@@ -1958,7 +2090,7 @@ header#main-header {
       background: url(../images/icons/down-arrow.png) no-repeat 50px 11px;
       padding: 5px 0 0 10px;
       position: relative;
-      margin-left: 10px;
+      margin-left: 8px;
 
       div {
         display: none;
@@ -1971,6 +2103,11 @@ header#main-header {
         left: 0px;
         padding-left: 10px;
 
+        &.view {
+          width: 83px;
+          height: 43px;
+        }
+
         ul {
           li {
             &:hover {
@@ -1980,7 +2117,12 @@ header#main-header {
         }
       }
 
-      &:first-child {
+      &#view-by {
+        width: 83px;
+        background-position-x: 65px;
+      }
+
+      &#order-by {
         width: 83px;
         background: url(../images/icons/down-arrow.png) no-repeat 65px 11px;
         margin-left: 0px;
@@ -2031,13 +2173,26 @@ header#main-header {
       }
     }
   }
+
+  div.grid {
+    float: left;
+    width: 33%;
+    height: 495px;
+
+    div.price-wrapper {
+      position: relative;
+      top: -76px;
+      left: 170px;
+      width: 65px;
+    }
+  }
 }
 
 // SINGLE product
 
 #individual {
   div.product {
-    a {
+    div.images {
       img {
         width: 320px;
         height: 249px;
@@ -2114,10 +2269,11 @@ header#main-header {
           color: @red;
           line-height: 32px;
           margin-bottom: -5px;
+          min-height: 40px;
         }
         .promo-text {
           //height: 70px;
-          min-height: 70px;
+          min-height: 110px;
 
           width: 220px;
           margin-left: 30px;
@@ -2180,6 +2336,15 @@ header#main-header {
       }
       span.sub-bullet {
         //margin-right: 5px;     - cannot have
+        display: block;
+        float: left;
+      }
+      span.sub-list {
+        display: block;
+        margin-left: 27px;
+      }
+      span.sub-list-2 {
+        margin-left: 8px;
       }
     }
   }
@@ -2519,6 +2684,7 @@ header#main-header {
       div.dropdown {
         display: inline-block;
         position: relative;
+        margin-right: 8px;
         &:before {
           content: '';
           width:26px; 
@@ -2542,7 +2708,7 @@ header#main-header {
           .round(0px);
         }
         select[name="delivery_time"],select[name="collection_time"] {
-          width: 215px;
+          width: 231px;
           .appearance(none);
           .round(0px);
         }
@@ -2778,6 +2944,9 @@ header#main-header {
 
       p.desc {
         padding-left: 8px;
+        span.italic {
+          font-style: italic;
+        }
         em, i {
           font-style: italic;
         }
@@ -2925,6 +3094,9 @@ header#main-header {
         font-size: 13px;
         color: @red;
       }
+      p.qty {
+        text-align: center;
+      }
     }
   }
 
@@ -3063,6 +3235,7 @@ header#main-header {
       }
       p.copy-right {
         margin-top: 40px;
+        min-width: 270px;
       }
     }
   }
@@ -3071,6 +3244,173 @@ header#main-header {
 .item-price-to-left {
   padding-left: 0px;
 }
+
+
+/* contact */
+
+#contact {
+  #google-map-canvas {
+    width: 928px;
+    height: 302px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  p {
+    .open-sans-italic;
+    font-size: 12px;
+  }
+
+  p.msg {
+    color: @red;
+    font-size: 13px;
+  }
+
+  .align-left-3 {
+    margin-left: 45px;
+  }
+
+  form#contact-form {
+    font-size: 12px;
+
+    label {
+      color: @dark-brown;
+    }
+
+    div.dropdown {
+      display: inline-block;
+      position: relative;
+      &:before {
+        content: '';
+        width:26px; 
+        height:26px;
+        background:url(../images/icons/drop-down-icon.png) no-repeat top left;
+        position:absolute;
+        display:block;
+        right: 0px;
+        pointer-events:none;
+      }
+    }
+
+    label {
+      position: relative;
+      margin-bottom: 20px;
+
+      input[type="text"],input[type="email"]{
+        padding-left: 12px;      
+        width: 300px;
+      }
+
+      &.asterisk {
+        input[type="text"],input[type="email"],textarea{
+          padding-left: 18px;
+        }
+        &:after {
+          content: '*';
+          position: absolute;
+          color: @red;
+          top: 5px;
+          left: 10px;
+        }
+      }
+      &.asterisk-2 {
+        input[type="text"],input[type="email"] {
+          padding-left: 18px;
+        }
+        &:after {
+          content: '*';
+          position: absolute;
+          color: @red;
+          top: 0px;
+          left: -9px;
+        }
+      }
+      &.right-arrow {
+        &:after {
+          content: '.';
+          text-indent: -9999px;
+          position: absolute;
+          color: @red;
+          top: 12px;
+          left: 165px;
+          background:url(../images/icons/triangle-arrow.png) no-repeat top right;
+          width: 10px;
+          height: 10px;
+        }
+      }
+    }
+
+    label[for="subject"] {
+      margin-bottom: 0px;
+      margin-left: 8px;
+    }
+
+    span.desc {
+      .open-sans-italic;
+      font-size: 11px;
+      display: block;
+      margin-left: 105px;
+      margin-top: 7px;
+      margin-bottom: 20px;
+    }
+
+    select {
+      width: 140px;
+      height: 26px;
+      margin-right: 11px;
+      .appearance(none);
+      .round(0px);
+      padding-left: 3px;
+
+      &:last-child {
+        margin-right: 0px;
+      }
+      &.country {
+        width: 116px;     
+        padding-left: 15px; 
+      }
+    }
+
+    textarea {
+      padding-left: 12px;
+      padding-top: 5px;
+      width: 393px;
+      height: 130px;
+    }
+
+    button.attachment {
+      background: none;
+      border: 1px solid #C69C6D;
+      padding: 5px 73px 5px 10px;
+    }
+
+    input[type="submit"] {
+      width: auto;
+      padding: 5px 15px;
+      font-style: normal;
+    }
+
+    label.error {
+      position: absolute;
+      top: 28px;
+      left: 0px;
+    }
+
+    label#message-error {
+      top: 133px;
+      left: 0;
+    }
+
+    label#subject-error {
+      position: static;
+      top: 0px;
+      left: 0px;
+    }
+  }
+}
+
 
 
 //      _   _    ___ ____  _   _ ____    _____ ____ ___ _____ 

@@ -173,7 +173,10 @@ class WC_Emails {
 	 * @return void
 	 */
 	function email_header( $email_heading ) {
-		wc_get_template( 'emails/email-header.php', array( 'email_heading' => $email_heading ) );
+		if($email_heading=="New customer order")
+			wc_get_template( 'emails/admin-email-header.php', array( 'email_heading' => $email_heading ) );
+		else
+			wc_get_template( 'emails/email-header.php', array( 'email_heading' => $email_heading ) );
 	}
 
 	/**
@@ -286,7 +289,7 @@ class WC_Emails {
 		$show_fields = apply_filters( 'woocommerce_email_order_meta_keys', array(), $sent_to_admin );
 
 		if ( $order->customer_note )
-			$meta[ __( 'Note', 'woocommerce' ) ] = wptexturize( $order->customer_note );
+			$meta[ __( 'ADDITIONAL INFORMATION/REQUEST', 'woocommerce' ) ] = wptexturize( $order->customer_note );
 
 		if ( $show_fields )
 			foreach ( $show_fields as $key => $field ) {

@@ -47,7 +47,12 @@ if ( $customer_orders ) : ?>
 
 						?>
 						<div class="row">
-							<div class="col-md-1"><a href="<?php echo $order->get_view_order_url(); ?>"><?php echo $order->get_order_number(); ?></a></div>
+							<div class="col-md-1">
+								<?php echo $order->get_order_number(); ?>
+								<!-- <a href="<?php echo $order->get_view_order_url(); ?>">
+									
+								</a> -->
+							</div>
 							<div class="col-md-2"><p><time datetime="<?php echo date( 'Y-m-d', strtotime( $order->order_date ) ); ?>" title="<?php echo esc_attr( strtotime( $order->order_date ) ); ?>"><?php echo date_i18n( get_option( 'date_format' ), strtotime( $order->order_date ) ); ?></time></p></div>
 							<div class="col-md-2"><?php echo ucfirst( __( $status->name, 'woocommerce' ) ); ?></div>
 							<div class="col-md-3">

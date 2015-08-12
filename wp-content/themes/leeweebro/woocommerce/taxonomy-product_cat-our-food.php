@@ -28,7 +28,7 @@ $page_data = get_page_by_title( 'Our Food' );
 		<div class="row">
 			<div class="col-md-12" id="banner-img">
 				<!-- <img src="images/content/banner-2.jpg" alt="banner"> -->
-				<?php echo get_the_post_thumbnail($page_data->ID); ?>
+				<?php echo get_the_post_thumbnail($page_data->ID, array('class'	=> "attachment-$size img-responsive")); ?>
 			</div>
 		</div>
 		<div class="space30"></div>

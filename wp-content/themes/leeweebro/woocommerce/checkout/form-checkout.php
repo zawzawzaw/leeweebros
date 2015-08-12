@@ -11,8 +11,8 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 global $woocommerce;
 
-wc_print_notices();
-
+// wc_print_notices();
+$receiving_mode = json_decode(stripslashes($_POST['receiving_mode']), true);
 ?>
 
 <div class="progress-indicator-container">
@@ -74,7 +74,7 @@ wc_print_notices();
 	<div class="row">
 		<div class="col-md-12">
 			<h2>PAYMENT MODE:</h2>
-			<p>Please kindly select the choice of payment mode below.</p>
+			<p>Kindly select the choice of payment mode below.</p>
 			<ul class="payment-method">
 				<li>
 					<input type="radio" name="paymentmethod" id="paymentmode" value="Personal Payment" >
@@ -90,12 +90,13 @@ wc_print_notices();
 	<div class="space50"></div>
 	<div class="row">
 		<form id="backtoselectaddress" action="<?php echo esc_url( $woocommerce->cart->get_cart_url() ); ?>" method="post">
-			<?php $receiving_mode = json_decode(stripslashes($_POST['receiving_mode']), true); ?>
-			<input type="hidden" name="collection_area" value="<?php echo (!empty($receiving_mode['collection_area'])) ? $receiving_mode['collection_area'] : ''; ?>">
-			<input type="hidden" name="delivery" value="<?php echo (!empty($receiving_mode['delivery'])) ? $receiving_mode['delivery'] : ''; ?>">
+			<?php foreach ($receiving_mode as $key => $rcm) { ?>
+				<input type="hidden" name="<?php echo $key; ?>" value="<?php echo $rcm; ?>">
+			<?php } ?>
+
 		</form>
-		<div class="col-md-2"><button class="button payment-mode-prev-btn">PREVIOUS</button></div>
-		<div class="col-md-2 col-md-offset-8"><button class="button payment-mode-next">NEXT</button></div>
+		<div class="col-xs-4 col-sm-4 col-md-2"><button class="button payment-mode-prev-btn">PREVIOUS</button></div>
+		<div class="col-xs-4 col-sm-4 col-md-2 col-md-offset-8"><button class="button payment-mode-next">NEXT</button></div>
 	</div>			
 </div>
 
@@ -104,13 +105,15 @@ wc_print_notices();
 		<div class="col-md-12">
 			<h2>PERSONAL PAYMENT METHODS:</h2>
 			<ul class="payment-method">
+				<?php if(empty($receiving_mode['collection_area'])): ?>
 				<li>
 					<input type="radio" name="personal_payment_method" value="Cash on delivery" checked>
 					<label for="atm" class="radio-label"><span class="radiobtn"></span>Cash on delivery</label>
 				</li>
+				<?php endif; ?>
 				<li>
 					<input type="radio" name="personal_payment_method" value="Advance payment by internet funds transfer/ATM">
-					<label for="online" class="radio-label"><span class="radiobtn"></span>Advance payment by internet funds transfer/ATM</label>
+					<label for="online" class="radio-label"><span class="radiobtn"></span><span class="text">Advance payment by internet funds transfer/ATM</span></label>
 				</li>
 				<li>
 					<input type="radio" name="personal_payment_method" value="Advance payment by cash at outlets">
@@ -129,54 +132,72 @@ wc_print_notices();
 	</div>
 	<div class="space50"></div>
 	<div class="row">
-		<div class="col-md-2"><button class="button personal-payment-save">SAVE</button></div>
+		<div class="col-xs-4 col-sm-4 col-md-1"><button class="button personal-payment-cancel">PREVIOUS</button></div>
+		<div class="col-xs-4 col-sm-4 col-md-1"><button class="button personal-payment-save">NEXT</button></div>
 	</div>	
 </div>
 
 <div class="corporate-payment delivery-container" style="display:none;">
 	<div class="row">
 		<div class="col-md-12">
-			<h2>CORPORATE PAYMENT METHODS:</h2>
+			<h2>PREFERRED CORPORATE PAYMENT METHODS:</h2>
 			<ul class="payment-method">
+				<?php if(empty($receiving_mode['collection_area'])): ?>
 				<li>
 					<input type="radio" name="corporate_payment_method" value="Cash on delivery" checked>
 					<label for="atm" class="radio-label"><span class="radiobtn"></span>Cash on delivery</label>
+				</li>
+				<?php endif; ?>
+				<li>
+					<input type="radio" name="corporate_payment_method" value="Advance payment by internet fund transfer/ATM" >
+					<label for="advance" class="radio-label"><span class="radiobtn"></span><span class="text">Advance payment by internet fund transfer/ATM</span></label>
+				</li>
+				<li>
+					<input type="radio" name="corporate_payment_method" value="Advance payment by cash at outlets" >
+					<label for="advance" class="radio-label"><span class="radiobtn"></span>Advance payment by cash at outlets</label>
+					<div class="dropdown">
+						<select name="outlets">
+							<option value="Central Kitchen" selected>Central Kitchen</option>
+							<option value="Raffles City Shopping Centre">Raffles City Shopping Centre</option>
+							<option value="Tampines Mall">Tampines Mall</option>
+							<option value="NEX Serangoon">NEX Serangoon</option>
+						</select>
+					</div>
 				</li>
 				<li>
 					<input type="radio" name="corporate_payment_method" value="Corporate cheque" >
 					<label for="atm" class="radio-label"><span class="radiobtn"></span>Corporate cheque</label>
 				</li>
-				<li>
+				<!-- <li>
 					<input type="radio" name="corporate_payment_method" value="Credit Terms" >
 					<label for="atm" class="radio-label"><span class="radiobtn"></span>Credit Terms</label>
-				</li>
+				</li> -->
 				<li>
 					<input type="radio" name="corporate_payment_method" value="GeBiz" >
 					<label for="atm" class="radio-label"><span class="radiobtn"></span>GeBiz</label>
 				</li>
 				<li>
-					<input type="radio" name="corporate_payment_method" value="AGD E-Invoice. Input blank field for: event name/code">
-					<label for="online" class="radio-label"><span class="radiobtn"></span>AGD E-Invoice. Input blank field for: event name/code</label>
+					<input type="radio" name="corporate_payment_method" value="AGD E-Invoice">
+					<label for="online" class="radio-label"><span class="radiobtn"></span><span class="text">AGD E-Invoice - Please indicate event name/code:</span></label>
 					<input type="text" name="einvoice">
 				</li>
-				<li>
+				<!-- <li>
 					<input type="radio" name="corporate_payment_method" value="Interbank Giro">
-					<label for="online" class="radio-label"><span class="radiobtn"></span>Interbank Giro:</label>
+					<label for="online" class="radio-label"><span class="radiobtn"></span><span class="text">Interbank Giro - Please indicate purchase order no:</span></label>
 					<input type="text" name="interbankgiro">
-				</li>
+				</li> -->
 			</ul>
 		</div>
 	</div>
 	<div class="space50"></div>
 	<div class="row">
-		<div class="col-md-2"><button class="button corporate-payment-save">SAVE</button></div>
+		<div class="col-xs-4 col-sm-4 col-md-1"><button class="button corporate-payment-save">SAVE</button></div>
+		<div class="col-xs-4 col-sm-4 col-md-1"><button class="button corporate-payment-cancel">CANCEL</button></div>
 	</div>	
 </div>
 
 <div class="cart-container summary-container" style="display:none;">
 	<?php
-
-	do_action( 'woocommerce_before_checkout_form', $checkout );
 
 	// If checkout registration is disabled and not logged in, the user cannot checkout
 	if ( ! $checkout->enable_signup && ! $checkout->enable_guest_checkout && ! is_user_logged_in() ) {
@@ -219,7 +240,11 @@ wc_print_notices();
 
 	</form>
 
+	<?php do_action( 'woocommerce_before_checkout_form', $checkout ); ?>
+
 	<?php do_action( 'woocommerce_after_checkout_form', $checkout ); ?>
+
+	<div class="space20"></div>
 </div>
 
 <div class="order-details-container" style="display:none;">
@@ -231,7 +256,6 @@ wc_print_notices();
 	<div class="space10"></div>
 	<div class="row">
 		<div class="col-md-12">
-			<?php $receiving_mode = json_decode(stripslashes($_POST['receiving_mode']), true); ?>
 			<ul>
 				<li><span class="paymentby-lbl">Payment By:</span> <span class="paymentby-value"></span></li>
 				<li><span class="collectionby-lbl">Collection By:</span> <span class="collectionby-value"><?php echo (!empty($receiving_mode['collection_area'])) ? 'Collection' : 'Delivery'; ?></span></li>
@@ -263,23 +287,22 @@ wc_print_notices();
 	</div>
 	<div class="space40"></div>
 	<div class="row">
-		<div class="col-md-7">
+		<div class="col-md-12">
 			<p class="note">You can review your order and download your invoice from the <span class="quote">"Order history"</span> section of your customer account by clicking <span class="quote">"My account"</span> on our shop.</p>
-			<p class="note">If you have a guest account, you can follow your order via the <span class="quote">"Guest Tracking"</span> section on our shop.</p>
 		</div>
 	</div>
 	<div class="space30"></div>
 	<div class="row terms-container">
-		<div class="col-md-6">
-			<input type="checkbox" name="tnc"><label class="checkbox-label"><span></span>I agree to the terms of service and adhere to them unconditionally.</label><br><a href="#" class="tnc">(Download T&C)</a>
+		<div class="col-md-12">
+			<input type="checkbox" name="tnc"><label class="checkbox-label"><span></span><p>I agree to the terms of service and adhere to them unconditionally.</p></label><br><a href="http://leeweebrothers.com/wp-content/uploads/2015/01/LWB-TC.pdf" target="_blank" class="tnc">(Download T&C)</a>
 		</div>
 	</div>
 	<div class="space30"></div>
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-xs-4 col-sm-4 col-md-4">
 			<button class="button submission-prev-btn">PREVIOUS</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6">
+		<div class="col-xs-4 col-sm-4 col-md-2 col-md-offset-6">
 			<button id="confirm-order" class="button continue">CONFIRM ORDER</button>
 		</div>
 	</div>

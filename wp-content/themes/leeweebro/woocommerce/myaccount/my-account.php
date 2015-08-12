@@ -1,4 +1,4 @@
-<?php
+<?php 
 /**
  * My Account page
  *
@@ -19,9 +19,11 @@ wc_print_notices(); ?>
 	<div id="sub-title" class="col-md-12">
 		<h2 class="myaccount_user">
 			<?php
+			$wp_current_user = wp_get_current_user();
+			$wp_current_user_fullname = $wp_current_user->user_firstname . ' ' . $wp_current_user->user_lastname;
 			printf(
 				__( 'Hello <strong>%1$s</strong> (not %1$s? <a href="%2$s">Sign out</a>).', 'woocommerce' ) . ' ',
-				$current_user->display_name,
+				$wp_current_user_fullname,
 				wp_logout_url( get_permalink( wc_get_page_id( 'myaccount' ) ) )
 			);
 			?>

@@ -1,14 +1,13 @@
 TO DOs
 
-variable prices
+cart tnc to check with nik
+500 internal server error
+Payment gateway
 clickable indicator
-prev
-my account
-login form error msg
-
-contact
-search
 responsive
+hide checkout title on thankyou
+guest checkout to check on their existing site to put error msg on login/register page
+edm to finalise
 
 DONE
 yiling design fix
@@ -30,3 +29,19 @@ address page (3 form validation) (at least town to add on register)
 load receiving mode page (prev button + delivery price validation + 2 form validation + add collection times dropbox + add surchages)
 update in address book
 check if 2 new address to add in address book
+variable prices
+login form error msg
+update on cart min quantity!
+previous
+select address to test (tested so far ok)
+tnc copy change
+remove cash on delivery if its collection 
+name in my account
+beef satay min order to check with nik
+search
+shop select option
+remove checkout & payment from menu? to check with nik
+menu parent to be clickable again (done for now)
+careers apply btn (done for now)
+contact
+to add (add to cart) on home page feature product

@@ -18,7 +18,7 @@ wc_print_notices();
 <?php do_action( 'woocommerce_cart_is_empty' ); ?>
 
 <p class="return-to-shop">
-	<a class="button wc-backward" href="<?php echo home_url(); ?>">
+	<a class="button wc-backward" href="<?php echo home_url(); ?>/shop">
 		<?php _e( 'Start Shopping', 'woocommerce' ) ?>
 	</a>
 </p>

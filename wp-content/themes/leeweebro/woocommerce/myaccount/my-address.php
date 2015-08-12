@@ -119,7 +119,7 @@ if ( $address_book ) : ?>
 			<div class="col-md-6">
 				<div class="space20"></div>
 
-				<label for="address_2" class="no-asterisk">
+				<label for="address_2" class="asterisk">
 					<input type="text" name="address_2" class="large-input" placeholder="Address">
 					<p class="desc">Apartment, suite, unit, building, floor, etc.</p>
 				</label>
@@ -151,7 +151,7 @@ if ( $address_book ) : ?>
 
 				<div class="space10"></div>
 
-				<label for="telephone" class="">
+				<label for="phone" class="asterisk">
 					<input type="text" name="phone" class="small-input" placeholder="Telephone">
 				</label>
 				<label for="mobile" class="asterisk">

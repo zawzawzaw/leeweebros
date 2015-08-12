@@ -16,7 +16,17 @@ if ( 1 == $wp_query->found_posts || ! woocommerce_products_will_display() )
 ?>
 
 <form class="woocommerce-ordering" method="get">
-	<a href="#">
+	<a href="#" id="view-by">
+		VIEW BY
+		<div class="view">
+			<ul id="viewby">
+				<li id="listview">List</li>
+				<li id="gridview">Grid</li>
+			</ul>
+		</div>
+	</a>
+	
+	<a href="#" id="order-by">
 		SORT BY
 		<div class="sort">
 			<ul id="orderby">
@@ -36,6 +46,8 @@ if ( 1 == $wp_query->found_posts || ! woocommerce_products_will_display() )
 				'price'      => __( 'Price (Lowest)', 'woocommerce' ),
 				'price-desc' => __( 'Price (Highest)', 'woocommerce' )
 			) );
+
+			print_r($catalog_orderby);
 
 			if ( get_option( 'woocommerce_enable_review_rating' ) === 'no' )
 				unset( $catalog_orderby['rating'] );
@@ -64,9 +76,9 @@ if ( 1 == $wp_query->found_posts || ! woocommerce_products_will_display() )
 		ITEMS
 		<div class="item">
 			<ul id="item">
-				<li>10</li>
-				<li>20</li>
-				<li>50</li>
+				<li>12</li>
+				<li>24</li>
+				<li>All</li>
 			</ul>
 		</div>
 	</a>
@@ -83,9 +95,8 @@ if ( 1 == $wp_query->found_posts || ! woocommerce_products_will_display() )
 			$shopCatalog_orderby = apply_filters('woocommerce_sortby_page', array(
 			//Add as many of these as you like, -1 shows all products per page
 			   	''       => __('ITEMS', 'woocommerce'),
-				'10' 		=> __('10', 'woocommerce'),
-				'20' 		=> __('20', 'woocommerce'),
-				'50' 		=> __('50', 'woocommerce'),
+				'12' 		=> __('12', 'woocommerce'),
+				'24' 		=> __('24', 'woocommerce'),
 				'-1' 		=> __('All', 'woocommerce'),
 			));
 

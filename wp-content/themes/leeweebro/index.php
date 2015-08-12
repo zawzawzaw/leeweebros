@@ -1,4 +1,6 @@
-<?php get_header(); ?>
+<?php get_header();
+global $woocommerce;
+?>
 
 <div id="content-wrapper">
 	<div id="main-slider" class="container">
@@ -15,8 +17,8 @@
 	<div id="special-deal" class="container">
 		<div class="row">
 			<div class="col-md-12" id="header-text">
-				<h3>SPECIAL DEAL FOR YOU</h3>
-				<h1>DEAL OF THE DAY</h1>
+				<h3>SOME POPULAR PRODUCTS FOR YOU</h3>
+				<h1>BEST SELLERS</h1>
 			</div>
 		</div>
 		<div class="space20"></div>
@@ -55,7 +57,7 @@
 						    'meta_key' => '_featured',  
 						    'meta_value' => 'yes',  
 						    'posts_per_page' => -1  
-						);  
+						);
 						  
 						$featured_query = new WP_Query( $args );
 						      
@@ -63,24 +65,67 @@
 						  
 						    while ($featured_query->have_posts()) :   
 						      
-						        $featured_query->the_post();  
+						        $featured_query->the_post();
 						          
 						        $product = get_product( $featured_query->post->ID );
-						        $price = get_post_meta( get_the_ID(), '_regular_price', true);
-						        $sale = get_post_meta( get_the_ID(), '_sale_price', true);
+
+						        if($product->product_type=='variable') {
+						        	$product = new WC_Product_Variable( $featured_query->post->ID );
+						        	$available_variations = $product->get_available_variations();
+						        	$variation_id=$available_variations[0]['variation_id'];
+						        	$variable_product1= new WC_Product_Variation( $variation_id );
+						        	$price = $variable_product1 ->regular_price;
+									$sale = $variable_product1 ->sale_price;
+
+						        }else {
+							        $price = get_post_meta( get_the_ID(), '_regular_price', true);
+							        $sale = get_post_meta( get_the_ID(), '_sale_price', true);
+						        }
 
 						        $attributes = $product->get_attributes();
+
+
+						        foreach ($attributes as $key => $att) {
+						        	if (strpos($att['value'],'|') !== false) {
+						        		$att_pa = $att['name'];
+						        		$att_value_arr = explode('|', $att['value']);
+						        		$att_value = trim($att_value_arr[0]);
+						        	}
+						        }
+
+						        // print_r($attributes);
 						?>
 								<li>
 									<a href="<?php echo get_permalink(get_the_ID()); ?>">
 										<?php the_post_thumbnail(); ?>
+									
+										<div class="feature-product-description">
+											<h3><?php the_title(); ?></h3>
+											<?php
+											$my_excerpt = the_excerpt_max_charlength(120);
+
+											if ( $my_excerpt != '' ) {
+												$custom_excerpt = explode('<br>',$my_excerpt);
+
+											} ?>
+											<p class="feature-text"><?php echo $custom_excerpt[0]; ?></p>
+											
+											<div class="row cta">
+												<div class="col-md-6">
+													<p class="feature-price">$<?php echo (isset($sale) && !empty($sale)) ? number_format((float)$sale, 2, '.', '') : number_format((float)$price, 2, '.', '');  ?></p>
+													<p class="feature-price-2"><?php echo (isset($attributes['per']['value'])) ? $attributes['per']['value'] : ''; ?></p>
+												</div>
+												<?php if($product->product_type=='variable'): 
+												$cart_url = $woocommerce->cart->get_cart_url();
+												?>
+												<div class="col-md-6"><a href="<?php echo $cart_url; ?>?add-to-cart=<?php echo $product->id; ?>&variation_id=<?php echo $variation_id; ?>&attribute_<?php echo strtolower($att_pa); ?>=<?php echo strtolower($att_value); ?>" class="button add-to-cart">Add to cart</a></div>
+												<?php else: ?>
+												<div class="col-md-6"><a href="<?php echo esc_url( $product->add_to_cart_url() ); ?>" class="button add-to-cart">Add to cart</a></div>
+												<?php endif; ?>
+											</div>
+											
+										</div>
 									</a>
-									<div class="feature-product-description">
-										<h3><?php the_title(); ?></h3>
-										<p class="feature-text"><?php echo get_the_excerpt(); ?></p>
-										<p class="feature-price">$<?php echo (isset($sale) && !empty($sale)) ? number_format((float)$sale, 2, '.', '') : number_format((float)$price, 2, '.', '');  ?></p>
-										<p class="feature-price-2"><?php echo (isset($attributes['per']['value'])) ? $attributes['per']['value'] : ''; ?></p>
-									</div>
 								</li>
 						<?php        
 						    endwhile;

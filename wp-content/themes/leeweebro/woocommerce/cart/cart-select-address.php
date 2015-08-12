@@ -1,5 +1,23 @@
 <?php 
 global $woocommerce;
+
+// if ( !$woocommerce->cart->add_discount( 'UNIQUECODE' ) ) {
+// 	echo 'not applied';
+// 	$woocommerce->show_messages();
+// }
+    
+// else {
+// 	echo 'applied';
+//  	$woocommerce->clear_messages();
+//     $woocommerce->add_message('Independence day sale coupon (10%) automatically applied');
+//     $woocommerce->show_messages();
+// }
+
+// $woocommerce->cart->calculate_totals();
+// echo $woocommerce->cart->get_total();
+// echo $woocommerce->cart->get_cart_discount_total();
+
+// wc_print_notices();
 ?>
 <div class="progress-indicator-container">
 	<div class="row">
@@ -128,7 +146,7 @@ global $woocommerce;
 				<div class="space20"></div>
 
 				<div class="row">
-					<div class="col-md-2">
+					<div class="col-md-4">
 						<h4></h4>
 						<p class="billing-address">
 							<span class="name"></span><br>
@@ -140,7 +158,7 @@ global $woocommerce;
 						</p>
 						<a href="#" class="update"></a>
 					</div>
-					<div class="col-md-2 col-md-offset-1">
+					<div class="col-md-4 align-left-3">
 						<h4></h4>
 						<p class="shipping-address">
 							<span class="name"></span><br>
@@ -159,9 +177,13 @@ global $woocommerce;
 				<div class="space20"></div>
 				
 				<form id="submitcheckout" action="<?php echo esc_url( $woocommerce->cart->get_checkout_url() ); ?>" method="post">
+					<?php 
+						$formdata = $_POST;
+						// unset($formdata['surcharge']);
+					?>
 					<input type="hidden" name="billing_address" id="billing_address_hidden" class="required" />
 					<input type="hidden" name="shipping_address" id="shipping_address_hidden" class="required" />
-					<input type="hidden" name="receiving_mode" value="<?php echo htmlspecialchars(json_encode($_POST)); ?>" class="required" />
+					<input type="hidden" name="receiving_mode" value="<?php echo htmlspecialchars(json_encode($formdata)); ?>" class="required" />
 					<textarea name="special_instruction" id="special_instruction" cols="80" rows="10" placeholder="Special Delivery Instruction"></textarea>
 
 					<?php do_action( 'woocommerce_proceed_to_checkout' ); ?>
@@ -176,8 +198,8 @@ global $woocommerce;
 		<form id="backtoreceivingmode" action="<?php echo esc_url( $woocommerce->cart->get_cart_url() ); ?>" method="post">
 			<input type="hidden" name="receiving">
 		</form>
-		<div class="col-md-2"><button type="submit" class="button select-address-prev-btn">PREVIOUS</button></div>
-		<div class="col-md-2 col-md-offset-8"><button type="submit" class="button submit-to-checkout">NEXT</button></div>
+		<div class="col-xs-4 col-sm-4 col-md-2"><button type="submit" class="button select-address-prev-btn">PREVIOUS</button></div>
+		<div class="col-xs-4 col-sm-4 col-md-2 col-md-offset-8"><button type="submit" class="button submit-to-checkout">NEXT</button></div>
 	</div>
 </div>
 <div class="address-container" style="display:none;">
@@ -201,13 +223,13 @@ global $woocommerce;
 						<label for="atm" class="radio-label"><span class="radiobtn"></span>Chalet</label>
 					</li>
 					<li>
-						<input type="radio" name="delivery_location" value="Public Attractions" >
-						<label for="atm" class="radio-label"><span class="radiobtn"></span>Public Attractions <span class="regular">(Sentosa, Gardens By the Bay, etc.)</span></label>
+						<input type="radio" name="delivery_location" value="Public attractions or spaces" >
+						<label for="atm" class="radio-label"><span class="radiobtn"></span><span class="text">Public attractions/spaces <span class="regular">(Sentosa, Gardens By the Bay, etc.)</span></span></label>
 					</li>
-					<li>
+					<!-- <li>
 						<input type="radio" name="delivery_location" value="Public Spaces" >
 						<label for="atm" class="radio-label"><span class="radiobtn"></span>Public Spaces <span class="regular">(Beaches, Parks, etc.)</span></label>
-					</li>
+					</li> -->
 				</ul>
 
 				<div class="space20"></div>
@@ -234,7 +256,7 @@ global $woocommerce;
 			<div class="col-md-6">
 				<div class="space20"></div>
 
-				<label for="address_2" class="no-asterisk">
+				<label for="address_2" class="asterisk">
 					<input type="text" name="address_2" class="large-input" placeholder="Address">
 					<p class="desc">Apartment, suite, unit, building, floor, etc.</p>
 				</label>
@@ -266,7 +288,7 @@ global $woocommerce;
 
 				<div class="space10"></div>
 
-				<label for="telephone" class="">
+				<label for="telephone" class="asterisk">
 					<input type="text" name="phone" class="small-input" placeholder="Telephone">
 				</label>
 				<label for="mobile" class="asterisk">
@@ -280,7 +302,8 @@ global $woocommerce;
 		</div>
 		<div class="space50"></div>
 		<div class="row">
-			<div class="col-md-2"><button type="submit" class="button save_delivery_address">SAVE ADDRESS</button></div>
+			<div class="col-xs-6 col-sm-6 col-md-2"><button type="submit" class="button save_delivery_address">SAVE ADDRESS</button></div>
+			<div class="col-xs-6 col-sm-6 col-md-2"><button type="submit" class="button cancel_delivery_address">CANCEL</button></div>
 		</div>		
 	</form>
 	<form name="login" id="billingaddress-form" method="post" action="" style="display:none;">
@@ -303,13 +326,13 @@ global $woocommerce;
 						<label for="atm" class="radio-label"><span class="radiobtn"></span>Chalet</label>
 					</li>
 					<li>
-						<input type="radio" name="billing_location" value="Public Attractions" >
-						<label for="atm" class="radio-label"><span class="radiobtn"></span>Public Attractions <span class="regular">(Sentosa, Gardens By the Bay, etc.)</span></label>
+						<input type="radio" name="billing_location" value="Public attractions/spaces" >
+						<label for="atm" class="radio-label"><span class="radiobtn"></span><span class="text">Public attractions/spaces <span class="regular">(Sentosa, Gardens By the Bay, etc.)</span></span></label>
 					</li>
-					<li>
+					<!-- <li>
 						<input type="radio" name="billing_location" value="Public Spaces" >
 						<label for="atm" class="radio-label"><span class="radiobtn"></span>Public Spaces <span class="regular">(Beaches, Parks, etc.)</span></label>
-					</li>
+					</li> -->
 				</ul>
 
 				<div class="space20"></div>
@@ -336,7 +359,7 @@ global $woocommerce;
 			<div class="col-md-6">
 				<div class="space20"></div>
 
-				<label for="address_2" class="no-asterisk">
+				<label for="address_2" class="asterisk">
 					<input type="text" name="address_2" class="large-input" placeholder="Address">
 					<p class="desc">Apartment, suite, unit, building, floor, etc.</p>
 				</label>				
@@ -368,7 +391,7 @@ global $woocommerce;
 
 				<div class="space10"></div>
 
-				<label for="telephone" class="">
+				<label for="telephone" class="asterisk">
 					<input type="text" name="phone" class="small-input" placeholder="Telephone">
 				</label>
 				<label for="mobile" class="asterisk">
@@ -381,7 +404,8 @@ global $woocommerce;
 		</div>
 		<div class="space50"></div>
 		<div class="row">
-			<div class="col-md-2"><button type="submit" class="button save_billing_address">SAVE ADDRESS</button></div>
+			<div class="col-xs-6 col-sm-6 col-md-2"><button type="submit" class="button save_billing_address">SAVE ADDRESS</button></div>
+			<div class="col-xs-6 col-sm-6 col-md-2"><button type="submit" class="button cancel_billing_address">CANCEL</button></div>
 		</div>		
 	</form>	
 </div>

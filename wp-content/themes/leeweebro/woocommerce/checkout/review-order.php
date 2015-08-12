@@ -32,16 +32,15 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 					if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_checkout_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
 						$terms = get_the_terms( $_product->post->ID, 'product_cat' );
-
 						?>
 						<div class="row <?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
 							<div class="col-md-1"><?php echo $i; ?></div>
 							<div class="col-md-2"><p><?php echo (isset($terms[0]->name)) ? $terms[0]->name : ''; ?></p></div>
-							<div class="col-md-3"><h5><?php echo apply_filters( 'woocommerce_cart_item_name', $_product->get_title(), $cart_item, $cart_item_key ); ?></h5><p class="status">Cooked or Raw: Cooked</p></div>
-							<div class="col-md-2">
+							<div class="col-md-3"><h5><?php echo apply_filters( 'woocommerce_cart_item_name', $_product->get_title(), $cart_item, $cart_item_key ); ?></h5><p class="status"><?php echo ($_product->variation_data['attribute_cooked']) ? "Cooked or Uncooked: " . ucfirst($_product->variation_data['attribute_cooked']) : ''; ?></p></div>
+							<div class="col-md-1">
 								<p class="qty"><?php echo apply_filters( 'woocommerce_checkout_cart_item_quantity', ' <strong class="product-quantity">' . sprintf( '%s', $cart_item['quantity'] ) . '</strong>', $cart_item, $cart_item_key ); ?></p>
 							</div>
-							<div class="col-md-2"><p class="price">$<?php echo (!empty($_product->sale_price)) ? $_product->sale_price : $_product->regular_price; ?></p></div>
+							<div class="col-md-2 col-md-offset-1"><p class="price">$<?php echo (!empty($_product->sale_price)) ? $_product->sale_price : $_product->regular_price; ?></p></div>
 							<div class="col-md-2"><p class="price"><?php echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ); ?></p></div>
 						</div>
 						<div class="row">
@@ -54,14 +53,24 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 				do_action( 'woocommerce_review_order_after_cart_contents' );
 			?>
 			<div class="row">
-				<div class="col-md-2 col-md-offset-7">
+				<div class="col-xs-7 col-sm-7 col-md-4 col-md-offset-5">
 					<p class="sub-total-lbl"><?php _e( 'Total Products:', 'woocommerce' ); ?></p>
+					<?php foreach ( WC()->cart->get_fees() as $fee ) : ?>
 					<p class="delivery-charge-lbl"><?php _e( 'Delivery Surcharge:', 'woocommerce' ); ?></p>
+					<?php endforeach; ?>
+					<?php foreach ( WC()->cart->get_coupons( 'order' ) as $code => $coupon ) : ?>
+						<?php if(!empty($code)): ?>
+							<p class="delivery-charge-lbl"><?php _e( 'Coupon Discount ('.$code.'):', 'woocommerce' ); ?></p>
+						<?php endif; ?>
+					<?php endforeach; ?>
 				</div>
-				<div class="col-md-2 col-md-offset-1">
+				<div class="col-xs-5 col-sm-5 col-md-2 col-md-offset-1">
 					<p class="sub-total"><?php wc_cart_totals_subtotal_html(); ?></p>			
 					<?php foreach ( WC()->cart->get_fees() as $fee ) : ?>
 						<p class="delivery-charge"><?php wc_cart_totals_fee_html( $fee ); ?></p>
+					<?php endforeach; ?>
+					<?php foreach ( WC()->cart->get_coupons( 'order' ) as $code => $coupon ) : ?>
+						<p style="margin-left: -4px;"><?php wc_cart_totals_coupon_html( $coupon ); ?></p>
 					<?php endforeach; ?>
 				</div>
 			</div>
@@ -70,10 +79,10 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 			</div>
 			<div class="row">
 				<?php do_action( 'woocommerce_review_order_before_order_total' ); ?>
-				<div class="col-md-2 col-md-offset-7">
+				<div class="col-xs-7 col-sm-7 col-md-2 col-md-offset-7">
 					<p class="payable-total-lbl"><?php _e( 'Payable', 'woocommerce' ); ?></p>
 				</div>
-				<div class="col-md-2 col-md-offset-1">
+				<div class="col-xs-5 col-sm-5 col-md-2 col-md-offset-1">
 					<p class="payable-total"><?php wc_cart_totals_order_total_html(); ?></p>
 				</div>
 				<?php do_action( 'woocommerce_review_order_after_order_total' ); ?>
