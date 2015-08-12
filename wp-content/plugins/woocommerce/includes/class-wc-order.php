@@ -1295,7 +1295,7 @@ class WC_Order {
 		}
 
 		$old_status = get_term_by( 'slug', sanitize_title( $this->status ), 'shop_order_status' );
-		$new_status = get_term_by( 'slug', sanitize_title( $new_status_slug ), 'shop_order_status' );
+		$new_status = get_term_by( 'slug', sanitize_title( $new_status_slug ), 'shop_order_status' );		
 
 		if ( $new_status ) {
 
@@ -1306,7 +1306,7 @@ class WC_Order {
 				// Status was changed
 				do_action( 'woocommerce_order_status_' . $new_status->slug, $this->id );
 				do_action( 'woocommerce_order_status_' . $this->status . '_to_' . $new_status->slug, $this->id );
-				do_action( 'woocommerce_order_status_changed', $this->id, $this->status, $new_status->slug );
+				do_action( 'woocommerce_order_status_changed', $this->id, $this->status, $new_status->slug );				
 
 				if ( $old_status ) {
 					$this->add_order_note( $note . sprintf( __( 'Order status changed from %s to %s.', 'woocommerce' ), __( $old_status->name, 'woocommerce' ), __( $new_status->name, 'woocommerce' ) ) );
@@ -1315,7 +1315,7 @@ class WC_Order {
 				// Record the completed date of the order
 				if ( 'completed' == $new_status->slug ) {
 					update_post_meta( $this->id, '_completed_date', current_time('mysql') );
-				}
+				}				
 
 				if ( 'processing' == $new_status->slug || 'completed' == $new_status->slug || 'on-hold' == $new_status->slug ) {
 
@@ -1329,10 +1329,14 @@ class WC_Order {
 				// If the order is cancelled, restore used coupons
 				if ( 'cancelled' == $new_status->slug ) {
 					$this->decrease_coupon_usage_counts();
-				}
+				}				
 
 				// Update last modified
-				wp_update_post( array( 'ID' => $this->id ) );
+				// try {
+				// 	wp_update_post( array( 'ID' => $this->id ), true );
+				// }catch(Exception $e) {
+				// 	echo 'Caught exception: ',  $e->getMessage(), "\n";
+				// }				
 
 				$this->status = $new_status->slug;
 			}
